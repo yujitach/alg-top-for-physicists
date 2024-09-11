@@ -1,0 +1,50 @@
+1. General Introduction
+
+2.
+
+manifolds ( smooth ; PL ; topological )
+
+examples ( S^n ; RP^n ; CP^n ; HP^n ; group manifolds )
+
+appearance of manifolds in physics : 
+
+	spacetime
+	parameter space / configuration space / order parameter
+	symmetry groups / gauge groups
+
+classification of 2d manifolds (orientable ; non-orientable)
+
+simplicial complex
+
+CW complex
+
+classification of 3d , 4d, ... 
+
+up to diffeo / homeo 
+
+issue of triangulability 
+
+
+3.
+
+4.
+
+5.
+
+6.
+
+7.
+
+8.
+
+9.
+
+10.
+
+11.
+
+12.
+
+13.
+
+14.
