@@ -1,10 +1,34 @@
 1. General Introduction
 
-2.
+various subfields of math vs. physics
+
+use of algebraic topology in particular
+
+- Dirac monopole and Hop
+
+- homotopy and topological solitons
+
+- index theorem and anomalies in QFT ( diff. geom aspects were emphasized then)
+
+- 1st Chern class and TKNN formula
+
+- Chern-Simons theory and quantum Hall effect
+
+- K-theory in string theory (but debatable if it's physics)
+
+- K-theory and topological insulators / superconductors
+
+- symmetry-protected topological phases and generalized cohomology theories
+
+- general understanding of anomalies in QFT
+
+Systematically learning algebraic topology seems useful at this point
+
+2. Manifolds
 
 manifolds ( smooth ; PL ; topological )
 
-examples ( S^n ; RP^n ; CP^n ; HP^n ; group manifolds )
+examples ( S^n ; RP^n ; CP^n ; HP^n ; group manifolds (O(n),SO(n),U(n),SU(n)) ; S^1=U(1) ; S^3=SU(2) ;)
 
 appearance of manifolds in physics : 
 
@@ -24,27 +48,267 @@ up to diffeo / homeo
 
 issue of triangulability 
 
+3. Fiber bundles 1 
 
-3.
+Hopf fibration :
 
-4.
+	S^3 -> S^2
+	S^7 -> S^4
+	S^15 -> S^8
 
-5.
+fiber bundles 
 
-6.
+real/complex vector bundles 
 
-7.
+real/complex line bundles 
 
-8.
+complex line bundle and S^1 bundle
 
-9.
+complex line bundle over S^2 / T^2 and the Chern number
 
-10.
+wavefunctions / Cooper pair condensate as sections of complex line bundles
 
-11.
+connection on S^1 bundle and vector potential
 
-12.
+curvature = field strength 
 
-13.
+Chern number as the integral of B , "Dirac quantization"
 
-14.
+nonzero sections and symmetry breaking ; vortices in superconductors
+
+sub-bundle and induced connection; Berry phase / connection
+
+The case of qubits with Hamiltonian parameterized by S^2
+
+Hopf fibration again
+
+4. Fiber bundles 2
+
+G-bundles and transition functions ; associated vector bundle
+
+(co)tangent bundle of manifolds
+
+exterior and symmetric powers of vector bundles
+
+metric as a section of symmetric square of tangent bundle
+
+spinor bundle ; matter content of SM
+
+nonzero sections and symmetry breaking: 't Hooft-Polyakov monopole
+
+
+4. Basic homotopy theory
+
+homotopy class of maps
+
+homotopy equivalences of spaces
+
+homotopy groups of spaces
+
+pi_n(S^m) : facts ; "Mahowald uncertainty principle"
+
+fiber bundles and long exact sequence of homotopy groups
+
+homotopy groups and topological solitons
+
+vortices ; 't Hooft-Polyakov monopole ; 
+Skyrmions ; Hopfions ; 
+superfluid Helium 3
+
+5. differential forms on manifolds
+
+exterior derivative  
+
+1-form vs. U(1) connection
+
+de Rham cohomology (as a ring)
+
+pullback of differential forms
+
+integration of forms on (sub)manifolds
+
+Stokes' theorem
+
+pairing of cohomology classes and submanifolds
+
+metric and the Hodge star ; (Euclidean) Maxwell equation on a patch
+
+cohomology class as harmonic forms
+
+examples: S^n, CP^n
+
+U(n) connection and curvature
+
+Chern classes as de Rham cohomology classes
+
+instantons and theta angle ; issues on normalizations
+
+homotopy invariance
+
+6. Cellular cochains
+
+recap of CW complexes
+
+cell structure from good coordinate patches
+
+A-valued cellular (co)chain, (co)boundary, (co)cycle
+
+cellular (co)homology group
+
+pullback of cohomology classes / pushout(?) of homology classes
+
+examples: S^n, RP^n, CP^n ; RP^\infty, CP^\infty
+
+Z-coefficient torsion (co)homology classes
+
+products on cochains / cocycles
+
+CP^n again
+
+Universal coefficient theorem ; relation to the de Rham coho.
+
+invariance under homotopy / subdivision
+
+fiber bundle and (co)homology ... spectral sequence (teaser)
+
+instead, long exact sequence for cofibration 
+
+7. Obstruction classes
+
+O(n) vs SO(n) and w_1
+
+- orientation on manifolds ; orientable vs. oriented
+
+SO(n) vs Spin(n) and w_2
+
+- Spin(n) as a double cover ; Clifford algebra = Jordan-Wigner transformation
+
+- spin structure on manifolds ; spinnable vs. spin
+
+- "torsor over" H^1(M,Z_2) but not H^1(M,Z_2)
+
+- spin structure on genus-g surfaces; how MCG act on them
+
+- detecting \pi_4(S^3) via spin structures
+
+General obstruction class to lift an H-bundle to G-bundle
+
+- U(1) to *  vs 1st Chern class. The case of torsion 1st Chern class
+
+1st Chern classes <--> line bundles
+
+- PU(n) to U(n) vs Dixmier-Douady class. Are observables more important than wavefunctions?
+
+To actually understand this, we need more preparations ...
+
+8. Classifying spaces 
+
+The concept of classifying spaces 
+
+BZ_2, BU(1), BSU(2) ; BU(n), BO(n), BG for finite G ; other constructions
+
+General characteristic classes
+
+Chern classes ; Stiefel-Whitney classes ; Pontryagin classes as elements of H^*(BG,-) 
+
+splitting principle
+	- normalization of w_1 and c_1 via canonical bundles
+	- Stiefel-Whitney classes of tangent bundles of RP^n
+	- Chern classes of tangent bundle of CP^n
+	- Chern roots
+
+Group cohomology of finite groups and H^*(BG)
+
+BU(1) = CP^\infty as K(Z,2); classifying space for H^n(-,A)
+
+9. Chern-Simons terms and the bordism group
+
+(non)abelian CS terms: at the level of differential forms
+
+relation to integer quantum Hall effect, normalization of the level
+
+definition via 4d manifold (assuming that such an extension exists)
+
+problem for odd n
+
+intersection form on spin 4d manifolds: 
+	- Steenrod square
+	- Wu formula
+
+Does such an extension exist? The bordism group
+
+(learning this would be too much just for this purpose, but it will be used later)
+
+Bordism group (of pt)
+
+Some facts on \Omega^{spin,oriented,unoriented}_* in low degrees
+
+Bordism homology groups \Omega^{S}_*(X)
+
+Generalized (co)homology theories
+
+Pontryagin-Thom construction and the representing spectrum
+
+How do we actually compute \Omega^{S}_*(X) ?
+
+10. K-theory
+
+K^0(X) and KO^0(X) from Grothendieck group of vector bundles
+
+K-theory of the point and the Clifford modules : QM of Majorana fermions
+
+K-theory of the point and topological insulator / superconductor
+
+Equivariant K of the point and topo. insul / superconductor with symmetry
+
+Equivariant K-theory of the point and relativistic fermions 
+
+K^*(X) and KO^*(X) from families of SQM with Clifford action
+
+K-theory as generalized cohomology theory
+
+Intereacting SPTs? (teaser)
+
+11. Atiyah-Singer Index theorem
+
+Dirac operator and its index
+
+ABJ anomaly
+
+mod-2 index theorem
+
+index theorem as "K-theoretic integration" 
+
+index theorem as a natural transformation MSpin --> KO , from an SQM point of view
+
+eta invariant, APS index theorem, and the charge of the vacuum
+
+eta invariant as the partition function of very massive fermion
+
+eta invariant as a better-defined Chern-Simons invariant (3d spin Abelian CS as an example)
+
+eta invariant as an invertible phase
+
+12. Anomalies 
+
+integer quantum Hall effect and the edge current
+
+perturbative anomalies of relativistic 4d fermions 
+
+anomaly polynomial of a system
+
+4d Witten anomaly : \pi_4(S^3) and \Omega^{spin}_5(BSU(2))
+
+Classification of anomalies = classification of invertible phases
+
+Structure of invertible phases and Anderson dual of the bordism groups
+
+Fermion anomalies as a natural transformation KO --> I_Z MSpin
+
+13.  Computing \pi_4(S^3)
+
+LSSS
+
+14.  Computing \Omega^{spin}_5(BSU(2))
+
+AHSS
