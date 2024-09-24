@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+
+
+
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+
+\if0
+\let\subparagraph\paragraph
+\let\paragraph\subsubsection
+\let\subsubsection\subsection
+\let\subsection\section
+\let\section\chapter
+\numberwithin{equation}{chapter}
+\fi
+\countdef\cpart=1
+\def\part#1{%
+\newpage
+\advance\cpart by 1
+\section*{Part \the\cpart: #1}
+\addcontentsline{toc}{section}{Part \the\cpart: #1}
+}
+
+\usepackage[nottoc]{tocbibind}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[colorlinks,citecolor=DarkGreen,linkcolor=FireBrick,urlcolor=FireBrick,linktocpage]{hyperref}
+\numberwithin{equation}{section}
+\urlstyle{rm}
+\def\arxivfont{\rm}
+\def\doihref#1#2{\href{#1}{{\color{FireBrick!80!Black}#2}}}
+\usepackage{graphicx}
+%\usepackage{showkeys}
+\usepackage{float}
+\usepackage[height=8.8in,width=6.45in]{geometry}
+\usepackage{tgtermes}
+\usepackage{tgadventor}
+\usepackage[scaled]{couriers}
+\usepackage[T1]{fontenc}
+\usepackage[mathscr]{euscript}
+\usepackage[export]{adjustbox}
+\usepackage{braket}
+\usepackage[safe]{tipa}
+
+
+
+\usepackage{xcolor}
+\usepackage{mdframed}
+\newenvironment{claim}{  \begin{mdframed}[linecolor=black!0,backgroundcolor=black!10]\noindent\ignorespaces}{\end{mdframed}}
+
+\let\originalfigure=\figure
+\let\endoriginalfigure=\endfigure
+
+\renewenvironment{figure}[1][]{
+  \begin{originalfigure}[#1]
+    \begin{mdframed}[linecolor=black!0,backgroundcolor=black!1]
+}{
+    \end{mdframed}
+  \end{originalfigure}
+}
+
+
+\let\originaltable=\table
+\let\endoriginaltable=\endtable
+
+\renewenvironment{table}[1][]{
+  \begin{originaltable}[#1]
+    \begin{mdframed}[linecolor=black!0,backgroundcolor=black!1]
+}{
+    \end{mdframed}
+  \end{originaltable}
+}
+
+
+\def\baselinestretch{1.04}
+% https://tex.stackexchange.com/questions/473627/set-the-short-display-skip-as-in-coxeter-regular-complex-polytopes-1974
+%\makeatletter
+%\g@addto@macro\normalsize{%
+%  \setlength\abovedisplayshortskip{\glueexpr\abovedisplayskip-\baselineskip}%
+%  \setlength\belowdisplayshortskip{\belowdisplayskip}%
+%}
+%\makeatother
+
+\def\Nequals#1{$\mathcal{N}{=}\,#1$}
+
+\usepackage{framed}
+\definecolor{shadecolor}{rgb}{0.90,0.90,0.90}
+\theoremstyle{definition}
+\newtheorem{exercise_}{Exercise}[section]
+\newenvironment{exercise__}%
+{\begin{exercise_}\begin{shaded}}%
+{\end{shaded}\end{exercise_}}
+\def\exercise#1{\begin{exercise__}
+#1
+\end{exercise__}}
+
+\def\answer{\paragraph{Answer.} }
+
+
+\def\important#1#2{%
+\begin{mdframed}[linecolor=black!0,backgroundcolor=black!5]
+\textbf{#1.} #2
+\end{mdframed}
+}
+
+
+\newenvironment{comment}{\par\noindent [Comment. \ }{\par\noindent End comment.]}
+
+\def\inc#1{\vcenter{\hbox{\includegraphics[scale=.2]{#1}}}}
+\def\incc#1{\vcenter{\hbox{\includegraphics[scale=.6]{#1}}}}
+
+\def\TODO#1{{\color{FireBrick} #1}}
+
+\usepackage{bxcjkjatype} 
+
+\definecolor{identifiercolor}{rgb}{.4,.6,.56}
+\definecolor{stringcolor}{gray}{0.5}
+\definecolor{inactivecolor}{rgb}{0.15,0.15,0.5}
+
+%%list alg-top-notes
+
+
+\begin{document}
+
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\newpage
+
+%\setcounter{section}{-1}
+
+\section{General introduction}
+
+\section{Manifolds}
+
+\section{Fiber bundles}
+
+\section{Basic homotopy theory}
+
+\section{Differential forms and de Rham cohomology}
+
+\section{Cellular cohomology}
+
+\section{Obstruction classes}
+
+\section{Classifying spaces}
+
+\section{Chern-Simons terms and bordism groups}
+
+\section{K-theory}
+
+\section{Atiyah-Singer index theorem}
+
+\section{Anomalies}
+
+\section{Computing \texorpdfstring{$\pi_4(S^3)$}{pi4(S3)}}
+
+\bibliographystyle{ytamsalpha}
+%\baselineskip=.85\baselineskip%\let\ttfamily\relax
+%\let\bbb\bibitem\def\bibitem{\itemsep1pt\bbb}
+\bibliography{ref}
+
+\end{document}
+
+.
