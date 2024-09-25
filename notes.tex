@@ -1,27 +1,8 @@
 \documentclass[12pt]{article}
 
-
-
-
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
-
-\if0
-\let\subparagraph\paragraph
-\let\paragraph\subsubsection
-\let\subsubsection\subsection
-\let\subsection\section
-\let\section\chapter
-\numberwithin{equation}{chapter}
-\fi
-\countdef\cpart=1
-\def\part#1{%
-\newpage
-\advance\cpart by 1
-\section*{Part \the\cpart: #1}
-\addcontentsline{toc}{section}{Part \the\cpart: #1}
-}
 
 \usepackage[nottoc]{tocbibind}
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
@@ -42,8 +23,6 @@
 \usepackage[export]{adjustbox}
 \usepackage{braket}
 \usepackage[safe]{tipa}
-
-
 
 \usepackage{xcolor}
 \usepackage{mdframed}
@@ -120,17 +99,106 @@
 
 %%list alg-top-notes
 
+\def\bC{\mathbb{C}}
+\def\bR{\mathbb{R}}
+\def\bZ{\mathbb{Z}}
 
 \begin{document}
+
+\centerline{\Large Algebraic topology for physicists}
+
+\bigskip
+
+\centerline{\large Yuji Tachikawa}
 
 \setcounter{tocdepth}{2}
 \tableofcontents
 
 \newpage
 
-%\setcounter{section}{-1}
+
 
 \section{General introduction}
+
+\subsection{Motivation of the course}
+
+Even though there are a number of mathematical physicists in our physics department,
+there has been no course on mathematical physics in the graduate school,
+at least since when I got hired about ten years ago.
+I always wanted to give one such course, but I know 
+there are a lot of bureaucratic hurdles to be cleared before adding a lecture slot with a new subject name in the curriculum.
+
+Last year, I noticed that there already actually is a lecture slot with the name
+\begin{uCJK}数理物理学\end{uCJK} (mathematical physics)
+which was somehow not used for about 20 years.
+It turns out reviving a long dormant lecture slot requires almost no paperwork,
+so I decided to do just that.
+
+I'm not sure how other faculty member would use this slot in the future,
+but my goal this year is to provide a introduction to algebraic topology for physicists.
+My rationale is the following.
+
+As you already know, math plays a very important role in physics, 
+as was famously pointed out by Wigner in his essay \cite{WignerUnreasonable}.
+But it is definitely \emph{not} that all subfields of math are equally important.
+Clearly important ones are:
+\begin{itemize}
+  \item Calculus: in some sense this subject arose from physics (by Newton etc.)
+  \item Linear algebra: this is important for anything which deals with first-order approximations. 
+  It is also a crucial ingredient of quantum mechanics (QM).
+  \item Theoy of Hilbert spaces: equally important for QM.
+  \item Differential geometry: this is important for general relativity (GR).
+\end{itemize}
+
+But there are also ones whose usefulness is quite dubious (or at least not immediately obvious):
+\begin{itemize}
+  \item Mathematical logic / set theory : Will we ever use G\"odel's incompleteness theorem in physics?
+  Will physics depend on the choice of the particular axioms of set theory?
+  \item Number theory: physics is primarily based on $\bR$ and $\bC$, 
+  while the number theory is about $\bZ$.
+  \item Algebraic geometry: this is about shapes of objects defined by polynomial equations. 
+  Why should physicists care about polynomial equations?
+\end{itemize}
+
+Algebraic topology was in the middle of these two lists, until about 15 years ago.
+From 1970s, basic homotopy theory was used in the study of topological solitons 
+in particle physics and in condensed matter physics.
+Starting in the 1980s, 
+some characteristic classes were used in the study of anomalies in particle physics
+and in the study of quantum Hall effects in condensed matter physics.
+But that was about it.
+The algebraic topology used was also quite elementary from mathematician's perspective:
+everything used on the physics side was developed 1940s, say.
+So  algebraic topology is not usually (and does not have to be) covered in a typical physics curriculum,
+or textbooks on mathematical methods for physicists.
+
+But that changed in the last 15 years. 
+Topological insulators and superconductors became a hot topic,
+and soon we learned that they are classified by K and KO theory \cite{Schnyder:2008tya,Kitaev:2009mg,Ryu:2010zza}.
+And they are classification of non-interacting phases.
+The study of interacting phases, of a class often known as \emph{symmetry protected topological (SPT) phases},
+or as \emph{invertible phases}, 
+pursued e.g.~in \cite{Fidkowski:2009dba,Chen:2011pg,Gu:2012ib,Metlitski:2014xqa} 
+soon gave rise to the realization that the classification would be done by bordism groups \cite{Kapustin:2014dxa}
+or by more general cohomology theories \cite{KitaevCollapse}.
+This expectation was confirmed later by \cite{Freed:2016rqq,Yonekura:2018ufj},
+where it was shown that the classification of the SPT phases is done by 
+the Anderson (or Pontryagin) dual of the bordism group.
+This also implicitly gave a general theory of anomalies on the particle physics side.
+To understand all this requires a far more advanced algebraic topology than was necessary before
+(although still not very modern from mathematicians' point of view, 
+since it only uses algebraic toplogy up to 1970 or something).
+
+To understand this fascinating development required me to learn bits and pieces of algebraic topology 
+from various sources. But there is no single place where most of the relevant materials for physicists
+are gathered. 
+This set of lectures is my attempt to provide such a place.
+
+\subsection{Nature of the course}
+
+\subsection{What is algebraic topology, and what is it good for physicists?}
+
+\subsection{Aside: some use of dubious math subfields in physics}
 
 \section{Manifolds}
 
