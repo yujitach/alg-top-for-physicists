@@ -91,7 +91,7 @@
 
 \def\TODO#1{{\color{FireBrick} #1}}
 
-\usepackage{bxcjkjatype} 
+\usepackage[whole]{bxcjkjatype} 
 
 \definecolor{identifiercolor}{rgb}{.4,.6,.56}
 \definecolor{stringcolor}{gray}{0.5}
@@ -120,7 +120,8 @@
 
 \section{General introduction}
 
-\subsection{Motivation of the course}
+\subsection{Why now?}
+\label{sec:whynow}
 
 Even though there are a number of mathematical physicists in our physics department,
 there has been no course on mathematical physics in the graduate school,
@@ -129,7 +130,7 @@ I always wanted to give one such course, but I know
 there are a lot of bureaucratic hurdles to be cleared before adding a lecture slot with a new subject name in the curriculum.
 
 Last year, I noticed that there already actually is a lecture slot with the name
-\begin{uCJK}数理物理学\end{uCJK} (mathematical physics)
+数理物理学 (mathematical physics)
 which was somehow not used for about 20 years.
 It turns out reviving a long dormant lecture slot requires almost no paperwork,
 so I decided to do just that.
@@ -143,24 +144,24 @@ as was famously pointed out by Wigner in his essay \cite{WignerUnreasonable}.
 But it is definitely \emph{not} that all subfields of math are equally important.
 Clearly important ones are:
 \begin{itemize}
-  \item Calculus: in some sense this subject arose from physics (by Newton etc.)
-  \item Linear algebra: this is important for anything which deals with first-order approximations. 
+  \item \textbf{Calculus:} in some sense this subject arose from physics (by Newton etc.)
+  \item \textbf{Linear algebra:} this is important for anything which deals with first-order approximations. 
   It is also a crucial ingredient of quantum mechanics (QM).
-  \item Theoy of Hilbert spaces: equally important for QM.
-  \item Differential geometry: this is important for general relativity (GR).
+  \item \textbf{Theoy of Hilbert spaces:} equally important for QM.
+  \item \textbf{Differential geometry:} this is important for general relativity (GR).
 \end{itemize}
 
 But there are also ones whose usefulness is quite dubious (or at least not immediately obvious):
 \begin{itemize}
-  \item Mathematical logic / set theory : Will we ever use G\"odel's incompleteness theorem in physics?
-  Will physics depend on the choice of the particular axioms of set theory?
-  \item Number theory: physics is primarily based on $\bR$ and $\bC$, 
+  \item \textbf{Number theory:} physics is primarily based on $\bR$ and $\bC$, 
   while the number theory is about $\bZ$.
-  \item Algebraic geometry: this is about shapes of objects defined by polynomial equations. 
+  \item \textbf{Algebraic geometry:} this is about shapes of objects defined by polynomial equations. 
   Why should physicists care about polynomial equations?
+  \item \textbf{Mathematical logic / set theory:} Will we ever use G\"odel's incompleteness theorem in physics?
+  Will physics depend on the choice of the particular axioms of set theory?
 \end{itemize}
 
-Algebraic topology was in the middle of these two lists, until about 15 years ago.
+\textbf{Algebraic topology} was in the middle of these two lists, until about 15 years ago.
 From 1970s, basic homotopy theory was used in the study of topological solitons 
 in particle physics and in condensed matter physics.
 Starting in the 1980s, 
@@ -194,11 +195,136 @@ from various sources. But there is no single place where most of the relevant ma
 are gathered. 
 This set of lectures is my attempt to provide such a place.
 
-\subsection{Nature of the course}
+\subsection{What is algebraic topology? Is it any good?}
 
-\subsection{What is algebraic topology, and what is it good for physicists?}
+Topology is a subfield of math where people study spaces.
+Spaces of course appear in physics. 
+The four-dimensional spacetime we live in and study via general relativity is a mathematical space.
+The space of configurations of a rigid body is also a space.
+Similarly, the order parameter of a condensed matter system is a space.
+The space of all possible gapped condensed-matter Hamiltonians defined on a lattice 
+is also a space.
+So, methods to study spaces (i.e.~topology) should be useful to us.
 
-\subsection{Aside: some use of dubious math subfields in physics}
+In algebraic topology, we study spaces by associating algebraic objects to them.
+Given a space $X$, some of the algebraic objects associated are:
+\begin{itemize}
+\item \textbf{Homotopy groups:} $\pi_n(X)$ is the group obtained by considering maps $S^n \to X$,
+where $S^n$ is the $n$-dimensional sphere (in the convention that the ordinary sphere is $S^2$).
+\item \textbf{Bordism groups:} $\Omega_n(X)$ is the group obtained by considering maps $M_n \to X$,
+where $M_n$ is a general smooth manifold of dimension $n$.
+\item \textbf{Homology groups:} $H_n(X)$ is the group obtained by considering $n$-dimensional `cycles' 
+ in $X$, where a cycle is a more general notion than spheres or manifolds.
+\end{itemize}
+Note that the `source spaces' in the descriptions above has the inclusion relation \begin{equation}
+  \{\text{spheres}\} \subset \{\text{manifolds}\} \subset \{\text{cycles}\}
+\end{equation} and somehow the difficulty of the computation decreases as the source spaces become more general,
+so that the homotopy groups are the most difficult to compute and the homology groups are the easiest.
+
+Homotopy groups are useful to describe topological solitons,
+and bordism groups play important roles in the study of topological phases
+and of anomalies of quantum field theories.
+We will also encounter K-theory $K(X)$, whose difficulty of computation and of definition lies between homotopy and homotopy 
+and is similar to that of bordism groups, 
+which is useful in the study of non-interacting topological phases
+and of properties of fermion fields in quantum field theories.
+Homology groups are not as directly relevant for physics at this point of our discussion,
+but as the easiest to compute, obtaining them is a first step in the computation of other algebraic objects.
+
+Another topic is the study of fiber bundles $E$ over a space $X$.
+This is a space $E$ with a projection $E\to X$ such that, locally around each point $x\in X$, 
+$E$ looks like $U\times F$ where $x\in U\subset X$ is a neighborhood of $X$ and $F$ is a fixed space called the fiber.
+Topology of fiber bundles are often distinguished by the help of characteristic classes,
+again a topic of algebraic topology.
+This appears in many places in physics. Three examples:
+\begin{itemize}
+\item Gauge fields (such as the Maxwell field or the Yang-Mills field, describing the electromagnetism or the strong force)
+mare mathematically described by connections on fiber bundles, where the base space $X$ is our spacetime.
+The topology of this fiber bundle gives rise to Dirac monopoles and instantons,
+specified by the characteristic classes known as the 1st and 2nd Chern classes of the bundle, respectively.
+\item Consider a crystalline system in a condensed matter setting. The band structure of the system
+determines a fiber bundle (of Hilbert spaces) over the Brillouin zone. 
+Its topology underlie many of the topological properties of the system.
+For example, for a $2+1$ dimensional system, 
+the 1st Chern class of this bundle (which is an integer) gives the quantized Hall conductance,
+as the famous analysis of Thouless, Kohmoto, Nightingale, and den Nijs showed \cite{Thouless:1982zz}.
+\item A parameterized family of quantum states can also be considered as a fiber bundle over the parameter space,
+where the fiber can be either the Hilbert space of wavefunctions or the space of density matrices.
+The topology of this fiber bundle gives rise to the notion of Berry phase.
+We will also see that there are cases such that there can be a continuous family of density matrices
+which is never realized as a continuous family of statistical mixture of wavefunctions.
+Again this issue is detected by a characteristic class, known as the Dixmier-Douady class.
+\end{itemize}
+Characteristic classes of fiber bundles often take values in cohomology groups of the base space $X$,
+which also explains the usefulness of (co)homology groups in physics.
+
+The aim of this lecture series is to provide a minimal amount of information so that you can understand 
+the content of the paragraphs above.
+This will, unfortunatley, require the whole semester.
+
+\subsection{Mathematical rigor in the course}
+This is not a course for (prospective) mathematicians. 
+For me, math is like a collection of useful apps (on your Mac/PC or mobile devices).
+Here is a comparison chart:
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+  math & app \\
+  \hline
+  definition & short usage of the app \\
+  theorem & app itself \\
+  proof & source code of the app \\
+  \hline
+\end{tabular}
+\end{center}
+Reading the source code of an open source app can be fun and instructive,
+but not necessarily required if you only want to use the app. 
+Similarly, even reading the short usage of the app (say in an app store) can be too much 
+if you want to use the app just once, for example.
+In this course, we will not going into the source code of the apps,
+but I do intend tell you what kind of apps are available
+and give at least short usages of the apps involved.
+
+I should say that papers and textbooks in theoretical physics are not as neatly packaged as those in math.
+In math, you can skip the proofs but still use the theorems to compute what we need.
+In contract, in papers on physics, we freely go back and forth between assumptions, derivations and conclusions,
+and we are almost always required to read the whole paper to understand what is going on and to use it for our own purposes.
+Not only that, in math, the proofs are usually reliable, so you can just use the theorems without worrying too much.
+In physics, the statements often relies on unwritten assumptions, so we need utmost caution when we want 
+to use results in other papers. 
+Maybe we physicists have something to learn from mathematicians in this regard...
+
+
+\subsection{Aside: some rare use of `useless' math subfields in physics}
+Before proceeding to the main part of the lectures,
+I'd like to mention some meager connections to physics of `useless' subfields of math I mentioned in Sec.~\ref{sec:whynow}.
+
+\paragraph{Number theory:}
+Modular functions appear and are used in the study of two-dimensional conformal field theory (CFT) and in string theory.
+Modular functions also play very important roles in number theory.
+For example there is an introductory book on number theory by Mieda \cite{Mieda} published this year,
+where exactly the same functions I often see in string theory and in two-dimensional CFT appears throughout the book.
+Whether string theory is physics is debatable, but I think 2d CFT definitely is.
+So there is at least a small connection between number theory and physics.
+Is it an accident? Or is there a deeper relation?
+I should say that there is even a journal called \emph{Number Theory and Physics}.
+
+\paragraph{Algebraic geometry:}
+In algebraic geometry people study the shapes of spaces determined by polynomial equations. 
+In physics the shapes of spaces are usually determined by differential equations.
+Is there a place where polynomial equations naturally appear in physics?
+If you are kind enough to consider string theory physics, then the answer is yes.
+In string theory the spacetime is ten dimensional.
+To describe our four-dimensional world, we need to assume that the extra $10-4=6$ dimensions are compactified.
+The real world is not supersymmetric, but if we assume supersymmetry as a way to acquaint ourselves with the sytem,
+then the compactified part of the space is described by a six-dimensional Calabi-Yau manifold.
+There is a mathematical theorem saying that Calabi-Yau manifolds are always described by polynomial equations.
+
+\paragraph{Mathematical logic / set theory:}
+
+\cite{2dNature,2dLong,1d,thermalNature,thermalLong}
+\cite{Tachikawa:2022vsh}
+
 
 \section{Manifolds}
 
