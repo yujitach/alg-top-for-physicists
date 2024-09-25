@@ -321,9 +321,53 @@ then the compactified part of the space is described by a six-dimensional Calabi
 There is a mathematical theorem saying that Calabi-Yau manifolds are always described by polynomial equations.
 
 \paragraph{Mathematical logic / set theory:}
+In condensed matter systems, a standard toy model is a spin chain:
+we have sites labeled by an integer $i=-3, -2, -1, 0, 1, 2, 3, \ldots$
+and at each site we have a qubit $\ket{\pm}_i$. 
+We consider a translation-invariant Hamiltonian consisting of local interactions,
+such as the  standard Ising model: \begin{equation}
+H = \sum_i [ a (\sigma_X)_i + b (\sigma_Z)_i (\sigma_Z)_{i+1} ].
+\end{equation}
+This class of systems is known to exhibit various interesting phenomena,
+and countless person-hours have been spent in understanding it. 
 
-\cite{2dNature,2dLong,1d,thermalNature,thermalLong}
-\cite{Tachikawa:2022vsh}
+One basic question is whether the ground state is gapped or not. 
+In the case of the Ising model above, it is gapped when $|a|\neq |b|$ and it is gapless (and flows to a conformal field theory) when $|a|=|b|$.
+One can ask: can there be a computer algorithm
+which determines whether a given local, translationally-invariant Hamiltonian leads to a gapped ground state or not?
+Clearly theoretical physicists are not clever enough to do this,
+but can we imagine a day in the far future where such a thing is possible?
+
+The answer is no \cite{2dNature,2dLong,1d}.
+The point is that, by a very clever construction explained in the references cited,
+one can write down a Hamiltonian for any computer program (or more precisely a Turing machine)
+such that the ground state on a finite chain of $L$ sites is gapped 
+if the computer program stops in $L$ steps,
+and not gapped otherwise.
+Therefore, if there is an algorithm which can decide whether a given Hamiltonian leads to a gapped ground state on an infinite chain,
+the same algorithm can determine whether a given Turing machine stops or not.
+But a very basic fundamental theorem of computational science says that
+there is no such algorithm determining whether a given Turing machine stops or not.
+So this is impossible.
+
+Similarly, it is easy to write down a program which stops if and only if the current standard axioms of set theory is inconsistent: 
+we simply enumerate all possible sequences of alphabets.
+Many of them are garbage, but some of them describes a proof of a mathematical theorem,
+and any possible proof of any mathematical theorem eventually appears along the enumeration process.
+We let the program stops if it finds a proof of $0=1$, which happens if and only if the current standard axioms of set theory is inconsistent. 
+We can encode this program as a spin chain Hamiltonian.
+Then this Hamiltonian has a gapped ground state if and only if the current standard axioms of set theory is inconsistent. 
+Then G\"odel's second incompleteness theorem says that one can neither prove nor disprove that this Hamiltonian leads to a gapped ground state or not.
+
+There are other works of similar nature inspired by this work.
+For example, in \cite{thermalNature,thermalLong}, it was shown that 
+there is no algorithm which tells a given quantum state thermalizes or not.
+I also constructed an example in supersymmetric quantum field theory (SQFT):
+there can not be an algorithm which tells whether a given 2d SQFT has a supersymmetric vacuum or not \cite{Tachikawa:2022vsh}.
+
+All this was quite fascinating to me, 
+but clearly this is not a very deep application of mathematical logic / set theory / computational science.
+This is because the main mathematical facts used (G\"odel's incompleteness theorems, or the undecidability of the halting problem of Turing machines) are both fundamental but very old.
 
 
 \section{Manifolds}
