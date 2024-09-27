@@ -1,7 +1,8 @@
 \documentclass[12pt]{article}
 
+
 \usepackage{amsmath}
-\usepackage{amsthm}
+%\usepackage{amsthm}
 \usepackage{amssymb}
 
 \usepackage[nottoc]{tocbibind}
@@ -26,6 +27,16 @@
 
 \usepackage{xcolor}
 \usepackage{mdframed}
+\usepackage[amsmath]{ntheorem}
+%\theorembodyfont{\normalfont}
+
+\newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{definition}{Definition}[section]
+\newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{theorem}{Theorem}[section]
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{example}{Example}[subsection]
+\newmdtheoremenv[backgroundcolor=black!0]{exercise}{Exercise}[subsection]
+
+
+
 \newenvironment{claim}{  \begin{mdframed}[linecolor=black!0,backgroundcolor=black!10]\noindent\ignorespaces}{\end{mdframed}}
 
 \let\originalfigure=\figure
@@ -63,18 +74,8 @@
 
 \def\Nequals#1{$\mathcal{N}{=}\,#1$}
 
-\usepackage{framed}
-\definecolor{shadecolor}{rgb}{0.90,0.90,0.90}
-\theoremstyle{definition}
-\newtheorem{exercise_}{Exercise}[section]
-\newenvironment{exercise__}%
-{\begin{exercise_}\begin{shaded}}%
-{\end{shaded}\end{exercise_}}
-\def\exercise#1{\begin{exercise__}
-#1
-\end{exercise__}}
 
-\def\answer{\paragraph{Answer.} }
+\definecolor{shadecolor}{rgb}{0.90,0.90,0.90}
 
 
 \def\important#1#2{%
@@ -82,6 +83,7 @@
 \textbf{#1.} #2
 \end{mdframed}
 }
+
 
 
 \newenvironment{comment}{\par\noindent [Comment. \ }{\par\noindent End comment.]}
@@ -371,6 +373,47 @@ This is because the main mathematical facts used (G\"odel's incompleteness theor
 
 
 \section{Manifolds}
+
+We have two intuitions about spaces.
+One is such that each point is locally like $\bR^n$.
+Another is such that it is made up from pasting small triangles (for surfaces) or tetrahedra (for 3-dimensional objects) and analogous constructions in higher dimensions.
+We use both ideas to study spaces. 
+Let's start with some definitions.
+
+\subsection{Definition of manifolds}
+
+\begin{definition}
+A \emph{(topological) manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $U'\subset \bR^n$ of $0$ such that 
+there is a bijective \emph{continuous} map $f:U\to U'$.
+\end{definition}
+
+\begin{definition}
+  A \emph{smooth manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $U'\subset \bR^n$ of $0$ such that 
+  there is a bijective \emph{smooth} map $f:U\to U'$.  
+\end{definition}
+
+In physics such $U$'s are often called coordinate patches. 
+We only consider manifolds `good enough' such that 
+there is a set of coordinate patches $U_i$ covering the whole manifold $M$,
+such that for each point $p\in M$ there is only a finite number of coordinate patches containing $p$.
+In such cases we can think of manifolds as being built from
+pasting together the coordinate patches $U_i \subset \bR^n$
+by the maps \begin{equation}
+f_{ij}: U_i\cap U_j \to U_i\cap U_j
+\end{equation} whenever the intersection $U_i\cap U_j$ is non-empty.
+
+A smooth manifold is such that $f_{ij}$ are smooth;
+a topological manifold is such that $f_{ij}$ are just required to be continuous.
+A smooth manifold is automatically a topological manifold.
+A bijective smooth map $f:M\to M'$ between two smooth manifolds $M$ and $M'$
+is called a \emph{diffeomorphism};
+a bijective continuous map $f:M\to M'$ between two topological manifolds $M$ and $M'$
+is called a \emph{homeomorphism}.
+In physics we typically consider smooth manifolds,
+but I decided to include a bit of discussions about topological manifolds
+as I thought the subtle concrete differences between smooth manifolds
+and topological manifolds can be interesting to some of you.
+
 
 \section{Fiber bundles}
 
