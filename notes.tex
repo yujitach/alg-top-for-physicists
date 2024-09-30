@@ -31,9 +31,9 @@
 %\theorembodyfont{\normalfont}
 
 \newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{definition}{Definition}[section]
-\newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{theorem}{Theorem}[section]
-\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{example}{Example}[subsection]
-\newmdtheoremenv[backgroundcolor=black!0]{exercise}{Exercise}[subsection]
+\newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{theorem}[definition]{Theorem}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{example}[definition]{Example}
+\newmdtheoremenv[backgroundcolor=black!0]{exercise}[subsection]{Exercise}
 
 
 
@@ -137,8 +137,18 @@ which was somehow not used for about 20 years.
 It turns out reviving a long dormant lecture slot requires almost no paperwork,
 so I decided to do just that.
 
+Mathematical physics can mean many things. 
+It is often distinguished from mathematical methods for physicists (which has a distinct translation in Japanese, 物理数学).
+It often means those parts of theoretical physics where the discussions are mathematically rigorous,
+e.g.~the part of statistical physics where the existence of thermodynamic limit or of phase transitions are rigorously proved.
+It can also mean those parts of theoretical physics where various mathematical concepts are heavily used, albeit not quite rigorously,
+such as string theory.
+
+
 I'm not sure how other faculty member would use this slot in the future,
-but my goal this year is to provide a introduction to algebraic topology for physicists.
+but my goal this year is to provide a introduction to algebraic topology for physicists,
+so it's closer to a course on mathematical methods for physicists,
+although the sub-subject of mathematics covered is somewhat different from the usual ones (calculus, linear algbera, a bit of group theory, etc.).
 My rationale is the following.
 
 As you already know, math plays a very important role in physics, 
@@ -150,6 +160,7 @@ Clearly important ones are:
   \item \textbf{Linear algebra:} this is important for anything which deals with first-order approximations. 
   It is also a crucial ingredient of quantum mechanics (QM).
   \item \textbf{Theoy of Hilbert spaces:} equally important for QM.
+  \item \textbf{Group theory:} Symmetry is one of the fundamental concepts in physics. It gives rises to conserved charges in both analytical mechanics and quantum mechanics, for example.
   \item \textbf{Differential geometry:} this is important for general relativity (GR).
 \end{itemize}
 
@@ -215,7 +226,7 @@ Given a space $X$, some of the algebraic objects associated are:
 where $S^n$ is the $n$-dimensional sphere (in the convention that the ordinary sphere is $S^2$).
 \item \textbf{Bordism groups:} $\Omega_n(X)$ is the group obtained by considering maps $M_n \to X$,
 where $M_n$ is a general smooth manifold of dimension $n$.
-\item \textbf{Homology groups:} $H_n(X)$ is the group obtained by considering $n$-dimensional `cycles' 
+\item \textbf{Homology groups:} $H_n(X)$ is the group obtained by considering $n$-dimensional `cycles' (essentially polyhedra)
  in $X$, where a cycle is a more general notion than spheres or manifolds.
 \end{itemize}
 Note that the `source spaces' in the descriptions above has the inclusion relation \begin{equation}
@@ -414,6 +425,44 @@ but I decided to include a bit of discussions about topological manifolds
 as I thought the subtle concrete differences between smooth manifolds
 and topological manifolds can be interesting to some of you.
 
+\subsection{Examples}
+
+A common way to construct manifolds is to take a subset of $\bR^n$ defined by a number of equations:
+\begin{align}
+f_1(x_1, x_2, \ldots, x_n) &= 0, \\
+f_2(x_1, x_2, \ldots, x_n) &= 0, \\
+&\vdots \\
+f_m(x_1, x_2, \ldots, x_n) &= 0.
+\end{align}
+If the choice of $f_{1,2,\ldots,m}$ are sufficiently nice,
+the set of points satisfying these equations is a manifold of dimension $n-m$.
+A typical bad example is the subset of $\bR^2$ defined by $xy=0$: around $(x,y)=(0,0)$, two lines intersect, and therefore the neighborhood of $(0,0)$ is not of the right form.
+
+\begin{example}
+The $n$-dimensional sphere $S^n$ is defined by \begin{equation}
+  x_1^2+x_2^2+\cdots+x_{n+1}^2=1.
+\end{equation} 
+\end{example}
+Note that $S^n$ is embedded in $\bR^{n+1}$, but it is a manifold of dimension $n$.
+
+\begin{theorem}
+Given two manifolds $M$ and $N$ of dimensions $m$ and $n$,
+its product $M\times N$ is a manifold of dimension $m+n$.
+\end{theorem}
+
+\begin{theorem}
+Given two manifolds $M$ and $N$ of the same dimension $n$,
+its disjoint union $M\sqcup N$ is a manifold of dimension $n$.
+\end{theorem}
+
+Note that $S^1\times S^1$ is two-dimensional and the surface of a donut,
+while $S^1\sqcup S^1$ consists of two circles and is one-dimensional.
+
+\begin{example}
+  The $n$-dimensional torus is \begin{equation}
+    T^n = \underbrace{S^1\times S^1\times \cdots \times S^1}_\text{ $n$ times}.
+  \end{equation}
+\end{example}
 
 \section{Fiber bundles}
 
