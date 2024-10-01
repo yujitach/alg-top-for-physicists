@@ -835,7 +835,7 @@ We can consider many other unorientable surfaces by taking a repeated connected 
 where we take $h>0$ and $g\ge 0$.
 In fact, many of them are actually homeomorphic to each other.
 \begin{fact}
-Any compact, connected unorientable 2d surface is homeomorphic to
+Any compact connected unorientable 2d surface is homeomorphic to
 \begin{equation}
 \RP^2 \# \underbrace{T^2\# T^2 \#\cdots\# T^2}_\text{$g$ copies}
 \end{equation}
@@ -966,6 +966,47 @@ in theoretical physics by Seiberg and Witten in the mid-1990s.
 This mathematical Seiberg-Witten theory 
 can be considered as an easier version of Donaldson's theory referred to above,
 and has been developed vigorously by mathematicians since its introduction.
+
+
+\subsubsection{Some comments}
+So we have hierarchy of structures on manifolds: \begin{multline}
+  \{\text{topological manifolds}\}
+  \supset
+  \{\text{triangulated manifolds}\} \\
+  \supset
+  \{\text{PL manifolds}\}
+  \supset
+  \{\text{smooth manifolds}\}
+\end{multline}
+where I added another stage, known as piecewise-linear (PL) manifolds,
+which can be found more often discussed in the math literature 
+than triangulated manifolds.\footnote{%
+They are triangulated manifolds such that
+for each vertex $v$, the link of $v$ (the polyhedron formed by 
+simplices immediately surrounding $v$) is piece-wise-linear isomorphic to $S^{n-1}$.
+}
+There are various differences at each stage, as we have seen above.
+
+Why do we/I care about these things?
+I don't really know.  But let me give some excuses.
+\begin{itemize}
+  \item Firstly, it's simply interesting, at least to me.
+\item Secondly, it is particularly interesting that gauge-theoretic (and therefore physics-inspired)
+methods were used to study these issues.
+\item Thirdly, I found the following difference between hep-th and cond-mat people:
+In hep-th, we often consider smooth manifolds as given (as in general relativity),
+whereas in cond-mat, manifolds only appear as long-range approximation of a more fundamental
+lattice structure. 
+In theoretical condensed-matter physics, a general manifold is often studied
+assuming that it is equipped with a triangulation. 
+Therefore, I think that it might be of some use to be aware of the distinction between
+these two approaches to manifolds.
+For example, it seems possible to write down
+the Hamiltonian of a strange symmetry-protected topological phase
+which is defined on triangulated manifolds such that
+it detects non-smooth but triangulable manifolds, 
+although in a rather high dimensionality meaningless in our actual world.
+\end{itemize}
 
 \section{Fiber bundles}
 
