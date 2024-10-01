@@ -106,13 +106,20 @@
 
 \def\bC{\mathbb{C}}
 \def\bH{\mathbb{H}}
+\def\bK{\mathbb{K}}
 \def\bR{\mathbb{R}}
 \def\bZ{\mathbb{Z}}
 
 \def\cH{\mathcal{H}}
+
 \def\sT{\mathsf{T}}
 
 \let\bar\overline
+
+\def\RP{\mathbb{RP}}
+\def\CP{\mathbb{CP}}
+\def\HP{\mathbb{HP}}
+\def\KP{\mathbb{KP}}
 
 \begin{document}
 
@@ -155,9 +162,9 @@ such as string theory.
 
 
 I'm not sure how other faculty member would use this slot in the future,
-but my goal this year is to provide a introduction to algebraic topology for physicists,
+but my goal this year is to provide an introduction to algebraic topology for physicists,
 so it's closer to a course on mathematical methods for physicists,
-although the sub-subject of mathematics covered is somewhat different from the usual ones (calculus, linear algbera, a bit of group theory, etc.).
+although the sub-subject of mathematics covered is somewhat different from the usual ones (calculus, linear algebra, a bit of group theory, etc.).
 My rationale is the following.
 
 As you already know, math plays a very important role in physics, 
@@ -168,7 +175,7 @@ Clearly important ones are:
   \item \textbf{Calculus:} in some sense this subject arose from physics (by Newton etc.)
   \item \textbf{Linear algebra:} this is important for anything which deals with first-order approximations. 
   It is also a crucial ingredient of quantum mechanics (QM).
-  \item \textbf{Theoy of Hilbert spaces:} equally important for QM.
+  \item \textbf{Theory of Hilbert spaces:} equally important for QM.
   \item \textbf{Group theory:} Symmetry is one of the fundamental concepts in physics. It gives rises to conserved charges in both analytical mechanics and quantum mechanics, for example.
   \item \textbf{Differential geometry:} this is important for general relativity (GR).
 \end{itemize}
@@ -210,7 +217,7 @@ the Anderson (or Pontryagin) dual of the bordism group.
 This also implicitly gave a general theory of anomalies on the particle physics side.
 To understand all this requires a far more advanced algebraic topology than was necessary before
 (although still not very modern from mathematicians' point of view, 
-since it only uses algebraic toplogy up to 1970 or something).
+since it only uses algebraic topology up to 1970 or something).
 
 To understand this fascinating development required me to learn bits and pieces of algebraic topology 
 from various sources. But there is no single place where most of the relevant materials for physicists
@@ -282,7 +289,7 @@ which also explains the usefulness of (co)homology groups in physics.
 
 The aim of this lecture series is to provide a minimal amount of information so that you can understand 
 the content of the paragraphs above.
-This will, unfortunatley, require the whole semester.
+This will, unfortunately, require the whole semester.
 
 \subsection{Mathematical rigor in the course}
 This is not a course for (prospective) mathematicians. 
@@ -303,7 +310,7 @@ Reading the source code of an open source app can be fun and instructive,
 but not necessarily required if you only want to use the app. 
 Similarly, even reading the short usage of the app (say in an app store) can be too much 
 if you want to use the app just once, for example.
-In this course, we will not going into the source code of the apps,
+In this course, we will not be going into the source code of the apps,
 but I do intend tell you what kind of apps are available
 and give at least short usages of the apps involved.
 
@@ -338,7 +345,7 @@ Is there a place where polynomial equations naturally appear in physics?
 If you are kind enough to consider string theory physics, then the answer is yes.
 In string theory the spacetime is ten dimensional.
 To describe our four-dimensional world, we need to assume that the extra $10-4=6$ dimensions are compactified.
-The real world is not supersymmetric, but if we assume supersymmetry as a way to acquaint ourselves with the sytem,
+The real world is not supersymmetric, but if we assume supersymmetry as a way to acquaint ourselves with the system,
 then the compactified part of the space is described by a six-dimensional Calabi-Yau manifold.
 There is a mathematical theorem saying that Calabi-Yau manifolds are always described by polynomial equations.
 
@@ -402,7 +409,7 @@ This tool suggests sentences or paragraphs while writing the notes;
 the suggestions are not always perfectly correct, but they are often useful,
 with mostly correct \LaTeX\ macros.
 But I fear that in some sense I'm plagiarizing the contents used to train the AI.
-At least for these notes, I don't think it is particulalry problematic,
+At least for these notes, I don't think it is particularly problematic,
 since the contents of this course are mostly well-known and not my original work.
 The possibly only original part is the selection of the contents and the order of presentation.\footnote{%
 But this particular sentence was also auto-suggested by Co-pilot, when I typed `The possibly only'...
@@ -415,15 +422,17 @@ We have two intuitions about spaces.
 One is such that each point is locally like $\bR^n$.
 Another is such that it is made up from pasting small triangles (for surfaces) or tetrahedra (for 3-dimensional objects) and analogous constructions in higher dimensions.
 We use both ideas to study spaces. 
-Let's start with some definitions.
 
 \subsection{Definition of manifolds}
+
+Let's start with some definitions.
 
 \begin{definition}
 A \emph{(topological) manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $U'\subset \bR^n$ of $0$ such that 
 there is a bijective \emph{continuous} map $f:U\to U'$.
 \end{definition}
 
+Similarly,
 \begin{definition}
   A \emph{smooth manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $U'\subset \bR^n$ of $0$ such that 
   there is a bijective \emph{smooth} map $f:U\to U'$.  
@@ -581,7 +590,7 @@ Denote the basis vectors by $e_1,e_2,\ldots,e_n$.
 Then such an $M$ is specified by \begin{equation}
 M e_i = \sum_j M_{ij} e_j.
 \end{equation}
-THe condition $M^\dagger M=1$ is the condition that it preserves the norm $|v|$ of $v\in \bH^n$
+The condition $M^\dagger M=1$ is the condition that it preserves the norm $|v|$ of $v\in \bH^n$
 defined by \begin{equation}
   |v|^2 := \sum_i |v_i|^2.
 \end{equation}
@@ -671,8 +680,29 @@ while $S^1\sqcup S^1$ consists of two circles and is one-dimensional.
   \end{equation}
 \end{example}
 
-\subsubsection{Via quotients}
+Another construction is the following:
+\begin{notation}
+  Given two connected manifolds $M$, $N$ of dimension $n$,
+  pick points $p\in M$ and $q\in N$.
+  remove small open balls $B^n(p)$ and $B^n(q)$ from $M$ and $N$, and
+  paste the common $S^{n-1}$ boundary.
+  The result is the connected sum $M\# N$.
+\end{notation}
 
+For example, the connected sum 
+\begin{equation}
+  \underbrace{T^2 \# T^2 \# \cdots \# T^2}_\text{$g$ copies}
+\end{equation}
+is the surface of a multi-donut (whatever that is).
+More professionally, it is called a genus-$g$ surface.
+$S^2$ is defined to have genus 0.
+
+\begin{fact}
+Any two-dimensional compact connected oriented manifold is $S^2$ or 
+the surface of a multi-donut with $g$ holes.
+\end{fact}
+
+\subsubsection{Via quotients}
 
 Another method to define manifolds is to 
 take the quotient of a manifold by a group action. 
@@ -701,12 +731,147 @@ For example, consider $\bR^3$ with the action of $\bZ_2$ generated by
 \end{equation}
 The origin is singular, and the quotient space $\bR^3/\bZ_2$ is not a manifold.
 (It still belongs to a larger class of spaces called \emph{orbifolds}.)
+It is complicated to state the conditions under which $M/G$ is a manifold,
+so we will not do so in this lecture series.
 
-\begin{theorem}
-  If  $g\in G$ other than the identity $e$
-  satisfy $p\neq gp$ for all $p\in M$,
-  then $M/G$ is a manifold.
-\end{theorem}
+We now define the real, complex and quaternionic projective spaces $\RP^n$, $\CP^n$ and $\HP^n$ uniformly.
+\begin{example}
+  For $\bK=\bR,\bC,\bH$, 
+  consider the action of $\bK\setminus \{0\}$ on
+  $\bK^{n+1}\setminus\{0\}$ by scalar multiplication.
+  The projective space $\KP^n$ is then defined as
+  \begin{equation}
+    \KP^n = (\bK^{n+1}\setminus\{0\})/(\bK\setminus\{0\}).
+  \end{equation}
+  These are of dimension $n$, $2n$, and $4n$ respectively.
+\end{example}
+More directly, we consider elements 
+\begin{equation}
+(x_1,x_2,\ldots,x_{n+1})\in \bK^{n+1}
+\end{equation} such that not all of $x_i$ is zero.
+Then we make the identification \begin{equation}
+  (x_1,x_2,\ldots,x_{n+1}) \sim  ( x_0, x_1, \ldots,  x_n)c \label{eq:proj-ident}
+\end{equation} for nonzero $c\in \bK$.
+A point on $\KP^n$ is often denoted by $[x_1:x_2:\cdots:x_{n+1}]$.
+
+It is instructive to give explicit coordinate patches.
+Note that when $x_i\neq 0$, we have \begin{equation}
+  (x_1,x_2,\ldots,x_{n+1}) = (x_1/x_i, x_2/x_i, \ldots, x_i/x_i=1, \ldots, x_{n+1}/x_i).
+\end{equation} 
+This part is parameterized by $\bK^n$ with coordinates $y_k:=x_k/x_i$ for $k\neq i$.
+Let us call this patch $U_i$.
+Let us consider another patch $U_j$, with coordinates $z_k:=x_k/x_j$ for $k\neq j$.
+$U_i$ and $U_j$ overlap when $x_i\neq 0$ and $x_j\neq 0$.
+We then need to find the coordinate transformation 
+between $U_i \cap U_j \subset U_i$
+and $U_i \cap U_j \subset U_j$, realizing the identification of
+\begin{equation}
+  (y_1,y_2,\ldots,y_{n+1}) \quad \text{with $y_i=1$, $y_j\neq 0$}
+\end{equation} and 
+\begin{equation}
+  (z_1,z_2,\ldots,z_{n+1}) \quad \text{with $z_j=1$, $z_i\neq 0$}.
+\end{equation}
+This is done by setting $z_k = y_k / y_j$, where $y_i$ was defined to be $=1$.
+
+From this description we see \begin{equation}
+\RP^1=S^1,\quad
+\CP^1=S^2,\quad
+\HP^1=S^4.
+\end{equation}
+Indeed, in this case we have two patches \begin{equation}
+  U_1 = \{ (1,y) \mid y\in \bK \}, \quad U_2 = \{ (z,1) \mid z\in \bK \}.
+\end{equation} where $z=y^{-1}$ in the overlap $U_1\cap U_2$.
+$U_1$ is the northern hemisphere,
+$U_2$ is the southern hemisphere,
+and they are patched to form a sphere in the appropriate dimensions.
+
+Another way to look at $\KP^n$ is the following. 
+To pick a representative under the identification \eqref{eq:proj-ident},
+we first fix $\sum_i |x_i|^2 =1$.
+As $\bK^{n+1}=\bR^{p(n+1)}$ where $p=1,2,4$ for $\bK=\bR,\bC,\bH$,
+we have $S^n$, $S^{2n+1}$, $S^{4n+3}$ at this point.
+
+The identification \eqref{eq:proj-ident} still acts within this sphere
+if $|c|=1$. 
+Depending on $\bK=\bR,\bC,\bH$, the group of such $c$ is $O(1)=\{\pm1\}=S^0$, $U(1)=S^1$, $Sp(1)=SU(2)=S^3$, respectively.
+Therefore, we have \begin{equation}
+\RP^n=S^n/O(1), \quad \CP^n=S^{2n+1}/U(1), \quad \HP^n=S^{4n+3}/Sp(1).
+\end{equation}
+
+
+\subsubsection{Some other fun manifolds}
+
+
+\paragraph{Unorientable surfaces:}
+
+
+
+\paragraph{The de-singularization of $\bC^2/\bZ_2$:}
+Let's consider $\bC^2$ parameterized by $(z,w)$,
+and consider the $\bZ_2$ action $(z,w)\mapsto (-z,-w)$.
+The quotient space $\bC^2/\bZ_2$ is singular at the origin.
+We can parameterize the same space in a different way:
+Let $(s,t,u):=(z^2, z w, w^2)$.
+Then the $\bZ_2$ action is trivial on $(s,t,u)$, but we have the relation $su=t^2$.
+From $(s,t,u)$ satisfying $su=t^2$, we can uniquely reconstruct $(z,w)\simeq -(z,w)$.
+So $\bC^2/\bZ_2$ can be identified with the subspace \begin{equation}
+X=\{ (s,t,u)\in \bC^3 \mid su=t^2 \}.
+\end{equation}
+We can desingularize $X=\bC^2/\bZ_2$ it in the following way.
+
+We add the variables $(x_1,x_2)\in \bC^2\setminus \{0\}$, with the identification 
+$(x_1,x_2)\sim a(x_1,x_2)$ for $a\in \bC\setminus \{0\}$,
+i.e.~we introduce $\CP^1\simeq S^2$.
+Recall that its points are denoted by $[x_1:x_2]$.
+We now add a further constraint \begin{equation}
+(z,w) = c(x_1,x_2) \quad \text{for some $c\in \bC$},
+\end{equation} or equivalently \begin{equation}
+  (s,t,u)= c'(x_1^2, x_1 x_2, x_2^2) \quad \text{for some $c'\in \bC$}. \label{eq:blowup}
+\end{equation}
+
+Denote the total space by $\tilde X$: 
+it is a subspace of $\bC^3\times \CP^1$ 
+parameterized by 
+$(s,t,u,[x_1:x_2])$ 
+under the constraints $su=t^2$ and \eqref{eq:blowup}.
+This space comes with two projections maps, $\pi_1:\tilde X\to X=\bC^2/\bZ_2$ 
+given by taking $(s,t,u)$
+and $\pi_2:X\to \CP^1$ given by taking $[x_1:x_2]$.
+
+Note that $\pi_1$ is one-to-one except at the origin, $(z,w)=(0,0)$.
+It is because the relation \eqref{eq:blowup} uniquely determines $[x_1:x_2]=[z:w]$.
+At the origin, $(z,w)=(0,0)$, the inverse image is the entirety of $\CP^1$. 
+So, $\tilde X$ can be thought of inserting  $\CP^1$ at the origin of $X=\bC^2/\bZ_2$.
+
+$\tilde X$ is actually a smooth manifold.
+To see this, we consider the second projection $\pi_2: \tilde X\to \CP^1$.
+Given a point $[x_1:x_2]\in \CP^1$,
+the inverse image of $\pi_2$ is simply $c'(x_1^2, x_1 x_2, x_2^2)\in \bC$
+for $c'\in \bC$. 
+So it is isomorphic to a copy of $\bC$.
+So $\tilde X$ can be visualized as a copy of $\bC$ attached smoothly at each point of $\CP^1$,
+and is a smooth manifold.
+
+\paragraph{A K3 manifold:}
+
+The manifold $\tilde X$ introduced above was non-compact. 
+It can be used to construct a rather important compact manifold of dimension 4.
+We start from $T^4$ parameterized by $\theta_i\in \bR$ with the identification $\theta_i\sim \theta_i+2\pi$, for $i=1,2,3,4$.
+We consider the $\bZ_2$ action given by \begin{equation}
+  (\theta_1,\theta_2,\theta_3,\theta_4) \mapsto -(\theta_1,\theta_2,\theta_3,\theta_4).
+\end{equation}
+Note that $theta \sim -\theta$ under the identification $\theta\sim \theta+2\pi$ when $\theta=0,\pi$.
+The quotient space $T^4/\bZ_2$ is therefore singular at $2^4=16$ points
+when $\theta_i = 0,\pi$ for $i=1,2,3,4$.
+Around each point, it locally has the form $\bR^4/\bZ_2 = \bC^2/\bZ_2$ studied above.
+Then, we can insert 16 copies of $\CP^1$ at these 16 points to desingularize the space.
+The result is a smooth compact manifold of dimension 4, 
+and is an example of a class of manifold called K3.\footnote{%
+The name K3 was introduced by the mathematician A. Weil, after the three mathematicians 
+Kummer, K\"ahler, and Kodaira who studied it, and also the mountain K2 in the Himalayas.
+The construction given here is due to Kummer.
+}
+
 
 \section{Fiber bundles}
 
@@ -736,5 +901,3 @@ The origin is singular, and the quotient space $\bR^3/\bZ_2$ is not a manifold.
 \bibliography{ref}
 
 \end{document}
-
-.
