@@ -33,8 +33,10 @@
 \newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{definition}{Definition}[section]
 \newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{theorem}[definition]{Theorem}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{example}[definition]{Example}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{proposition}[definition]{Proposition}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
-\newmdtheoremenv[backgroundcolor=black!0]{exercise}[subsection]{Exercise}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{fact}[definition]{Fact}
+\newmdtheoremenv[backgroundcolor=black!0]{exercise}[definition]{Exercise}
 
 
 
@@ -106,6 +108,11 @@
 \def\bH{\mathbb{H}}
 \def\bR{\mathbb{R}}
 \def\bZ{\mathbb{Z}}
+
+\def\cH{\mathcal{H}}
+\def\sT{\mathsf{T}}
+
+\let\bar\overline
 
 \begin{document}
 
@@ -384,6 +391,23 @@ All this was quite fascinating to me,
 but clearly this is not a very deep application of mathematical logic / set theory / computational science.
 This is because the main mathematical facts used (G\"odel's incompleteness theorems, or the undecidability of the halting problem of Turing machines) are both fundamental but very old.
 
+\subsection{Acknowledgements and a disclaimer}
+
+I'd like to thank our Physics Department for giving me this opportunity to give this course.
+I'd like to ask participants to point out as many errors as possible in these notes and also during lectures.
+
+This is the first time I'm heavily utilizing AI to prepare my lecture notes.
+More concretely I'm using GitHub Co-pilot for \LaTeX, which is based on Chat-GPT.
+This tool suggests sentences or paragraphs while writing the notes;
+the suggestions are not always perfectly correct, but they are often useful,
+with mostly correct \LaTeX\ macros.
+But I fear that in some sense I'm plagiarizing the contents used to train the AI.
+At least for these notes, I don't think it is particulalry problematic,
+since the contents of this course are mostly well-known and not my original work.
+The possibly only original part is the selection of the contents and the order of presentation.\footnote{%
+But this particular sentence was also auto-suggested by Co-pilot, when I typed `The possibly only'...
+}
+If anybody notices any parts which look like a direct copy from some other source, please let me know.
 
 \section{Manifolds}
 
@@ -439,6 +463,7 @@ f_m(x_1, x_2, \ldots, x_n) &= 0.
 \end{align}
 If the choice of $f_{1,2,\ldots,m}$ are sufficiently nice,
 the set of points satisfying these equations is a manifold of dimension $n-m$.
+
 A typical bad example is the subset of $\bR^2$ defined by $xy=0$: around $(x,y)=(0,0)$, two lines intersect, and therefore the neighborhood of $(0,0)$ is not of the right form.
 
 \begin{example}
@@ -447,6 +472,21 @@ The $n$-dimensional sphere $S^n$ is defined by \begin{equation}
 \end{equation} 
 \end{example}
 Note that $S^n$ is embedded in $\bR^{n+1}$, but it is a manifold of dimension $n$.
+
+\begin{example}
+  We can try considering points of constant Lorentz-invariant distance from the origin in $\bR^{d-1,1}$:
+\begin{equation}
+  x_1^2+x_2^2+\cdots+x_{d-1}^2-x_0^2=K ,
+\end{equation}
+where $K$ is a non-zero constant. 
+This is a hyperboloid, and is a manifold of dimension $d-1$.
+\end{example}
+When $K>0$, it is connected; this is the hypersurface of spacelike-separated points 
+of distance $\sqrt{|K|}$ from the origin
+in the Minkowski spacetime.
+When $K<0$, it consists of two components, one in the future $x_0>0$ and another in the past $x_0<0$.
+They are the hypersurfaces of time-like separated points of temporal distance $\sqrt{|K|}$ from the origin.
+When $K=0$, the equation above defines the lightcone, which is singular at the origin and is not a manifold.
 
 We have various group manifolds, 
 defined in a similar manner. 
@@ -470,21 +510,145 @@ The special unitary group $SU(n)$ is defined by \begin{equation}
 \end{equation}
 \end{example}
 
-I don't know about you but I like quaternions $\bH$.
-This is a four-dimensional algebra over $\bR$ with a basis $1,i,j,k$ satisfying \begin{equation}
+\begin{proposition}
+$S^1=U(1)=SO(2)$.
+\end{proposition}
+This can be seen by parameterizing $S^1$ by $\theta \in [0,2\pi)$.
+$U(1)$ is a one-by-one unitary matrix, i.e.~a complex number $z$ with $|z|=1$.
+Therefore $z=e^{i\theta}$.
+$SO(2)$ is a two-by-two orthogonal matrix with determinant $1$, which has the form \begin{equation}
+  \begin{pmatrix}
+    \cos\theta & -\sin\theta \\
+    \sin\theta & \cos\theta
+  \end{pmatrix}.
+\end{equation}
+
+\begin{proposition}
+$S^3=SU(2)$.
+\end{proposition}
+This can be seen by noticing that any $SU(2)$ matrix has the form \begin{equation}
+  \begin{pmatrix}
+    z & -\overline w\\
+    w & \overline z
+  \end{pmatrix}
+\end{equation} with $|z|^2+|w|^2=1$.
+As $\bC^2\simeq \bR^4$, we see that this defines an $S^3$.
+This fact can also be shown using quaternions $\bH$, 
+introduced by Hamilton in 1843.
+\begin{definition}
+$\bH$ is a four-dimensional algebra over $\bR$ with a basis $1,i,j,k$ satisfying \begin{equation}
   i^2=j^2=k^2=-1, \quad
   ij=-ji=k, \quad
   jk=-kj=i, \quad
-  ki=-ik=j.
+  ki=-ik=j.\label{eq:rel-of-H}
 \end{equation}
+\end{definition}
+
 A general element is of the form $q=a+bi+cj+dk$ with $a,b,c,d\in \bR$.
 The conjugate of $q=a+bi+cj+dk$ is $\bar q=a-bi-cj-dk$.
-The norm of $q$ is $|q|^2=q\bar q=\bar q=a^2+b^2+c^2+d^2$.
+We can check that $\overline{q_1 q_2}=\bar q_2 \bar q_1$.
+
+The norm of $q$ is $|q|^2=q\bar q=\bar q q=a^2+b^2+c^2+d^2$.
 This is nonzero unless $q=0$.
-This means that ...
+This means that any nonzero element $q\neq 0$ has a multiplicative inverse $q^{-1}=\bar q/|q|^2$.
+An algebra with this property is called a division algebra.
+\begin{fact}
+  The only finite-dimensional division algebras over $\bR$ are $\bR$, $\bC$, and $\bH$.
+\end{fact}
+
+Note also that $|q_1 q_2|^2=|q_1|^2 |q_2|^2$.
+This means that the set $\{ q\in \bH \mid |q|=1 \}$ of unit quaternions forms a group.
+As $\bH\simeq \bR^4$, this is a three-dimensional sphere $S^3$.
+Considering $\bH\simeq \bC^2$, we can convince ourselves that this is also $SU(2)$.
+More generally:
+\begin{example}
+  The unitary symplectic group $Sp(n)$ is defined by \begin{equation}
+    Sp(n) = \{ M\in M_{n}(\bH) \mid M^\dagger M = 1 \}.
+  \end{equation}
+\end{example}
+In particular, $Sp(1)=SU(2)=S^3$.
+Note there is no distinct `special unitary symplectic group'.
+
+To explain $Sp(m)$ a bit more geometrically, consider $\bH^n$
+as the space of column vectors of quaternions. 
+We consider `linear' maps  $M:\bH^n\to \bH^n$ in the sense that
+\begin{equation}
+M (vq) = (Mv) q, \qquad v\in \bH^n,\ q\in \bH.
+\end{equation} 
+(Note that the placement of $q$ on the right is important, 
+as the multiplication is non-commutative in $\bH$.)
+Denote the basis vectors by $e_1,e_2,\ldots,e_n$.
+Then such an $M$ is specified by \begin{equation}
+M e_i = \sum_j M_{ij} e_j.
+\end{equation}
+THe condition $M^\dagger M=1$ is the condition that it preserves the norm $|v|$ of $v\in \bH^n$
+defined by \begin{equation}
+  |v|^2 := \sum_i |v_i|^2.
+\end{equation}
+
+\begin{fact}
+  The only cases when $S^n$ is a group are $S^0=O(1)=\{1,-1\}$, $S^1=SO(2)=U(1)$
+  and $S^3=SU(2)=Sp(1)$.
+\end{fact}
+  
+\subsubsection{Time reversal and $\bR$, $\bC$, $\bH$}
+
+Let me make a side remark concerning the natural role of $\bH$ in quantum mechanics.
+Let's consider a quantum mechanical system with finite-dimensional Hilbert space $\cH$.
+The time reversal operator $\sT$ is anti-unitary, in that 
+\begin{equation}
+  \sT z = \overline z \sT.
+\end{equation}
+Assuming that $\sT^2=c$ with a constant $c$, let's show $c=\pm1$. We evaluate $\sT^3$ in two orders:
+\begin{equation}
+\sT(\sT^2)= \sT c = \overline{c}\sT,\qquad
+(\sT^2)\sT = c\sT.
+\end{equation} Therefore $c=\overline{c}$. As the unitarity of $\sT^2$ requires $|c|=1$,
+ we find $c=\pm 1$.
+
+ \paragraph{The case $c=+1$:}
+ This case, any vector $v\in \cH$ can be decomposed into its real and imaginary parts:
+  \begin{equation}
+    v = v_\text{re} + v_\text{im} i 
+  \end{equation}
+  where
+  \begin{equation}
+    v_\text{re}:= \frac{1+\sT}{2} v, \quad v_\text{im}:=\frac{1-\sT}{2i}v .
+  \end{equation}
+  Note that $T v_\text{re}= v_\text{re}$ and $T v_\text{im}=v_\text{im}$.
+So, the $T$-invariant part of $\cH$ is a real vector space.
+Denoting it by $\cH_\bR$, we see that if $\cH_\bR=\bR^n$, $\cH=\bC^n$.
+Unitary matrices acting on $\cH$ commuting with $\sT$
+are orthogonal matrices acting on $\cH_\bR$.
+So, time-reversal-invariant unitary operators on $\cH$ 
+form the group $O(n)$.
+
+\paragraph{The case $c=-1$:}
+In this case, we note that $i$, $j:=\sT$, $k:=i \sT$ satisfy 
+the defining relation \eqref{eq:rel-of-H} of $\bH$.
+(More precisely, we can equip the space $\cH$ of quantum states
+with an action of $\bH$ from the right, via $vi := iv$ and $vj:=\sT v$.)
+
+Therefore, $\cH= \bH^m$ for some $m$. When $\cH=\bC^n$, this forces $n=2m$ to be even.
+This is known as Kramers degeneracy.
+
+A unitary operator commuting with $\sT$
+is a norm-preserving map on $\bH^m$ which commutes with the quaternion action from the right.
+Therefore it belongs to $Sp(m)$.
+
+\paragraph{Summary:}
+$U(n)$, $SO(n)$, and $Sp(n/2)$ are the groups of norm-perserving linear operators
+on a quantum system $\cH=\bC^n$ with $n$ states with the following conditions:
+\begin{itemize}
+\item $U(n)$: no time reversal,
+\item $SO(n)$: time reversal with $\sT^2=+1$,
+\item $Sp(n/2)$: time reversal with $\sT^2=-1$; $n$ is forced to be even.
+\end{itemize}
+
 
 \subsubsection{Via combinations}
 
+Let's come back to the examples of manifolds.
 
 \begin{notation}
  Given two manifolds $M$ and $N$ of dimensions $m$ and $n$,
