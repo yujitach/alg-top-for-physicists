@@ -798,12 +798,51 @@ Therefore, we have \begin{equation}
 \RP^n=S^n/O(1), \quad \CP^n=S^{2n+1}/U(1), \quad \HP^n=S^{4n+3}/Sp(1).
 \end{equation}
 
+\subsubsection{Unorientable surfaces}
+
+$\RP^2$ is unorientable. To see this, recall $\RP^2=S^2/\bZ_2$,
+where the $\bZ_2$ action identifies the antipodal points. 
+Any point on the southern hemisphere is identified with some point on the northern hemisphere.
+Then $\RP^2$ can be identified with the northern hemisphere
+whose boundary, i.e.~the equator, has an extra identification $\theta \sim \theta+\pi$.
+
+Let us have a closer look at the neighborhood of the equator.
+We can parameterize it by the longitude $\theta$ together with the latitude $\phi\in (-\epsilon,\epsilon)$.
+The antipodal identification is $(\theta,\phi)\sim (\theta+\pi,-\phi)$.
+This is the same as the M\"obius strip, which is unorientable.
+In string theory, this local structure around the equator is called a crosscap (叉帽).
+Another way to say this is that $\RP^2$ is obtained by pasting a northern hemisphere (i.e.~a disk)
+to a M\"obius strip along the boundary.
+
+Another unorientable surface can be constructed by the quotient.
+\begin{example}
+Consider $T^2$ parameterized by $\theta$ and $\phi$
+with the identification $\theta\sim \theta+2\pi$ and $\phi \sim \phi+2\pi$,
+and take theidentification as above: $(\theta,\phi)\sim (\theta+\pi,-\phi)$.
+The result is known as the Klein bottle.
+\end{example}
+Locally around $\phi=0$ and $\phi=\pi$, we have two M\"obius strips.
+So the resulting surface is obtained by pasting two M\"obius strips along the boundary.
+Equivalently, it is obtained by taking the connected sum $\RP^2\#\RP^2$.
+
+We can consider many other unorientable surfaces by taking a repeated connected sum:
+\begin{equation}
+  \underbrace{\RP^2\#\RP^2\#\cdots\#\RP^2}_\text{$h$ copies}
+  \#
+  \underbrace{T^2\# T^2 \#\cdots\# T^2}_\text{$g$ copies}
+\end{equation}
+where we take $h>0$ and $g\ge 0$.
+In fact, many of them are actually homeomorphic to each other.
+\begin{fact}
+Any compact, connected unorientable 2d surface is homeomorphic to
+\begin{equation}
+\RP^2 \# \underbrace{T^2\# T^2 \#\cdots\# T^2}_\text{$g$ copies}
+\end{equation}
+or the Klein bottle $\RP^2\#\RP^2$.
+\end{fact}
+It is a fun exercise to show that $\RP^2 \# \RP^2 \# \RP^2$ is homeomorphic to $\RP^2 \# T^2$.
 
 \subsubsection{Some other fun manifolds}
-
-
-\paragraph{Unorientable surfaces:}
-
 
 
 \paragraph{The de-singularization of $\bC^2/\bZ_2$:}
@@ -872,6 +911,60 @@ Kummer, K\"ahler, and Kodaira who studied it, and also the mountain K2 in the Hi
 The construction given here is due to Kummer.
 }
 
+\subsection{Some fun facts about manifolds}
+
+\subsubsection{Smooth vs.~topological manifolds}
+Consider the following equation in $\bC^5$:
+\begin{equation}
+z_1^2+z_2^2+z_3^2+z_4^3+z_5^{6k-1}=0.  
+\end{equation} Except at the origin, it is a smooth manifold of complex dimension 4, 
+i.e.~of real dimension 8.
+We can take the intersection with the unit sphere $S^9=\{\sum|z_i|^2=1\}$ in $\bC^5$.
+This results in a smooth compact manifold $M_k$ of dimension 7.
+It is known that $M_k$ are all homeomorphic to the standard $S^7$,
+but they are not diffeomorphic to it unless $k$ is a multiple of $28$.
+In fact, there are exactly 28 ways to make $S^7$ into a smooth manifold,
+and the construction above exhausts them.
+This goes back to Milnor in 1956; a very readable account is given e.g.~in \cite{MeerThesis}.
+These manifolds are called exotic spheres, 
+but they are not very exotic, as the explicit equation above shows!
+
+There are also cases where a topological manifold does not admit any smooth structure.
+That there are such manifolds in four dimensions was realized by Freedman \cite{Freedman} in 1982.
+An example is called as the $E_8$ manifold.
+Again the construction with coordinate patches with continuous maps between them is explicit;
+what was difficult was to show that there cannot be any smooth structure. 
+Next year in 1983, Donaldson \cite{Donaldson} 
+introduced a new method to study smooth four-dimensional manifolds
+using gauge theory, with many spectacular results.
+One result which was soon found that $\bR^4$ also has a smooth structure 
+which is not diffeomorphic to the standard one.
+(For example, in one of such exotic smooth structures, 
+any smoothly embedded $S^3$ in it resides in a compact region around the origin.
+So, there can't be an arbitrarily large $S^3$ in it.)
+
+\subsubsection{Triangulation of manifolds}
+Two-dimensional surfaces can be triangulated. 
+We can ask the same question in higher dimensions,
+where we replace triangles by simplices. (A simplex in dimension $n$ has $n+1$ vertices, etc.)
+Can manifolds be triangulated?
+It is known that smooth manifolds can be triangulated. 
+How about topological manifolds?
+
+Well, the four-dimensional $E_8$ manifold above cannot be triangulated.
+The situation in dimensions more than five was more subtle.
+It was shown by Matumoto \cite{Matumoto} in 1978 and Galewski-Stern \cite{GalewskiStern} in 1980 that,
+all topological manifolds of dimension $n\ge 5$ can be triangulated
+\emph{if} there exists a \emph{three}-manifold satisfying certain properties exists.
+If no such three-dimensional manifold exists,
+then for every dimension $n\ge 5$ there are topological manifolds which cannot be triangulated.
+Non-existence of such a three-manifold was finally proved by Manolescu \cite{Manolescu} in 2016.
+This work used a mathematical version of Seiberg-Witten theory,
+which originated in the study of supersymmetric gauge theory 
+in theoretical physics by Seiberg and Witten in the mid-1990s.
+This mathematical Seiberg-Witten theory 
+can be considered as an easier version of Donaldson's theory referred to above,
+and has been developed vigorously by mathematicians since its introduction.
 
 \section{Fiber bundles}
 
