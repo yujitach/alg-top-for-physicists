@@ -429,14 +429,14 @@ We use both ideas to study spaces.
 Let's start with some definitions.
 
 \begin{definition}
-A \emph{(topological) manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $U'\subset \bR^n$ of $0$ such that 
-there is a bijective \emph{continuous} map $f:U\to U'$.
+A \emph{(topological) manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $\underline{U}\subset \bR^n$ of $0$ such that 
+there is a bijective \emph{continuous} map $f:U\to \underline{U}$.
 \end{definition}
 
 Similarly,
 \begin{definition}
-  A \emph{smooth manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $U'\subset \bR^n$ of $0$ such that 
-  there is a bijective \emph{smooth} map $f:U\to U'$.  
+  A \emph{smooth manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $\underline{U}\subset \bR^n$ of $0$ such that 
+  there is a bijective \emph{smooth} map $f:U\to \underline{U}$.  
 \end{definition}
 
 In physics such $U$'s are often called coordinate patches. 
@@ -444,10 +444,27 @@ We only consider manifolds `good enough' such that
 there is a set of coordinate patches $U_i$ covering the whole manifold $M$,
 such that for each point $p\in M$ there is only a finite number of coordinate patches containing $p$.
 In such cases we can think of manifolds as being built from
-pasting together the coordinate patches $U_i \subset \bR^n$
-by the maps \begin{equation}
-f_{ij}: U_i\cap U_j \to U_i\cap U_j
-\end{equation} whenever the intersection $U_i\cap U_j$ is non-empty.
+pasting together the coordinate patches $\underline{U}_i \subset \bR^n$
+in the following way.
+Suppose $U_i\cap U_j$ is nonempty. 
+Let \begin{align}
+\underline{U}_{i,j} &:= f_i(U_i\cap U_j) \subset \underline{U}_i,\\
+\underline{U}_{j,i} &:= f_j(U_j\cap U_i)\subset \underline{U}_j.
+\end{align}
+Then we have the map \begin{equation}
+f_{i,j} \colon \underline{U}_{i,j} \to \underline{U}_{j,i} 
+\end{equation} defined by \begin{equation}
+f_{i,j} := f_j \circ (f_i)^{-1} .
+\end{equation}
+This allows us to `paste together' $\underline{U}_i\subset \bR^n$ 
+and $\underline{U}_j \subset \bR^n$
+by identifying their subsets $\underline{U}_{i,j}$ and $\underline{U}_{j,i}$ using $f_{i,j}$.
+See Fig.~\ref{fig:pasting} for a drawing.
+
+\begin{figure}[h]
+\centering To be drawn
+\caption{Manifolds via pasting coordinate patches \label{fig:pasting}}
+\end{figure}
 
 A smooth manifold is such that $f_{ij}$ are smooth;
 a topological manifold is such that $f_{ij}$ are just required to be continuous.
@@ -755,6 +772,12 @@ Then we make the identification \begin{equation}
 \end{equation} for nonzero $c\in \bK$.
 A point on $\KP^n$ is often denoted by $[x_1:x_2:\cdots:x_{n+1}]$.
 
+Before proceeding, we note that $\CP^n$ parameterize physically-distinct pure states 
+in an $(n+1)$-dimensional Hilbert space.
+Indeed, two nonzero ket vectors $\ket{\psi}$ and $\ket{\psi'}$ represent the same physical state
+when there is a complex number $c$ such that $\ket{\psi'}=c\ket{\psi}$.
+This is exactly the condition \eqref{eq:proj-ident}.
+
 It is instructive to give explicit coordinate patches.
 Note that when $x_i\neq 0$, we have \begin{equation}
   (x_1,x_2,\ldots,x_{n+1}) = (x_1/x_i, x_2/x_i, \ldots, x_i/x_i=1, \ldots, x_{n+1}/x_i).
@@ -798,6 +821,8 @@ Depending on $\bK=\bR,\bC,\bH$, the group of such $c$ is $O(1)=\{\pm1\}=S^0$, $U
 Therefore, we have \begin{equation}
 \RP^n=S^n/O(1), \quad \CP^n=S^{2n+1}/U(1), \quad \HP^n=S^{4n+3}/Sp(1).
 \end{equation}
+
+
 
 \subsubsection{Non-orientable surfaces}
 
