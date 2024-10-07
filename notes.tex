@@ -433,19 +433,33 @@ A \emph{(topological) manifold} $M$ of dimension $n$ is such that for each point
 there is a bijective \emph{continuous} map $f:U\to \underline{U}$.
 \end{definition}
 
+\begin{example}
+$\bR^n$ is an $n$-dimensional topological manifold.
+\end{example}
+
 Similarly,
 \begin{definition}
   A \emph{smooth manifold} $M$ of dimension $n$ is such that for each point $p\in M$ there is a neighborhood $U\subset M$ of $p$ and a neighborhood $\underline{U}\subset \bR^n$ of $0$ such that 
   there is a bijective \emph{smooth} map $f:U\to \underline{U}$.  
 \end{definition}
 
-In physics such $U$'s are often called coordinate patches. 
+\begin{example}
+  $\bR^n$ is also a smooth manifold of dimension $n$.
+\end{example}
+
+In physics $U$'s are often called coordinate patches. 
 We only consider manifolds `good enough' such that 
 there is a set of coordinate patches $U_i$ covering the whole manifold $M$,
 such that for each point $p\in M$ there is only a finite number of coordinate patches containing $p$.
 In such cases we can think of manifolds as being built from
 pasting together the coordinate patches $\underline{U}_i \subset \bR^n$
-in the following way.
+in the following way (see Fig.~\ref{fig:coord-patch}).
+
+\begin{figure}[h]
+\[ \includegraphics[scale=.3]{mfd.png} \]
+\caption{Coordinate patches of a manifold \label{fig:coord-patch}}
+\end{figure}
+
 Suppose $U_i\cap U_j$ is nonempty. 
 Let \begin{align}
 \underline{U}_{i,j} &:= f_i(U_i\cap U_j) \subset \underline{U}_i,\\
@@ -459,12 +473,8 @@ f_{i,j} := f_j \circ (f_i)^{-1} .
 This allows us to `paste together' $\underline{U}_i\subset \bR^n$ 
 and $\underline{U}_j \subset \bR^n$
 by identifying their subsets $\underline{U}_{i,j}$ and $\underline{U}_{j,i}$ using $f_{i,j}$.
-See Fig.~\ref{fig:pasting} for a drawing.
+%See Fig.~\ref{fig:pasting} for a drawing.
 
-\begin{figure}[h]
-\centering To be drawn
-\caption{Manifolds via pasting coordinate patches \label{fig:pasting}}
-\end{figure}
 
 A smooth manifold is such that $f_{ij}$ are smooth;
 a topological manifold is such that $f_{ij}$ are just required to be continuous.
@@ -478,7 +488,32 @@ but I decided to include a bit of discussions about topological manifolds
 as I thought the subtle concrete differences between smooth manifolds
 and topological manifolds can be interesting to some of you.
 
+\begin{theorem}
+When a manifold $M$ is compact,
+we can choose a finite number of coordinate patches $U_i$ to cover $M$.
+\end{theorem}
+
+Before going further, let us also introduce manifolds with boundaries:
+\begin{definition}
+  A \emph{manifold with boundary} is defined similarly,
+  but we allow the neighborhood $\underline{U}$ to be in a half-space $\bR^{n-1}\times \bR_{\ge 0}$.
+  The union of the inverse images of the boundary of 
+  $\underline{U}\cap (\bR^{n-1} \times \{0\})$ 
+  under $f$ is called \emph{the boundary of $M$}
+  and is denoted by $\partial M$.
+\end{definition}  
+
+\begin{example}
+  The half-space $\bR^{n-1}\times \bR_{\ge 0}$ is a manifold with boundary.
+\end{example}
+
+\begin{definition}
+  A compact manifold without boundary is called a closed manifold.
+\end{definition}
+
+
 \subsection{Examples}
+So far we only saw trivial examples.
 
 \subsubsection{Via equations}
 A common way to construct manifolds is to take a subset of $\bR^n$ defined by a number of equations:
