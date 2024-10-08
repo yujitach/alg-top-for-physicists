@@ -536,6 +536,24 @@ The $n$-dimensional sphere $S^n$ is defined by \begin{equation}
 Note that $S^n$ is embedded in $\bR^{n+1}$, but it is a manifold of dimension $n$.
 
 \begin{example}
+  The $n$-dimensional disk $D^n$ is defined by \begin{equation}
+    x_1^2+x_2^2+\cdots+x_{n}^2\le 1.
+  \end{equation} 
+  This is a manifold with boundary, and the boundary is $S^{n-1}$.
+  $D^n$ also called the $n$-dimensional ball and denoted by $B^n$.
+\end{example}  
+
+\begin{example}
+$D^1$ is a segment $[-1,1]$ and its boundary $S^0$ consists of two points $\{-1,1\}$.
+\end{example}
+
+Calling two points, $S^0$, a 0-dimensional sphere sounds silly,
+but it is just a name.
+But this illustrates an important point:
+you are not supposed to judge mathematical concepts by their names.
+Rather, you are supposed to understand them by internalizing their definitions into your heart.
+
+\begin{example}
   We can try considering points of constant Lorentz-invariant distance from the origin in $\bR^{d-1,1}$:
 \begin{equation}
   x_1^2+x_2^2+\cdots+x_{d-1}^2-x_0^2=K ,
@@ -733,6 +751,10 @@ while $S^1\sqcup S^1$ consists of two circles and is one-dimensional.
   \end{equation}
 \end{example}
 
+\begin{example}
+$S^1\times [-1,1]$ is a cylinder. Its boundary is $S^1\sqcup S^1$.
+\end{example}
+
 Another construction is the following:
 \begin{notation}
   Given two connected manifolds $M$, $N$ of dimension $n$,
@@ -861,7 +883,15 @@ Therefore, we have \begin{equation}
 
 \subsubsection{Non-orientable surfaces}
 
-$\RP^2$ is non-orientable. To see this, recall $\RP^2=S^2/\bZ_2$,
+\begin{example}
+  Consider $S^1\times [-1,1]$, parameterized by $\theta\sim \theta+2\pi$ and $x\in [-1,1]$.
+  We can consider the $\bZ_2$ action $(\theta,x)\mapsto (\theta+\pi,-x)$.
+  The quotient space is called the M\"obius strip.
+  This is non-orientable, and the boundary is a single circle $S^1$.
+\end{example}
+
+As a non-orientable closed manifold, 
+we have $\RP^2$ we introduced above. To see this, recall $\RP^2=S^2/\bZ_2$,
 where the $\bZ_2$ action identifies the antipodal points. 
 Any point on the southern hemisphere is identified with some point on the northern hemisphere.
 Then $\RP^2$ can be identified with the northern hemisphere
