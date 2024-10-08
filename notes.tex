@@ -419,13 +419,28 @@ This is because the main mathematical facts used (G\"odel's incompleteness theor
 
 \section{Manifolds}
 
-We have two intuitions about spaces.
-One is such that each point is locally like $\bR^n$.
-Another is such that it is made up from pasting small triangles (for surfaces) or tetrahedra (for 3-dimensional objects) and analogous constructions in higher dimensions.
-We use both ideas to study spaces. 
+As already explained, algebraic topology provides us methods to study spaces by attaching algebraic objects to them.
+But before doing that, we need to know various examples of spaces to be studied about.\footnote{%
+A good mathematician might be able to work abstractly without any examples,
+by a rigorous mathematical thinking process.
+But we're not mathematicians, and we do need examples.
+There's even a danger for mathematicians, as the following apocryphal tale shows: \url{https://mathoverflow.net/a/53127}.
+Not so long a story short, it's about a math PhD thesis defense where the student proved many fantastic theorems about objects satisfying certain axioms.
+One of the professors in the audience asked if there actually was any such object.
+It turned out there was none, and the theorems were all vacuously true.
+}
+For this purpose, we introduce manifolds in this section.
+In the next section, we introduce fiber bundles, which are a kind of twisted products of manifolds.
+Algebraic topology per se starts in Sec.~\ref{sec:basic-homotopy}.
+
 
 \subsection{Definition of manifolds}
 
+We have two intuitions about spaces.
+One is such that each point is locally like $\bR^n$.
+Another is such that it is made up from pasting small triangles (for surfaces) or tetrahedra (for 3-dimensional objects) and analogous constructions in higher dimensions.
+We use both ideas to study spaces,
+but our primary method for now is the former.
 Let's start with some definitions.
 
 \begin{definition}
@@ -514,6 +529,7 @@ Before going further, let us also introduce manifolds with boundaries:
 
 \subsection{Examples}
 So far we only saw trivial examples.
+We need better examples.
 
 \subsubsection{Via equations}
 A common way to construct manifolds is to take a subset of $\bR^n$ defined by a number of equations:
@@ -836,16 +852,21 @@ when there is a complex number $c$ such that $\ket{\psi'}=c\ket{\psi}$.
 This is exactly the condition \eqref{eq:proj-ident}.
 
 It is instructive to give explicit coordinate patches.
+Let $U_i$ be the points on $\CP^n$ with $x_i\neq 0$.
 Note that when $x_i\neq 0$, we have \begin{equation}
-  (x_1,x_2,\ldots,x_{n+1}) = (x_1/x_i, x_2/x_i, \ldots, x_i/x_i=1, \ldots, x_{n+1}/x_i).
+  (x_1,x_2,\ldots,x_{n+1}) \sim (x_1/x_i, x_2/x_i, \ldots, x_i/x_i=1, \ldots, x_{n+1}/x_i).
 \end{equation} 
-This part is parameterized by $\bK^n$ with coordinates $y_k:=x_k/x_i$ for $k\neq i$.
-Let us call this patch $U_i$.
-Let us consider another patch $U_j$, with coordinates $z_k:=x_k/x_j$ for $k\neq j$.
+In other words, we can introduce coordinates on $U_i$ by defining  $y_k:=x_k/x_i$ for $k\neq i$;
+equivalently, we constructed a map $f_i: U_i \to \underline{U}_i \simeq \bK^n$.
+
+Let us consider another patch $U_j$ containing points with $x_j\neq 0$. 
+We introduce coordinates $z_k:=x_k/x_j$ for $k\neq j$;
+this gives the map $f_j: U_j \to \underline{U}_j\simeq \bK^n$.
+
 $U_i$ and $U_j$ overlap when $x_i\neq 0$ and $x_j\neq 0$.
 We then need to find the coordinate transformation 
-between $U_i \cap U_j \subset U_i$
-and $U_i \cap U_j \subset U_j$, realizing the identification of
+between $f_i(U_i \cap U_j )\subset \underline{U}_i$
+and $f_j(U_i \cap U_j) \subset \underline{U}_j$, realizing the identification of
 \begin{equation}
   (y_1,y_2,\ldots,y_{n+1}) \quad \text{with $y_i=1$, $y_j\neq 0$}
 \end{equation} and 
@@ -860,7 +881,7 @@ From this description we see \begin{equation}
 \HP^1=S^4.
 \end{equation}
 Indeed, in this case we have two patches \begin{equation}
-  U_1 = \{ (1,y) \mid y\in \bK \}, \quad U_2 = \{ (z,1) \mid z\in \bK \}.
+  U_1 = \{ [1:y] \mid y\in \bK \}, \quad U_2 = \{ [z:1] \mid z\in \bK \}.
 \end{equation} where $z=y^{-1}$ in the overlap $U_1\cap U_2$.
 $U_1$ is the northern hemisphere,
 $U_2$ is the southern hemisphere,
@@ -1049,10 +1070,11 @@ all topological manifolds of dimension $n\ge 5$ can be triangulated
 \emph{if} there exists a \emph{three}-manifold satisfying certain properties.
 If no such three-dimensional manifold exists,
 then for every dimension $n\ge 5$ there are topological manifolds which cannot be triangulated.
-Non-existence of such a three-manifold was finally proved by Manolescu \cite{Manolescu} in 2016.
+Non-existence of such a three-manifold was finally proved by Manolescu \cite{Manolescu} in 2013.
 This work used a mathematical version of Seiberg-Witten theory,
 which originated in the study of supersymmetric gauge theory 
-in theoretical physics by Seiberg and Witten in the mid-1990s.
+in theoretical physics by Seiberg and Witten in the mid-1990s,
+who showed how confinement happens in a supersymmetric version of QCD.
 This mathematical Seiberg-Witten theory 
 can be considered as an easier version of Donaldson's theory referred to above,
 and has been developed vigorously by mathematicians since its introduction.
@@ -1071,7 +1093,7 @@ So we have hierarchy of structures on manifolds: \begin{multline}
 where I added another stage, known as piecewise-linear (PL) manifolds,
 which can be found more often discussed in the math literature 
 than triangulated manifolds.\footnote{%
-They are triangulated manifolds such that
+PL manifolds are triangulated manifolds such that
 for each vertex $v$, the link of $v$ (the polyhedron formed by 
 simplices immediately surrounding $v$) is piece-wise-linear isomorphic to $S^{n-1}$.
 }
@@ -1284,6 +1306,7 @@ Matter content of the Standard Model
 
 
 \section{Basic homotopy theory}
+\label{sec:basic-homotopy}
 
 \subsection{Definitions and basic properties}
 
