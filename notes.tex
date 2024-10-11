@@ -794,23 +794,28 @@ the surface of a multi-donut with $g$ holes.
 \end{fact}
 
 \subsubsection{Via quotients}
-
+\label{sec:quotient}
 Another method to define manifolds is to 
 take the quotient of a manifold by a group action. 
 Let us explain it more fully.
 \begin{definition}
 A \emph{group action} of a group $G$ on a manifold $M$ is a map \begin{equation}
-  G\times M \to M, \quad (g, p) \mapsto g p
+  M\times G \to M, \quad (p, g) \mapsto p q
 \end{equation} such that \begin{equation}
-  e p = p, \quad (gh) p = g (h p)
+   p e = p, \quad  (p  g) h = p (gh)
 \end{equation} for all $g,h\in G$ and $p\in M$.
 Here $e$ is the identity in $G$.
 \end{definition}
+
+More precisely, this is known as a right action of $G$.
+We can similarly define a left action of $G$, so that 
+we have $G\times M\to M$ satisfying $g(hp)=(gh)p$ instead.
+
 We often want the action to be smooth or at least continuous,
 depending on the context.
 
 \begin{definition}
-Let $p\sim q$ if there is a $g\in G$ such that $g p = q$.
+For $p,q\in M$, let $p\sim q$ if there is a $g\in G$ such that $p g = q$.
 The quotient space $M/G$ is the set $M/\sim$ of equivalence classes 
 under this relation.
 \end{definition}
@@ -827,6 +832,7 @@ so we will not do so in this lecture series.
 
 We now define the real, complex and quaternionic projective spaces $\RP^n$, $\CP^n$ and $\HP^n$ uniformly.
 \begin{example}
+  \label{ex:proj}
   For $\bK=\bR,\bC,\bH$, 
   consider the action of $\bK\setminus \{0\}$ on
   $\bK^{n+1}\setminus\{0\}$ by scalar multiplication.
@@ -879,6 +885,7 @@ From this description we see \begin{equation}
 \RP^1=S^1,\quad
 \CP^1=S^2,\quad
 \HP^1=S^4.
+\label{eq:KP1}
 \end{equation}
 Indeed, in this case we have two patches \begin{equation}
   U_1 = \{ [1:y] \mid y\in \bK \}, \quad U_2 = \{ [z:1] \mid z\in \bK \}.
@@ -898,6 +905,7 @@ if $|c|=1$.
 Depending on $\bK=\bR,\bC,\bH$, the group of such $c$ is $O(1)=\{\pm1\}=S^0$, $U(1)=S^1$, $Sp(1)=SU(2)=S^3$, respectively.
 Therefore, we have \begin{equation}
 \RP^n=S^n/O(1), \quad \CP^n=S^{2n+1}/U(1), \quad \HP^n=S^{4n+3}/Sp(1).
+\label{eq:sphere-proj}
 \end{equation}
 
 
@@ -1122,46 +1130,201 @@ although in a rather high dimensionality meaningless in our actual world.
 
 \section{Fiber bundles}
 
+After having seen some explict examples of manifolds,
+let us move on to the study of fiber bundles,
+which are a kind of twisted products of manifolds.
+
 \subsection{Definition}
 
 \begin{definition}
-fiber bundles
+A fiber bundle is the data of a map $p: E\to B$
+where $E$ and $B$ are manifolds,
+such that there is a fixed manifold $F$ so that
+for each $b\in B$ there is a neighborhood $b\in U\subset B$ 
+and a bijective map $f: p^{-1}(U)\to U\times F$
+compatible with the projection, i.e.~the following diagram \begin{equation}
+  \begin{array}{ccc}
+    p^{-1}(U) & \xrightarrow{f} & U\times F \\
+    \downarrow & & \downarrow \\
+    U & = & U
+  \end{array}
+\end{equation}
+commutes, where the down arrows are projections.
+$F$, $E$ and $B$ are called the fiber, total space, and base space, respectively.
 \end{definition}
 
+In other words, a fiber bundle over $B$ with fiber $F$
+can be built by first covering $B$ by open sets $U_i$,
+taking the product $U_i \times F$ for each $i$,
+which we glue them over the overlaps $U_{ij}:=U_i\cap U_j$ via
+maps $f_{ij}$ as follows:
+\begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times F &\supset& U_{ij}\times F & \xrightarrow{f_ij} & 
+    U_{ij}\times F & \subset & U_j\times F \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U_{ij} & = & U_{ij} & \subset & U_j
+  \end{array}
+\end{equation}
+where all the down arrows are the projections forgetting the fiber direction.
+
 \begin{example}
-M\"obius strip
+  The product $E = B\times F$ is a fiber bundle over $B$ with fiber $F$.
 \end{example}
 
+\begin{figure}[h]
+  \[
+    \includegraphics[width=0.2\textwidth]{cylinder.png}
+    \qquad
+    \includegraphics[width=0.2\textwidth]{mobius.png}
+  \]
+    \caption{A cylinder and a M\"obius strip.}
+    \label{fig:cyl-mob}
+\end{figure}
 
+\begin{example}
+A cylinder $S^1\times [-1,1]$ is a fiber bundle over $S^1$ with fiber $[-1,1]$.
+\end{example}
+
+\begin{example}
+A M\"obius strip is a fiber bundle over $S^1$, where the fiber is the segment $[-1,1]$.
+\end{example}
+
+\noindent See Fig.~\ref{fig:cyl-mob} for my terrible drawings.
+
+
+A cylinder and a M\"obius strip are different,
+although the fiber and the base of both cases are the same.
+One way to see this is to note that the boundary of 
+the cylinder is $S^1\sqcup S^1$, while the boundary of the M\"obius strip is $S^1$.
+Developing more general methods to distinguish different fiber bundles
+with the same fiber and the base would be one of the goals
+of the study of fiber bundles.
 
 \subsection{Quotients as bundles}
 
 \begin{example}
-general quotients
+  \label{ex:free-quotient}
+Suppose $G$ acts on a manifold $M$.
+We further suppose that this action is free,
+i.e.~for each $m\in M$ the only $g\in G$ such that $mg=m$ is $g=e$.
+Then the projection $p: M\to M/G$ is a fiber bundle with fiber $G$.
 \end{example}
 
 \begin{definition}
-principal G-bundles = free quotients
+  \label{def:principal-bundle}
+  A fiber bundle $p: E\to B$ with fiber $G$ is called a principal $G$-bundle
+  if $E$ is equipped with an action of $G$ such that 
+  for each $b\in B$ we have $U\subset B$ so that we have
+  the situation
+  \begin{equation}
+  \begin{array}{ccc}
+    p^{-1}(U) & \simeq & U\times G \\
+    \downarrow & & \downarrow \\
+    U & = & U
+  \end{array}
+  \end{equation}
+  compatible with the $G$ action.
 \end{definition}
 
+In fact these two situations, Example~\ref{ex:free-quotient}
+and Definition~\ref{def:principal-bundle} are equivalent;
+in the former we emphasize the total space $M$,
+while in the latter we emphasize the base space $B$.
+
+In the latter viewpoint, the total space $E$ is built 
+as before by gluing $U_i\times G$ over $U_{ij}=U_i \cap U_j$ as 
+\begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times G &\supset& U_{ij}\times G & \xrightarrow{f_ij} & 
+    U_{ij}\times G & \subset & U_j\times G \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U_{ij} & = & U_{ij} & \subset & U_j
+  \end{array}
+\end{equation}
+where $f_{ij}$ has to be compatible with the right action of $G$.
+Let us make $f_{ij}$ more explicit.
+On a point $b\in U_{ij}$, $f_{ij}$ is a map $f_b:G\to G$
+such that $f_b(g) h = f_b(gh)$ for all $g,h\in G$.
+This in particular means that $f_b(g)=f_b(e)g$,
+meaning that it is specified by $f_b(e)$ alone. 
+Define $g_{ij}: U_{ij}\to G$ via $g_{ij}(b) = f_b(e)$.
+Then $f_{ij}: U_{ij}\times G\to U_{ij}\times G$ is given explicitly by
+\begin{equation}
+  f_{ij}: (b,g) \mapsto (b, g_{ij}(b) g).
+\end{equation}
+
+Now the examples we saw in Sec.~\ref{sec:quotient} can be rephrased as principal bundles.
+In particular, the equation \eqref{eq:sphere-proj} means the following:
 \begin{example}
-projective spaces
+$S^n\to \RP^n$ is a principal $O(1)=\bZ_2$-bundle.
 \end{example}
 
 \begin{example}
-$S^1\to S^3\to S^2$ as Bloch sphere
+$S^{2n+1}\to \CP^n$ is a principal $U(1)=S^1$-bundle.
 \end{example}
 
 \begin{example}
-$S^3\to S^7\to S^4$
+  $S^{4n+3}\to \HP^n$ is a principal $Sp(1)=SU(2)=S^3$-bundle.
 \end{example}
+
+Furthermore, we saw that $\RP^1=S^0$, $\CP^1=S^2$, $\HP^1=S^3$ 
+in \eqref{eq:KP1}. 
+This means that we have the following fiber bundles:
+\begin{itemize}
+  \item $\bR^2\supset S^1\to \RP^1=S^1$  is an $S^0$ bundle,
+  \item $\bC^2\supset S^3\to \CP^1=S^2$ is an $S^1$ bundle,
+  \item $\bH^2\supset S^7\to \HP^1=S^4$ is an $S^3$ bundle.
+\end{itemize}
+These are known as Hopf fibrations.
+
+We have three comments.
+\begin{itemize}
+\item The first example is a 2:1 map,
+already drawn in Fig.~\ref{fig:cyl-mob} 
+as a map from the boundary $S^1$ of the M\"obius strip to the base $S^1$.
+\item The second example can be given a different description. 
+Regard $S^3$ as parameterizing norm-one states
+in a qubit:
+\begin{equation}
+  \ket{\psi}=\begin{pmatrix}u \\v \end{pmatrix},
+  \qquad (|u|^2+|v|^2=1).
+\end{equation}
+Now form the expectation values of Pauli matrices:
+\begin{align}
+  X &:= \bra{\psi} \sigma_X \ket{\psi} = \bar u v + \bar v u, \\
+  Y &:= \bra{\psi} \sigma_Y \ket{\psi} = -i\bar u v +i \bar v u, \\
+  Z &:= \bra{\psi} \sigma_Z \ket{\psi} = |u|^2 - |v|^2.
+\end{align}
+It is straightforward to check that $X^2+Y^2+Z^2=1$.
+Therefore the map \begin{equation}
+(u,v)\mapsto (X,Y,Z)
+\end{equation} defines a map \begin{equation}
+  S^3\to S^2.
+\end{equation}
+That the fiber of this map is an $S^1$ is clear from the fact
+that the expectation values are invariant under the change
+$\ket{\psi}\mapsto c\ket{\psi}$ where $|c|=1$.
+\item The three fibrations above are all of the form
+$S^n \to S^m \to S^{m-n}$.
+One wonders if there are other examples of this form.
+Actually we have:
+\end{itemize}
 
 \begin{fact}
-Hopf fibrations
+These three Hopf fibrations exhaust 
+such fibrations $S^n\to S^m\to S^{m-n}$.
 \end{fact}
 
+Another large class of principal bundles
+are the homogeneous spaces.
 \begin{definition}
-homogeneous spaces and orbit spaces
+  Given a subgroup $H\subset G$,
+  introduce the equivalence relation $g_1\sim g_2$ if 
+  there exists an $h\in G$ such that $g_1=g_2 h$.
+  The quotient of $G$ by this relation is denoted by $G/H$,
+  and is called a homogeneous space.
+  Furthremore, $G\to G/H$ is a principal $H$-bundle.
 \end{definition}
 
 \begin{example}
