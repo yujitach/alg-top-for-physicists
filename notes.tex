@@ -1150,7 +1150,11 @@ compatible with the projection, i.e.~the following diagram \begin{equation}
   \end{array}
 \end{equation}
 commutes, where the down arrows are projections.
-$F$, $E$ and $B$ are called the fiber, total space, and base space, respectively.
+$F$, $E$ and $B$ are called the fiber, total space, and base space, respectively;
+As a shorthand, we often refer to a fiber bundle as 
+\begin{equation}
+F\to E\to B.  
+\end{equation}
 \end{definition}
 
 In other words, a fiber bundle over $B$ with fiber $F$
@@ -1216,15 +1220,14 @@ Then the projection $p: M\to M/G$ is a fiber bundle with fiber $G$.
   A fiber bundle $p: E\to B$ with fiber $G$ is called a principal $G$-bundle
   if $E$ is equipped with an action of $G$ such that 
   for each $b\in B$ we have $U\subset B$ so that we have
-  the situation
+  the following identification compatible with the $G$ action:
   \begin{equation}
   \begin{array}{ccc}
     p^{-1}(U) & \simeq & U\times G \\
     \downarrow & & \downarrow \\
     U & = & U
-  \end{array}
+  \end{array} .
   \end{equation}
-  compatible with the $G$ action.
 \end{definition}
 
 In fact these two situations, Example~\ref{ex:free-quotient}
@@ -1299,12 +1302,14 @@ Now form the expectation values of Pauli matrices:
 It is straightforward to check that $X^2+Y^2+Z^2=1$.
 Therefore the map \begin{equation}
 (u,v)\mapsto (X,Y,Z)
+\label{eq:uvXYZ}
 \end{equation} defines a map \begin{equation}
   S^3\to S^2.
 \end{equation}
 That the fiber of this map is an $S^1$ is clear from the fact
 that the expectation values are invariant under the change
 $\ket{\psi}\mapsto c\ket{\psi}$ where $|c|=1$.
+The sphere $S^2$ parameterized by $(X,Y,Z)$ is often referred to as the Bloch sphere.
 \item The three fibrations above are all of the form
 $S^n \to S^m \to S^{m-n}$.
 One wonders if there are other examples of this form.
@@ -1324,15 +1329,144 @@ are the homogeneous spaces.
   there exists an $h\in G$ such that $g_1=g_2 h$.
   The quotient of $G$ by this relation is denoted by $G/H$,
   and is called a homogeneous space.
-  Furthremore, $G\to G/H$ is a principal $H$-bundle.
+  Furthermore, $G\to G/H$ is a principal $H$-bundle.
 \end{definition}
 
+A common way this appears in physics is via symmetry breaking.
+Say we have a configuration space $M$ acted on by a symmetry group $G$ from the left:
+$M\ni m\mapsto gm\in M$ for $g\in G$.
+Suppose we have a potential $V:M\to \bR$ invariant under the $G$ action, i.e.~$V(gm)=V(m)$.
+Suppose further that the potential has a minimum at $m_0 \in M$. 
+From the $G$-invariance, all points of the form $gm_0$ are also minimum of $V$.
+When the potential is generic, the space of the minimum of the potential is given by the orbit $Gm_0$.
+What is this space?
+
+Let $H\subset G$ be the subgroup fixing $m_0$, i.e.~$h\in H$ if and only if $hm_0=m_0$.
+In such a situation, we say that the symmetry is broken from $G$ to $H$.\footnote{%
+Physicists often write this as $G\to H$, 
+but mathematically the map is in the opposite direction, $H\to G$.}
+In this case $g_1 m_0 = g_2 m_0$ if and only if $g_2^{-1} g_1 \in H$, 
+or equivalently $g_1 = g_2 h$ for some $h\in H$.
+Therefore, we have $Gm_0=G/H$, i.e.~the space of the potential minimum is a homogeneous space
+determined by the original symmetry $G$ and the unbroken symmetry $H$.
+
+Let us give some examples.
+Let $SO(n)$ act on $\bR^n$ by rotations.
+A rotationally invariant potential $V:\bR^n\to \bR$ 
+has the form $V(x_1,\ldots,x_n)=f(r)$ where $r^2={x_1^2+\cdots+x_n^2}$.
+When $f(r)$ has a minimum at $r_0>0$,
+the space of the potential minimum is $S^{n-1}$ given by $x_1^2+\cdots + x_n^2=r_0^2$.
+
+At $m_0=(r_0,0,\ldots,0)$, the subgroup of $SO(n)$ fixing $m_0$ is $SO(n-1)$.
+Therefore, the space of the potential minimum is $SO(n)/SO(n-1)=S^{n-1}$.
+Summarizing, we have found
 \begin{example}
-$S^1\to S^3\to S^2$ as symmetry breaking by a vev
+  There is a fiber bundle $SO(n-1)\to SO(n) \to S^{n-1}$.
 \end{example}
 
+Let $U(n)$ act on $\bC^n$ by unitary transformations.
+An invariant potential $\bC^n\to \bR$ has the form $V(z_1,\ldots,z_n)=f(r)$
+where $r^2=|z_1|^2+\cdots+|z_n|^2$.
+When $f(r)$ has a minimum at $r_0>0$,
+the space of the potential minimum is $S^{2n-1}$ given by $|z_1|^2+\cdots + |z_n|^2=r_0^2$.
+
+At $m_0=(r_0,0,\ldots,0)$, the subgroup of $U(n)$ fixing $m_0$ is $U(n-1)$.
+Therefore, the space of the potential minimum is $U(n)/U(n-1)=S^{2n-1}$.
 \begin{example}
-superfluid Helium-3 A-phase 
+There is a fiber bundle $U(n-1)\to U(n)\to S^{2n-1}$.
+\end{example}
+
+Let $Sp(n)$ act on $\bH^n$ in a standard manner.
+By following the same logic as above, we get $Sp(n)/Sp(n-1)=S^{4n-1}$,
+and we found that:
+\begin{example}
+  There is a fiber bundle $Sp(n-1)\to Sp(n)\to S^{4n-1}$.
+\end{example}
+
+Let us now consider $g\in SU(2)$ acting on $\bC^2$.
+Note that $2\times 2$ traceless Hermitean matrices are paramaterized by $\bR^3$,
+by $x\sigma_x+y\sigma_y+z\sigma_z$.
+We let $g\in SU(2)$ acts on this space via \begin{equation}
+R_g: (x,y,z) \mapsto (x',y',z')  \label{eq:Rg1}
+\end{equation} where \begin{equation}
+g(x\sigma_x+y\sigma_y+z\sigma_z)g^\dagger = x'\sigma_x+y'\sigma_y+z'\sigma_z.
+\label{eq:Rg2}
+\end{equation}
+
+An invariant function $V:\bR^3\to \bR$ again has the form $V(x,y,z)=f(r)$
+where $r^2={x^2+y^2+z^2}$.
+Suppose $f(r)$ has a minimum at $r_0>0$.
+The space of the potential minimum is $x^2+y^2+z^2=r_0^2$, which is a sphere $S^2$.
+Take $m_0=(0,0,r_0)$, corresponding to $r_0 \sigma_z$.
+The elements of $SU(2)\simeq S^3$ fixing this point have the form $e^{i\theta \sigma_z}$ for some $\theta$,
+and is isomorphic to $U(1)\simeq S^1$.
+In this way we again found \begin{equation}
+  S^1 \to S^3 \to S^2.
+\end{equation}
+
+Note that we have defined a map $SU(2)\to SO(3)$ by $g\mapsto R_g$ where $R_g$ was given in \eqref{eq:Rg1} and \eqref{eq:Rg2}.
+This is a homomorphism, and the kernel is $\{\pm 1\}$.
+In other words we have found:
+\begin{example}
+  There is a fiber bundle $
+    \{\pm 1\} \to SU(2) \to SO(3). 
+  $
+\end{example}
+Recalling that $SU(2)\simeq S^3$, we see that $SO(3)\simeq \RP^3$.
+
+Let us check that this bundle is not a trivial product and therefore $SU(2) \neq \{\pm1\}\times SO(3)$.
+For this, it suffices to restrict our attention to the subgroup
+$U(1) \subset SU(2)$ we encountered just above,
+consisting of elements $g(\theta):=e^{i\theta\sigma_z}$.
+$R_{g(\theta)}$ can be easily computed to be a rotation around the $z$-axis by an angle $2\theta$.
+Then, restricted to this subspace, we have the fibration \begin{equation}
+  \{\pm1\}  \to S^1 \to S^1
+\end{equation}
+where the second map is 2:1, which is not a trivial product.
+
+There is another common example we see in quantum mechanics.
+Consider an $n$-state system with the Hilbert space $\cH=\bC^n$.
+The unitary group $U(n)$ acts on it.
+On the observables, $g\in U(n)$ acts via \begin{equation}
+  A\mapsto g A g^\dagger.
+\end{equation}
+Therefore, the subgroup $U(1) \subset U(n)$
+consisting of scalar multiplications acts trivially: \begin{equation}
+c A c^\dagger = A,
+\end{equation} when $|c|=1$. 
+What acts effectively on the space of observables is the quotient group $U(n)/U(1)$.
+
+We note that $SU(n)\subset U(n)$ also acts on observables.
+In this case, a scalar multiplication $c$ with $|c|=1$ is in $SU(n)$ if and only if $c^n=1$.
+The complex numbers $\{c\mid c^n=1\}$ form a group isomorphic to $\bZ_n$,
+and we found $\bZ_n \subset SU(n)$,
+and the quotient $SU(n)/\bZ_n$ acts on the space of observables.
+
+As any $U(n)$ matrix $U$ is of the form $c'U'$ for $c'\in U(1)$ and $U'\in SU(n)$,
+we have $U(n)/U(1) = SU(n)/\bZ_n$.
+This common quotient group is known as the projective unitary group, and denoted by $PU(n)$.
+Summarizing, 
+\begin{example}
+  There are fiber bundles $U(1)\to U(n)\to PU(n)$
+  and $\bZ_n \to SU(n) \to PU(n)$.
+\end{example}
+
+
+Our final example is 
+\begin{example}
+The superfluid Helium-3 A-phase. 
+In this case the order parameter, the Cooper pair condensate, takes values in $\bC^3\otimes \bC^3$.
+Denote the basis vectors of the first $\bC^3$ by $\mathbf{e}_{1,2,3}$
+and those of the second by $\mathbf{f}_{1,2,3}$.
+The symmetry group $G$ of the potential is two separate $SO(3)$ actions on 
+$\mathbf{e}_{1,2,3}$ and $\mathbf{f}_{1,2,3}$,
+together with a common $U(1)$ rotation $\mathbf{e}_i \otimes \mathbf{f}_j \mapsto c\, \mathbf{e}_i \otimes \mathbf{f}_j$,
+so we have \begin{equation}
+  G = SO(3)\times SO(3)\times U(1).
+\end{equation}
+The potential minimum is at $\mathbf{e}_1\otimes (\mathbf{f}_1+ i\mathbf{f}_2)$,
+with a certain unbroken subgroup $H\subset G$, which does not have an easy name.
+The space of the potential minimum is $G/H$.
 \end{example}
 
 \subsection{Vector bundles}
