@@ -1140,9 +1140,9 @@ which are a kind of twisted products of manifolds.
 A fiber bundle is the data of a map $p: E\to B$
 where $E$ and $B$ are manifolds,
 such that there is a fixed manifold $F$ so that
-for each $b\in B$ there is a neighborhood $b\in U\subset B$ 
+for each $b\in B$ we have a neighborhood $b\in U\subset B$ 
 and a bijective map $f: p^{-1}(U)\to U\times F$
-compatible with the projection, i.e.~the following diagram \begin{equation}
+that is compatible with the projection, i.e.~the following diagram \begin{equation}
   \begin{array}{ccc}
     p^{-1}(U) & \xrightarrow{f} & U\times F \\
     \downarrow & & \downarrow \\
@@ -1150,7 +1150,8 @@ compatible with the projection, i.e.~the following diagram \begin{equation}
   \end{array}
 \end{equation}
 commutes, where the down arrows are projections.
-$F$, $E$ and $B$ are called the fiber, total space, and base space, respectively;
+$F$, $E$ and $B$ are called the fiber, total space, and base space, respectively.
+The map $f$ above is called a local trivialization.
 As a shorthand, we often refer to a fiber bundle as 
 \begin{equation}
 F\to E\to B.  
@@ -1239,7 +1240,7 @@ In the latter viewpoint, the total space $E$ is built
 as before by gluing $U_i\times G$ over $U_{ij}=U_i \cap U_j$ as 
 \begin{equation}
   \begin{array}{cccccccc}
-    U_i \times G &\supset& U_{ij}\times G & \xrightarrow{f_ij} & 
+    U_i \times G &\supset& U_{ij}\times G & \xrightarrow{f_{ij}} & 
     U_{ij}\times G & \subset & U_j\times G \\
     \downarrow & & \downarrow & & \downarrow & & \downarrow \\
     U_i & \supset & U_{ij} & = & U_{ij} & \subset & U_j
@@ -1295,13 +1296,13 @@ in a qubit:
 \end{equation}
 Now form the expectation values of Pauli matrices:
 \begin{align}
-  X &:= \bra{\psi} \sigma_X \ket{\psi} = \bar u v + \bar v u, \\
-  Y &:= \bra{\psi} \sigma_Y \ket{\psi} = -i\bar u v +i \bar v u, \\
-  Z &:= \bra{\psi} \sigma_Z \ket{\psi} = |u|^2 - |v|^2.
+  x &:= \bra{\psi} \sigma_X \ket{\psi} = \bar u v + \bar v u, \\
+  y &:= \bra{\psi} \sigma_Y \ket{\psi} = -i\bar u v +i \bar v u, \\
+  z &:= \bra{\psi} \sigma_Z \ket{\psi} = |u|^2 - |v|^2.
 \end{align}
-It is straightforward to check that $X^2+Y^2+Z^2=1$.
+It is straightforward to check that $x^2+y^2+z^2=1$.
 Therefore the map \begin{equation}
-(u,v)\mapsto (X,Y,Z)
+(u,v)\mapsto (x,y,z)
 \label{eq:uvXYZ}
 \end{equation} defines a map \begin{equation}
   S^3\to S^2.
@@ -1471,43 +1472,153 @@ The space of the potential minimum is $G/H$.
 
 \subsection{Vector bundles}
 
+Another large class of bundles is given by the vector bundles,
+where the fiber is a vector space.
 
 \begin{definition}
-vector bundles
+  Pick the field of scalars $\bK$ to be either $\bR$, $\bC$ or $\bH$.
+  A vector bundle is a fiber bundle $E\to B$ with fiber $V$,
+  where $V$ is a vector space, such that two local trivializations over $U_i \subset B$
+  and $U_j\subset B$ are related in the following manner on the overlap $U_{ij}=U_i\cap U_j$:
+  \begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times V &\supset& U_{ij}\times V & \xrightarrow{f_{ij}} & 
+    U_{ij}\times V & \subset & U_j\times V \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U_{ij} & = & U_{ij} & \subset & U_j
+  \end{array}
+  \end{equation}
+  where $f_{ij}$ is given by \begin{equation}
+    f_{ij}: (b,v) \mapsto (b, g_{ij}(b) v)
+  \end{equation} where $g_{ij}(b): V\to V$ is a linear map.
 \end{definition}
+We can consider $\bR$-vector bundles, $\bC$-vector bundles, and $\bH$-vector bundles.
+
+It is also common to introduce a norm on the fibers $V$ of a vector bundle,
+so that the transition functions $g_{ij}(b)$ are not just linear maps
+but in $O(n)$, $U(n)$, or $Sp(n)$, respectively.
 
 \begin{definition}
-line bundles
+A vector bundle whose fiber is one dimensional over $\bK$ is called a 
+$\bK$-line bundle.
+Here $\bK$ is either $\bR$, $\bC$ or $\bH$.
 \end{definition}
+Most often, a line bundle refers to a complex line bundle, i.e.~a vector bundle
+whose fiber is a one-dimenisonal complex vector space.\footnote{%
+I think mathematicians are crazy in that they call the space of complex numbers a `line'.
+}
 
+
+When we have two vector spaces $V$ and $W$,
+we can form the direct sum $V\oplus W$ or the tensor product $V\otimes W$.
+These operations can be lifted to vector bundles,
+by performing them fiberwise.
 \begin{definition}
-unit sphere bundle
+  Given two vector bundles $E\to B$ and $E'\to B$ with fibers $V$ and $W$,
+  we can form the direct sum $E\oplus E'$ over $B$ with fiber $V\oplus W$,
+  or the tensor product bundle $E\otimes E'$ over $B$ with fiber $V\otimes W$.  
 \end{definition}
 
+Given a vector space $V$, the space of linear functions $V\to \bK$ is denoted by $V^\wedge$
+and is also a  vector space.
+Doing this fiberwise, we have:
 \begin{definition}
-subbundle
+  Given a vector bundle $E\to B$ with fiber $V$,
+  we can form the dual bundle $E^\wedge\to B$ whose fiber is $V^\wedge$.
+\end{definition}
+Similarly, for a complex vector bundle, we can do:
+\begin{definition}
+  Given a complex vector bundle $E\to B$ with fiber $V$,
+  we can form the complex conjugate bundle $\bar E\to B$ whose fiber is $\bar V$.
 \end{definition}
 
+Another interesting operation one can do is the following:
+Let $V$ be a complex vector space with a Hermitian inner product.
+Let $\mathrm{Herm}(V)$ be the space of Hermitian operators on $V$,
+which is a real vector space.
+\begin{definition}
+  Given a complex vector bundle $E\to B$ with fiber $V$,
+  we can form the bundle of Hermitian operators $\mathrm{Herm}(E)\to B$ with fiber $\mathrm{Herm}(V)$.
+\end{definition}
+This is the operation, given a family of Hilbert spaces parameterized over 
+a parameter space $B$,
+the family of spaces of observables acting on each Hilbert space, over the same parameter space $B$.
+
+A somewhat different operation one can perform fiberwise 
+is to take the unit sphere $S(V)=S^{kn-1} \subset V$ at each fiber, where $n$ is the dimension of $V$
+and $k=1,2,4$ for $\bK=\bR,\bC,\bH$.
+\begin{definition}
+  Given a vector bundle $E\to B$ with fiber $V$,
+  we can form the sphere bundle $S(E)\to B$ whose fiber is $S(V)$.
+\end{definition}
+
+We can also consider taking a vector subspace $V_2\subset V_1$ at each fiber:
+\begin{definition}
+A subbundle of a vector bundle $E_1\to B$ with fiber $V_1$ is 
+a vector bundle $E_2\to B$ with fiber $V_2$ such that on each local trivialization 
+we have 
+\begin{equation}
+  \begin{array}{cccccccc}
+    (p_2)^{-1}(B) &\simeq & U\times V_2 & \subset  & U\times V_1 &\simeq & (p_1)^{-1}(B) \\ 
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U & = & U & = & U & = & U
+  \end{array}
+  \end{equation}
+\end{definition}
+
+Let us consider a basic but interesting example.
+Consider the unit sphere $S^2$, parameterized by $(x,y,z)$ with $x^2+y^2+z^2=1$.
+We consider a trivial vector bundle $S^2\times \cH$ over $S^2$,
+where $\cH=\bC^2$ is a qubit.
+Let us consider the Hamiltonian \begin{equation}
+  H := -(x\sigma_x +y \sigma_y + z\sigma_z)
+  \label{eq:S2Ham}
+\end{equation} parameterized over $S^2$.
+As $H^2=1$, the eigenvalues of $H$ are $\pm 1$.
+Let $V(x,y,z) \subset \cH$ be the eigenspace of the lowest energy, i.e.~the $-1$ eigenspace.
+This determines a subbundle $E \to S^2 $ of the trivial bundle $S^2\times \cH$,
+where the fiber at $(x,y,z)$ is $V(x,y,z)$.
+This is a complex line bundle.
+
+To have a more explicit description of this bundle,
+let us recall the map \eqref{eq:uvXYZ} from $S^3$ to $S^2$;
+we write $(x,y,z)$ in terms of $(u,v)$.
+We can easily check that 
+\begin{equation}
+H \begin{pmatrix}
+u\\ v
+\end{pmatrix}
+=
+- \begin{pmatrix}
+|u|^2-|v|^2 & 2\bar v u \\
+2 \bar u v & -|u|^2+|v|^2
+\end{pmatrix}
+\begin{pmatrix}
+  u\\ v
+  \end{pmatrix}
+=
+-\begin{pmatrix}
+  u\\ v
+\end{pmatrix}.
+\end{equation}
+We have shown that 
+\begin{equation}
+  V(x,y,z)= \{ c\begin{pmatrix}
+    u\\ v
+  \end{pmatrix}  \mid c\in \bC \} \subset \cH.
+\end{equation} 
+We can now take the unit sphere bundle $S(E)\to S^2$.
+This simply sends $(u,v)$ with $|u|^2+|v|^2=1$ to $(x,y,z)$ via \eqref{eq:uvXYZ},
+so this is the Hopf fibration $S^1\to S^3\to S^2$.
+Summarizing:
 \begin{example}
-$S^1\to S^3\to S^2$
-as lowest energy states of a parameterized Hamiltonoian
+  The unit sphere bundle 
+  of the complex line bundle over $S^2$,
+  obtained by taking the lowest energy states 
+  of the Hamiltonian \eqref{eq:S2Ham},
+  is the Hopf fibration $S^1\to S^3\to S^2$.
 \end{example}
-
-operations: 
-direct sum,
-dual,
-complex conjugate,
-tensor product,
-(anti)-symmetric tensor powers, 
-projectivization, etc.
-
-\begin{example}
-bundle of Hilbert spaces and bundle of density matrices.
-\end{example}
-
-
-
-\subsection{Examples: tangent and related bundles}
+\subsection{Tangent and related bundles}
 
 \begin{example}
 tangent bundle
