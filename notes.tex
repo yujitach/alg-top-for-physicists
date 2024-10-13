@@ -1503,9 +1503,25 @@ where the fiber is a vector space.
 \end{definition}
 We can consider $\bR$-vector bundles, $\bC$-vector bundles, and $\bH$-vector bundles.
 
-It is also common to introduce a norm on the fibers $V$ of a vector bundle,
+In physics it is also common to have an inner product on the fibers $V$ of a vector bundle,
 so that the transition functions $g_{ij}(b)$ are not just linear maps
 but in $O(n)$, $U(n)$, or $Sp(n)$, respectively.
+We will come back to this point later.
+
+
+\begin{definition}
+  A section of a vector bundle $p:E\to B$ is a map $\psi: B\to E$ such that $p\circ \psi $ is the identity map on $B$.
+\end{definition}
+More informally, $\psi(b)$ for $b\in B$ takes values in the fiber $V$ over $b$.
+Sections of vector bundles appear in physics usually in one of the two ways:
+\begin{itemize}
+  \item As fields, where the base space $B$ is spacetime and 
+  the fiber $V$ is the possible values the fields can take.
+  \item As wavefunctions, where the system can be separated 
+  into the degrees of freedom along the base space $B$
+  and additional degrees of freedom parameterized by the fiber $V$ 
+  which is the Hilbert space of an additional quantum system.
+\end{itemize}
 
 \begin{definition}
 A vector bundle whose fiber is one dimensional over $\bK$ is called a 
@@ -1516,7 +1532,6 @@ Most often, a line bundle refers to a complex line bundle, i.e.~a vector bundle
 whose fiber is a one-dimenisonal complex vector space.\footnote{%
 I think mathematicians are crazy in that they call the space of complex numbers a `line'.
 }
-
 
 When we have two vector spaces $V$ and $W$,
 we can form the direct sum $V\oplus W$ or the tensor product $V\otimes W$.
@@ -1540,6 +1555,7 @@ Similarly, for a complex vector bundle, we can do:
   Given a complex vector bundle $E\to B$ with fiber $V$,
   we can form the complex conjugate bundle $\bar E\to B$ whose fiber is $\bar V$.
 \end{definition}
+
 
 Another interesting operation one can do is the following:
 Let $V$ be a complex vector space with a Hermitian inner product.
