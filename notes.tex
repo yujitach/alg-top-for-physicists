@@ -1256,6 +1256,7 @@ Define $g_{ij}: U_{ij}\to G$ via $g_{ij}(b) = f_b(e)$.
 Then $f_{ij}: U_{ij}\times G\to U_{ij}\times G$ is given explicitly by
 \begin{equation}
   f_{ij}: (b,g) \mapsto (b, g_{ij}(b) g).
+  \label{eq:principal-bundle-transition-function}
 \end{equation}
 
 Now the examples we saw in Sec.~\ref{sec:quotient} can be rephrased as principal bundles.
@@ -1499,7 +1500,9 @@ where the fiber is a vector space.
   \end{equation}
   where $f_{ij}$ is given by \begin{equation}
     f_{ij}: (b,v) \mapsto (b, g_{ij}(b) v)
+    \label{eq:vec-bundle-transition-functions}
   \end{equation} where $g_{ij}(b): V\to V$ is a linear map.
+  Th dimension of $V$ is called the rank of the vector bundle.
 \end{definition}
 We can consider $\bR$-vector bundles, $\bC$-vector bundles, and $\bH$-vector bundles.
 
@@ -1643,6 +1646,43 @@ Summarizing:
   of the Hamiltonian \eqref{eq:S2Ham},
   is the Hopf fibration $S^1\to S^3\to S^2$.
 \end{example}
+
+\subsection{Relating vector bundles and principal $G$-bundles}
+
+We described the transition functions of a vector bundle in Eq.~\eqref{eq:vec-bundle-transition-functions}.
+On a completely general complex vector bundle,
+the transition functions $g_{ij}(b)$ are in $GL(n,\bC)$,
+where $n$ is the rank of the vector bundle, i.e.~the dimension of the fiber. 
+But we often consider the situation where the fibers of the vector bundle are equipped with a Hermitian inner product.
+In such a case, the transition functions are in $U(n)$.
+Then we can consider the principal $U(n)$-bundle associated to the vector bundle, defined via \eqref{eq:principal-bundle-transition-function}.
+The fiber is now $U(n)$ instead of $\bC^n$.
+
+In high-energy physics we often encounter the situation where $g_{ij}(b)$ is in a subgroup $G$ of $U(n)$;
+then we can consider the principal $G$-bundle associated to the vector bundle in the same way.
+The fiber is now $G$ instead of $\bC^n$.
+
+\begin{definition}
+  A $\bK$-vector bundle whose transition functions $g_{ij}(b)$ are in a subgroup $G$ of $GL(n,\bK)$
+  is called to have the structure group $G$.
+  The principal $G$-bundle given by the same gransition functions are called the associated principal $G$-bundle.
+\end{definition}
+
+There is an inverse operation to this.
+Namely, given a principal $G$-bundle over $B$,
+we have a set of transition functions $g_{ij}$ in $G$
+between $U_i\times G$ and $U_j\times G$,
+as described in \eqref{eq:principal-bundle-transition-function}.
+Now, pick a linear action $\rho: G \curvearrowright V$ of $G$ on a vector space $V$.
+Then we can form a vector bundle over $B$ with fiber $V$
+by declaring that its transition functions 
+between $U_i\times V$ and $U_j\times V$
+are given by $\rho(g_{ij})$.
+
+\begin{definition}
+  The vector bundle constructed as above is called an associated vector bundle to the principal $G$-bundle,
+  determined by the representation $\rho$.
+\end{definition}
 
 \subsection{Tangent and related bundles}
 
