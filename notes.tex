@@ -1528,12 +1528,12 @@ by performing them fiberwise.
   or the tensor product bundle $E\otimes E'$ over $B$ with fiber $V\otimes W$.  
 \end{definition}
 
-Given a vector space $V$, the space of linear functions $V\to \bK$ is denoted by $V^\wedge$
+Given a vector space $V$, the space of linear functions $V\to \bK$ is denoted by $V^*$
 and is also a  vector space.
 Doing this fiberwise, we have:
 \begin{definition}
   Given a vector bundle $E\to B$ with fiber $V$,
-  we can form the dual bundle $E^\wedge\to B$ whose fiber is $V^\wedge$.
+  we can form the dual bundle $E^*\to B$ whose fiber is $V^*$.
 \end{definition}
 Similarly, for a complex vector bundle, we can do:
 \begin{definition}
@@ -1549,9 +1549,9 @@ which is a real vector space.
   Given a complex vector bundle $E\to B$ with fiber $V$,
   we can form the bundle of Hermitian operators $\mathrm{Herm}(E)\to B$ with fiber $\mathrm{Herm}(V)$.
 \end{definition}
-This is the operation, given a family of Hilbert spaces parameterized over 
+This is the operation which, given a family of Hilbert spaces parameterized over 
 a parameter space $B$,
-the family of spaces of observables acting on each Hilbert space, over the same parameter space $B$.
+produces the family of spaces of observables acting on each Hilbert space, over the same parameter space $B$.
 
 A somewhat different operation one can perform fiberwise 
 is to take the unit sphere $S(V)=S^{kn-1} \subset V$ at each fiber, where $n$ is the dimension of $V$
@@ -1633,25 +1633,101 @@ Summarizing:
 So far we considered vector bundles as an additional structure on a given base $B$.
 There are also vector bundles canonically associated to a manifold $M$.
 
+Take two patches $U$ and $U'$ on a manifold
+with a nontrivial overlap $U\cap U'$.
+and with $f:U\to \bR^n$ and $f':U'\to \bR^n$ respectively.
+For a point $p\in U\cap U'$ in the overlap,
+let $f(p)=(x^1,\ldots,x^n)$ and $f'(p)=(x'{}^1,\ldots,x'{}^n)$.
+Here we placed the indices on the superscripts, following the convention in general relativity.
+We now consider $U\times \bR^n$,
+where the basis vectors for the $\bR^n$ factor
+are the symbols
+\begin{equation}
+\frac{\partial}{\partial x^1},\ldots,\frac{\partial}{\partial x^n}.
+\end{equation}
+Similarly, we consider $U'\times \bR^n$
+where the $\bR^n$ factor has the basis vectors
+\begin{equation}
+\frac{\partial}{\partial x'{}^1},\ldots,\frac{\partial}{\partial x'{}^n}.
+\end{equation}
+We let these two vasis vectors to be related as usual:
+\begin{equation}
+\frac{\partial}{\partial x'{}^i} = \sum_{j}\frac{\partial x^j}{\partial x'{}^i} \frac{\partial}{\partial x^j}.
+\label{eq:contravariant}
+\end{equation}
+In other words, on the overlap $U\cap U'$,
+the transition function $U\times \bR^n \to U'\times \bR^n$ is given by 
+\begin{equation}
+  (p,\sum_i c^i\frac{\partial}{\partial x_i} )
+  \mapsto 
+  (p, \sum_{i,j} c^i \frac{\partial x^j}{\partial x'{}^i} \frac{\partial}{\partial x^j}).
+\end{equation}
+
 \begin{definition}
-  Given a manifold $M$ of dimension $n$, the tangent bundle $TM\to M$ is a real vector bundle 
-  whose fiber is $\bR^n$,
-  obtained by the following construction...
+For a smooth manifold $M$ of dimension $n$,
+the real $n$-dimensional bundle constructed as above is called the tangent bundle and is denoted by $TM$.
 \end{definition}
 
+\begin{definition}
+The dual bundle of the tangent bundle is called the cotangent bundle and is denoted by $T^*M$.
+\end{definition}
+More explicitly, consider patches $U\subset M$
+and $U'\subset M$ as above,
+with $f(p)=(x^1,\ldots,x^n)\in \bR^n$
+and $f'(p)=(x'{}^1,\ldots,x'{}^n)\in \bR^n$, respectively.
+Then the cotangent bundle $T^*M$ has the local trivialization
+$U\times \bR^n$  and $U'\times \bR^n$
+with the basis vectors on the $\bR^n$ part
+given by $dx^i$ and $dx'{}^i$, respectively.
+These two sets of basis vectors are related by 
+\begin{equation}
+  dx'{}^i = \sum_j \frac{\partial x'{}^i}{\partial x^j} dx^j.
+  \label{eq:covariant},
+\end{equation}
+compare Eq.~\ref{eq:contravariant}.
+
+
+\begin{definition}
+A (Riemannian) metric on a manifold $M$
+is an additional structure on the tangent bundle $TM$
+which gives a smoothly-varying inner product 
+on each fiber.
+\end{definition}
+
+With a metric, we can consider the unit sphere bundle $S(TM)$.
 
 \begin{example}
-cotangent bundle
+Let $M=S^2$ and consider its tangent bundle $TS^2$.
+This is a real 2-dimensional bundle.
+Give a standard round metric on $S^2$,
+and take the unit sphere bundle $S(TS^2)$ of its tangent bundle.
+This is an $S^1$ bundle over $S^2$.
 \end{example}
+We have already encountered two $S^1$ bundles over $S^2$,
+namely the trivial product and the Hopf fibration.
+Is $S(TS^2)$ one of these two?
+The answer is no.
+We are going to develop methods to answer such questions later.
 
-\begin{example}
-differential forms
-\end{example}
-
-\begin{example}
-metric
-\end{example}
-
+With a metric, we can form an orthogonal basis of the tangent space at each point.
+Take $U\times \bR^n$ with the basis vectors $\partial/\partial x^i$ as before.
+We pick an orthonormal basis \begin{equation}
+  e_a = \sum e_a^i \frac{\partial}{\partial x^i},
+  \qquad (a=1,\ldots,n)
+\end{equation} with respect to the inner product on the tangent space given by the metric,
+where $e_a^i$ is an $n\times n$ matrix depending on $p\in U$.
+In general relativity $e_a^i$ are known as tetrads or vierbeins 
+in four dimensions, and fielbeins in general dimensions.
+On $U'\times \bR^n$ we pick a similar orthonormal basis $e'_a$
+given by \begin{equation}
+  e_a' = \sum e_a'{}^i \frac{\partial}{\partial x'{}^i},
+  \qquad (a=1,\ldots,n)
+\end{equation}
+and we have the following relation on the overlap $p\in U\cap U'$:  \begin{equation}
+  e_a'{}^i = \sum_b M_a^b e_b
+\end{equation} 
+where $M_a^b$ is an orthogonal matrix depending on $p$,
+i.e.~$M$ is a map from $U\cap U'$ to $O(n)$.
 
 \begin{definition}
 structure group of a bundle
