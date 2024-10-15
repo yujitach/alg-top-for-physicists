@@ -970,7 +970,7 @@ and we found that:
 $ Sp(n)/Sp(n-1)\simeq S^{4n-1}$.
 \end{example}
 
-There is another common example we see in quantum mechanics.
+Let us discuss a common example we see in quantum mechanics.
 Consider an $n$-state system with the Hilbert space $\cH=\bC^n$.
 The unitary group $U(n)$ acts on it.
 On the observables, $g\in U(n)$ acts via \begin{equation}
@@ -996,9 +996,35 @@ Summarizing,
 The common quotient $U(n)/U(1)=SU(n)/\bZ_n$ is called the projective unitary group and is denoted by $PU(n)$.
 \end{definition}
 
+As our next example, 
+let us consider the chiral symmetry breaking in QCD.
+For simplicity let us consider the two-flavor case.
+The symmetry $G$ is $SU(2)\times SU(2)$,
+which acts on $\bC^2 \otimes \bC^2$,
+where two $\bC^2$ factors are the double representations of $SU(2)$.
+A more convenient way to think about this action
+is to regard $\bC^2\otimes \bC^2$ as the space of 
+complex two-by-two matrices $M(2,\bC)$,
+and to let $(g,g')\in SU(2)\times SU(2)$ to act on $m\in M(2,\bC)$
+via \begin{equation}
+m\mapsto g m g'{}^{-1}.
+\end{equation}
+
+Say that $m$ takes the value $m=\mathbf{1}_{2\times 2}$.
+The unbroken subgroup $H$ is formed by 
+$\{(g,g)\}\subset SU(2)\times SU(2)$,
+which is isomorphic to $SU(2)$ and is called the diagonal subgroup.
+The orbit of $\mathbf{1}_{2\times 2}$ is simply 
+the matrices of the form $gg'$,
+i.e.~the subspace $SU(2)\subset M(2,\bC)$.
+We thus found:
+\begin{example}
+We have $SU(2)\times SU(2)/SU(2)_\text{diagonal} = SU(2)$.
+\end{example}
 
 
-Our final example is the superfluid $^3$He.
+Our final example is the superfluid $^3$He;
+its theory can be learned e.g.~in \cite{SuperfluidHe3Textbook,VolovikBook}.
 It has a phase diagram as given in Fig.~\ref{fig:3He}.
 \begin{figure}[h]
   \[
@@ -1009,30 +1035,37 @@ It has a phase diagram as given in Fig.~\ref{fig:3He}.
 \end{figure}
 A $^3$He atom is a fermion, which can form a Cooper pair at low temperature.
 There are two superfluid phases with zero magnetic phase, known as the A phase and the B phase.
-With magnetic field, there is also the phase known as the A$_1$ phase.
 The order parameter (the vacuum expectation value of the Cooper pair) takes values in
 $\bC^3\otimes \bC^3$,
-where the first factor is the orbital angular momentum part
-and the second factor is the spin angular momentum part,
+where the first factor is the spin angular momentum part
+and the second factor is the orbital angular momentum part,
 both with spin 1.
 Denote the basis vectors of the first $\bC^3$ by $\mathbf{e}_{1,2,3}$
 and those of the second by $\mathbf{f}_{1,2,3}$.
-The symmetry group $G$ of the potential is two separate $SO(3)$ actions on 
+The symmetry group $G$ of the free energy (neglecting a small spin-orbit coupling) is given by two separate $SO(3)$ actions on 
 $\mathbf{e}_{1,2,3}$ and $\mathbf{f}_{1,2,3}$,
-together with a common $U(1)$ rotation $\mathbf{e}_i \otimes \mathbf{f}_j \mapsto c\, \mathbf{e}_i \otimes \mathbf{f}_j$,
+together with a common $U(1)$ phase rotation $\mathbf{e}_i \otimes \mathbf{f}_j \mapsto c\, \mathbf{e}_i \otimes \mathbf{f}_j$,
 so we have \begin{equation}
-  G = SO(3)\times SO(3)\times U(1).
+  G = SO(3)\times SO(3)\times U(1)
 \end{equation}
+as the symmetry of the free energy.
 \begin{example}
 In the superfluid phases of $^3$He, the order parameter takes the value
 \begin{itemize}
-\item $\mathbf{e}_1 \otimes \mathbf{f}_1$ in the A phase,
-\item $\mathbf{e}_1 \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$ in the A$_1$ phase,
+\item $\mathbf{e}_1 \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$ in the A phase,
 \item $\sum_i \mathbf{e}_i \otimes \mathbf{f}_i$ in the B phase.
 \end{itemize}
-Denoting the subgroup preserved by these order parameters by $H_\text{A, A$_1$, B}$ respectively,
-the space of the potential minimum is given by $G/H_\text{A, A$_1$, B}$.
+Denoting the subgroup preserved by these order parameters by $H_\text{A,  B}$,
+the space of the potential minimum is given by $G/H_\text{A}$, $G/H_\text{B}$, respectively.
 \end{example}
+Note that the pattern of symmetry breaking is very similar to the 
+breaking of the chiral symmetry in QCD.
+
+With magnetic field, there is also a phase known as the A$_1$ phase.
+The magnetic field reduces the symmetry of the free energy
+to $SO(2)\times SO(3)\times U(1)$
+and the order parameter takes the value 
+ $(\mathbf{e}_2+i\mathbf{e}_3) \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$.
 
 
 \subsubsection{Non-orientable surfaces}
