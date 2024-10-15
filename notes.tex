@@ -1463,10 +1463,23 @@ Summarizing,
 \end{example}
 
 
-Our final example is 
-\begin{example}
-The superfluid Helium-3 A-phase. 
-In this case the order parameter, the Cooper pair condensate, takes values in $\bC^3\otimes \bC^3$.
+Our final example is the superfluid $^3$He.
+It has a phase diagram as given in Fig.~\ref{fig:3He}.
+\begin{figure}[h]
+  \[
+    \includegraphics[width=0.6\textwidth]{3He.pdf}
+  \]
+    \caption{Phase diagram of $^3$He (taken from \cite[Fig.7.1]{VolovikBook}).}
+    \label{fig:3He}
+\end{figure}
+A $^3$He atom is a fermion, which can form a Cooper pair at low temperature.
+There are two superfluid phases with zero magnetic phase, known as the A phase and the B phase.
+With magnetic field, there is also the phase known as the A$_1$ phase.
+The order parameter (the vacuum expectation value of the Cooper pair) takes values in
+$\bC^3\otimes \bC^3$,
+where the first factor is the orbital angular momentum part
+and the second factor is the spin angular momentum part,
+both with spin 1.
 Denote the basis vectors of the first $\bC^3$ by $\mathbf{e}_{1,2,3}$
 and those of the second by $\mathbf{f}_{1,2,3}$.
 The symmetry group $G$ of the potential is two separate $SO(3)$ actions on 
@@ -1475,10 +1488,17 @@ together with a common $U(1)$ rotation $\mathbf{e}_i \otimes \mathbf{f}_j \mapst
 so we have \begin{equation}
   G = SO(3)\times SO(3)\times U(1).
 \end{equation}
-The potential minimum is at $\mathbf{e}_1\otimes (\mathbf{f}_1+ i\mathbf{f}_2)$,
-with a certain unbroken subgroup $H\subset G$, which does not have an easy name.
-The space of the potential minimum is $G/H$.
+\begin{example}
+In the superfluid phases of $^3$He, the order parameter takes the value
+\begin{itemize}
+\item $\mathbf{e}_1 \otimes \mathbf{f}_1$ in the A phase,
+\item $\mathbf{e}_1 \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$ in the A$_1$ phase,
+\item $\sum_i \mathbf{e}_i \otimes \mathbf{f}_i$ in the B phase.
+\end{itemize}
+Denoting the subgroup preserved by these order parameters by $H_\text{A, A$_1$, B}$ respectively,
+the space of the potential minimum is given by $G/H_\text{A, A$_1$, B}$.
 \end{example}
+
 
 \subsection{Vector bundles}
 
