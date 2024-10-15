@@ -908,9 +908,136 @@ Therefore, we have \begin{equation}
 \label{eq:sphere-proj}
 \end{equation}
 
+Another large class of principal bundles
+are the homogeneous spaces.
+\begin{definition}
+  \label{def:homogeneous-space}
+  Given a subgroup $H\subset G$,
+  introduce the equivalence relation $g_1\sim g_2$ if 
+  there exists an $h\in G$ such that $g_1=g_2 h$.
+  The quotient of $G$ by this relation is denoted by $G/H$,
+  and is called a homogeneous space.
+\end{definition}
+
+A common way this appears in physics is via symmetry breaking.
+Say we have a configuration space $M$ acted on by a symmetry group $G$ from the left:
+$M\ni m\mapsto gm\in M$ for $g\in G$.
+Suppose we have a potential $V:M\to \bR$ invariant under the $G$ action, i.e.~$V(gm)=V(m)$.
+Suppose further that the potential has a minimum at $m_0 \in M$. 
+From the $G$-invariance, all points of the form $gm_0$ are also minimum of $V$.
+When the potential is generic, the space of the minimum of the potential is given by the orbit $Gm_0$.
+What is this space?
+
+Let $H\subset G$ be the subgroup fixing $m_0$, i.e.~$h\in H$ if and only if $hm_0=m_0$.
+In such a situation, we say that the symmetry is broken from $G$ to $H$.\footnote{%
+Physicists often write this as $G\to H$, 
+but mathematically the map is in the opposite direction, $H\to G$.}
+In this case $g_1 m_0 = g_2 m_0$ if and only if $g_2^{-1} g_1 \in H$, 
+or equivalently $g_1 = g_2 h$ for some $h\in H$.
+Therefore, we have $Gm_0=G/H$, i.e.~the space of the potential minimum is a homogeneous space
+determined by the original symmetry $G$ and the unbroken symmetry $H$.
+
+Let us give some examples.
+Let $SO(n)$ act on $\bR^n$ by rotations.
+A rotationally invariant potential $V:\bR^n\to \bR$ 
+has the form $V(x_1,\ldots,x_n)=f(r)$ where $r^2={x_1^2+\cdots+x_n^2}$.
+When $f(r)$ has a minimum at $r_0>0$,
+the space of the potential minimum is $S^{n-1}$ given by $x_1^2+\cdots + x_n^2=r_0^2$.
+
+At $m_0=(r_0,0,\ldots,0)$, the subgroup of $SO(n)$ fixing $m_0$ is $SO(n-1)$.
+Therefore, the space of the potential minimum is $SO(n)/SO(n-1)=S^{n-1}$.
+Summarizing, we have found
+\begin{example}
+ $ SO(n)/SO(n-1) \simeq S^{n-1}$.
+\end{example}
+
+Let $U(n)$ act on $\bC^n$ by unitary transformations.
+An invariant potential $\bC^n\to \bR$ has the form $V(z_1,\ldots,z_n)=f(r)$
+where $r^2=|z_1|^2+\cdots+|z_n|^2$.
+When $f(r)$ has a minimum at $r_0>0$,
+the space of the potential minimum is $S^{2n-1}$ given by $|z_1|^2+\cdots + |z_n|^2=r_0^2$.
+
+At $m_0=(r_0,0,\ldots,0)$, the subgroup of $U(n)$ fixing $m_0$ is $U(n-1)$.
+Therefore, the space of the potential minimum is $U(n)/U(n-1)=S^{2n-1}$.
+\begin{example}
+$U(n)/U(n-1)\simeq S^{2n-1}$.
+\end{example}
+
+Let $Sp(n)$ act on $\bH^n$ in a standard manner.
+By following the same logic as above, we get $Sp(n)/Sp(n-1)=S^{4n-1}$,
+and we found that:
+\begin{example}
+$ Sp(n)/Sp(n-1)\simeq S^{4n-1}$.
+\end{example}
+
+There is another common example we see in quantum mechanics.
+Consider an $n$-state system with the Hilbert space $\cH=\bC^n$.
+The unitary group $U(n)$ acts on it.
+On the observables, $g\in U(n)$ acts via \begin{equation}
+  A\mapsto g A g^\dagger.
+\end{equation}
+Therefore, the subgroup $U(1) \subset U(n)$
+consisting of scalar multiplications acts trivially: \begin{equation}
+c A c^\dagger = A,
+\end{equation} when $|c|=1$. 
+What acts effectively on the space of observables is the quotient group $U(n)/U(1)$.
+
+We note that $SU(n)\subset U(n)$ also acts on observables.
+In this case, a scalar multiplication $c$ with $|c|=1$ is in $SU(n)$ if and only if $c^n=1$.
+The complex numbers $\{c\mid c^n=1\}$ form a group isomorphic to $\bZ_n$,
+and we found $\bZ_n \subset SU(n)$,
+and the quotient $SU(n)/\bZ_n$ acts on the space of observables.
+
+As any $U(n)$ matrix $U$ is of the form $c'U'$ for $c'\in U(1)$ and $U'\in SU(n)$,
+we have $U(n)/U(1) = SU(n)/\bZ_n$.
+This common quotient group is known as the projective unitary group, and denoted by $PU(n)$.
+Summarizing, 
+\begin{definition}
+The common quotient $U(n)/U(1)=SU(n)/\bZ_n$ is called the projective unitary group and is denoted by $PU(n)$.
+\end{definition}
+
+
+
+Our final example is the superfluid $^3$He.
+It has a phase diagram as given in Fig.~\ref{fig:3He}.
+\begin{figure}[h]
+  \[
+    \includegraphics[width=0.6\textwidth]{3He.pdf}
+  \]
+    \caption{Phase diagram of $^3$He (taken from \cite[Fig.7.1]{VolovikBook}).}
+    \label{fig:3He}
+\end{figure}
+A $^3$He atom is a fermion, which can form a Cooper pair at low temperature.
+There are two superfluid phases with zero magnetic phase, known as the A phase and the B phase.
+With magnetic field, there is also the phase known as the A$_1$ phase.
+The order parameter (the vacuum expectation value of the Cooper pair) takes values in
+$\bC^3\otimes \bC^3$,
+where the first factor is the orbital angular momentum part
+and the second factor is the spin angular momentum part,
+both with spin 1.
+Denote the basis vectors of the first $\bC^3$ by $\mathbf{e}_{1,2,3}$
+and those of the second by $\mathbf{f}_{1,2,3}$.
+The symmetry group $G$ of the potential is two separate $SO(3)$ actions on 
+$\mathbf{e}_{1,2,3}$ and $\mathbf{f}_{1,2,3}$,
+together with a common $U(1)$ rotation $\mathbf{e}_i \otimes \mathbf{f}_j \mapsto c\, \mathbf{e}_i \otimes \mathbf{f}_j$,
+so we have \begin{equation}
+  G = SO(3)\times SO(3)\times U(1).
+\end{equation}
+\begin{example}
+In the superfluid phases of $^3$He, the order parameter takes the value
+\begin{itemize}
+\item $\mathbf{e}_1 \otimes \mathbf{f}_1$ in the A phase,
+\item $\mathbf{e}_1 \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$ in the A$_1$ phase,
+\item $\sum_i \mathbf{e}_i \otimes \mathbf{f}_i$ in the B phase.
+\end{itemize}
+Denoting the subgroup preserved by these order parameters by $H_\text{A, A$_1$, B}$ respectively,
+the space of the potential minimum is given by $G/H_\text{A, A$_1$, B}$.
+\end{example}
 
 
 \subsubsection{Non-orientable surfaces}
+
+Let us now discuss some non-orientable manifolds.
 
 \begin{example}
   Consider $S^1\times [-1,1]$, parameterized by $\theta\sim \theta+2\pi$ and $x\in [-1,1]$.
@@ -1332,69 +1459,15 @@ These three Hopf fibrations exhaust
 such fibrations $S^n\to S^m\to S^{m-n}$.
 \end{fact}
 
-Another large class of principal bundles
-are the homogeneous spaces.
-\begin{definition}
-  Given a subgroup $H\subset G$,
-  introduce the equivalence relation $g_1\sim g_2$ if 
-  there exists an $h\in G$ such that $g_1=g_2 h$.
-  The quotient of $G$ by this relation is denoted by $G/H$,
-  and is called a homogeneous space.
-  Furthermore, $G\to G/H$ is a principal $H$-bundle.
-\end{definition}
-
-A common way this appears in physics is via symmetry breaking.
-Say we have a configuration space $M$ acted on by a symmetry group $G$ from the left:
-$M\ni m\mapsto gm\in M$ for $g\in G$.
-Suppose we have a potential $V:M\to \bR$ invariant under the $G$ action, i.e.~$V(gm)=V(m)$.
-Suppose further that the potential has a minimum at $m_0 \in M$. 
-From the $G$-invariance, all points of the form $gm_0$ are also minimum of $V$.
-When the potential is generic, the space of the minimum of the potential is given by the orbit $Gm_0$.
-What is this space?
-
-Let $H\subset G$ be the subgroup fixing $m_0$, i.e.~$h\in H$ if and only if $hm_0=m_0$.
-In such a situation, we say that the symmetry is broken from $G$ to $H$.\footnote{%
-Physicists often write this as $G\to H$, 
-but mathematically the map is in the opposite direction, $H\to G$.}
-In this case $g_1 m_0 = g_2 m_0$ if and only if $g_2^{-1} g_1 \in H$, 
-or equivalently $g_1 = g_2 h$ for some $h\in H$.
-Therefore, we have $Gm_0=G/H$, i.e.~the space of the potential minimum is a homogeneous space
-determined by the original symmetry $G$ and the unbroken symmetry $H$.
-
-Let us give some examples.
-Let $SO(n)$ act on $\bR^n$ by rotations.
-A rotationally invariant potential $V:\bR^n\to \bR$ 
-has the form $V(x_1,\ldots,x_n)=f(r)$ where $r^2={x_1^2+\cdots+x_n^2}$.
-When $f(r)$ has a minimum at $r_0>0$,
-the space of the potential minimum is $S^{n-1}$ given by $x_1^2+\cdots + x_n^2=r_0^2$.
-
-At $m_0=(r_0,0,\ldots,0)$, the subgroup of $SO(n)$ fixing $m_0$ is $SO(n-1)$.
-Therefore, the space of the potential minimum is $SO(n)/SO(n-1)=S^{n-1}$.
-Summarizing, we have found
+The homogeneous spaces, introduced in Definition~\ref{def:homogeneous-space}
+with many examples below it,
+also give rise to principal bundles.
 \begin{example}
-  There is a fiber bundle $SO(n-1)\to SO(n) \to S^{n-1}$.
+  $G$ is a principal $H$-bundle over $G/H$, i.e~we have a fiber bundle $H\to G\to G/H$.
 \end{example}
 
-Let $U(n)$ act on $\bC^n$ by unitary transformations.
-An invariant potential $\bC^n\to \bR$ has the form $V(z_1,\ldots,z_n)=f(r)$
-where $r^2=|z_1|^2+\cdots+|z_n|^2$.
-When $f(r)$ has a minimum at $r_0>0$,
-the space of the potential minimum is $S^{2n-1}$ given by $|z_1|^2+\cdots + |z_n|^2=r_0^2$.
-
-At $m_0=(r_0,0,\ldots,0)$, the subgroup of $U(n)$ fixing $m_0$ is $U(n-1)$.
-Therefore, the space of the potential minimum is $U(n)/U(n-1)=S^{2n-1}$.
-\begin{example}
-There is a fiber bundle $U(n-1)\to U(n)\to S^{2n-1}$.
-\end{example}
-
-Let $Sp(n)$ act on $\bH^n$ in a standard manner.
-By following the same logic as above, we get $Sp(n)/Sp(n-1)=S^{4n-1}$,
-and we found that:
-\begin{example}
-  There is a fiber bundle $Sp(n-1)\to Sp(n)\to S^{4n-1}$.
-\end{example}
-
-Let us now consider $g\in SU(2)$ acting on $\bC^2$.
+Let us give an example not treated in the previous section.
+Consider $g\in SU(2)$ acting on $\bC^2$.
 Note that $2\times 2$ traceless Hermitean matrices are paramaterized by $\bR^3$,
 by $x\sigma_x+y\sigma_y+z\sigma_z$.
 We let $g\in SU(2)$ acts on this space via \begin{equation}
@@ -1404,7 +1477,7 @@ g(x\sigma_x+y\sigma_y+z\sigma_z)g^\dagger = x'\sigma_x+y'\sigma_y+z'\sigma_z.
 \label{eq:Rg2}
 \end{equation}
 
-An invariant function $V:\bR^3\to \bR$ again has the form $V(x,y,z)=f(r)$
+An invariant function $V:\bR^3\to \bR$ has the form $V(x,y,z)=f(r)$
 where $r^2={x^2+y^2+z^2}$.
 Suppose $f(r)$ has a minimum at $r_0>0$.
 The space of the potential minimum is $x^2+y^2+z^2=r_0^2$, which is a sphere $S^2$.
@@ -1435,69 +1508,7 @@ Then, restricted to this subspace, we have the fibration \begin{equation}
 \end{equation}
 where the second map is 2:1, which is not a trivial product.
 
-There is another common example we see in quantum mechanics.
-Consider an $n$-state system with the Hilbert space $\cH=\bC^n$.
-The unitary group $U(n)$ acts on it.
-On the observables, $g\in U(n)$ acts via \begin{equation}
-  A\mapsto g A g^\dagger.
-\end{equation}
-Therefore, the subgroup $U(1) \subset U(n)$
-consisting of scalar multiplications acts trivially: \begin{equation}
-c A c^\dagger = A,
-\end{equation} when $|c|=1$. 
-What acts effectively on the space of observables is the quotient group $U(n)/U(1)$.
 
-We note that $SU(n)\subset U(n)$ also acts on observables.
-In this case, a scalar multiplication $c$ with $|c|=1$ is in $SU(n)$ if and only if $c^n=1$.
-The complex numbers $\{c\mid c^n=1\}$ form a group isomorphic to $\bZ_n$,
-and we found $\bZ_n \subset SU(n)$,
-and the quotient $SU(n)/\bZ_n$ acts on the space of observables.
-
-As any $U(n)$ matrix $U$ is of the form $c'U'$ for $c'\in U(1)$ and $U'\in SU(n)$,
-we have $U(n)/U(1) = SU(n)/\bZ_n$.
-This common quotient group is known as the projective unitary group, and denoted by $PU(n)$.
-Summarizing, 
-\begin{example}
-  There are fiber bundles $U(1)\to U(n)\to PU(n)$
-  and $\bZ_n \to SU(n) \to PU(n)$.
-\end{example}
-
-
-Our final example is the superfluid $^3$He.
-It has a phase diagram as given in Fig.~\ref{fig:3He}.
-\begin{figure}[h]
-  \[
-    \includegraphics[width=0.6\textwidth]{3He.pdf}
-  \]
-    \caption{Phase diagram of $^3$He (taken from \cite[Fig.7.1]{VolovikBook}).}
-    \label{fig:3He}
-\end{figure}
-A $^3$He atom is a fermion, which can form a Cooper pair at low temperature.
-There are two superfluid phases with zero magnetic phase, known as the A phase and the B phase.
-With magnetic field, there is also the phase known as the A$_1$ phase.
-The order parameter (the vacuum expectation value of the Cooper pair) takes values in
-$\bC^3\otimes \bC^3$,
-where the first factor is the orbital angular momentum part
-and the second factor is the spin angular momentum part,
-both with spin 1.
-Denote the basis vectors of the first $\bC^3$ by $\mathbf{e}_{1,2,3}$
-and those of the second by $\mathbf{f}_{1,2,3}$.
-The symmetry group $G$ of the potential is two separate $SO(3)$ actions on 
-$\mathbf{e}_{1,2,3}$ and $\mathbf{f}_{1,2,3}$,
-together with a common $U(1)$ rotation $\mathbf{e}_i \otimes \mathbf{f}_j \mapsto c\, \mathbf{e}_i \otimes \mathbf{f}_j$,
-so we have \begin{equation}
-  G = SO(3)\times SO(3)\times U(1).
-\end{equation}
-\begin{example}
-In the superfluid phases of $^3$He, the order parameter takes the value
-\begin{itemize}
-\item $\mathbf{e}_1 \otimes \mathbf{f}_1$ in the A phase,
-\item $\mathbf{e}_1 \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$ in the A$_1$ phase,
-\item $\sum_i \mathbf{e}_i \otimes \mathbf{f}_i$ in the B phase.
-\end{itemize}
-Denoting the subgroup preserved by these order parameters by $H_\text{A, A$_1$, B}$ respectively,
-the space of the potential minimum is given by $G/H_\text{A, A$_1$, B}$.
-\end{example}
 
 
 \subsection{Vector bundles}
