@@ -122,6 +122,8 @@
 \def\HP{\mathbb{HP}}
 \def\KP{\mathbb{KP}}
 
+\def\Spin{\mathit{Spin}}
+
 \begin{document}
 
 \centerline{\Large Algebraic topology for physicists}
@@ -691,7 +693,13 @@ defined by \begin{equation}
   The only cases when $S^n$ is a group are $S^0=O(1)=\{1,-1\}$, $S^1=SO(2)=U(1)$
   and $S^3=SU(2)=Sp(1)$.
 \end{fact}
-  
+
+Before moving on,
+we also introduce the notations:
+\begin{definition}
+We use the notation $GL(n,\bK)$ for the group of invertible $n\times n$ matrices over a field $\bK$.
+\end{definition}
+
 \subsubsection{Time reversal and $\bR$, $\bC$, $\bH$}
 
 Let me make a side remark concerning the natural role of $\bH$ in quantum mechanics.
@@ -915,8 +923,9 @@ Therefore, we have \begin{equation}
 \label{eq:sphere-proj}
 \end{equation}
 
-\subsection{Homogeneous spaces}
-Another large class of principal bundles
+\subsubsection{Homogeneous spaces}
+\label{sec:homogeneous}
+Another large class of quotient spaces
 are the homogeneous spaces.
 \begin{definition}
   \label{def:homogeneous-space}
@@ -926,7 +935,6 @@ are the homogeneous spaces.
   The quotient of $G$ by this relation is denoted by $G/H$,
   and is called a homogeneous space.
 \end{definition}
-
 
 A common way this appears in physics is via symmetry breaking.
 Say we have a configuration space $M$ acted on by a symmetry group $G$ from the left:
@@ -1337,7 +1345,7 @@ which we glue them over the overlaps $U_{ij}:=U_i\cap U_j$ via
 maps $f_{ij}$ as follows:
 \begin{equation}
   \begin{array}{cccccccc}
-    U_i \times F &\supset& U_{ij}\times F & \xrightarrow{f_ij} & 
+    U_i \times F &\supset& U_{ij}\times F & \xrightarrow{f_{i,j}} & 
     U_{ij}\times F & \subset & U_j\times F \\
     \downarrow & & \downarrow & & \downarrow & & \downarrow \\
     U_i & \supset & U_{ij} & = & U_{ij} & \subset & U_j
@@ -1375,23 +1383,28 @@ although the fiber and the base of both cases are the same.
 One way to see this is to note that the boundary of 
 the cylinder is $S^1\sqcup S^1$, while the boundary of the M\"obius strip is $S^1$.
 Developing more general methods to distinguish different fiber bundles
-with the same fiber and the base would be one of the goals
+with the same fiber and the same base is one of the goals
 of the study of fiber bundles.
 
 \subsection{Quotients as bundles}
 
-\begin{example}
-  \label{ex:free-quotient}
+\begin{proposition}
+  \label{prop:free-quotient}
 Suppose $G$ acts on a manifold $M$.
 We further suppose that this action is free,
 i.e.~for each $m\in M$ the only $g\in G$ such that $mg=m$ is $g=e$.
 Then the projection $p: M\to M/G$ is a fiber bundle with fiber $G$.
-\end{example}
+In other words, we have a fiber bundle $G\to M\to M/G$.
+\end{proposition}
+
+In this description it can be said that we are giving the total space $M$ and the base $M/G$ 
+the same amount of focus.
+If we consider the base as the primary object, we get to the following viewpoint:
 
 \begin{definition}
   \label{def:principal-bundle}
-  A fiber bundle $p: E\to B$ with fiber $G$ is called a principal $G$-bundle
-  if $E$ is equipped with an action of $G$ such that 
+  A fiber bundle $p: P\to B$ with fiber $G$ is called a principal $G$-bundle
+  if $P$ is equipped with an action of $G$ such that 
   for each $b\in B$ we have $U\subset B$ so that we have
   the following identification compatible with the $G$ action:
   \begin{equation}
@@ -1403,31 +1416,27 @@ Then the projection $p: M\to M/G$ is a fiber bundle with fiber $G$.
   \end{equation}
 \end{definition}
 
-In fact these two situations, Example~\ref{ex:free-quotient}
-and Definition~\ref{def:principal-bundle} are equivalent;
-in the former we emphasize the total space $M$,
-while in the latter we emphasize the base space $B$.
 
-In the latter viewpoint, the total space $E$ is built 
-as before by gluing $U_i\times G$ over $U_{ij}=U_i \cap U_j$ as 
+Now, the total space $P$ is built 
+as before by gluing $U_i\times G$ and $U_j\times G$ over $U:=U_i \cap U_j$ as 
 \begin{equation}
   \begin{array}{cccccccc}
-    U_i \times G &\supset& U_{ij}\times G & \xrightarrow{f_{ij}} & 
-    U_{ij}\times G & \subset & U_j\times G \\
+    U_i \times G &\supset& U\times G & \xrightarrow{f} & 
+    U\times G & \subset & U_j\times G \\
     \downarrow & & \downarrow & & \downarrow & & \downarrow \\
-    U_i & \supset & U_{ij} & = & U_{ij} & \subset & U_j
+    U_i & \supset & U & = & U & \subset & U_j
   \end{array}
 \end{equation}
-where $f_{ij}$ has to be compatible with the right action of $G$.
-Let us make $f_{ij}$ more explicit.
-On a point $b\in U_{ij}$, $f_{ij}$ is a map $f_b:G\to G$
+where $f$ has to be compatible with the right action of $G$.
+Let us make $f$ more explicit.
+On a point $b\in U$, $f$ is a map $f_b:G\to G$
 such that $f_b(g) h = f_b(gh)$ for all $g,h\in G$.
 This in particular means that $f_b(g)=f_b(e)g$,
 meaning that it is specified by $f_b(e)$ alone. 
-Define $g_{ij}: U_{ij}\to G$ via $g_{ij}(b) = f_b(e)$.
-Then $f_{ij}: U_{ij}\times G\to U_{ij}\times G$ is given explicitly by
+Define $g: U\to G$ via $g(b) = f_b(e)$.
+Then $f: U\times G\to U\times G$ is given explicitly by
 \begin{equation}
-  f_{ij}: (b,g) \mapsto (b, g_{ij}(b) g).
+  f: (b,g) \mapsto (b, g(b) g).
   \label{eq:principal-bundle-transition-function}
 \end{equation}
 
@@ -1492,8 +1501,8 @@ Therefore the map \begin{equation}
 That the fiber of this map is an $S^1$ is clear from the fact
 that the expectation values are invariant under the change
 $\ket{\psi}\mapsto c\ket{\psi}$ where $|c|=1$.
-The sphere $S^2$ parameterized by $(X,Y,Z)$ is often referred to as the Bloch sphere.
-\item The three fibrations above are all of the form
+The sphere $S^2$ parameterized by $(x,y,z)$ is often referred to as the Bloch sphere of the qubit.
+\item The three fibrations above all have the form
 $S^n \to S^m \to S^{m-n}$.
 One wonders if there are other examples of this form.
 Actually we have:
@@ -1507,11 +1516,11 @@ such fibrations $S^n\to S^m\to S^{m-n}$.
 The homogeneous spaces, introduced in Definition~\ref{def:homogeneous-space}
 with many examples below it,
 also give rise to principal bundles.
-\begin{example}
-  $G$ is a principal $H$-bundle over $G/H$, i.e~we have a fiber bundle $H\to G\to G/H$.
-\end{example}
+\begin{proposition}
+  $G$ is a principal $H$-bundle over $G/H$, i.e.~we have a fiber bundle $H\to G\to G/H$.
+\end{proposition}
 
-Let us give an example not treated in the previous section.
+Let us give an example not directly treated in Section~\ref{sec:homogeneous}.
 Consider $g\in SU(2)$ acting on $\bC^2$.
 Note that $2\times 2$ traceless Hermitean matrices are paramaterized by $\bR^3$,
 by $x\sigma_x+y\sigma_y+z\sigma_z$.
@@ -1546,7 +1555,10 @@ In other words we have found:
     \{\pm 1\} \to SU(2) \to SO(3). 
   $
 \end{example}
-Recalling that $SU(2)\simeq S^3$, we see that $SO(3)\simeq \RP^3$.
+Recalling that $SU(2)\simeq S^3$, we also see that 
+\begin{proposition}
+$SO(3)\simeq \RP^3$.  
+\end{proposition}
 
 Let us check that this bundle is not a trivial product and therefore $SU(2) \neq \{\pm1\}\times SO(3)$.
 For this, it suffices to restrict our attention to the subgroup
@@ -1570,25 +1582,25 @@ where the fiber is a vector space.
   Pick the field of scalars $\bK$ to be either $\bR$, $\bC$ or $\bH$.
   A vector bundle is a fiber bundle $E\to B$ with fiber $V$,
   where $V$ is a vector space, such that two local trivializations over $U_i \subset B$
-  and $U_j\subset B$ are related in the following manner on the overlap $U_{ij}=U_i\cap U_j$:
+  and $U_j\subset B$ are related in the following manner on the overlap $U:=U_i\cap U_j$:
   \begin{equation}
   \begin{array}{cccccccc}
-    U_i \times V &\supset& U_{ij}\times V & \xrightarrow{f_{ij}} & 
-    U_{ij}\times V & \subset & U_j\times V \\
+    U_i \times V &\supset& U \times V & \xrightarrow{f } & 
+    U \times V & \subset & U_j\times V \\
     \downarrow & & \downarrow & & \downarrow & & \downarrow \\
-    U_i & \supset & U_{ij} & = & U_{ij} & \subset & U_j
+    U_i & \supset & U  & = & U  & \subset & U_j
   \end{array}
   \end{equation}
-  where $f_{ij}$ is given by \begin{equation}
-    f_{ij}: (b,v) \mapsto (b, g_{ij}(b) v)
+  where $f $ is given by \begin{equation}
+    f : (b,v) \mapsto (b, g (b) v)
     \label{eq:vec-bundle-transition-functions}
-  \end{equation} where $g_{ij}(b): V\to V$ is a linear map.
+  \end{equation} where $g (b): V\to V$ is a linear map.
   Th dimension of $V$ is called the rank of the vector bundle.
 \end{definition}
 We can consider $\bR$-vector bundles, $\bC$-vector bundles, and $\bH$-vector bundles.
 
 In physics it is also common to have an inner product on the fibers $V$ of a vector bundle,
-so that the transition functions $g_{ij}(b)$ are not just linear maps
+so that the transition functions $g (b)$ are not just linear maps
 but in $O(n)$, $U(n)$, or $Sp(n)$, respectively.
 We will come back to this point later.
 
@@ -1721,6 +1733,7 @@ This simply sends $(u,v)$ with $|u|^2+|v|^2=1$ to $(x,y,z)$ via \eqref{eq:uvXYZ}
 so this is the Hopf fibration $S^1\to S^3\to S^2$.
 Summarizing:
 \begin{example}
+  \label{ex:S2parameterized}
   The unit sphere bundle 
   of the complex line bundle over $S^2$,
   obtained by taking the lowest energy states 
@@ -1731,41 +1744,109 @@ Summarizing:
 \subsection{Relating vector bundles and principal $G$-bundles}
 
 We described the transition functions of a vector bundle in Eq.~\eqref{eq:vec-bundle-transition-functions}.
-On a completely general complex vector bundle,
-the transition functions $g_{ij}(b)$ are in $GL(n,\bC)$,
+On a completely general complex vector bundle $E\to B$,
+the transition functions $g (b)$ are in $GL(n,\bC)$,
 where $n$ is the rank of the vector bundle, i.e.~the dimension of the fiber. 
 But we often consider the situation where the fibers of the vector bundle are equipped with a Hermitian inner product.
 In such a case, the transition functions are in $U(n)$.
-Then we can consider the principal $U(n)$-bundle associated to the vector bundle, defined via \eqref{eq:principal-bundle-transition-function}.
+Then we can consider a principal $U(n)$-bundle $P\to B$ associated to the vector bundle, 
+defined via \eqref{eq:principal-bundle-transition-function}.
 The fiber is now $U(n)$ instead of $\bC^n$.
 
-In high-energy physics we often encounter the situation where $g_{ij}(b)$ is in a subgroup $G$ of $U(n)$;
+In high-energy physics we often encounter the situation where $g (b)$ is in a subgroup $G$ of $U(n)$;
 then we can consider the principal $G$-bundle associated to the vector bundle in the same way.
 The fiber is now $G$ instead of $\bC^n$.
 
 \begin{definition}
-  A $\bK$-vector bundle whose transition functions $g_{ij}(b)$ are in a subgroup $G$ of $GL(n,\bK)$
+  A $\bK$-vector bundle whose transition functions $g(b)$ are in a subgroup $G$ of $GL(n,\bK)$
   is called to have the structure group $G$.
-  The principal $G$-bundle given by the same gransition functions are called the associated principal $G$-bundle.
+  The principal $G$-bundle given by the same transition functions are called 
+  the  principal $G$-bundle associated to the vector bundle.
 \end{definition}
 
 There is an inverse operation to this.
-Namely, given a principal $G$-bundle over $B$,
-we have a set of transition functions $g_{ij}$ in $G$
-between $U_i\times G$ and $U_j\times G$,
-as described in \eqref{eq:principal-bundle-transition-function}.
-Now, pick a linear action $\rho: G \curvearrowright V$ of $G$ on a vector space $V$.
+Take a principal $G$-bundle over $B$
+with the transition function over $U:=U_i\cap U_j$ given by
+a map $g: U\to G$ as described in \eqref{eq:principal-bundle-transition-function}.
+Pick a linear action $\rho: G \curvearrowright V$ of $G$ on a vector space $V$.
 Then we can form a vector bundle over $B$ with fiber $V$
 by declaring that its transition functions 
 between $U_i\times V$ and $U_j\times V$
-are given by $\rho(g_{ij})$.
+are given by $\rho(g)$, i.e.~we have
+\begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times V &\supset& U \times V & \xrightarrow{f } & 
+    U \times V & \subset & U_j\times V \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U  & = & U  & \subset & U_j
+  \end{array}
+\end{equation}
+where $f $ is given by \begin{equation}
+   f : (b,v) \mapsto (b, \rho(g (b)) v).
+\end{equation}
+
 
 \begin{definition}
-  The vector bundle constructed as above is called an associated vector bundle to the principal $G$-bundle,
+  The vector bundle $V\to E\to B$ constructed as above is called 
+  an associated vector bundle to the principal $G$-bundle $G\to P\to B$,
   determined by the representation $\rho$.
+  We call $G$ the structure group of $E\to B$.
 \end{definition}
 
-\subsection{Tangent and related bundles}
+As an example, take a principal $U(1)$ bundle $U(1)\to E\to B$.
+\begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times U(1) &\supset& U \times U(1) & \xrightarrow{f } & 
+    U \times U(1) & \subset & U_j\times U(1) \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U  & = & U  & \subset & U_j
+  \end{array}
+\end{equation}
+where $f $ is given by \begin{equation}
+   f : (b,h) \mapsto (b, g(b)h)
+\end{equation} where $b\in B$, $h\in U(1)$ (i.e.~$|h|=1$) and $g: U\to U(1)$.
+Take the standard representation of $U(1)$ on $\bC$ given by multiplication,
+i.e. the one where $g\in U(1)$ acts on $z\in \bC$ by $gz$.
+Then the associated vector bundle $\bC\to E'\to B$ has the structure 
+\begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times \bC &\supset& U \times \bC & \xrightarrow{f } & 
+    U \times \bC & \subset & U_j\times \bC \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U  & = & U  & \subset & U_j
+  \end{array}
+\end{equation}
+where $f $ is given by \begin{equation}
+   f : (b,z) \mapsto (b, g(b)z)
+\end{equation} where $z\in \bC$.
+It is easy to see that $E\to B$ is the unit sphere bundle of $E'\to B$.
+Summarizing, we found:
+\begin{proposition}
+  Given a principal $U(1)$-bundle $U(1)\to E\to B$,
+  consider the associated vector bundle $\bC\to E'\to B$
+  coming from the standard representation $U(1)\curvearrowright \bC$.
+  Then $E\to B$ is the unit sphere bundle of $E'\to B$.
+\end{proposition}
+
+We saw in Example~\ref{ex:S2parameterized} that the unit sphere bundle
+of the complex line bundle of the lowest energy states of the Hamiltonian \eqref{eq:S2Ham}
+over $S^2$ is the Hopf fibration $S^1\to S^3\to S^2$.
+Therefore, conversely, the associated line bundle
+to the Hopf fibration $S^1\to S^3\to S^2$ 
+in the standard representation $U(1)\curvearrowright \bC$
+is the complex line bundle of the lowest energy states of the Hamiltonian \eqref{eq:S2Ham}.
+
+An alternative construction of the associated vector bundle 
+without using patches is as follows. 
+\begin{proposition}
+  Given a principal $G$-bundle $G\to P\to B$ and a representation $\rho: G\curvearrowright V$,
+  the associated vector bundle $V\to E\to B$ is given by
+  $E= (P \times V)/G$,
+  where the action of $G$ on $P\times V$ is given by $g(p,v)=(pg^{-1},\rho(g)v)$.
+\end{proposition}
+The proof is straightforward and is left as an exercise.
+
+\subsection{Tangent and cotangent bundles}
 
 So far we considered vector bundles as an additional structure on a given base $B$.
 There are also vector bundles canonically associated to a manifold $M$.
@@ -1825,7 +1906,7 @@ compare Eq.~\ref{eq:contravariant}.
 
 
 \begin{definition}
-A (Riemannian) metric on a manifold $M$
+A Riemannian metric on a manifold $M$
 is an additional structure on the tangent bundle $TM$
 which gives a smoothly-varying inner product 
 on each fiber.
@@ -1846,13 +1927,16 @@ Is $S(TS^2)$ one of these two?
 The answer is no.
 We are going to develop methods to answer such questions later.
 
-With a metric, we can form an orthogonal basis of the tangent space at each point.
+With a Riemannian metric, we can form an orthogonal basis of the tangent space at each point.
 Take $U\times \bR^n$ with the basis vectors $\partial/\partial x^i$ as before.
 We pick an orthonormal basis \begin{equation}
   e_a = \sum e_a^i \frac{\partial}{\partial x^i},
   \qquad (a=1,\ldots,n)
 \end{equation} with respect to the inner product on the tangent space given by the metric,
 where $e_a^i$ is an $n\times n$ matrix depending on $p\in U$.
+In other words, we have \begin{equation}
+\langle e_a, e_b \rangle = \delta_{ab}.
+\end{equation}
 In general relativity $e_a^i$ are known as tetrads or vierbeins 
 in four dimensions, and fielbeins in general dimensions.
 On $U'\times \bR^n$ we pick a similar orthonormal basis $e'_a$
@@ -1865,48 +1949,145 @@ and we have the following relation on the overlap $p\in U\cap U'$:  \begin{equat
 \end{equation} 
 where $M_a^b$ is an orthogonal matrix depending on $p$,
 i.e.~$M$ is a map from $U\cap U'$ to $O(n)$.
+Then the tangent bundle has the structure group $O(n)$.
 
-\begin{definition}
-structure group of a bundle
+In physics we also often encounter the situation
+when the tangent bundle is equipped with a Lorentzian inner product.
+In such cases the orthonormal basis $e_a$ above satisfies
+\begin{equation}
+  \langle e_a, e_b \rangle = \eta_{ab},\qquad
+  \text{where}
+  \quad
+  \eta_{ab} = \mathrm{diag}(1,\ldots,1,-1).
+\end{equation}
+Then the matrix $M_a^b$ is in the Lorentz group $O(n-1,1)$,
+which is the structure group of the tangent bundle.
+
+Below, we will always consider the case when the tangent bundle is
+equipped either with a Riemannian or a Lorentzian metric;
+furthermore, we consider the Riemannian case unless otherwise mentioned.
+
+\subsection{Orientation and spin structure}
+
+We have seen so far that the tangent bundle $TM$ of a manifold $M$ of dimension $n$
+is a real vector bundle with structure group $O(n)$.
+In other words, it is built by patching the fiber over the intersection $U:=U_i\cap U_j$
+with the following structure: 
+\begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times \bR^n  &\supset& U \times \bR^n  & \xrightarrow{f } & 
+    U \times \bR^n  & \subset & U_j\times \bR^n  \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U  & = & U  & \subset & U_j
+  \end{array}
+\end{equation}
+where $f $ has the form \begin{equation}
+   f : (b,v) \mapsto (b, g(b) v), \qquad g: U\to O(n).
+\end{equation} 
+
+Recall that $O(n)$ has a subgroup $SO(n)$ consisting of the matrices with determinant 1,
+and has the decomposition \begin{equation}
+O(n) = SO(n) \sqcup SO(n)e
+\end{equation} where $e$ is an element of determinant $-1$.
+$SO(n)$ contains $n$-dimensional rotations and preserves the orientation of $\bR^n$.
+
+\begin{definition}  
+When $g:U\to O(n)$ above can be uniformly chosen to be in $SO(n)$
+over any nonempty intersection $U=U_i\cap U_j$ of two patches,
+the tangent bundle $TM$ is not just an $O(n)$-bundle but an $SO(n)$-bundle.
+In such case we say that the manifold $M$ is orientable.
 \end{definition}
 
-\begin{definition}
-lifts / reduction of structure groups
-\end{definition}
+On $\bR^3$ we have two orientations of basis vectors.
+Similarly, when a manifold is orientable (and is connected),
+there are actually two orientations of the manifold.
 
+Let us move on to the spin structure,
+which is necessary if we want to consider spinors on a manifold.
+Let us start by considering the familiar case of three dimensions.
+The rotations of $\bR^3$ form the group $SO(3)$.
+The double cover of $SO(3)$ is the group $SU(2)$: 
+\begin{equation}
+  \{\pm1\}\to SU(2) \xrightarrow{\pi} SO(3).
+\end{equation}
+The wavefunction of a spin $1/2$ particle is in the standard two-dimensional representation of $SU(2)$.
+But this is not a representation of $SO(3)$.
+Famously, a $360^\circ$ rotation acts by $-1$ on the wavefunction of an electron;
+a $360^\circ$ rotation is the identity of $SO(3)$.
+Therefore this two-dimensional representation is not a representation of $SO(3)$.
+This means that the data of $g_{ij}:U_{ij}\to SO(3)$ 
+on the overlaps $U_{ij}=U_i\cap U_j$ of the tangent bundle $TM$ 
+is not sufficient for us to consider electrons on the manifold.
 
-\begin{example}
-reduction from $GL$ to $O$
-\end{example}
+For this, we need to lift the maps $g_{ij}$ to $SO(3)$ uniformly to $SU(2)$,
+i.e.~find maps $g'_{ij}:U_{ij}\to SU(2)$
+such that $\pi\circ g'_{ij}=g_{ij}$ 
+so that $\{g'_{ij}\}$ determine a principal $SU(2)$-bundle $P\to M$.
+A choice of such an principal $SU(2)$ bundle is known as the spin structure,
+and then we can consider the associated complex two-dimensional vector bundle
+$S\to M$ 
+given by the standard representation of $SU(2)$, by the construction 
+\begin{equation}
+  \begin{array}{cccccccc}
+    U_i \times \bC^2  &\supset& U \times \bC^2  & \xrightarrow{f' } & 
+    U \times \bC^2  & \subset & U_j\times \bC^2  \\
+    \downarrow & & \downarrow & & \downarrow & & \downarrow \\
+    U_i & \supset & U  & = & U  & \subset & U_j
+  \end{array}
+\end{equation}
+where $f $ has the form \begin{equation}
+   f : (b,v) \mapsto (b, g'(b) v), \qquad g: U\to SU(2).
+\end{equation} 
+This $S$ is the spinor bundle,
+and the wavefunction of an electron is a section of this bundle.
 
-\begin{definition}
-reduction from $O$ to $SO$
-\end{definition}
-
+In three dimensions we have the following fact:
 \begin{fact}
-spin groups in general dimensions.
+  Any oriented three-dimensional manifold has a spin structure.
+\end{fact}
+At the end of the lecture series, I hope that you will understand the outline 
+of the proof of this fact.  
+
+To discuss spin structures in other dimensions, we need some preparations.
+\begin{fact}
+  There are nontrivial double covers of $SO(n)$ for $n\ge 2$ of the form
+  \begin{equation}
+  \{\pm1\} \to \Spin(n) \to SO(n)
+  \end{equation} and double covers of $SO(n-1,1)$ for $n\ge 3$ of the form
+  \begin{equation}
+  \{\pm1\} \to \Spin(n-1,1) \to SO(n-1,1).
+  \end{equation}
 \end{fact}
 
 \begin{fact}
-spin groups in dimension 3 and 4.
+$Spin(2k)$ has two spinor representations, each with complex dimensions $2^k$.\\
+$Spin(2k+1)$ has one spinor representation, which is of complex dimensions $2^k$.
 \end{fact}
-
-\begin{definition}
-associated vector bundle
-\end{definition}
-
-\begin{definition}
-spin structure and the spinor bundle
-\end{definition}
+We will give their uniform explicit descriptions later.
+For low dimensions we have the following alternative ways to describe them:
+  \begin{itemize}
+    \item $\Spin(2)\simeq U(1)$. Two spinor representations are the standard representation and its complex conjugate,
+    \item $\Spin(3)\simeq SU(2)$. The spinor representation is the standard two-dimensional representation,
+    \item $\Spin(4)\simeq SU(2)\times SU(2)$. Two spinor representations are the standard two-dimensional representations of the two factors,
+    \item $\Spin(5)\simeq Sp(2)$. The spinor representation is the standard  representation of $Sp(2)$ on $\bH^2 \simeq \bC^4$,
+    \item $\Spin(6)\simeq SU(4)$. Two spinor representations are the standard four-dimensional representation and its conjugate;
+  \end{itemize}
+We also have
+  \begin{itemize}
+    \item $\Spin(2,1)\simeq SL(2,\bR)$. The spinor representation is the standard two-dimensional representation (regarded as complex matrices),
+    \item $\Spin(3,1)\simeq SL(2,\bC)$. Two spinor representations are the standard representation and its complex conjugate.
+  \end{itemize}
 
 \begin{fact}
-oriented three-dimensional manifolds is always spin.
+$\CP^2$ is not spin, i.e.~does not have a spin structure.
 \end{fact}
-
-\begin{fact}
-$\CP^2$ is not spin.
-\end{fact}
-
+Therefore you cannot consider electrons on $\CP^2$, a four dimensional space.\footnote{%
+Actually, this is true as long as we do not couple electrons to electromagnetism.
+With electromagnetism, we can consider something called a spin-$c$ structure,
+which exists on $\CP^2$. This will require a nonzero Maxwell field on $\CP^2$.
+Therefore it is still true that electrons cannot exist on $\CP^2$
+if the electromagnetic field is zero.
+}
 \subsection{Gauge fields and $G$-bundles}
 
 \begin{definition}
