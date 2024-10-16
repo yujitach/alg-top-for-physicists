@@ -127,6 +127,7 @@
 \def\KP{\mathbb{KP}}
 
 \def\Spin{\mathit{Spin}}
+\def\pt{\mathrm{pt}}
 
 \begin{document}
 
@@ -976,6 +977,21 @@ Note that mathematicians call the subgroup $H$ as the stabilizer of $m_0$,
 whereas physicists usually call it the unbroken subgroup.
 
 Let us give some examples.
+We start with two trivial examples.
+Let $G=SO(2)$ act on $(x,y)\in \bR^2$ by rotations.
+A rotationally invariant potential $V(x,y)$ has the form
+$V(x,y)=f(r)$ for $r^2=x^2+y^2$.
+When the minimum is at $(x,y)=(0,0)$, its orbit under $SO(2)$ is a single point, $\{(0,0)\}$.
+In this case the unbroken subgroup $H$ is the entirety of $SO(2)$.
+So, we have $SO(2)/SO(2)=\{\text{point}\}$, a zero dimensional manifold consisting of a single point.
+It is often abbreviated as $\pt$ in algebraic topology, so $SO(2)/SO(2)=\pt$.
+
+When the minimum is at $(x,y)=(r_0,0)$ with $r_0\neq 0$,
+its orbit under $SO(2)$ is the circle of radius $r_0$.
+In this case the unbroken subgroup $H$ is $\{e\}$,
+and $SO(2)/\{e\}=SO(2)$, which is a circle.
+
+Let us generalize.
 Let $SO(n)$ act on $\bR^n$ by rotations.
 A rotationally invariant potential $V:\bR^n\to \bR$ 
 has the form $V(x_1,\ldots,x_n)=f(r)$ where $r^2={x_1^2+\cdots+x_n^2}$.
@@ -1438,7 +1454,7 @@ Developing more general methods to distinguish different fiber bundles
 with the same fiber and the same base is one of the goals
 of the study of fiber bundles.
 
-\subsection{Quotients as bundles}
+\subsection{Principal $G$-bundles}
 \subsubsection{Generalities}
 \begin{proposition}
   \label{prop:free-quotient}
