@@ -33,6 +33,7 @@
 \newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{definition}{Definition}[section]
 \newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{theorem}[definition]{Theorem}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{example}[definition]{Example}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{question}[definition]{Question}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{proposition}[definition]{Proposition}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{fact}[definition]{Fact}
@@ -527,11 +528,11 @@ Before going further, let us also introduce manifolds with boundaries:
 \end{definition}
 
 
-\subsection{Examples}
+\subsection{Manifolds via equations}
 So far we only saw trivial examples.
 We need better examples.
 
-\subsubsection{Via equations}
+\subsubsection{Generalities}
 A common way to construct manifolds is to take a subset of $\bR^n$ defined by a number of equations:
 \begin{align}
 f_1(x_1, x_2, \ldots, x_n) &= 0, \\
@@ -543,6 +544,8 @@ If the choice of $f_{1,2,\ldots,m}$ are sufficiently nice,
 the set of points satisfying these equations is a manifold of dimension $n-m$.
 
 A typical bad example is the subset of $\bR^2$ defined by $xy=0$: around $(x,y)=(0,0)$, two lines intersect, and therefore the neighborhood of $(0,0)$ is not of the right form.
+
+\subsubsection{Spheres and disks/balls}
 
 \begin{example}
 The $n$-dimensional sphere $S^n$ is defined by \begin{equation}
@@ -584,8 +587,10 @@ When $K<0$, it consists of two components, one in the future $x_0>0$ and another
 They are the hypersurfaces of time-like separated points of temporal distance $\sqrt{|K|}$ from the origin.
 When $K=0$, the equation above defines the lightcone, which is singular at the origin and is not a manifold.
 
+\subsubsection{Group manifolds}
 We have various group manifolds, 
-defined in a similar manner. 
+defined in a similar manner.
+ 
 Let $M_n(\bR)$ be the set of $n\times n$ real matrices.
 \begin{example}
 The orthogonal group $O(n)$ is defined by \begin{equation}
@@ -742,7 +747,7 @@ on a quantum system $\cH=\bC^n$ with $n$ states with the following conditions:
 \end{itemize}
 
 
-\subsubsection{Via combinations}
+\subsection{Manifolds via combinations}
 
 Let's come back to the examples of manifolds.
 
@@ -793,8 +798,9 @@ Any two-dimensional compact connected oriented manifold is $S^2$ or
 the surface of a multi-donut with $g$ holes.
 \end{fact}
 
-\subsubsection{Via quotients}
+\subsection{Manifolds via quotients}
 \label{sec:quotient}
+\subsubsection{Generalities}
 Another method to define manifolds is to 
 take the quotient of a manifold by a group action. 
 Let us explain it more fully.
@@ -830,6 +836,7 @@ The origin is singular, and the quotient space $\bR^3/\bZ_2$ is not a manifold.
 It is complicated to state the conditions under which $M/G$ is a manifold,
 so we will not do so in this lecture series.
 
+\subsubsection{Projective spaces}
 We now define the real, complex and quaternionic projective spaces $\RP^n$, $\CP^n$ and $\HP^n$ uniformly.
 \begin{example}
   \label{ex:proj}
@@ -908,6 +915,7 @@ Therefore, we have \begin{equation}
 \label{eq:sphere-proj}
 \end{equation}
 
+\subsection{Homogeneous spaces}
 Another large class of principal bundles
 are the homogeneous spaces.
 \begin{definition}
@@ -918,6 +926,7 @@ are the homogeneous spaces.
   The quotient of $G$ by this relation is denoted by $G/H$,
   and is called a homogeneous space.
 \end{definition}
+
 
 A common way this appears in physics is via symmetry breaking.
 Say we have a configuration space $M$ acted on by a symmetry group $G$ from the left:
@@ -947,9 +956,9 @@ the space of the potential minimum is $S^{n-1}$ given by $x_1^2+\cdots + x_n^2=r
 At $m_0=(r_0,0,\ldots,0)$, the subgroup of $SO(n)$ fixing $m_0$ is $SO(n-1)$.
 Therefore, the space of the potential minimum is $SO(n)/SO(n-1)=S^{n-1}$.
 Summarizing, we have found
-\begin{example}
+\begin{proposition}
  $ SO(n)/SO(n-1) \simeq S^{n-1}$.
-\end{example}
+\end{proposition}
 
 Let $U(n)$ act on $\bC^n$ by unitary transformations.
 An invariant potential $\bC^n\to \bR$ has the form $V(z_1,\ldots,z_n)=f(r)$
@@ -959,16 +968,16 @@ the space of the potential minimum is $S^{2n-1}$ given by $|z_1|^2+\cdots + |z_n
 
 At $m_0=(r_0,0,\ldots,0)$, the subgroup of $U(n)$ fixing $m_0$ is $U(n-1)$.
 Therefore, the space of the potential minimum is $U(n)/U(n-1)=S^{2n-1}$.
-\begin{example}
+\begin{proposition}
 $U(n)/U(n-1)\simeq S^{2n-1}$.
-\end{example}
+\end{proposition}
 
 Let $Sp(n)$ act on $\bH^n$ in a standard manner.
 By following the same logic as above, we get $Sp(n)/Sp(n-1)=S^{4n-1}$,
 and we found that:
-\begin{example}
+\begin{proposition}
 $ Sp(n)/Sp(n-1)\simeq S^{4n-1}$.
-\end{example}
+\end{proposition}
 
 Let us discuss a common example we see in quantum mechanics.
 Consider an $n$-state system with the Hilbert space $\cH=\bC^n$.
@@ -992,9 +1001,9 @@ As any $U(n)$ matrix $U$ is of the form $c'U'$ for $c'\in U(1)$ and $U'\in SU(n)
 we have $U(n)/U(1) = SU(n)/\bZ_n$.
 This common quotient group is known as the projective unitary group, and denoted by $PU(n)$.
 Summarizing, 
-\begin{definition}
+\begin{example}
 The common quotient $U(n)/U(1)=SU(n)/\bZ_n$ is called the projective unitary group and is denoted by $PU(n)$.
-\end{definition}
+\end{example}
 
 As our next example, 
 let us consider the chiral symmetry breaking in QCD.
@@ -1018,18 +1027,17 @@ The orbit of $\mathbf{1}_{2\times 2}$ is simply
 the matrices of the form $gg'$,
 i.e.~the subspace $SU(2)\subset M(2,\bC)$.
 We thus found:
-\begin{example}
+\begin{proposition}
 We have $SU(2)\times SU(2)/SU(2)_\text{diagonal} = SU(2)$.
-\end{example}
+\end{proposition}
 
 
 Our final example is the superfluid $^3$He;
 its theory can be learned e.g.~in \cite{SuperfluidHe3Textbook,VolovikBook}.
 It has a phase diagram as given in Fig.~\ref{fig:3He}.
 \begin{figure}[h]
-  \[
+\centering
     \includegraphics[width=0.6\textwidth]{3He.pdf}
-  \]
     \caption{Phase diagram of $^3$He (taken from \cite[Fig.7.1]{VolovikBook}).}
     \label{fig:3He}
 \end{figure}
@@ -1067,8 +1075,12 @@ to $SO(2)\times SO(3)\times U(1)$
 and the order parameter takes the value 
  $(\mathbf{e}_2+i\mathbf{e}_3) \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$.
 
+\begin{question}
+Projective spaces are homogeneous spaces. Could you describe them as such?
+\end{question}
 
-\subsubsection{Non-orientable surfaces}
+
+\subsection{Non-orientable surfaces}
 
 Let us now discuss some non-orientable manifolds.
 
@@ -1122,7 +1134,7 @@ or the Klein bottle $\RP^2\#\RP^2$.
 \end{fact}
 It is a fun exercise to show that $\RP^2 \# \RP^2 \# \RP^2$ is homeomorphic to $\RP^2 \# T^2$.
 
-\subsubsection{Some other fun manifolds}
+\subsection{Some other fun manifolds}
 
 
 \paragraph{The de-singularization of $\bC^2/\bZ_2$:}
@@ -1191,7 +1203,7 @@ Kummer, K\"ahler, and Kodaira who studied it, and also the mountain K2 in the Hi
 The construction given here is due to Kummer.
 }
 
-\subsection{Some fun facts about manifolds}
+\subsection{Some curious facts about manifolds}
 
 \subsubsection{Smooth vs.~topological manifolds}
 Consider the following equation in $\bC^5$:
