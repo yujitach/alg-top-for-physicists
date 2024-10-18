@@ -2059,6 +2059,10 @@ $d\phi: M\to T^*M$.
   and is a section of $T^*M$.
 \end{definition}
 
+We can easily check the following: \begin{proposition}
+$d(fg)=(df)g+ f(dg)$.
+\end{proposition}
+
 So far we have not introduced a metric. Let us do so now:
 
 \begin{definition}
@@ -2244,6 +2248,8 @@ which exists on $\CP^2$. This will require a nonzero Maxwell field on $\CP^2$.
 Therefore it is still true that electrons cannot exist on $\CP^2$
 if the electromagnetic field is zero.
 }
+
+\if0
 \subsection{Gauge fields and $G$-bundles}
 
 We saw in Definition~\ref{def:exterior-derivative} that 
@@ -2255,9 +2261,68 @@ associated to a $U(1)$ bundle $U(1)\to P\to M$,
 described explicitly in Eq.~\ref{eq:U1-transition-function} and Eq.~\ref{eq:line-bundle-transition-function}
 on the overlap $U:=U_i\cap U_j$.
 Take a section $\psi:M\to L$ of this line bundle.
-We would like to take the derivative of this section in a consistent manner.
-...
+We would like to take the derivative of this section consistently.
 
+Let us take two local patches $U_1$ and $U_2$ with coordinates $x^a$ and $x'{}^a$ as before.
+We take local trivializations $U_1\times \bC$ and $U_2\times \bC$ of $L\to M$,
+with the identification given by \begin{equation}
+(b,v)\mapsto (b, g(b)v) 
+\end{equation} on the overlap $b\in U_1\cap U_2$, where $g: U_1\cap U_2\to U(1)$.
+A section $\psi$ of $L\to M$ then gives two functions
+$\psi_1: U_1\to \bC$ and $\psi_2: U_2\to \bC$ satisfying \begin{equation}
+  \psi_2(b) = g(b) \psi_1(b). \label{eq:psi}
+\end{equation}
+
+Let us now consider \begin{equation}
+  d\psi_1 = \sum_a \frac{\partial \psi_1}{\partial x^a} dx^a
+\end{equation} on $U$ ; this is a local section of \begin{equation}
+  U_1 \times (\bC \otimes \bR^n). \label{eq:der1}
+\end{equation}
+Similarly, we have
+\begin{equation}
+  d\psi_2 = \sum_a \frac{\partial \psi_2}{\partial x'{}^a} dx'{}^a
+  \label{eq:dpsiprime}
+\end{equation} on $U_2$, which is a local section of \begin{equation}
+  U_2 \times (\bC \otimes \bR^n). \label{eq:der2}
+\end{equation}
+Here we relate the basis vectors $dx^a$ and $dx'{}^a$ on the overlap $U_1\cap U_2$
+as before by \eqref{eq:covariant}, so that we have \begin{equation}
+  d\psi_2= \sum_a \frac{\partial \psi_2}{\partial x^a} dx^a
+\end{equation}
+on the overlap.
+
+In view of \eqref{eq:der1} and \eqref{eq:der2},
+it seems reasonable to try to let the derivative of $\psi$ to be a section of $L\otimes T^*M$. 
+Such a section corresponds to $\varpi_1: U_1\to \bC\times \bR^n$
+and $\varpi_2: U_2\to \bC \otimes \bR^n$ related by \begin{equation}
+  \varpi_2(b) = g(b) \varpi_1(b)
+\end{equation} over the overlap $U_1\cap U_2$.
+
+Plugging \eqref{eq:psi} in \eqref{dpsiprime}, we find instead \begin{equation}
+d\psi_2 = d (g\psi_1) = (dg ) \psi_1 + g d\psi_1.
+\end{equation} with an additional first term.
+To remedy the situation,
+we introduce local sections 
+$A_1: U_1\to \bR^n$, $A_2:U_2\to \bR^n$ of the cotangent bundle on the patches,
+given more explicitly by \begin{equation}
+  A_1 = \sum_a (A_1)_a dx^a, \qquad A_2 = \sum_a (A_2)_{'a} dx'{}^a,
+\end{equation} 
+which we demand to be related by \begin{equation}
+  A_2 = A_1 + g^{-1} dg.\label{eq:AA}
+\end{equation}
+We also define \begin{equation}
+  D\psi_1 = d\psi_1 + \ii A_1 \psi_1, \qquad D\psi_2 = d\psi_2 + \ii A_2 \psi_2.
+\end{equation}
+We can check that $D\psi_1$ and $D\psi_2$ are related by \begin{equation}
+  D\psi_2 = g D\psi_1,
+\end{equation} as we wanted.
+
+Consider the simpler case of $U=U_1=U_2$ with the same coordinate system,
+where $x^a=x'{}^a$. 
+Let us also write $g: U\to U(1)$ as $g(b)=e^{i\theta(b)}$.
+Then we have \begin{equation}
+A_2 
+\end{equation}
 \begin{definition}
 connection = gauge field
 \end{definition}
@@ -2285,8 +2350,45 @@ Gauge fields of the Standard Model
 \begin{example}
 Matter content of the Standard Model
 \end{example}
+\fi
 
-\subsection{Pin and spin groups in general dimensions}
+\subsection{Bundles and the Standard Model}
+
+After all these preparations, it is a good place to tell you the matter content of the Standard Model of Particle Physics.
+The Standard Model contains three types of constituents,
+%\begin{itemize}
+  %\item 
+  gauge fields,
+  %\item 
+  fermions (quarks and leptons), and 
+  %\item 
+  the Higgs field.
+%\end{itemize}
+Mathematically, a gauge field for a gauge group $G$ is described by 
+a \emph{connection} of a principal $G$-bundle $G\to P\to M$;
+we haven't discussed this important concept,
+but to do so will require us to study differential forms first.
+This we will do in Sec.~\ref{sec:deRham}.
+Here we just mention that the Standard Model has 
+gauge fields = connections for $G=SU(3)\times SU(2)\times U(1)$.\footnote{%
+In the last couple of years, theorists started to wonder whether the gauge
+group might be some quotient of $SU(3)\times SU(2)\times U(1)$.
+See e.g.~\cite{Tong:2017oea} and the references which cite it.
+}
+
+In contrast, fermions and the Higgs field can already be described by the
+mathematical constructions we have already introduced so far. 
+This is exactly what we are going to do now.
+
+We start from a four-dimensional smooth manifold $M$,
+equipped with a Lorentzian metric.
+We further assume that $M$ is oriented and has a spin structure.
+In this case the structure group of $M$ is $Spin(3,1)\simeq SL(2,\bC)$.
+$SL(2,\bC)$ has a standard two-dimensional representation $\bC^2$.
+The associated vector bundle is the spinor bundle $S\to M$.
+
+
+%\subsection{Pin and spin groups in general dimensions}
 
 
 
@@ -2429,7 +2531,7 @@ Superfluid Helium 3 A-phase
 \end{example}
 
 \section{Differential forms and de Rham cohomology}
-
+\label{sec:deRham}
 
 \section{Cellular cohomology}
 
