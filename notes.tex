@@ -2362,7 +2362,7 @@ The Standard Model contains three types of constituents,
   %\item 
   fermions (quarks and leptons), and 
   %\item 
-  the Higgs field.
+  the Higgs boson.
 %\end{itemize}
 Mathematically, a gauge field for a gauge group $G$ is described by 
 a \emph{connection} of a principal $G$-bundle $G\to P\to M$;
@@ -2387,6 +2387,56 @@ In this case the structure group of $M$ is $Spin(3,1)\simeq SL(2,\bC)$.
 $SL(2,\bC)$ has a standard two-dimensional representation $\bC^2$.
 The associated vector bundle is the spinor bundle $S\to M$.
 
+As we already mentioned, we have a principal bundle $G\to P\to M$,
+where $G=SU(3)\times SU(2)\times U(1)$ is the gauge group of the Standard Model.
+We have a certain representation $\rho_\text{boson}$ of $G$ on a vector space $V_\text{boson}$,
+and $\rho_\text{fermion}$ of $G$ on a vector space $V_\text{fermion}$.
+We can form the associated vector bundles 
+\begin{equation}
+V_\text{boson}\to \underline{V_\text{boson}}\to M
+\end{equation}
+and
+\begin{equation}
+V_\text{fermions}\to \underline{V_\text{fermions}}\to M.
+\end{equation}
+Then the Higgs field and the fermions are the section
+of the vector bundle
+\begin{equation}
+  \underline{V_\text{boson}} 
+  \oplus
+  (\underline{V_\text{fermions}}\otimes S)
+  \to M,
+\end{equation}
+where $S\to M$ is the spin bundle.
+
+To finalize our description, we need to specify $V_\text{fermion}$ and $V_\text{boson}$.
+For this purpose, we introduce the following representations of $U(1)$, $SU(2)$ and $SU(3)$:
+\begin{itemize}
+\item $V_q$ is the representation of $U(1)$ such that $g\in U(1)$ acts as $z\mapsto g^{6q} z$. 
+$q$ is the $U(1)$ hypercharge of the fermion.
+\item $\mathbf{2}$ is the standard two-dimensional representation of $SU(2)$.
+\item $\mathbf{3}$ is the standard three-dimensional representation of $SU(3)$,
+and $\mathbf{\bar 3}$ is its complex conjugate.
+\end{itemize}
+Then we have \begin{equation}
+V_\text{boson} = \mathbf{2} \otimes V_{+1/2}
+\end{equation} for the Higgs boson, and 
+\begin{equation}
+  V_\text{fermion}=\bC^3 \otimes V_\text{single generation}
+\end{equation}
+where $\bC^3$ part is to describe the three generations,
+and $V_\text{single generation}$ is given by 
+\begin{equation}
+  \begin{array}{ccccccl@{\qquad}lcc}
+&  &    \mathbf{3} &\otimes & \mathbf{2} &\otimes& V_{+1/6}  & (\text{the quark doublet} & Q_L) \\
+& \oplus&   \mathbf{\bar 3} & & &  \otimes&  V_{-2/3}  & (\text{the up-type antiquark} & \bar u_R) \\
+&\oplus &  \mathbf{\bar 3} & & &\otimes& V_{+1/3} & (\text{the down-type antiquark} & \bar d_R) \\
+&\oplus  & & & \mathbf{2} &\otimes& V_{-1/2}  & (\text{the lepton doublet} & \ell_L) \\
+&\oplus &  & & \mathbf{2} &\otimes& V_{+1} & (\text{the charged anti-lepton} & \bar e_R)\\
+&\oplus &&&&& \bC & (\text{the right-handed neutrino} & \bar \nu_R).
+  \end{array}
+\end{equation}
+Why does the nature use this particular representation? I have no idea.
 
 %\subsection{Pin and spin groups in general dimensions}
 
