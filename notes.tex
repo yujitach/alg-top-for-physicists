@@ -107,6 +107,12 @@
 \definecolor{stringcolor}{gray}{0.5}
 \definecolor{inactivecolor}{rgb}{0.15,0.15,0.5}
 
+\definecolor{lg}{rgb}{.9,.9,.9}
+
+\definecolor{wo}{rgb}{1.0, 0.85, 0.6}
+\definecolor{wb}{rgb}{0.7, 0.9, 1.0}
+
+
 %%list alg-top-notes
 
 \def\bC{\mathbb{C}}
@@ -2485,8 +2491,30 @@ $\pi_n(S^m) =0$ if $n<m$
 \end{theorem}
 
 \begin{theorem}
-$\pi_n(S^n) =\bZ_n$
+$\pi_n(S^n) =\bZ$
 \end{theorem}
+
+\begin{table}
+  \[
+\begin{array}{c|cccccccccccccccccc}
+  k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
+   \hline
+  S^1 & \textcolor{red}{\bZ} & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  S^2 & \cellcolor{lg} \textcolor{red}{\bZ} & \textcolor{blue}{\bZ} & \bZ_2 & \bZ_2 & \bZ_{12} & \bZ_2 & \bZ_2 & \bZ_3 & \bZ_{15} & \bZ_2  \\
+  S^3 & \cellcolor{lg} \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \bZ_2 & \bZ_{12} & \bZ_2 & \bZ_2 & \bZ_3 & \bZ_{15} & \bZ_2 & (\bZ_2)^2  \\
+  S^4 &\cellcolor{lg}  \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \textcolor{blue}{\bZ} \times \bZ_{12} & (\bZ_2)^2 & (\bZ_2)^2 & \bZ_{24} \times \bZ_3 & \bZ_{15} & \bZ_2  & (\bZ_2)^3\\
+  S^5 & \cellcolor{lg} \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{24} & \bZ_2 & \bZ_2 & \bZ_2 & \bZ_{30} & \bZ_2 & (\bZ_2)^3  \\
+  S^6 & \cellcolor{lg} \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{24} & \cellcolor{lg} 0 & \textcolor{blue}{\bZ} & \bZ_2 & \bZ_{60} & \bZ_{24}\times \bZ_2 & (\bZ_2)^3\\
+  S^7 &\cellcolor{lg}  \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg}\bZ_{24} & \cellcolor{lg} 0 &\cellcolor{lg}  0 & \bZ_2 & \bZ_{120} & (\bZ_2)^3 & (\bZ_2)^4 \\
+  S^8 & \cellcolor{lg} \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{24} & \cellcolor{lg} 0 & \cellcolor{lg} 0 & \cellcolor{lg} \bZ_2 & \textcolor{blue}{\bZ}\times \bZ_{120} & (\bZ_2)^4 & (\bZ_2)^5 \\
+  S^9 &\cellcolor{lg}  \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{24} & \cellcolor{lg} 0 & \cellcolor{lg} 0 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{240} & (\bZ_2)^3 & (\bZ_2)^4 \\
+  S^{10} &\cellcolor{lg}  \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{24} & \cellcolor{lg} 0 & \cellcolor{lg} 0 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{240} & \cellcolor{lg} (\bZ_2)^2 & \textcolor{blue}{\bZ}\times (\bZ_2)^3 \\
+  S^{11} &\cellcolor{lg}  \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{24} & \cellcolor{lg} 0 & \cellcolor{lg} 0 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{240} & \cellcolor{lg} (\bZ_2)^2 & \cellcolor{lg} (\bZ_2)^3 \\
+  S^{12} &\cellcolor{lg}  \textcolor{red}{\bZ} & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{24} & \cellcolor{lg} 0 & \cellcolor{lg} 0 & \cellcolor{lg} \bZ_2 & \cellcolor{lg} \bZ_{240} & \cellcolor{lg} (\bZ_2)^2 & \cellcolor{lg} (\bZ_2)^3 \\
+\end{array}
+\]
+\caption{Table of $\pi_{n+k}(S^n)$ \label{tab:pi_nS^m}}
+\end{table}
 
 \begin{theorem}
 $\pi_3(S^2)=\bZ$.
