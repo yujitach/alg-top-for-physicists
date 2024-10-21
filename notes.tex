@@ -2554,18 +2554,59 @@ As the identity element, we use $e:S^n \to X$ which maps the entire $S^n$ to the
   and is denoted by $\pi_n(X)$.
 \end{definition}
 
+For $n=1$, $\pi_1(X)$ is also called as the fundamental group of $X$.
+It is the group of closed paths from the base point to the base point,
+where the group law is obtained by concatenation. 
+
+\begin{example}
+$\pi_1(S^1)=[S^1,S^1]_*=\bZ$. 
+\end{example}
+This is because $f:S^1\to S^1$ is determined by how many times the image of $f$
+winds around $S^1$ when we go around the source $S^1$ once.
+This number is called the winding number in physics literature.
+Mathematicians call it the \emph{degree} of the map.
+
+\begin{example}
+  For a genus-$g$ surface $\Sigma_g$, \begin{multline}
+  \pi_1(\Sigma_g)= \langle A_1,B_1,A_2,B_2,\ldots,A_g,B_g \mid \\
+  A_1 B_1 A_1^{-1} B_1^{-1} A_2 B_2 A_2^{-1} B_2^{-1} \cdots A_g B_g A_g^{-1} B_g^{-1} \rangle.
+  \end{multline}
+\end{example}
+Here $A_i$ and $B_i$ aret the closed paths starting and ending at the base point,
+going around the $i$-th hole in two ways, see Fig.~\ref{fig:genus-2}.
+The notation on the right hand side, $\langle a,b,\ldots \mid 
+\text{relation}_1, \text{relation}_2,\ldots,\rangle$
+is called a presentation of a group.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.6\textwidth]{genus2}
+  \caption{Generators of $\pi_1(\Sigma_2)$.}
+  \label{fig:genus-2}
+\end{figure}
+
+This is an Abelian group when $g=1$, i.e.~for $\Sigma_1=T^2$.
+Explicitly, $\pi_1(T^2)=\bZ^2$.
+But this is a non-Abelian discrete group for $g\ge 2$.
+
+In contrast, we have:
 \begin{proposition}
 The group $\pi_n(X)$ is Abelian for $n\ge 2$.
 \end{proposition}
 
 For a proof, see Fig.~\ref{fig:commutativity}.
+The point is that we can continuously move the nontrivial part of maps $f$ and $g$ across each other,
+using the large region in $[0,1]^n$ where $f$ and $g$ are both mapped to the base point.
+This is possible only when $n\ge 2$.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.6\textwidth]{commutativity}
   \caption{Commutativity of the group operation in $\pi_n(X)$ for $n\ge 2$.}
   \label{fig:commutativity}
 \end{figure}
+
+It is also sometimes useful to define the following:
 
 \begin{definition}
 We define $\pi_0(X)$ to be $[S^0,X]_*$. This is the set of connected components of $X$.
@@ -2583,15 +2624,36 @@ We summarize the considerations so far:
 
 \subsection{Basic properties of homotopy groups}
 
-We are going to define an equivalence relation between spaces
-which is much looser than homeomorphism/diffeomorphism.
+\begin{definition}
+  For a map $f:X\to Y$ and $a:S^n \to X,$ we have a map $f\circ a:S^n\to Y$.
+  This determines a map $\pi_n(X)\to \pi_n(Y)$,
+  which can be easily seen to be  homomorphism.
+\end{definition}
+
+\begin{proposition}
+  If two maps $f,g:X\to Y$ are homotopic,
+  the corresponding homomorphisms $f_*,g_*:\pi_n(X)\to \pi_n(Y)$ are the same.
+\end{proposition}
+
+In particular, if $f:X\to X$ is homotopic to identify,
+$f_*:\pi_n(X)\to \pi_n(X)$ is an isomorphism.
+This motivates the following definition:
 
 \begin{definition}
-Two spaces $X$ and $Y$ are called homotopy equivalent
-if there are maps $f:X\to Y$ and $g:Y\to X$ such that 
-$f\circ g$ is homotopic to $id_Y$  
-and $g\circ f$ is homotopic to $id_X$.
+  Two spaces $X$ and $Y$ are called homotopy equivalent
+  if there are maps $f:X\to Y$ and $g:Y\to X$ such that 
+  $f\circ g$ is homotopic to $id_Y$  
+  and $g\circ f$ is homotopic to $id_X$.
 \end{definition}
+
+Then we have the following:
+\begin{proposition}
+  If $f: X\to Y$ gives a homotopy equivalence,
+  then $f_* \pi_n(X)\to \pi_n(Y)$ is an isomorphism.
+\end{proposition}
+  
+%We are going to define an equivalence relation between spaces
+%which is much looser than homeomorphism/diffeomorphism.
 
 When $X$ and $Y$ are homeomorphic, i.e.~if there is a 1:1 continuous map $f:X\to Y$,
 taking $g=f^{-1}$ we see that $X$ and $Y$ are homotopy equivalent.
@@ -2605,45 +2667,127 @@ $f\circ g$ is identity.
 So we need to show that $g\circ f$ is homotopic to the identity.
 For this we just consider $f_s((x,y))= s(x,y)$ for $s\in [0,1]$,
 and we are done.
-
-\begin{proposition}
-If $X$ and $Y$ are homotopy equivalent, then $\pi_n(X)\simeq \pi_n(Y)$ for all $n\ge 0$.
-\end{proposition}
+Similarly,
+\begin{example}
+A disk $D^n$ in any dimension is homotopy equivalent to a point.
+\end{example}
 
 So, if we can compute $\pi_n(X)$ and $\pi_n(Y)$ for some $n$ and show $\pi_n(X)\neq \pi_n(Y)$, 
-then $X$ and $Y$ are not homotopy equivalent.
+then $X$ and $Y$ are not equivalent under this very loose equivalence relation.
 In particular, $X$ and $Y$ are not homeomorphic and not diffeomorphic. 
+This is how the homotopy groups $\pi_n(X)$ helps in distinguishing spaces.
 But we have not yet learned how to compute homotopy groups.
 And this is surprisingly hard!
 
-\begin{theorem}
-$\pi_n(X\times Y)$.
-\end{theorem}
+To get some ideas, let us enumerate some more properties:
 
-\begin{example}
-$\pi_1(\Sigma_g)$
-\end{example}
+\begin{proposition}
+  $\pi_n(X\times Y) = \pi_n(X) \times \pi_n(Y)$.
+\end{proposition}
+This allows the computation of homotopy groups of product manifolds 
+to those of the factors.
 
-\begin{example}
-$\pi_1(S^n/\Gamma)$
-\end{example}
+\begin{proposition}
+If $X$ is a manifold, then $\pi_n(X)$ is a finitely generated group.
+\end{proposition}
+In particular, $\pi_n(X)$ cannot be a continuous group such as $U(N)$.
 
+The structure of finitely generated Abelian groups are well-known:
+\begin{fact}
+Finitely generated Abelian group $A$ is of the form \begin{equation}
+A=\bZ^n \oplus \bZ_{m_1} \oplus \cdots \oplus \bZ_{m_k}.
+\label{eq:fin-gen-Abelian}
+\end{equation}
+\end{fact}
+
+\begin{definition}
+In the above decomposition, $\bZ^n$ is called the \emph{free part} of $A$,
+and $\bZ_{m_1} \oplus \cdots \oplus \bZ_{m_k}$ is called the \emph{torsion part} of $A$.
+\end{definition}
+
+So $\pi_n(X)$ for a manifold $X$ with $n\ge 2$ is always of the form \eqref{eq:fin-gen-Abelian}.
 
 \subsection{Facts on $\pi_n(S^m)$}
 
-\begin{theorem}
-$\pi_n(S^m) =0$ if $n<m$
-\end{theorem}
+Let us have a look at concrete examples of homotopy groups.
+As a starter, let us consider the homotopy groups of spheres themselves,
+$\pi_n(S^m)=[S^n,S^m]_*$.
 
 \begin{theorem}
-$\pi_n(S^n) =\bZ$
+$\pi_n(S^m) =0$ if $n<m$.
+\end{theorem}
+Roughly, a generic map $S^n\to S^m$ with $n<m$ has a point in $S^m$ not mapped from $S^n$. 
+We can `push' the image of maps from that point to the base point.
+So every map is homotopic to the map to the basepoint.
+
+\begin{theorem}
+$\pi_n(S^n) =\bZ$.
+\end{theorem}
+This can be shown by considering 
+the higher-dimensional version of the winding number.
+For a map $f:S^n\to S^n$, 
+the resulting integer is known as its \emph{degree} in mathematics.
+
+
+\begin{theorem}
+  $\pi_3(S^2)=\bZ$ and the Hopf fibration $S^3\to S^2$ corresponds 
+  to the generator of $\bZ$.
 \end{theorem}
 
-Homotopy groups of spheres $\pi_{n+k}(S^n)$ 
-for small $n$ and $k$ are tabulated in Table~\ref{tab:pi_nS^m}.
-The data are taken from \cite[付録, 公式 7, V]{Jiten}.
+Given a map $f:S^3\to S^2$, the corresponding integer is obtained as follows.
+Pick a generic point on $S^2$. 
+Its inverse image is a collection of circles $C_1,\ldots, C_n$ in $S^3$.
+Take another point on $S^2$.
+Its inverse image is another collection of circles $C'_1,\ldots, C'_m$ in $S^3$.
+We now consider \begin{equation}
+\sum_{i,j} (\text{linking number of $C_i$ and $C'_j$}), \label{eq:Hopf-invariant-crude}
+\end{equation}
+where the linking number of two circles is defined in the standard way.\footnote{This appears in the integrated form of the equation of electromagnetism.
+Namely, if a current $I$ flows in a loop $C$,
+then the integral of the magnetic field around $C'$ 
+is proportional to the linking number of $C$ and $C'$.}
+One can show that this is independent under continuous deformations of $f$.
+This is one definition of the Hopf invariant of $f$.
 
-\begin{table}
+We can similarly define linking numbers of two $S^{n-1}$'s within $S^{2n-1}$,
+where the previous case corresponds to $n=2$.
+Then, for a map $f: S^{2n-1}\to S^{n}$,
+the inverse image of a generic point in $S^n$ is a $(n-1)$-dimensional space,
+and then we can define a higher-dimensional Hopf invariant of $f$ as in \eqref{eq:Hopf-invariant-crude}.
+It is relatively easy to construct a map $S^{2n-1}\to S^n$ with Hopf invariant 2 for general $n$, and therefore
+\begin{theorem}
+  $\pi_{2n-1}(S^n)$ contains a  $\bZ$ summand.
+\end{theorem}
+
+Also, by an explicit computation we can show  that \begin{proposition}
+The Hopf fibrations $S^1\to S^1$, $S^3\to S^2$, $S^7\to S^4$,
+all have Hopf invariant one.
+\end{proposition}
+and in fact 
+\begin{theorem}
+There is a map $f:S^{2n-1}\to S^n$ with Hopf invariant one
+only when $n=1,2,4$.
+\end{theorem}
+This is a deep result in algebraic topology, known as the Hopf invariant one problem,
+and the efforts to solve this question inspired many developments in the field.
+
+
+Another interesting fact is that 
+
+\begin{theorem}
+  The only free part of $\pi_n(S^m)$ is $\pi_n(S^n)\simeq \bZ$
+  and the single $\bZ$ summand of $\pi_{2n-1}(S^n)$ discussed above.
+  Otherwise the homotopy groups of spheres are all torsion.
+\end{theorem}
+  
+
+With these basic properties covered,
+let us have a look at the homotopy groups of spheres $\pi_{n+k}(S^n)$ 
+for small $n$ and $k$, which are tabulated in Table~\ref{tab:pi_nS^m}.
+The data are taken from 岩波数学辞典 \cite[付録, 公式 7, V]{Jiten},
+which also has an English translation \cite{EDM}.
+
+\begin{table}[h]
   \[
 \begin{array}{c|cccccccccccccccccc}
   k & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9  \\
@@ -2665,16 +2809,9 @@ The data are taken from \cite[付録, 公式 7, V]{Jiten}.
 \caption{Table of $\pi_{n+k}(S^n)$ \label{tab:pi_nS^m}}
 \end{table}
 
-\begin{theorem}
-$\pi_3(S^2)=\bZ$.
-\end{theorem}
 
-\begin{theorem}
-$\pi_{2n-1}(S^n)$ contains a  $\bZ$ summand.
-Otherwise they are all torsion.
-\end{theorem}
 
-($\nu d\nu$ where  $d\nu$ is the pull back of the volume form)
+%($\nu d\nu$ where  $d\nu$ is the pull back of the volume form)
 
 \begin{theorem}
 $\pi_4(S^3)=\bZ_2$
