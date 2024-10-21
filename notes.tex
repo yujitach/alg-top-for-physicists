@@ -2567,6 +2567,25 @@ This is because $f:S^1\to S^1$ is determined by how many times the image of $f$
 winds around $S^1$ when we go around the source $S^1$ once.
 This number is called the winding number in physics literature.
 Mathematicians call it the \emph{degree} of the map.
+See Fig.~\ref{fig:winding} for an illustration.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.3\textwidth]{winding}
+  \caption{The winding number of a map $f:S^1\to S^1$.}
+  \label{fig:winding}
+\end{figure}
+
+As shown there, a way to make this concept more precise is to pick a generic point $p$ in the target $S^1$,
+and consider its preimage $f^{-1}(p)$.
+This consists in general of a finite number of points in the source $S^1$.
+We can count the number of points weighted by the local orientation of $f$ at each point.
+This can be shown to be independent of the choice of $p$ in the target $S^1$,
+and gives a definition of the winding number.
+In Fig.~\ref{fig:winding}, the preimage of $p$ consists of one point, giving $+1$ for the winding number;
+the preimage of $q$, in contrast, consists of three points,
+with local orientations $+1$, $-1$, $+1$ respectively,
+again giving $+1-1+1=+1$ for the winding number.
 
 \begin{example}
   For a genus-$g$ surface $\Sigma_g$, \begin{multline}
@@ -2729,9 +2748,17 @@ $\pi_n(S^m)=[S^n,S^m]_*$.
 \begin{theorem}
 $\pi_n(S^m) =0$ if $n<m$.
 \end{theorem}
-Roughly, a generic map $S^n\to S^m$ with $n<m$ has a point in $S^m$ not mapped from $S^n$. 
+Roughly, a generic map $S^n\to S^m$ with $n<m$ has a point $p\in S^m$ not mapped from $S^n$. 
 We can `push' the image of maps from that point to the base point.
-So every map is homotopic to the map to the basepoint.
+So every map is homotopic to the map to the basepoint, see Fig.~\ref{fig:nm}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{nm}
+  \caption{A generic map $S^n\to S^m$ with $n<m$ has a point $p\in S^m$ not mapped from $S^n$.}
+  \label{fig:nm}
+\end{figure}
+
 
 \begin{theorem}
 $\pi_n(S^n) =\bZ$.
@@ -2741,7 +2768,7 @@ the higher-dimensional version of the winding number.
 For a map $f:S^n\to S^n$, 
 the resulting integer is known as its \emph{degree} in mathematics.
 
-
+A more interesting one is the following:
 \begin{theorem}
   $\pi_3(S^2)=\bZ$ and the Hopf fibration $S^3\to S^2$ corresponds 
   to the generator of $\bZ$.
@@ -2751,10 +2778,10 @@ the resulting integer is known as its \emph{degree} in mathematics.
 
 
 Given a map $f:S^3\to S^2$, the corresponding integer is obtained as follows.
-Pick a generic point on $S^2$. 
-Its inverse image is a collection of circles $C_1,\ldots, C_n$ in $S^3$.
-Take another point on $S^2$.
-Its inverse image is another collection of circles $C'_1,\ldots, C'_m$ in $S^3$.
+Pick a generic point $p$ on $S^2$. 
+Its inverse image $f^{-1}(p)$ is a collection of circles $C_1,\ldots, C_n$ in $S^3$.
+Take another point $q$ on $S^2$.
+Its inverse image $f^{-1}(q)$ is another collection of circles $C'_1,\ldots, C'_m$ in $S^3$.
 We now consider \begin{equation}
 \sum_{i,j} (\text{linking number of $C_i$ and $C'_j$}), \label{eq:Hopf-invariant-crude}
 \end{equation}
@@ -2764,6 +2791,15 @@ then the integral of the magnetic field around $C'$
 is proportional to the linking number of $C$ and $C'$.}
 One can show that this is independent under continuous deformations of $f$.
 This is one definition of the Hopf invariant of $f$.
+See Fig.~\ref{fig:hopf-invariant} for an illustration.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{hopf}
+  \caption{A definition of the Hopf invariant of a map $f:S^3\to S^2$  is 
+  given by considering the linking number of the inverse images of two points in $S^2$.}
+  \label{fig:hopf-invariant}
+\end{figure}
 
 We can similarly define linking numbers of two $S^{n-1}$'s within $S^{2n-1}$,
 where the previous case corresponds to $n=2$.
@@ -2836,6 +2872,16 @@ we define the reduced suspension $\Sigma X$ of $X$ as \begin{equation}
   }. 
 \end{equation}
 \end{definition}
+
+See Fig.~\ref{fig:suspension} for an illustration.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{suspension}
+  \caption{The reduced suspension $\Sigma X$ of a space $X$.
+  In the figure, we collapse all the points colored in red to a single point,
+  which we take to be the basepoint.}
+  \label{fig:suspension}
+\end{figure}
 
 \begin{proposition}
   $\Sigma S^n \simeq S^{n+1}$.
