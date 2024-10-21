@@ -2359,6 +2359,7 @@ Matter content of the Standard Model
 \fi
 
 \subsection{Bundles and the Standard Model}
+\label{sec:SM}
 
 After all these preparations, it is a good place to tell you the matter content of the Standard Model of Particle Physics.
 The Standard Model contains three types of constituents,
@@ -2622,6 +2623,17 @@ We summarize the considerations so far:
 \item $\pi_{n\ge 2}(X)$ is an Abelian group.
 \end{itemize}
 
+It turns out to be useful to introduce the following notion:
+\begin{definition}
+  \label{def:n-connected}
+A space $X$ is called \emph{connected} if $\pi_0(X)=0$,
+and \emph{simply connected} if $\pi_{0,1}(X)=0$.
+More generally, a space $X$ is called $n$-connected 
+if $\pi_{0,\ldots,n}(X)=0$.
+\end{definition}
+In particular, $0$-connected means connected
+and $1$-connected means simply-connected.
+
 \subsection{Basic properties of homotopy groups}
 
 \begin{definition}
@@ -2734,6 +2746,9 @@ the resulting integer is known as its \emph{degree} in mathematics.
   to the generator of $\bZ$.
 \end{theorem}
 
+%($\nu d\nu$ where  $d\nu$ is the pull back of the volume form)
+
+
 Given a map $f:S^3\to S^2$, the corresponding integer is obtained as follows.
 Pick a generic point on $S^2$. 
 Its inverse image is a collection of circles $C_1,\ldots, C_n$ in $S^3$.
@@ -2809,33 +2824,127 @@ which also has an English translation \cite{EDM}.
 \caption{Table of $\pi_{n+k}(S^n)$ \label{tab:pi_nS^m}}
 \end{table}
 
-
-
-%($\nu d\nu$ where  $d\nu$ is the pull back of the volume form)
-
-\begin{theorem}
-$\pi_4(S^3)=\bZ_2$
-\end{theorem}
-
+We clearly see a pattern in the table. 
+This comes from the following general fact.
+Let us start with a definition.
 \begin{definition}
-suspension homomorphism
+Given a pointed space $(X,*)$,
+we define the reduced suspension $\Sigma X$ of $X$ as \begin{equation}
+  \Sigma X = \frac{ X \times [0,1]}{
+    X \times \{0,1\} \cup \{*\} \times [0,1]
+  }. 
+\end{equation}
 \end{definition}
 
-\begin{theorem}
-Freudenthal suspension theorem
-\end{theorem}
+\begin{proposition}
+  $\Sigma S^n \simeq S^{n+1}$.
+\end{proposition}
 
 \begin{definition}
-Stable homotopy groups of spheres
+Given $f:X\to Y$, we define $\Sigma f:\Sigma X\to \Sigma Y$ by \begin{equation}
+  (\Sigma f)([x,t]) = ([f(x),t]),
+\end{equation}
+where we denoted a point in $\Sigma X$ by $[x,t]$ for $x\in X$ and $t\in[0,1]$.
+This determines a map \begin{equation}
+[X,Y]_*\to [\Sigma X,\Sigma Y]_*.
+\end{equation}
 \end{definition}
 
-\begin{fact}
-Stable homotopy groups of spheres
-\end{fact}
+In particular, when applied to $X=S^n$ and $\Sigma X=S^{n+1}$, we have 
+\begin{proposition}
+$\pi_n(Y)\to \pi_{n+1}(\Sigma Y)$ is a homomorphism of groups.
+\end{proposition}
+Furthermore, there is the Freudenthal suspension theorem:
+\begin{theorem}
+Suppose $Y$ is $(n-1)$-connected, i.e.~$\pi_{i<n}(Y)=0$.
+Then the suspension homomorphism $\pi_k(Y)\to \pi_{k+1}(\Sigma Y)$ is an isomorphism for $k< 2n-1$ and a surjection for $k=2n-1$.
+\end{theorem}
+More explicitly, $\pi_{k\ge n}(\Sigma Y)=0$,
+$\pi_{k}(Y)=\pi_{k+1}(\Sigma Y)$ for $k=0,1,\ldots,2n-1$,
+and $\pi_{2n}(Y)\to \pi_{2n+1}(\Sigma Y)$ is surjective.
 
-`Mahowald uncertainty principle' \cite[Sec.~3]{IsaksenICM}
+As $S^n$ is clearly $(n-1)$-connected, we see in particular 
+\begin{proposition}
+  $\pi_{n+k}(S^n)\to \pi_{(n+1)+k}(S^{n+1})$ 
+  is an isomorphism for $k<n-1$ and a surjection for $k=n-1$.
+\end{proposition}
+This explains the grayed area in Table~\ref{tab:pi_nS^m}.
 
-This is now known to $\lim_{n\to\infty}\pi_{n+83}(S^n)$, \cite{Isaksen}.
+The homotopy groups of spheres in the grayed area 
+are known as the stable homotopy groups of spheres.
+More precisely, mathematicians define the following:
+\begin{definition}
+  We call \begin{equation}
+   \pi^\text{st}_k := \lim_{n\to\infty} \pi_{n+k}(S^n)
+  \end{equation}
+as the $k$-th stable homotopy group of spheres,
+or simply the $k$-th stem.
+\end{definition}
+
+In contrast, the homotopy groups in the ungrayed area
+are known as unstable groups.
+The stable homotopy groups of spheres are much easier to compute than the unstable groups.
+Still, the stable homotopy groups are not quite understood.
+Indeed, computing them is a major goal in algebraic topology;
+currently it is known up to $k\ge 83$ \cite{Isaksen}.
+
+In this field, there is a famous principle known as the 
+`Mahowald uncertainty principle' \cite[Sec.~3]{IsaksenICM},
+which says 
+that there is no single method 
+which allows us to compute all the stable homotopy groups of spheres!
+%\footnote{%
+A more precise formulation is that 
+any spectral sequence converging to $\pi^\text{st}_*$ 
+whose $E^2$ page has an algebraic description 
+has infinitely many differentials 
+and therefore is infinitely far from the real answer.
+I hope to cover as much background materials in this lecture series so that 
+the reader can at least understand this statement.
+%}
+
+Before moving on to the next section,
+let us discuss a particular homotopy group of spheres in the stable range
+which is relevant to the Standard Model of particle physics:
+\begin{example}
+  $\pi_4(S^3)=\bZ_2$.
+\end{example}
+Using the Freudenthal suspension theorem,
+we know that its generator $S^4\to S^3$ is the suspension $\Sigma p$
+of the Hopf fibration $p:S^3\to S^2$.
+But it is difficult to see that this map $\Sigma p$ 
+generates a $\bZ_2$, and that there is no other generator.
+  
+The way it appears in four-dimensional physics is the following.
+The weak force is described by a $SU(2)$ gauge theory,
+and therefore we have an $SU(2)$ principal bundle over our spacetime.
+Take a patch $\bR^4$ of the spacetime.
+Then we can consider a gauge transformation \begin{equation}
+  g:\bR^4\to SU(2).
+\end{equation}
+Let us say we don't perform any gauge transformation in the far region.
+Then we essentially have a map \begin{equation}
+g: S^4\to SU(2) \simeq S^3. \label{eq:su2gaugetr}
+\end{equation}
+Now, we have various fermions in our world.
+Those charged under the weak force 
+are always in the doublet representation of $SU(2)$.
+A single doublet is described by a section of $\underline{\mathbf{2}}\otimes S\to M$ 
+in the notation of Sec.~\ref{sec:SM};
+$\underline{V}\to M$ 
+is the associated vector bundle
+for a representation $\rho: G \curvearrowright V$
+and a principal $G$-bundle $P\to M$,
+and $S\to M$ is the spin bundle.
+
+Now, the partition function $Z_\text{single doublet}$ of a fermion in a singlet doublet representation 
+of $SU(2)$ 
+is known to behave under 
+a gauge transformation \eqref{eq:su2gaugetr} as \begin{equation}
+  Z_\text{single doublet} \to (-1)^s Z_\text{single doublet}.
+\end{equation}
+where $s=[g] \in \pi_4(S^3) \simeq \bZ_2 \simeq \{0,1\}$;
+this is due to \cite{Witten:}
 
 \subsection{Homotopy groups of Lie groups}
 
