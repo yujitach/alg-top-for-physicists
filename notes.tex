@@ -2452,24 +2452,169 @@ Why does the nature use this particular representation? I have no idea.
 \section{Basic homotopy theory}
 \label{sec:basic-homotopy}
 
-\subsection{Definitions and basic properties}
+
+\subsection{Definition of homotopy groups}
+
+Let us move on to algebraic topology proper. 
+
+\begin{definition}
+Two maps $f,g:X\to Y$ between topological spaces are called homotopic
+if there is a continuous map $F:X\times [0,1]\to Y$ such that
+$F(x,0)=f(x)$ and $F(x,1)=g(x)$ for all $x\in X$.
+$F$ is called a homotopy between $f$ and $g$.
+\end{definition}
+
+Take $s\in [0,1]$.
+Then $F_s(x):=F(x,s)$ is a map $X\to Y$.
+The condittions above means that $F_0=f$ and $F_1=g$.
+Therefore $F_s$ provides a continuous deformation from $f$ to $g$.
+
+\begin{proposition}
+  Being homotopic is an equivalence relation.
+\end{proposition}
+
 
 
 \begin{definition}
-homotopy class of maps
+  Equivalence classes of maps under homotopy are called homotopy classes.
+  We denote by $[X,Y]$ the set of homotopy classes of maps $X\to Y$.
 \end{definition}
+
+
+In a careful exposition of homotopy theory the following notion is essential:
 
 \begin{definition}
-homotopy equivalence
+  A pair $(X,p)$ of a topological space $X$ and a point $p\in X$ is called a pointed space.
+  $p$ is called the base point. 
 \end{definition}
+
+We often write `a pointed space $X$' as a shorthand for `a pointed space $(X,p)$'.
+In addition, when $X$ is connected, the choice of $p\in X$ does not usually matter.
+For that purpose we often use the notation $*$ for the base point in that case.
 
 \begin{definition}
-homotopy groups of spaces
+A map $f:(X,p)\to (Y,q)$ between pointed spaces is called a pointed map if $f(p)=q$.
 \end{definition}
 
-\begin{theorem}
-$\pi_{n}(X)$ for $n\ge 2$ is Abelian.
-\end{theorem}
+We can define homotopy of pointed maps in the same way as homotopy of maps.
+\begin{definition}
+  For pointed spaces $X$ and $Y$,
+  We denote by $[X,Y]_*$ the set of homotopy classes of pointed maps $X\to Y$.
+\end{definition}
+
+We regard $S^n$ as a pointed space by taking the north pole as the base point.
+In the following we set $n\ge 1$.
+Now, for a pointed space $(X,*)$, 
+consider $f\in[S^n,X]_*$. 
+Such an $f$ determines  a map from an $n$-dimensional cube to $X$ \begin{equation}
+f : [0,1]^n \to X
+\end{equation} 
+so that a neighborhood of the boundary of the cube is mapped to the base point $*\in X$, see Fig.~\ref{fig:homotopy}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.5\textwidth]{homotopy}
+  \caption{$f\in [S^n,X]_*$ as a map from $[0,1]^n$ to $X$.
+  The shaded regions are mapped to the base point $*\in X$.}
+  \label{fig:homotopy}
+\end{figure}
+
+We can define a group operation on $[S^n,X]_*$ as follows.
+Take $f,g\in [S^n,X]_*$.
+Regard them as maps $f,g:[0,1]^n\to X$. 
+We then define $fg:[0,1]^n \to X$ by \begin{equation}
+  (fg)(x_1,\ldots,x_n) = \begin{cases}
+    f(2x_1,x_2,\ldots,x_n) & \text{for $x_1\in [0,1/2]$},\\
+    g(2x_1-1,x_2,\ldots,x_n) & \text{for $x_1\in [1/2,1]$},
+  \end{cases}
+\end{equation}
+see Fig.~\ref{fig:homotopy-grouplaw}.
+
+\begin{figure}
+\[
+  \vcenter{\hbox{\includegraphics[width=.4\textwidth]{fg.jpg}}}\qquad
+  \vcenter{\hbox{\includegraphics[width=.4\textwidth]{grouplaw.jpg}}}
+\]
+  \caption{The group operation $fg$ on $[S^n,X]_*$.
+  The shaded regions are mapped to the base point $*\in X$.}
+  \label{fig:homotopy-grouplaw}
+\end{figure}
+We also define $f^{-1}$ by \begin{equation}
+  f^{-1}(x_1,\ldots,x_n) = 
+    f(1-x_1,x_2,\ldots,x_n) 
+\end{equation}
+As the identity element, we use $e:S^n \to X$ which maps the entire $S^n$ to the base point $*\in X$.
+
+\begin{proposition}
+  The set $[S^n,X]_*$ for $n\ge 1$ with the group operation defined above is a group.
+\end{proposition}
+
+\begin{definition}
+  The group $[S^n,X]_*$ for $n\ge 1$ is called the $n$-th homotopy group of $X$,
+  and is denoted by $\pi_n(X)$.
+\end{definition}
+
+\begin{proposition}
+The group $\pi_n(X)$ is Abelian for $n\ge 2$.
+\end{proposition}
+
+For a proof, see Fig.~\ref{fig:commutativity}.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{commutativity}
+  \caption{Commutativity of the group operation in $\pi_n(X)$ for $n\ge 2$.}
+  \label{fig:commutativity}
+\end{figure}
+
+\begin{definition}
+We define $\pi_0(X)$ to be $[S^0,X]_*$. This is the set of connected components of $X$.
+\end{definition}
+Indeed, $S^0=\{*,p\}$  where $*$ is the basepoint.
+Then $f:S^0\to X$ is determined by $f(p)\in X$.
+We regard $f$ up to homotopy. This means that $f$ is determined by the connected component of $X$ which $f(p)$ is in.
+
+We summarize the considerations so far:
+\begin{itemize}
+\item $\pi_0(X)$ is a set.
+\item $\pi_1(X)$ is a group, known also as the fundamental group of $X$.
+\item $\pi_{n\ge 2}(X)$ is an Abelian group.
+\end{itemize}
+
+\subsection{Basic properties of homotopy groups}
+
+We are going to define an equivalence relation between spaces
+which is much looser than homeomorphism/diffeomorphism.
+
+\begin{definition}
+Two spaces $X$ and $Y$ are called homotopy equivalent
+if there are maps $f:X\to Y$ and $g:Y\to X$ such that 
+$f\circ g$ is homotopic to $id_Y$  
+and $g\circ f$ is homotopic to $id_X$.
+\end{definition}
+
+When $X$ and $Y$ are homeomorphic, i.e.~if there is a 1:1 continuous map $f:X\to Y$,
+taking $g=f^{-1}$ we see that $X$ and $Y$ are homotopy equivalent.
+But $X$ and $Y$ being homotopy equivalent is much looser.
+\begin{example}
+A disk $D^2=\{|x|^2+|y|^2\le 1\}$ is homotopy equivalent to a point.
+\end{example}
+Indeed, let $f:D^2 \to \{(0,0)\}$ be the obvious map,
+and $g:\{(0,0)\}\to D^2$ be the inclusion.
+$f\circ g$ is identity.
+So we need to show that $g\circ f$ is homotopic to the identity.
+For this we just consider $f_s((x,y))= s(x,y)$ for $s\in [0,1]$,
+and we are done.
+
+\begin{proposition}
+If $X$ and $Y$ are homotopy equivalent, then $\pi_n(X)\simeq \pi_n(Y)$ for all $n\ge 0$.
+\end{proposition}
+
+So, if we can compute $\pi_n(X)$ and $\pi_n(Y)$ for some $n$ and show $\pi_n(X)\neq \pi_n(Y)$, 
+then $X$ and $Y$ are not homotopy equivalent.
+In particular, $X$ and $Y$ are not homeomorphic and not diffeomorphic. 
+But we have not yet learned how to compute homotopy groups.
+And this is surprisingly hard!
 
 \begin{theorem}
 $\pi_n(X\times Y)$.
