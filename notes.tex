@@ -2434,12 +2434,13 @@ V_\text{boson} = \mathbf{2} \otimes V_{+1/2}
 where $\bC^3$ part is to describe the three generations,
 and $V_\text{single generation}$ is given by 
 \begin{equation}
+\label{eq:generation}
   \begin{array}{ccccccl@{\qquad}lcc}
 &  &    \mathbf{3} &\otimes & \mathbf{2} &\otimes& V_{+1/6}  & (\text{the quark doublet} & Q_L) \\
 & \oplus&   \mathbf{\bar 3} & & &  \otimes&  V_{-2/3}  & (\text{the up-type antiquark} & \bar u_R) \\
 &\oplus &  \mathbf{\bar 3} & & &\otimes& V_{+1/3} & (\text{the down-type antiquark} & \bar d_R) \\
 &\oplus  & & & \mathbf{2} &\otimes& V_{-1/2}  & (\text{the lepton doublet} & \ell_L) \\
-&\oplus &  & & \mathbf{2} &\otimes& V_{+1} & (\text{the charged anti-lepton} & \bar e_R)\\
+&\oplus &  & & &\otimes& V_{+1} & (\text{the charged anti-lepton} & \bar e_R)\\
 &\oplus &&&&& \bC & (\text{the right-handed neutrino} & \bar \nu_R).
   \end{array}
 \end{equation}
@@ -2941,10 +2942,18 @@ Now, the partition function $Z_\text{single doublet}$ of a fermion in a singlet 
 of $SU(2)$ 
 is known to behave under 
 a gauge transformation \eqref{eq:su2gaugetr} as \begin{equation}
-  Z_\text{single doublet} \to (-1)^s Z_\text{single doublet}.
+  Z_\text{single doublet} \to (-1)^s Z_\text{single doublet}.\label{eq:Witten-anomaly}
 \end{equation}
 where $s=[g] \in \pi_4(S^3) \simeq \bZ_2 \simeq \{0,1\}$;
-this is due to \cite{Witten:}
+this was found originally in \cite{Witten:1982fp}.
+This means that an $SU(2)$ gauge theory with a single doublet is inconsistent, for example.
+
+Now, in a single generation \eqref{eq:generation},
+there are $3+1=4$ doublets of $SU(2)$.
+Therefore, the sign \eqref{eq:Witten-anomaly} always becomes $(-1)^{4s}=+1$,
+making the theory consistent.
+This for example means that you cannot just change the number of colors $SU(3)$ to $SU(4)$, 
+keeping everything else in the Standard Model fixed.
 
 \subsection{Homotopy groups of Lie groups}
 
