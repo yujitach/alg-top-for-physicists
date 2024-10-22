@@ -1280,6 +1280,7 @@ The construction given here is due to Kummer.
 }
 
 \subsection{Some curious facts about manifolds}
+\label{sec:smooth-vs-topological}
 
 \subsubsection{Smooth vs.~topological manifolds}
 Consider the following equation in $\bC^5$:
@@ -1427,6 +1428,7 @@ where all the down arrows are the projections forgetting the fiber direction.
 \end{notation}
 
 \begin{definition}
+  \label{def:bundle-equiv}
 Two fiber bundles $F\to E\xrightarrow{p} B$ and $F\to E'\xrightarrow{p'} B$ with the same fiber
 are said to be equivalent if there is a bijection $f: E\to E'$ 
 compatible with the projections, i.e.~the following diagram commutes:
@@ -2493,11 +2495,21 @@ Then $F_s(x):=F(x,s)$ is a map $X\to Y$.
 The condittions above means that $F_0=f$ and $F_1=g$.
 Therefore $F_s$ provides a continuous deformation from $f$ to $g$.
 
+
+In Sec.~\ref{sec:smooth-vs-topological} I made a fuss about the distinction between smooth and continuous maps, 
+or smooth and topological manifolds.
+In homotopy theory of smooth manifolds, 
+we usually do not need to worry about this distinction,
+since we have the following
+\begin{fact}
+Any continuous map between smooth manifolds is homotopic to a smooth map.
+\end{fact}
+Of course it does matter if we want to study the smooth vs.~continuous issue itself.
+
+Let us move on.
 \begin{proposition}
   Being homotopic is an equivalence relation.
 \end{proposition}
-
-
 
 \begin{definition}
   Equivalence classes of maps under homotopy are called homotopy classes.
@@ -3034,8 +3046,9 @@ making the theory consistent.
 This for example means that you cannot just change the number of colors $SU(3)$ to $SU(4)$, 
 keeping everything else in the Standard Model fixed.
 
-\subsection{Fiber bundles and homotopy groups}
-\subsubsection{Statement of the main theorem}
+
+\subsection{Long exact sequence of homotopy groups of fiber bundles}
+\subsubsection{Statement}
 Computing homotopy groups is hard. 
 One useful technique is the long exact sequence of homotopy groups
 associated to fiber bundles $F\to E\to B$.
@@ -3128,7 +3141,7 @@ Let us come back to algebraic topology.
 \end{theorem}
 
 
-\subsubsection{Basic use cases}
+\subsubsection{Use cases}
 Let us have a look at some of the basic use cases. 
 This shows that you can use a theorem without understanding its proof,
 and without even understanding the construction of the important map $\partial$
@@ -3426,7 +3439,112 @@ and allows us to define $\pi_d(Spin(\infty))$,
 $\pi_d(SU(\infty))$, and $\pi_d(Sp(\infty))$ consistently.
 
 
-  
+
+\subsection{Principal bundles over spheres}
+
+Let us use homotopy groups to classify principal bundles over spheres.
+We start from a general construction.
+\begin{definition}
+Given a bundle $F\to E\stackrel{p}{\longrightarrow} B$
+and a map $f:X\to B$,
+the pull-back bundle $p': f^*(E)\to X$ is defined as \begin{equation}
+  f^*(E) = \{ (x,e)\in X\times E \mid f(x)=p(e) \},
+\end{equation}
+where $p'((x,e))=x$.
+\end{definition}
+We can explicitly introduce local trivializations of $f^*(E)$ in terms of those of $E$.
+Say we are given a covering of $B$ by open sets $U_i$
+and a local trivialization $f_i:p^{-1}(U_i)\to U_i\times F$ of $E$.
+Denote $f_i(e)=(p(e),F_i(e))$.
+We cover $X$ via $V_i:=f^{-1}(U_i)$ and define local trivializations by mapping \begin{equation}
+(x,e) \in p'{}^{-1}(V_i) 
+\end{equation} to \begin{equation}
+(x,F_i(e)) \in V_i\times F.
+\end{equation}
+
+\begin{theorem}
+Given a bundle $F\to E\to B$
+and two maps $f,g:X\to B$ which are homotopic to each other,
+the pull-back bundles $f^*(E)$ and $g^*(E)$ are equivalent as bundles.
+\end{theorem}
+Recall that the equivalence of bundles were defined in Definition~\ref{def:bundle-equiv}.
+The proof of this important theorem is worth looking at,
+but alas we do not have the time.
+
+\begin{proposition}
+  Let $U$ be a contractible space.
+  Then any bundle over $U$ is trivial.
+\end{proposition}
+This follows easily from the previous theorem.
+Indeed, pick a point $p\in U$.
+Then the identity map $id:U\to U$ is homotopic to a constant map $f:U\to U$ sending all points to $p$.
+Therefore $E=id^*(E)$ is equivalent to $f^*(E)=U\times F$, which is trivial.
+
+Let us now consider principal $G$-bundles  $G\to P\to S^n$.
+We cover $S^n$ by the northern and southern hemispheres $U_+$ and $U_-$,
+where we take both regions to overlap slightly around the equator.
+We can trivialize the bundle over each hemisphere,
+so the bundle $P$ is given by gluing
+$U_+\times G$ and $U_-\times G$ over the overlap via a function
+$g:U_+\cap U_-\to G$.
+As $U_+\cap U_-$ is contractible to the equator $S^{n-1}$,
+the bundle is determined by a map $S^{n-1} \to G$.
+As two homotopic maps determine equivalent bundles,
+we found that 
+\begin{proposition}
+  Principal $G$-bundles over $S^n$ are classified by $\pi_{n-1}(G)$.
+\end{proposition}  
+
+We have two standard examples.
+
+First, consider $U(1)$ bundles over $S^2$.
+We just learned that this is classified by $\pi_1(U(1))=\bZ$.
+In physics, a $U(1)$ bundle is required to study electromagnetism
+in topologically nontrival cases.
+We will learn later that this integer is the magnetic charge,
+or equivalently the monopole flux through $S^2$.
+For this, we need to introduce the concept of the connection, 
+or equivalently the gauge field.
+This will then lead to a differential-geometric expression for this number,
+given as the integral of the magnetic field over $S^2$.
+
+That the magnetic charge is quantized was first discovered by Dirac \cite{Dirac}.
+Here we used a geometric argument and therefore the unit of the magnetic charge was dimensionless and was set to 1.
+Later, we will see how to connect this unit to your favorite system of units of electromagnetism.
+
+Next, take a simple simply-connected compact Lie group $G$ such as $SU(2)$.
+Then $\pi_3(G)=\bZ$,
+and therefore principal $G$-bundles over $S^4$ are classified by $\bZ$.
+
+More commonly, we consider principal bundles $P\to \bR^4$ over a flat $\bR^4$,
+which we take to be a good approximation of our world.
+We further assume that we are given a trivialization around infinity,
+i.e.~if we remove a finite region $U\subset \bR^4$ 
+where something interesting is going on,
+nothing is going on the rest $U'=\bR^4 \setminus U$ of the spacetime,
+and we are given a local trivialization $U'\times G$ there.
+Then, we can effectively consider the region $U'$ as a single point,
+and regard our bundle as coming from a principal $G$-bundle  $P\to S^4$
+via a pullback, see Fig.~\ref{fig:bundle-R4}.
+Then the topology of the $G$-bundle is specified by an integer $\pi_3(G)=\bZ$.
+This number is known as the instanton number in physics.
+Again, we will have a differential-geoemtric interpretation of this number later.
+
+\begin{figure}
+  \centering
+  \includegraphics[width=0.8\textwidth]{bundle-R4.png}
+  \caption{Principal bundle over $\bR^4$ with a trivialization around infinity
+  is given by a pull-back from $S^4$}
+  \label{fig:bundle-R4}
+\end{figure}
+
+Note that the assumption that the bundle is trivial around infinity 
+came from physics, and is not a mathematical necessity.
+With other assumptions around infinity,
+corresponding to different physics settings,
+we will have other classifications.
+It is also to be mentioned that the classification of bundles over $T^4$ 
+is a much more difficult one.
 
 \subsection{Topological solitons and homotopy groups}
 
