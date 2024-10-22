@@ -134,6 +134,8 @@
 
 \def\Spin{\mathit{Spin}}
 \def\pt{\mathrm{pt}}
+\def\Ker{\mathop{\mathrm{Ker}}}
+\def\Im{\mathop{\mathrm{Im}}}
 
 \begin{document}
 
@@ -1027,6 +1029,7 @@ Let $Sp(n)$ act on $\bH^n$ in a standard manner.
 By following the same logic as above, we get $Sp(n)/Sp(n-1)=S^{4n-1}$,
 and we found that:
 \begin{proposition}
+  \label{prop:Sp/Sp}
 $ Sp(n)/Sp(n-1)\simeq S^{4n-1}$.
 \end{proposition}
 
@@ -1392,10 +1395,6 @@ that is compatible with the projection, i.e.~the following diagram \begin{equati
 commutes, where the down arrows are projections.
 $F$, $E$ and $B$ are called the fiber, total space, and base space, respectively.
 The map $f$ above is called a local trivialization.
-As a shorthand, we often refer to a fiber bundle as 
-\begin{equation}
-F\to E\to B.  
-\end{equation}
 \end{definition}
 
 In other words, a fiber bundle over $B$ with fiber $F$
@@ -1412,6 +1411,14 @@ maps $f_{ij}$ as follows:
   \end{array}
 \end{equation}
 where all the down arrows are the projections forgetting the fiber direction.
+
+\begin{notation}
+  As a shorthand, we often refer to a fiber bundle as 
+  \begin{equation}
+  F\stackrel{\iota}{\longrightarrow} E\stackrel{p}{\longrightarrow} B.  
+  \end{equation}  
+  Here, $\iota$ is the inclusion of the fiber over a point $b$ in the base $B$.
+\end{notation}
 
 \begin{definition}
 Two fiber bundles $F\to E\xrightarrow{p} B$ and $F\to E'\xrightarrow{p'} B$ with the same fiber
@@ -1620,6 +1627,15 @@ This was then adopted by the quantum information community,
 which then became a standard terminology more generally, due to the increasing popularity of qubits. 
 (I used \url{https://physics.stackexchange.com/questions/636913/} as a source.)
 }
+We can also give a more explicit parameterization of the map above:
+\begin{equation}
+  \label{eq:Hopf-explicit}
+(\cos(\theta/2)  e^{i \psi},
+\sin(\theta/2) e^{i(\phi+\psi)} )
+\mapsto  (\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta).
+\end{equation}
+This shows that the fiber above a point on $S^2$ is parameterized by $\psi$.
+
 \item All the three fibrations above have the form
 $S^n \to S^m \to S^{m-n}$.
 One wonders if there are other examples of this form.
@@ -2561,6 +2577,14 @@ It is the group of closed paths from the base point to the base point,
 where the group law is obtained by concatenation. 
 
 \begin{example}
+$\pi_n(\pt)=0$, where $\pt$ is a single point.
+\end{example}
+
+\begin{example}
+  $\pi_n(\bR^k)=0$.
+\end{example}
+
+\begin{example}
 $\pi_1(S^1)=[S^1,S^1]_*=\bZ$. 
 \end{example}
 This is because $f:S^1\to S^1$ is determined by how many times the image of $f$
@@ -2754,7 +2778,7 @@ So every map is homotopic to the map to the basepoint, see Fig.~\ref{fig:nm}.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{nm}
+  \includegraphics[width=0.6\textwidth]{nm}
   \caption{A generic map $S^n\to S^m$ with $n<m$ has a point $p\in S^m$ not mapped from $S^n$.}
   \label{fig:nm}
 \end{figure}
@@ -2795,7 +2819,7 @@ See Fig.~\ref{fig:hopf-invariant} for an illustration.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.5\textwidth]{hopf}
+  \includegraphics[width=0.4\textwidth]{hopf}
   \caption{A definition of the Hopf invariant of a map $f:S^3\to S^2$  is 
   given by considering the linking number of the inverse images of two points in $S^2$.}
   \label{fig:hopf-invariant}
@@ -3001,6 +3025,240 @@ making the theory consistent.
 This for example means that you cannot just change the number of colors $SU(3)$ to $SU(4)$, 
 keeping everything else in the Standard Model fixed.
 
+\subsection{Fiber bundles and homotopy groups}
+\subsubsection{Statement of the main theorem}
+Computing homotopy groups is hard. 
+One useful technique is the long exact sequence of homotopy groups
+associated to fiber bundles $F\to E\to B$.
+This relates the homotopy groups  $\pi_*(F)$, $\pi_*(E)$, and $\pi_*(B)$.
+This often allows us to determine one if we know the other two.
+We start from the following definition:
+
+\begin{definition}
+  A sequence of groups and homomorphisms between them, \begin{equation}
+  \cdots 
+  \stackrel{f_{i-2}}{\longrightarrow} G_{i-1} 
+  \stackrel{f_{i-1}}{\longrightarrow} G_{i}
+  \stackrel{f_{i}}{\longrightarrow} G_{i+1}
+  \stackrel{f_{i+1}}{\longrightarrow} \cdots
+  \end{equation}
+is called an exact sequence of groups if it is exact at each group, i.e.~
+$f_{i-1}\circ f_i=0$ and furthermore 
+\begin{equation}
+ \Im f_{i}  = \Ker f_{i+1} \subset G_i \label{eq:exactness}
+\end{equation}
+for all $i$.
+\end{definition}
+
+\begin{definition}
+  A short exact sequence of groups is an exact sequence of groups of the following form: \begin{equation}
+  1 \to A \to B \to C \to 1.
+  \end{equation}
+  In this case $B$ is called the extension of $C$ by $A$.
+\end{definition}
+Note that for Abelian groups we often use the notation $0$ instead of $1$
+to denote a trivial group.
+
+Given $A$ and $C$, $B$ is not uniquely determined.
+For example, assuming all groups involved to be Abelian,
+consider the short exact sequence \begin{equation}
+  0 \to \bZ_2 \to A \to \bZ_2 \to 0.
+\end{equation}  
+Then $A$ can be $\bZ_2\times \bZ_2$ or $\bZ_4$.
+In the latter case, the homomorphisms are given by \begin{equation}
+0 \to \{0,1\} \xrightarrow{\times 2} \{0,1,2,3\} \xrightarrow{\mod 2} \{0,1\} \to 0.
+\end{equation}
+
+But there are cases when the extension is unique. 
+The most obvious but still useful cases are:
+\begin{example}
+An exact sequence $1\to A\to B\to 1$ means that $A\simeq B$.
+\end{example}
+
+\begin{proposition}
+  An exact sequence of groups\begin{equation}
+    \cdots 
+    \stackrel{f_{i-2}}{\longrightarrow} G_{i-1} 
+    \stackrel{f_{i-1}}{\longrightarrow} G_{i}
+    \stackrel{f_{i}}{\longrightarrow} G_{i+1}
+    \stackrel{f_{i+1}}{\longrightarrow} \cdots
+  \end{equation}
+  gives rise to short exact sequences of groups \begin{equation}
+    0 \to G_{i-1}/\Ker f_{i-1} \to G_i \to \Im f_{i} \to 0.
+  \end{equation}
+\end{proposition}
+
+This means that, given a long exact sequence of groups,
+we have a lot of information to determine the groups involved.
+Let us come back to algebraic topology.
+\begin{theorem}
+  \label{thm:long-exact-seq-homotopy}
+  Given a fiber bundle \begin{equation}
+    F\stackrel{\iota}{\longrightarrow} E\stackrel{p}{\longrightarrow} B,
+  \end{equation}
+  we have the following long exact sequence of homotopy groups: 
+  \begin{equation}\begin{array}{cccccccc}
+    \cdots 
+      & \stackrel{\partial}{\longrightarrow} & \pi_{n+1}(F)  
+      & \stackrel{\iota_*}{\longrightarrow} & \pi_{n+1}(E)
+      & \stackrel{p_*}{\longrightarrow} & \pi_{n+1}(B)  \\
+      & \stackrel{\partial}{\longrightarrow} & \pi_{n}(F)  
+      & \stackrel{\iota_*}{\longrightarrow} & \pi_{n}(E)
+      & \stackrel{p_*}{\longrightarrow} & \pi_{n}(B)  \\
+      & \stackrel{\partial}{\longrightarrow} & \cdots & &&& \cdots \\
+      & \stackrel{\partial}{\longrightarrow} & \pi_{1}(F)  
+      & \stackrel{\iota_*}{\longrightarrow} & \pi_{1}(E)
+      & \stackrel{p_*}{\longrightarrow} & \pi_{1}(B) \\
+      & \stackrel{\partial}{\longrightarrow} & \pi_{0}(F)  
+      & \stackrel{\iota_*}{\longrightarrow} & \pi_{0}(E)
+      & \stackrel{p_*}{\longrightarrow} & \pi_{0}(B),
+      \end{array}\end{equation}
+      where the last three objects are not really groups but sets,
+      but the condition \eqref{eq:exactness} still holds,
+      and the map $\partial$ is constructed below in Definition~\ref{def:connecting-map-homotopy}.  
+\end{theorem}
+
+
+\subsubsection{Basic use cases}
+Let us have a look at some of the basic use cases. 
+This shows that you can use a theorem without understanding its proof,
+and without even understanding the construction of the important map $\partial$
+in the statement!
+This is the mindset ``math as a set of mobile apps'' I am advocating.
+
+Consider the fiber bundle $\bZ\to \bR \to S^1$.
+As $\pi_n(\bR^k)=0$, the long exact sequence simply gives
+\begin{equation}
+0=\pi_n(\bR)\to \pi_n(S^1)\to \pi_{n-1}(\bZ)\to \pi_{n-1}(\bR)=0
+\end{equation} meaning that \begin{equation}
+  \pi_n(S^1)=\pi_{n-1}(\bZ).
+\end{equation} As $\pi_0(\bZ)=\bZ$ and $\pi_{n\ge 1}(\bZ)=0$,
+we conclude that \begin{equation}
+  \pi_n(S^1)=\begin{cases}
+    \bZ & n=1, \\
+    0 & n\neq 1.
+  \end{cases}
+\end{equation}
+
+Suppose $\Gamma$ acts on $S^n$ freely, with $n\ge 2$. 
+We have the fiber bundle $\Gamma\to S^n\to S^n/\Gamma$.
+Then we have the long exact sequence, a part of which is \begin{equation}
+  \pi_1(S^n) \to \pi_1(S^n/\Gamma)\to \pi_0(\Gamma) \to \pi_0(S^n)
+\end{equation} which is \begin{equation}
+   0 \to \pi_1(S^n/\Gamma) \to \Gamma\to 0
+\end{equation} meaning that $\pi_1(S^n/\Gamma)=\Gamma$.
+Recall $\RP^n=S^n/\bZ_2$. Therefore we have \begin{equation}
+  \pi_1(\RP^n)=\bZ_2.
+\end{equation}
+Recall further that $SO(3)=\bZ_2$. Then we have \begin{equation}
+  \pi_1(SO(3))=\bZ_2.
+\end{equation}
+
+Next, let us apply the long exact sequence of homotopy groups to the Hopf fibration $S^1\to S^3\to S^2$.
+We learned above that $\pi_k(S^1)=0$ when $k>1$.
+Therefore the long exact sequences gives \begin{equation}
+  0=\pi_{k}(S^1)\to \pi_{k}(S^3)\to \pi_k(S^2)\to \pi_{k-1}(S^1)=0
+\end{equation} when $k\ge 3$, meaning that \begin{equation}
+  \pi_k(S^3)=\pi_k(S^2)
+\end{equation} again with $k\ge 3$. 
+This in particular shows that $\pi_3(S^2)=\bZ$, the basic fact we already mentioned,
+and also explains the pattern in Table~\ref{tab:pi_nS^m}
+in the two columns for $S^2$ and $S^3$.
+
+As a final example, consider the computation of $\pi_4(Sp(n))$.
+We learned in Proposition \ref{prop:Sp/Sp} that there is a fiber bundle
+\begin{equation}
+S^{4n-1}\to Sp(n)\to Sp(n-1).
+\end{equation} Then the long exact sequence gives
+\begin{equation}
+  \pi_4(S^{4n-1})\to \pi_4(Sp(n))\to \pi_4(Sp(n-1))\to \pi_3(S^{4n-1}).
+\end{equation} For $n\ge 2$, $4n-1\ge 7$, and therefore 
+\begin{equation}
+  0\to \pi_4(Sp(n))\to \pi_4(Sp(n-1))\to 0,
+\end{equation} i.e.~$\pi_4(Sp(n))=\pi_4(Sp(n-1))$.
+As $\pi_4(Sp(1))=\bZ_2$, we inductively find that 
+\begin{equation}
+\pi_4(Sp(n))=\bZ_2.
+\end{equation}
+This suggests the existence of the mod-2 $SU(2)=Sp(1)$ anomaly of Witten 
+carries on to higher $Sp(n)$ gauge theories,
+and it indeed turns out to be the case.
+
+\subsubsection{Idea of the proof}
+The idea of the proof of this important theorem is as follows.
+Consider first the part \begin{equation}
+\pi_{n}(F) \stackrel{\iota_*}{\longrightarrow} \pi_{n}(E) \stackrel{p_*}{\longrightarrow} \pi_{n}(B).
+\end{equation}
+That $p_*\circ \iota_*=0$ is clear.
+But not only that, we need to show that $\Im \iota_* = \Ker p_*$,
+So, assume that $f:S^n\to E$ is such that $F=p\circ f: S^n\to B$ is homotopic to a trivial map.
+So there is a deformation $F_s$ for $s\in [0,1]$ such that $F_0=F$ and $F_1$ is the constant map.
+At each step $F_s$, we can find $f_s:S^n \to E$ such that $p\circ f_s=F_s$.
+As $p\circ f_0=F_0$ is a constant map to the base, $f_0$ is actually a map to a fiber, done.
+
+Next, consider the part \begin{equation}
+  \pi_{n+1}(B)\stackrel{\partial}{\longrightarrow}\pi_{n}(F) \stackrel{\iota_*}{\longrightarrow} \pi_{n}(E).
+\end{equation}
+For this we need to define the map $\partial$ to start with.
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{connecting.png}
+  \caption{The connecting map $\partial$}
+  \label{fig:connecting}
+\end{figure}
+\begin{definition}
+  \label{def:connecting-map-homotopy}
+  $\partial:\pi_{n+1}(B)\to \pi_{n}(F)$ is defined as follows.
+  Given a map $f:S^{n+1}\to B$, we regard it instead as a parameterized map
+  \begin{equation}
+  f: S^n\times [0,1] \to B
+  \end{equation} such that \begin{equation}
+    f(-,0):S^n\to B,\qquad
+    f(-,1):S^n\to B
+  \end{equation}
+  are constant maps to points $a,b\in B$, respectively.
+  We now consider the continuous map \begin{equation}
+    \tilde f:S^n\times [0,1]\to E
+  \end{equation}
+  such that $p\circ \tilde f=f$ and that \begin{equation}
+    \tilde f(-,0): S^n\to E
+  \end{equation} is a constant map to the basepoint $*\in E$ above $a\in B$.
+  Now, the image of  \begin{equation}
+    \tilde f(-,1): S^n\to E
+  \end{equation} contained in the fiber $F$ above $b\in B$,
+  so we can define \begin{equation}
+    \partial [f] := [\tilde f(-,1)]\in \pi_n(F).
+  \end{equation}
+\end{definition}
+See Fig~\ref{fig:connecting} for an illustration.
+With this definition, the property $\Im \partial = \Ker \iota_*$ is fairly tautological.
+
+Finally, consider the part \begin{equation}
+  \pi_{n+1}(E) \stackrel{p_*}{\longrightarrow} \pi_{n+1}(B) \stackrel{\partial}{\longrightarrow} \pi_{n}(F).
+\end{equation}
+Again, the property $\Im p_* = \Ker \partial$ is fairly tautological.
+
+To get a better idea of the connecting map, it is instructive 
+to compute the process explicitly in the case of the Hopf fibration.
+For example, consider the following step: \begin{equation}
+0= \pi_2(S^3) \to \pi_2(S^2) \stackrel{\partial}{\longrightarrow} \pi_1(S^1) \to \pi_1(S^3)=0.
+\end{equation}
+Consider the identity map $f:S^2\to S^2$ and let us compute $\partial f$.
+Let us use the polar coordinate $(\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta)$ for $S^2$.
+Then we can regard $\theta\in [0,\pi]$ as $s\in[0,1]$ used in the definition above, so $f(\phi,\theta)=(\phi,\theta)$.
+
+Now, recall the following description \eqref{eq:Hopf-explicit} of the Hopf map $S^3\to S^2$:\begin{equation}
+  (\cos(\theta/2)  e^{i \psi},
+  \sin(\theta/2) e^{i(\phi+\psi)} )
+  \mapsto  (\sin\theta\cos\phi,\sin\theta\sin\phi,\cos\theta).
+\end{equation}
+Then we can take \begin{equation}
+g(\phi,\theta) := (\cos(\theta/2),\sin(\theta/2)e^{i\phi}).
+\end{equation}
+We indeed see that \begin{equation}
+(\partial f)(\phi):= g(\phi,\pi) = (0,e^{i\phi})
+\end{equation} which indeed wraps once around the fiber over $(0,0,1)$.
+
 \subsection{Homotopy groups of Lie groups}
 
 \def\BZ{\bZ}
@@ -3045,30 +3303,8 @@ The data are taken from \cite[付録, 公式 7, VII]{Jiten}.
   \caption{Homotopy groups of Lie groups $\pi_d(G)$, $4\le d\le 11$.
   $\pi_2(G)=0$ and $\pi_3(G)=\bZ$ for all $G$.
    \label{tab:pi_nG}}
-  \end{table}
+\end{table}
   
-
-\subsection{Fiber bundles and homotopy groups}
-
-\begin{definition}
-long exact sequence of groups
-\end{definition}
-
-\begin{theorem}
-long exact sequence of homotopy groups
-\end{theorem}
-
-\begin{example}
-$\pi_1(S^n/\Gamma)$ again
-\end{example}
-
-\begin{example}
-$\pi_3(S^2)$ via Hopf fibration
-\end{example}
-
-\begin{example}
-$\pi_5(SU(2))\to \pi_5(SU(3)) \to \pi_5(S^5) \to \pi_4(SU(2))$ 
-\end{example}
 
 \subsection{Topological solitons and homotopy groups}
 
