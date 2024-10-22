@@ -132,6 +132,10 @@
 \def\HP{\mathbb{HP}}
 \def\KP{\mathbb{KP}}
 
+\def\BZ{\bZ}
+\def\Sp{Sp}
+\def\SU{SU}
+
 \def\Spin{\mathit{Spin}}
 \def\pt{\mathrm{pt}}
 \def\Ker{\mathop{\mathrm{Ker}}}
@@ -1010,6 +1014,7 @@ At $m_0=(r_0,0,\ldots,0)$, the subgroup of $SO(n)$ fixing $m_0$ is $SO(n-1)$.
 Therefore, the space of the potential minimum is $SO(n)/SO(n-1)=S^{n-1}$.
 Summarizing, we have found
 \begin{proposition}
+  \label{prop:SO/SO}
  $ SO(n)/SO(n-1) \simeq S^{n-1}$.
 \end{proposition}
 
@@ -1022,6 +1027,7 @@ the space of the potential minimum is $S^{2n-1}$ given by $|z_1|^2+\cdots + |z_n
 At $m_0=(r_0,0,\ldots,0)$, the subgroup of $U(n)$ fixing $m_0$ is $U(n-1)$.
 Therefore, the space of the potential minimum is $U(n)/U(n-1)=S^{2n-1}$.
 \begin{proposition}
+  \label{prop:U/U}
 $U(n)/U(n-1)\simeq S^{2n-1}$.
 \end{proposition}
 
@@ -2885,7 +2891,10 @@ which also has an English translation \cite{EDM}.
 \caption{Table of $\pi_{n+k}(S^n)$ \label{tab:pi_nS^m}}
 \end{table}
 
-We clearly see a pattern in the table. 
+Here we showed $\pi_d(S^d)\simeq \bZ$ in red,
+and the $\bZ$ summand of $\pi_{2d-1}(S^d)$ in blue.
+
+We clearly see more patterns in the table. 
 This comes from the following general fact.
 Let us start with a definition.
 \begin{definition}
@@ -3165,21 +3174,47 @@ This in particular shows that $\pi_3(S^2)=\bZ$, the basic fact we already mentio
 and also explains the pattern in Table~\ref{tab:pi_nS^m}
 in the two columns for $S^2$ and $S^3$.
 
+As another example, consider the computation of $\pi_1(SO(n))$.
+We just saw above that $\pi_1(SO(3))=\bZ_2$.
+We learned in Proposition \ref{prop:SO/SO} that there is a fiber bundle
+\begin{equation}
+SO(n-1)\to SO(n)\to S^{n-1}.
+\end{equation} Then the long exact sequence gives
+\begin{equation}
+  \pi_2(S^{n-1})\to \pi_1(SO(n-1))\to \pi_1(SO(n))\to \pi_1(S^{n-1}).
+\end{equation}
+For $n>  3$ we have $\pi_{2}(S^{n-1})=\pi_1(S^{n-1})=0$, and therefore $\pi_1(SO(n-1))=\pi_1(SO(n))$.
+Inductively, we have found 
+\begin{example}
+  \label{ex:pi1SOn}
+$\pi_1(SO(n))=\bZ_2$ for $n\ge 3$.
+\end{example}
+
+
+A different part of the same long exact sequnece for $n=3$ gives \begin{equation}
+  \underbrace{\pi_2(SO(2))}_{=0}
+  \to \pi_2(SO(3)) 
+  \to \underbrace{\pi_2(S^2)}_{\bZ}
+  \stackrel{\partial}{\longrightarrow}  \underbrace{\pi_1(SO(2))}_{\bZ} \to \underbrace{\pi_1(SO(3))}=\bZ_2  \pi_1(S^2)=0.
+\end{equation}
+This forces $\partial:\bZ\to \bZ$ to be a multiplication by $2$,
+which tne means that $\pi_2(SO(3))=0$.
+
 As a final example, consider the computation of $\pi_4(Sp(n))$.
 We learned in Proposition \ref{prop:Sp/Sp} that there is a fiber bundle
 \begin{equation}
-S^{4n-1}\to Sp(n)\to Sp(n-1).
+  Sp(n-1)\to Sp(n)\to S^{4n-1}.
 \end{equation} Then the long exact sequence gives
 \begin{equation}
-  \pi_4(S^{4n-1})\to \pi_4(Sp(n))\to \pi_4(Sp(n-1))\to \pi_3(S^{4n-1}).
+  \pi_5(S^{4n-1})\to \pi_4(Sp(n-1))\to \pi_4(Sp(n))\to \pi_4(S^{4n-1}).
 \end{equation} For $n\ge 2$, $4n-1\ge 7$, and therefore 
 \begin{equation}
-  0\to \pi_4(Sp(n))\to \pi_4(Sp(n-1))\to 0,
-\end{equation} i.e.~$\pi_4(Sp(n))=\pi_4(Sp(n-1))$.
+  0\to \pi_4(Sp(n-1))\to \pi_4(Sp(n))\to 0,
+\end{equation} i.e.~$\pi_4(Sp(n-1))=\pi_4(Sp(n))$.
 As $\pi_4(Sp(1))=\bZ_2$, we inductively find that 
-\begin{equation}
-\pi_4(Sp(n))=\bZ_2.
-\end{equation}
+\begin{example}
+  $\pi_4(Sp(n))=\bZ_2$.  
+\end{example}
 This suggests the existence of the mod-2 $SU(2)=Sp(1)$ anomaly of Witten 
 carries on to higher $Sp(n)$ gauge theories,
 and it indeed turns out to be the case.
@@ -3259,51 +3294,138 @@ We indeed see that \begin{equation}
 (\partial f)(\phi):= g(\phi,\pi) = (0,e^{i\phi})
 \end{equation} which indeed wraps once around the fiber over $(0,0,1)$.
 
+
 \subsection{Homotopy groups of Lie groups}
 
-\def\BZ{\bZ}
-\def\Sp{Sp}
-\def\SU{SU}
+To use the long exact sequence of homotopy groups,
+we need to know some homotopy groups to start with.
+We already gave a table of $\pi_n(S^m)$ for some values of $n,m$.
+Here we discuss homotopy groups of Lie groups.
 
-Homotopy groups of simply connected Lie groups $\pi_{n}(G)$ 
-for small $n$ are tabulated in Table~\ref{tab:pi_nG}.
+
+Let us start with $U(1)$. As $U(1)=S^1$, we already know $\pi_n(U(1))$.
+
+Let us then discuss non-Abelian Lie groups $G$.
+For groups, $\pi_0(G)$, the set of connected components, itself is a group.
+For example, $O(n)$ has two components,
+the one with $\det=+1$ and another with $\det=-1$.
+Then $\pi_0(O(n))=\bZ_2$. 
+For the rest of this subsection, we only consider connected Lie groups,
+for which $\pi_0(G)=1$.
+
+Let us next consider $\pi_1(G)$. 
+\begin{fact}
+$\Gamma$ is always known to be an Abelian group.
+Furthermore, it is known that there always is a group $\tilde G$ with $\pi_1(\tilde G)=0$
+together with a subgroup $\Gamma \subset \tilde G$ such that \begin{equation}
+G=\tilde G/\Gamma.
+\end{equation}
+Such $\tilde G$ is known as the universal cover of $G$.
+\end{fact}
+Let us check that $\pi_1(\tilde G/\Gamma)=\Gamma$.
+For this we consider the long exact sequence of homotopy groups associated to 
+the fiber bundle $\Gamma\to \tilde G\to G$, which is \begin{equation}
+\pi_1(\tilde G)\to \pi_1(G)\to \pi_0(\Gamma)\to \pi_0(\tilde G).
+\end{equation}
+As $\pi_1(\tilde G)=\pi_0(\tilde G)=0$, we see $\pi_1(G)\simeq \pi_0(\Gamma)\simeq \Gamma$.
+
+The case we typically counter is $G=SO(n)$, for which $\pi_1(SO(n))=\bZ_2$ for $n\ge 3$, as we already saw in Example~\ref{ex:pi1SOn}.
+The corresponding universal cover is the Spin group $Spin(n)$;
+so we have \begin{equation}
+\bZ_2 \to Spin(n)\to SO(n).
+\end{equation}
+
+Consider compact Lie groups $G$ such that 
+it is connected (i.e.~$\pi_0(G)=0$)
+and simply-connected (i.e.~$\pi_1(G)=0$).
+It is known that such groups are always a product of copies of
+$\bR$ and \begin{equation}
+SU(n\ge 2),\quad
+Spin(n\ge 6),\quad
+Sp(n\ge 2),\quad
+F_4,\quad
+G_2,\quad
+E_6,\quad
+E_7,\quad
+E_8.
+\label{eq:list-simple-Lie}
+\end{equation}
+$Spin(3)=SU(2)$, $Spin(4)=SU(2)^2$, $Spin(5)=Sp(2)$, $Spin(6)=SU(4)$
+ and $Sp(1)=SU(2)$ 
+were excluded from the list, as they are redundant.
+
+The groups in \eqref{eq:list-simple-Lie} are called compact 
+simple simply-connected Lie groups.
+
+\begin{fact}
+$\pi_2(G)=0$ and $\pi_3(G)=\bZ$ for groups $G$ in \eqref{eq:list-simple-Lie}.
+\end{fact}
+
+\begin{fact}
+$\pi_4(G)$ for groups $G$ in \eqref{eq:list-simple-Lie} are 
+either $\bZ_2$ for $G=Sp(n)$ or $0$ otherwise.
+\end{fact}
+
+
+We tabulate in Table~\ref{tab:pi_nG}
+the homotopy groups of simply connected Lie groups $\pi_{n}(G)$ 
+for  $3\le n\le 11$.
 The data are taken from \cite[付録, 公式 7, VII]{Jiten}.
 (The same set of tables should also be contained in the English translation \cite{EDM}.)
 
 \begin{table}[ht]
   \[
-  \begin{array}{c|cccccccccccccc}
-  G~\setminus~d&4&5&6&7&8&9&10&11 \\
+  \begin{array}{c|cccccccccccccccc}
+  G~\setminus~d&2&3&4&5&6&7&8&9&10&11 \\
   \hline
   \hline
-  \Sp(1) & \BZ_2 &\BZ_2 & \BZ_{12} &\BZ_{2} &\BZ_{2} &\BZ_{3} & \bZ_{15} &\bZ_2\\
-  \Sp(2) &  \BZ_2 &\BZ_2 & 0 &\BZ_{} &0 &0 & \bZ_{120} &\bZ_2\\
-  \Sp(N \geq 3) &  \BZ_2 &\BZ_2 & 0 &\BZ_{} &0 &0 & 0 & \bZ\\
+  \Sp(1) &\cellcolor{lg}0&\cellcolor{lg} \bZ&\cellcolor{lg} \BZ_2 &\cellcolor{lg}\BZ_2 & \BZ_{12} &\BZ_{2} &\BZ_{2} &\BZ_{3} & \bZ_{15} &\bZ_2\\
+  \Sp(2) &\cellcolor{lg}0&\cellcolor{lg}\bZ& \cellcolor{lg} \BZ_2 &\cellcolor{lg}\BZ_2 &\cellcolor{lg} 0 &\cellcolor{lg}\BZ_{} &0 &\cellcolor{lg}0 & \bZ_{120} &\bZ_2\\
+  \Sp(3) &\cellcolor{lg}0&\cellcolor{lg} \bZ&\cellcolor{lg} \BZ_2 &\cellcolor{lg}\BZ_2 &\cellcolor{lg} 0 &\cellcolor{lg}\BZ_{} &\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg} 0 &\cellcolor{lg} \bZ\\
   \hline
-  \SU(3) & 0 &\BZ &\BZ_{6} &0 &\BZ_{12} &\BZ_{3} & \bZ_{30} & \bZ_4 \\
-  \SU(4) &0 &\BZ &0 &\BZ &\BZ_{24} &\BZ_{2} &   \bZ_{120}\times \bZ_2 & \bZ_4 \\
-  \SU(5) &0 &\BZ & 0 &\BZ &0 &\BZ &  \bZ_{120}& 0 \\
-  \SU(N \geq 6) &0 &\BZ & 0 &\BZ &0 &\BZ &  0 & \bZ  \\
+  \SU(3) &\cellcolor{lg}0&\cellcolor{lg} \bZ&\cellcolor{lg}0 &\cellcolor{lg}\BZ &\BZ_{6} &0 &\BZ_{12} &\BZ_{3} & \bZ_{30} & \bZ_4 \\
+  \SU(4) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}\BZ &\cellcolor{lg}0 &\cellcolor{lg}\BZ &\BZ_{24} &\BZ_{2} &   \bZ_{120}\times \bZ_2 & \bZ_4 \\
+  \SU(5) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}\BZ &\cellcolor{lg} 0 &\cellcolor{lg}\BZ &\cellcolor{lg}0 &\cellcolor{lg}\BZ &  \bZ_{120}& 0 \\
+  \SU(6) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}\BZ &\cellcolor{lg} 0 &\cellcolor{lg}\BZ &\cellcolor{lg}0 &\cellcolor{lg}\BZ &  \cellcolor{lg}0 & \cellcolor{lg}\bZ  \\
   \hline
-  \Spin(7) &0 &0 &0 &\BZ_{} &(\BZ_{2})^2 &(\BZ_{2})^2 & \bZ_8 & \bZ\times \bZ_2 \\
-  \Spin(8) &0 &0 &0 &\BZ_{}^2 &(\BZ_{2})^3 &(\BZ_{2})^3 &\bZ_{24}\times \bZ_8 & \bZ\times \bZ_2    \\
-  \Spin(9) &0 &0 &  0 &\BZ_{} &(\BZ_{2})^2 &(\BZ_{2})^2 &   \bZ_8 & \bZ\times \bZ_2\\
-  \Spin(10) &0 &0 & 0 &\BZ_{} &\BZ_{2} &\BZ \times \BZ_{2} &  \bZ_4 & \bZ \\
-  \Spin(11) &0 &0 &0 &\BZ_{} &\BZ_{2} &\BZ_{2} &   \bZ_2 & \bZ\\
-  \Spin(12) &0 &0 &0 &\BZ_{} &\BZ_{2} &\BZ_{2} &   0 & \bZ\times \bZ \\
-  \Spin(N \geq 13) &0 &0 &0 &\BZ_{} &\BZ_{2} &\BZ_{2} &   0 & \bZ\\
+  Spin(7) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}0 &0 &\BZ_{} &(\BZ_{2})^2 &(\BZ_{2})^2 & \bZ_8 & \bZ\times \bZ_2 \\
+  Spin(8) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg}0 &\BZ_{}^2 &(\BZ_{2})^3 &(\BZ_{2})^3 &\bZ_{24}\times \bZ_8 & \bZ\times \bZ_2    \\
+  Spin(9) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}0 & \cellcolor{lg} 0 &\cellcolor{lg}\BZ_{} &(\BZ_{2})^2 &(\BZ_{2})^2 &   \bZ_8 & \bZ\times \bZ_2\\
+  Spin(10) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}0 & \cellcolor{lg}0 &\cellcolor{lg}\BZ_{} &\cellcolor{lg}\BZ_{2} &\BZ \times \BZ_{2} &  \bZ_4 & \bZ \\
+  Spin(11) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg}\BZ_{} &\cellcolor{lg}\BZ_{2} &\cellcolor{lg}\BZ_{2} &   \bZ_2 & \bZ\\
+  Spin(12) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg}\BZ_{} &\cellcolor{lg}\BZ_{2} &\cellcolor{lg}\BZ_{2} &   \cellcolor{lg}0 & \bZ\times \bZ \\
+  Spin(13 ) &\cellcolor{lg}0&\cellcolor{lg}\bZ&\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg}0 &\cellcolor{lg}\BZ_{} &\cellcolor{lg}\BZ_{2} &\cellcolor{lg}\BZ_{2} & \cellcolor{lg}  0 & \cellcolor{lg}\bZ\\
   \hline
-  G_2 &0 &0 & \BZ_{3} &0 &\BZ_{2} &\BZ_{6} &   0 & \bZ\times \bZ_2\\
-  F_4 &0 &0 &  0 &0 &\BZ_{2} &\BZ_{2} &0 & \bZ\times \bZ_2 \\
-  E_6 &0 &0 &  0 &0 &0 &\BZ & 0&\bZ \\
-  E_7 &0 &0 &  0 &0 &0 &0 &  0 & \bZ\\
-  E_8 &0 &0 &    0 &0 &0 &0 & 0 & 0
+  G_2 &0&\bZ&0 &0 & \BZ_{3} &0 &\BZ_{2} &\BZ_{6} &   0 & \bZ\times \bZ_2\\
+  F_4 &0&\bZ&0 &0 &  0 &0 &\BZ_{2} &\BZ_{2} &0 & \bZ\times \bZ_2 \\
+  E_6 &0&\bZ&0 &0 &  0 &0 &0 &\BZ & 0&\bZ \\
+  E_7 &0&\bZ&0 &0 &  0 &0 &0 &0 &  0 & \bZ\\
+  E_8 &0&\bZ&0 &0 &    0 &0 &0 &0 & 0 & 0
   \end{array}
   \]
-  \caption{Homotopy groups of Lie groups $\pi_d(G)$, $4\le d\le 11$.
-  $\pi_2(G)=0$ and $\pi_3(G)=\bZ$ for all $G$.
+  \caption{Homotopy groups of simply-connected simple Lie groups $\pi_d(G)$, $2\le d\le 11$.
    \label{tab:pi_nG}}
 \end{table}
+
+We note that the long exact sequences of homotopy groups
+applied to 
+\begin{equation}
+\begin{array}{ccccc}
+Spin(n-1)&\to& Spin(n)&\to& S^{n-1},\\
+SU(n-1)&\to& SU(n)&\to& S^{2n-1},\\
+Sp(n-1)&\to& Sp(n)&\to& S^{4n-1}
+\end{array}
+\end{equation}
+lead to \begin{align}
+\pi_d(Spin(n-1)) &\simeq \pi_d(Spin(n)),\\
+\pi_d(SU(n-1)) &\simeq \pi_d(SU(n)),\\
+\pi_d(Sp(n-1)) &\simeq \pi_d(Sp(n))
+\end{align} when $d<n-2$, $d<2n-2$, $d<4n-2$, respectively.
+This is consistent with the data in Table~\ref{tab:pi_nG},
+and allows us to define $\pi_d(Spin(\infty))$,
+$\pi_d(SU(\infty))$, and $\pi_d(Sp(\infty))$ consistently.
+
+
   
 
 \subsection{Topological solitons and homotopy groups}
