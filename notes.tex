@@ -1124,6 +1124,7 @@ Therefore, we have \begin{equation}
 \end{equation}
 as the symmetry of the free energy.
 \begin{example}
+\label{ex:helium3}
 In the superfluid phases of $^3$He, the order parameter takes the value
 \begin{itemize}
 \item $\mathbf{e}_1 \otimes (\mathbf{f}_2+ i\mathbf{f}_3)$ in the A phase,
@@ -1831,11 +1832,11 @@ a parameter space $B$,
 produces the family of spaces of observables acting on each Hilbert space, over the same parameter space $B$.
 
 A somewhat different operation one can perform fiberwise 
-is to take the unit sphere $S(V)=S^{kn-1} \subset V$ at each fiber, where $n$ is the dimension of $V$
+is to take the unit sphere $Sph(V)=S^{kn-1} \subset V$ at each fiber, where $n$ is the dimension of $V$
 and $k=1,2,4$ for $\bK=\bR,\bC,\bH$.
 \begin{definition}
   Given a vector bundle $E\to B$ with fiber $V$,
-  we can form the sphere bundle $S(E)\to B$ whose fiber is $S(V)$.
+  we can form the sphere bundle $Sph(E)\to B$ whose fiber is $Sph(V)$.
 \end{definition}
 
 We can also consider taking a vector subspace $V_2\subset V_1$ at each fiber:
@@ -1893,7 +1894,7 @@ We have shown that
     u\\ v
   \end{pmatrix}  \mid c\in \bC \} \subset \cH.
 \end{equation} 
-We can now take the unit sphere bundle $S(E)\to S^2$.
+We can now take the unit sphere bundle $Sph(E)\to S^2$.
 This simply sends $(u,v)$ with $|u|^2+|v|^2=1$ to $(x,y,z)$ via \eqref{eq:uvXYZ},
 so this is the Hopf fibration $S^1\to S^3\to S^2$.
 Summarizing:
@@ -2015,6 +2016,7 @@ The proof is straightforward and is left as an exercise.
 
 \subsection{Tangent and cotangent bundles}
 
+\subsubsection{Definitions}
 So far we considered vector bundles as an additional structure on a given base $B$.
 There are also vector bundles canonically associated to a manifold $M$.
 
@@ -2093,6 +2095,8 @@ We can easily check the following: \begin{proposition}
 $d(fg)=(df)g+ f(dg)$.
 \end{proposition}
 
+\subsubsection{The metric}
+
 So far we have not introduced a metric. Let us do so now:
 
 \begin{definition}
@@ -2102,21 +2106,41 @@ which gives a smoothly-varying inner product
 on each fiber.
 \end{definition}
 
-With a metric, we can consider the unit sphere bundle $S(TM)$.
+With a metric, we can consider the unit sphere bundle $Sph(TM)$.
 
 \begin{example}
 Let $M=S^2$ and consider its tangent bundle $TS^2$.
 This is a real 2-dimensional bundle.
 Give a standard round metric on $S^2$,
-and take the unit sphere bundle $S(TS^2)$ of its tangent bundle.
+and take the unit sphere bundle $Sph(TS^2)$ of its tangent bundle.
 This is an $S^1$ bundle over $S^2$.
 \end{example}
 We have already encountered two $S^1$ bundles over $S^2$,
 namely the trivial product and the Hopf fibration.
-Is $S(TS^2)$ one of these two?
+Is $Sph(TS^2)$ one of these two?
 The answer is no.
-We are going to develop methods to answer such questions later.
+We are going to develop general methods to answer such questions later,
+but here is a special argument applicable to this particular case.
+\begin{example}
+$Sph(TS^2) \simeq SO(3)$.
+\end{example}
+To see this, note that $SO(3)$ naturally acts on $TS^2$ by rotation;
+if you are unsure, realize $TS^2$ as a subspace of $(\vec v,\vec w) \bR^3\times \bR^3$
+with the constraint $\vec v\cdot \vec v=1$, $\vec w\cdot \vec v=0$.
+Clearly $SO(3)$ acts on it by simultaneous rotation of $\vec v$ and $\vec w$.
 
+Now pick a point $\vec v_0 \in S^2$ and a point on the fiber over it with unit length, 
+i.e.~ a point $\vec w_0$ such that $\vec w_0\cdot \vec w_0=1$ and $\vec w_0\cdot \vec v_0 =0$.
+What is the orbit of this point $(\vec v_0,\vec w_0)\in TS^2$?
+
+As we saw in Sec.~\ref{sec:homogeneous}, the orbit is of the form $SO(3)/H$, where $H$ is the subgroup fixing this point.
+Now, $\vec v_0$ is fixed by $SO(2)\subset SO(3)$, but this $SO(2)$ rotates $\vec w_0$.
+Therefore $H=\{e\}$, and the orbit is $SO(3)$ itself.
+Clearly this orbit is $Sph(TS^2)$, and we are done.
+AS the total space is different from $S^3$, we conclude that the fiber bundle $S^1\to Sph(TS^2)\to S^2$ is different from the Hopf bundle $S^1\to S^3\to S^2$.
+
+
+We now consider a different use of the metric.
 With a Riemannian metric, we can form an orthogonal basis of the tangent space at each point.
 Take $U\times \bR^n$ with the basis vectors $\partial/\partial x^i$ as before.
 We pick an orthonormal basis \begin{equation}
@@ -3495,10 +3519,10 @@ we found that
   Principal $G$-bundles over $S^n$ are classified by $\pi_{n-1}(G)$.
 \end{proposition}  
 
-We have two standard examples.
-
-First, consider $U(1)$ bundles over $S^2$.
-We just learned that this is classified by $\pi_1(U(1))=\bZ$.
+We have two standard examples. We begin with the following:
+\begin{example}
+$U(1)$ bundles over $S^2$ is classified by $\pi_1(U(1))=\bZ$.
+\end{example}
 In physics, a $U(1)$ bundle is required to study electromagnetism
 in topologically nontrival cases.
 We will learn later that this integer is the magnetic charge,
@@ -3512,11 +3536,14 @@ That the magnetic charge is quantized was first discovered by Dirac \cite{Dirac}
 Here we used a geometric argument and therefore the unit of the magnetic charge was dimensionless and was set to 1.
 Later, we will see how to connect this unit to your favorite system of units of electromagnetism.
 
-Next, take a simple simply-connected compact Lie group $G$ such as $SU(2)$.
-Then $\pi_3(G)=\bZ$,
-and therefore principal $G$-bundles over $S^4$ are classified by $\bZ$.
+Next we consider the following:
+\begin{example}
+For a simple simply-connected compact Lie group $G$ such as $SU(2)$,
+principal $G$-bundles over $S^4$ are classified by 
+$\pi_3(G)=\bZ$.
+\end{example}
 
-More commonly, we consider principal bundles $P\to \bR^4$ over a flat $\bR^4$,
+In physics,  more commonly we consider  principal bundles $P\to \bR^4$ over a flat $\bR^4$,
 which we take to be a good approximation of our world.
 We further assume that we are given a trivialization around infinity,
 i.e.~if we remove a finite region $U\subset \bR^4$ 
@@ -3530,7 +3557,7 @@ Then the topology of the $G$-bundle is specified by an integer $\pi_3(G)=\bZ$.
 This number is known as the instanton number in physics.
 Again, we will have a differential-geoemtric interpretation of this number later.
 
-\begin{figure}
+\begin{figure}[h]
   \centering
   \includegraphics[width=0.8\textwidth]{bundle-R4.png}
   \caption{Principal bundle over $\bR^4$ with a trivialization around infinity
@@ -3548,49 +3575,129 @@ is a much more difficult one.
 
 \subsection{Topological solitons and homotopy groups}
 
-$G$-bundles on $S^n$ / $\bR^n$ 
+%$G$-bundles on $S^n$ / $\bR^n$ 
 
-space of gauge transformations on $S^n$ / $\bR^n$
+%space of gauge transformations on $S^n$ / $\bR^n$
 
-\subsubsection{Those associated to the space of order paremeters}
+%\subsubsection{Those associated to the space of order paremeters}
 
-"Smooth solitons"
+Let us now come to the most traditional use of algebraic topology in physics, 
+namely the study of topological solitons. 
 
-With codimension $d$ and the target space $X$, 
-we have solitons in $\pi_d(X)$.
+\subsubsection{Solitons without core}
+Suppose that we have a field on our space(time) taking values in a target space $X$,
+i.e. we have a map \begin{equation}
+f:\bR^D \to X.
+\end{equation}
+We often consider a situation where we have an (approximate) translation invariance along 
+some of the directions.
+Then the nontriviality of the field configuration is captured by a map 
+\begin{equation}
+f:\bR^d \to X.
+\end{equation}
+In such cases the field configuration is constant along $d'=D-d$ directions.
+Let us call $d$ the \emph{codimension} of the configuration.
+See Fig.~\ref{fig:codimension}.
+In such cases it is meaningful to discuss its energy (or tension) per unit volume in the $d'$ direction.
+For simplicity we take $d'=0$, as it does not make any difference in the analysis here,
+and we simply call the energy per unit volume as the energy.
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=0.7\textwidth]{codimension.png}
+  \caption{A codimension-2 object in $\bR^3$ is string-like. }
+  \label{fig:codimension}
+\end{figure}
+
+Now, in order not to cost an infinite amount of energy in the asymptotically far region,
+most of the region of $\bR^d$ needs to map to very close to a point in the target space $X$.
+We take this point the basepoint of $X$,
+and then such a map is given essentially by a map from $S^d$.
+See Fig.~\ref{fig:smoothsoliton}.
+
+
+\begin{figure}[h]
+\centering
+  \includegraphics[width=0.7\textwidth]{smoothsoliton.png}
+  \caption{A smooth, finite-energy, codimension-$d$ configuration is given by a map $S^d\to X$. }
+  \label{fig:smoothsoliton}
+\end{figure}
+
+Such a configuration then determines a homotopy class $ [f]\in \pi_d(X)$.
+If $[f]$ is nonzero, it cannot be removed by a continuous process,
+and therefore it provides a \emph{topologically conserved charge},
+and a configuration with such a topologically conserved charge is called a \emph{topological soliton}.
 
 \begin{example}
-Skyrmion
+With codimension-$3$ and the target space $S^3$, we have a Skyrmion whose charge is given by $\pi_3(S^3)=\bZ$.
+\end{example}
+
+This was first introduced by Skyrme\footnote{%
+In Japan the word Skyrmion is sometimes pronounced as [\textipa{skirmion}] but I think [\textipa{sk@:mion}] is the more correct one;
+after all, T. H. R. Skyrme was a British person, and I consider [\textipa{skirmion}] a hypercorrection.
+As for the Ising model, I think we should use [\textipa{i:zi\ng}] instead of [\textipa{aizi\ng}],
+since E. Ising is a German.
+Speaking of pronunciation of names common in our field, 
+the pronunciation of K\"allen in K\"allen-Lehmann spectral representation is also tricky.
+I often heard high-energy physicists above my generation to pronounce it as [\textipa{tS\ae len}] or something like that.
+K\"allen was Swedish,
+K\"allen's grandchild was doing string theory, and I met him a couple of times.
+He told me the correct pronunciation, which sounded to me  along the line of [\textipa{S\ae lien}],
+which was quite different from what the Wikipedia page about the standard Swedish pronunciation.
+} \cite{Skyrme:1961vq,Skyrme:1962vh} in the context of a nucleon as a soliton in the meson field.
+
+\begin{example}
+With codimension-$2$ and the target space $S^2$, we have a baby Skyrmion whose charge is given by $\pi_2(S^2)=\bZ$.
+A baby Skyrmion is often simply called  Skyrmion.
+\end{example}
+
+A quick internet search gives me tons of experimental realizations of Skyrmions, 
+but most of them seem to be about baby Skyrmions. 
+
+\begin{example}
+With codimension-$3$ and the target space $S^2$, we have a Hopfion, whose charge is given by $\pi_3(S^2)=\bZ$.
+\end{example}
+
+Again a quick internet search gives me some experimental realizations of Hopfions.
+Another notable point is that a Hopfion charge is more subtle than a Skyrmion charge;
+if you are interested, you should consult a very recent paper \cite{Chen:2022cyw},\footnote{%
+I am mentioning this because I was the proud committee chair of the PhD defense of the junior author of this paper.
+}
+which pointed out that the Hopfion charge is associated to a non-invertible symmetry,
+a hot topic in recent years.
+
+
+
+\begin{example}
+The superfluid Helium 3 A-phase and B-phase have various topological solitons characterized by $\pi_d(G/H_\text{A})$
+and $\pi_d(G/H_\text{B})$ we discussed in Example~\ref{ex:helium3}.
+\end{example}
+
+The description of $\pi_d(G/H_\text{A})$ is a good exercise of the long exact sequence we learned above.
+I am not familiar with the status of experimental verification of these predicted topological solitons.
+
+\subsubsection{Solitons with core}
+
+
+We can also have ``solitons with core'' 
+classified by $\pi_{d-1}(X)$,
+where something drastic necessarily happen in the core.
+This costs infinite energy in the asymptotic region unless some action 
+$G\curvearrowright X$ is appropriately gauged.
+
+\begin{example}
+Abrikosov/Nielsen-Olsen vortex, codimension 2, $X=U(1)$
 \end{example}
 
 \begin{example}
-Hopfion
-\end{example}
-
-"Solitons with core"
-
-\subsubsection{Those associated to symmetry breaking}
-
-With codimension $d$ and the symmetry breaking pattern $H\subset G$,
-we have solitons in $\pi_{d-1}(G/H)$.
-
-(We can also have $\pi_d(G/H)$ as above, since $G/H$ is the space of order parameters. ???)
-
-\begin{example}
-Abrikosov/Nielsen-Olsen vortex
+`Instanton particle', codimension 4, $X=SU(2)$
 \end{example}
 
 \begin{example}
-'t Hooft-Polyakov monopole 
+'t Hooft-Polyakov monopole , codimension 3, $X=SU(2)/U(1)$ or $ X=SO(3)/SO(2)$
 \end{example}
 
-\begin{example}
-Superfluid Helium 3 A-phase
-\end{example}
 
-\begin{example}
-`Instanton particle'
-\end{example}
 
 \section{Differential forms and de Rham cohomology}
 \label{sec:deRham}
