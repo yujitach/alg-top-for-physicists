@@ -3519,10 +3519,10 @@ we found that
   Principal $G$-bundles over $S^n$ are classified by $\pi_{n-1}(G)$.
 \end{proposition}  
 
-We have two standard examples. We begin with the following:
-\begin{example}
-$U(1)$ bundles over $S^2$ is classified by $\pi_1(U(1))=\bZ$.
-\end{example}
+We have two standard examples. We start with 
+$U(1)$ bundles over $S^2$.
+This is classified by $\pi_1(U(1))=\pi_1(S^1)=bZ$.
+
 In physics, a $U(1)$ bundle is required to study electromagnetism
 in topologically nontrival cases.
 We will learn later that this integer is the magnetic charge,
@@ -3535,13 +3535,16 @@ given as the integral of the magnetic field over $S^2$.
 That the magnetic charge is quantized was first discovered by Dirac \cite{Dirac}.
 Here we used a geometric argument and therefore the unit of the magnetic charge was dimensionless and was set to 1.
 Later, we will see how to connect this unit to your favorite system of units of electromagnetism.
-
-Next we consider the following:
+Summarizing, 
 \begin{example}
-For a simple simply-connected compact Lie group $G$ such as $SU(2)$,
-principal $G$-bundles over $S^4$ are classified by 
-$\pi_3(G)=\bZ$.
+$U(1)$ bundles over $S^2$ is classified by $\pi_1(U(1))=\bZ$.
+This corresponds to the magnetic flux in physics.
 \end{example}
+
+
+Next we consider $G$-bundles over $S^3$,
+where $G$ is a simple simply-connected compact Lie group $G$ such as $SU(2)$.
+For these, $\pi_3(G)=\bZ$  as we learned above.
 
 In physics,  more commonly we consider  principal bundles $P\to \bR^4$ over a flat $\bR^4$,
 which we take to be a good approximation of our world.
@@ -3572,6 +3575,15 @@ corresponding to different physics settings,
 we will have other classifications.
 It is also to be mentioned that the classification of bundles over $T^4$ 
 is a much more difficult one.
+
+In any case, our summary is that:
+\begin{example}
+For a simple simply-connected compact Lie group $G$ such as $SU(2)$,
+principal $G$-bundles over $S^4$ are classified by 
+$\pi_3(G)=\bZ$.
+It is known in physics as the instanton number.
+\end{example}
+
 
 \subsection{Topological solitons and homotopy groups}
 
@@ -3678,12 +3690,47 @@ I am not familiar with the status of experimental verification of these predicte
 
 \subsubsection{Solitons with core}
 
+Next let us have a look at what can be called with \emph{solitons with core}.
+Consider a situation where we have a codimension-$d$ configuration
+with a map to the target space $X$, where $X$ is the space of order parmeters, say.
+Here we consider a situation illustrated in Fig.~\ref{fig:withcore},
+where we have a map \emph{outside} of a core region $U\subset \bR^d$.
+So we have a map \begin{equation}
+f: \bR\setminus  U \to X.
+\end{equation}
 
-We can also have ``solitons with core'' 
-classified by $\pi_{d-1}(X)$,
-where something drastic necessarily happen in the core.
-This costs infinite energy in the asymptotic region unless some action 
-$G\curvearrowright X$ is appropriately gauged.
+\begin{figure}[h]
+\centering
+  \includegraphics[width=0.6\textwidth]{withcore.png}
+  \caption{A codimension-$d$ configuration with `core', given by a map $S^{d-1}\to X$. }
+  \label{fig:withcore}
+\end{figure}
+
+In this case the nontriviality of such a map is measured by the homotopy class $[f]\in \pi_{d-1}(X)$
+of the map $f: S^{d-1}\to X$.
+Note the difference to the topological charge measured by  $\pi_d(X)$ of a smooth codimension-$d$ soliton
+we discussed above.
+
+Note that if $[f]$ is nontrivial,
+it can never be continued smoothly into the entirety of $U$.
+Indeed, if so, the resulting map $D^{d}\to X$ provides the homotopy to show $[f]$ is trivial.
+
+When $[f]$ is nontrivial, then, we can't extend the map $f$ continuously to the entirety of $U$.
+Inside the region $U$, we assume that some additional physics than 
+simply having an order-parameter field parameterized by $X$ is going on.
+This can easily happen in physics: usually the space $X$ appears only as a low-energy approximation.
+It is then  that in the region $U$ the low-energy approximation breaks down.
+
+Note also that if $[f]$ is nontrivial,
+the position dependence of $f$ usually costs an infinite amount energy in the asymptotically far region.
+But there are physics situations where this problem might not matter:
+\begin{itemize}
+\item One is that the experimental setup is finite, so the infinite energy in infinitely large $\bR^d$ might not matter
+\item Another is that when $X=G/H$ and $G$ is associated to a gauge field,
+a nontrivial $G$-gauge transformation in the asymptotically far region can remove the position dependence
+and therefore the associated infinite amount of energy.
+\end{itemize}
+In this lecture we therefore neglect these energetic consideration.
 
 \begin{example}
 Abrikosov/Nielsen-Olsen vortex, codimension 2, $X=U(1)$
