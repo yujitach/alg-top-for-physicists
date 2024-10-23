@@ -1002,6 +1002,15 @@ When the minimum is at $(x,y)=(r_0,0)$ with $r_0\neq 0$,
 its orbit under $SO(2)$ is the circle of radius $r_0$.
 In this case the unbroken subgroup $H$ is $\{e\}$,
 and $SO(2)/\{e\}=SO(2)$, which is a circle.
+For an illustration, see Fig.~\ref{fig:winebottle}.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{winebottle.png}
+\caption{Two choices of $SO(2)$-invariant potential functions $V(x,y)$,
+with minimum either at the origin or at the circle of radius $r_0$.}
+\label{fig:winebottle}
+\end{figure}
 
 Let us generalize.
 Let $SO(n)$ act on $\bR^n$ by rotations.
@@ -3465,8 +3474,10 @@ $\pi_d(SU(\infty))$, and $\pi_d(Sp(\infty))$ consistently.
 
 
 \subsection{Principal bundles over spheres}
-
+\label{sec:bundle-over-sphere}
 Let us use homotopy groups to classify principal bundles over spheres.
+
+\subsubsection{Generalities}
 We start from a general construction.
 \begin{definition}
 Given a bundle $F\to E\stackrel{p}{\longrightarrow} B$
@@ -3519,12 +3530,14 @@ we found that
   Principal $G$-bundles over $S^n$ are classified by $\pi_{n-1}(G)$.
 \end{proposition}  
 
+\subsubsection{Examples}
+
 We have two standard examples. We start with 
 $U(1)$ bundles over $S^2$.
-This is classified by $\pi_1(U(1))=\pi_1(S^1)=bZ$.
+This is classified by $\pi_1(U(1))=\pi_1(S^1)=\bZ$.
 
 In physics, a $U(1)$ bundle is required to study electromagnetism
-in topologically nontrival cases.
+in topologically nontrivial cases.
 We will learn later that this integer is the magnetic charge,
 or equivalently the monopole flux through $S^2$.
 For this, we need to introduce the concept of the connection, 
@@ -3532,7 +3545,10 @@ or equivalently the gauge field.
 This will then lead to a differential-geometric expression for this number,
 given as the integral of the magnetic field over $S^2$.
 
-That the magnetic charge is quantized was first discovered by Dirac \cite{Dirac}.
+That the magnetic charge is quantized was first discovered by Dirac \cite{Dirac}.\footnote{%
+It is interesting that this was done in the same year when Hopf introduced
+his Hopf invariant and the Hopf fibration, $S^1\to S^3\to S^2$ in \cite{Hopf},
+which was also about a nontrivial $U(1)$ bundle over $S^2$.}
 Here we used a geometric argument and therefore the unit of the magnetic charge was dimensionless and was set to 1.
 Later, we will see how to connect this unit to your favorite system of units of electromagnetism.
 Summarizing, 
@@ -3583,6 +3599,35 @@ principal $G$-bundles over $S^4$ are classified by
 $\pi_3(G)=\bZ$.
 It is known in physics as the instanton number.
 \end{example}
+
+\subsubsection{Long exact sequences of homotopy groups revisited}
+\label{sec:long-exact-and-bundles}
+The result of this subsection can be used to have 
+a different perspective 
+of the long exact sequence of homotopy groups.
+
+Let us first discuss the connecting homomorphism $\partial$.
+Recall that we have a principal $H$-bundle $H\to G\to G/H$.
+Pick a class $[f]\in \pi_{n}(G/H)$.
+We now have a map $f:S^{n}\to G/H$.
+We can use this to pull-back the $H$-bundle $G\to G/H$ to $S^n$,
+resulting in a principal $H$-bundle $f^*(G)\to S^n$.
+According to the classification of principal bundles over spheres,
+this should be classified by a class in $ \pi_{n-1}(H)$.
+In this way we have constructed a map 
+$\pi_{n}(G/H)\to \pi_{n-1}(H)$.
+Showing that this equals the connecting homomorphism $\partial$
+given in Definition~\ref{def:connecting-map-homotopy} 
+is basically expanding various definitions involved, and
+nothing more.
+Summarizing, we found:
+\begin{proposition}
+\label{prop:connecting-and-bundle}
+  Given a map $f:S^{n}\to G/H$,
+  the pull-back bundle $f^*(G)\to S^n$ is classified by 
+  the class $\partial[f]\in \pi_{n-1}(H)$.
+\end{proposition}
+
 
 
 \subsection{Topological solitons and homotopy groups}
@@ -3725,25 +3770,136 @@ Note also that if $[f]$ is nontrivial,
 the position dependence of $f$ usually costs an infinite amount energy in the asymptotically far region.
 But there are physics situations where this problem might not matter:
 \begin{itemize}
-\item One is that the experimental setup is finite, so the infinite energy in infinitely large $\bR^d$ might not matter
+\item One is that the experimental setup is finite, so the infinite energy in infinitely large $\bR^d$ might not matter;
 \item Another is that when $X=G/H$ and $G$ is associated to a gauge field,
 a nontrivial $G$-gauge transformation in the asymptotically far region can remove the position dependence
 and therefore the associated infinite amount of energy.
 \end{itemize}
 In this lecture we therefore neglect these energetic consideration.
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=.7\textwidth]{vortex.png}
+\caption{A vortex configuration. 
+In the asymptotic region, the field values are at the bottom of the potential.
+In the core region, the field values come to the origin of the field space.}
+\label{fig:vortex}
+\end{figure}
+
+An example illustrating the discussion above is when $X=S^1$.
+The space $S^1$ of order parameters appears as the space of potential minimum of a wine-bottle potential, as we saw in Sec.~\ref{sec:homogeneous}.
+In this case we can consider a field configuration illustrated in Fig.~\ref{fig:vortex}.
+In the asymptotically far region, we let the field value  to go around the potential minimum $S^1$,
+as we go around the core once. 
+In the core region, this $S^1$ in the field space $\bR^2$ needs to shrink. 
+This is associated to the additional potential energy, but it is restricted in a finite core region in the space,
+and therefore this costs only a finite amount of energy.
+Note that the symmetry is broken from $G=U(1)=S^1$ to the trivial group $H=\{e\}$ at the far region,
+but the full symmetry is realized at least at a point in the core region,
+where the entire  symmetry $G=U(1)$ is unbroken.
+In this manner, at the core of the topological soliton, the symmetry is forced to be restored. 
+
+
+This vortex configuration was first introduced by Abrikosov \cite{Abrikosov:1956sx} in the context of superconductivity 
+in condensed matter physics,
+and by Nielsen and Olsen \cite{Nielsen:1973cs} in high energy physics. 
+By now these vortices are experimentally observed, see Fig.~\ref{fig:vortex-exp}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=.5\textwidth]{vortices.pdf}
+\caption{A scanning SQUID-microscope view of the vortices in a superconducting material.
+Taken from \cite{VortexExp}.}
+\label{fig:vortex-exp}
+\end{figure}
+Summarizing, 
 \begin{example}
-Abrikosov/Nielsen-Olsen vortex, codimension 2, $X=U(1)$
+A codimension-2 topological soliton with a core for the parameter space $X=U(1)$,
+characterized by $\pi_1(U(1))=\bZ$,
+is known as the Abrikosov/Nielsen-Olsen vortex.
 \end{example}
 
-\begin{example}
-`Instanton particle', codimension 4, $X=SU(2)$
-\end{example}
+\if0
+\begin{figure}[h]
+\centering
+\includegraphics[width=.3\textwidth]{R2S2.png}
+\caption{Putting a vortex configuration on $S^2$.}
+\label{fig:R2S2}
+\end{figure}
+\fi
 
-\begin{example}
-'t Hooft-Polyakov monopole , codimension 3, $X=SU(2)/U(1)$ or $ X=SO(3)/SO(2)$
-\end{example}
+Let us further identify this $G=U(1)$ is identified with the electromagnetic $U(1)$.
+In this case, we can show that the core region contains a unit magnetic flux in the following manner;
+we will give a more traditional approach using the vector potential later.
+To measure the magnetic flux topologically,
+let us try to put this configuration on an $S^2$, and use the result in Sec.~\ref{sec:bundle-over-sphere}.
+We first put this configuration on a large $D^2$, which we consider to be the northern hemisphere.
+We have a region $B$ around the equator $L$ 
+%(given in blue in Fig.~\ref{fig:R2S2})
+where we have a product bundle $B \times S^1$.
+For the sake of generality,
+let us say that the field value  goes around $S^1$ $N$ times, when we go around the equator once.
 
+We also introduce another $D^2$, which we use as the southern hemisphere.
+On it, we consider a trivial bundle $D^2\times S^1$ and a constant section.
+To paste the two hemispheres so that the sections match, 
+we need to use a $U(1)$ gauge transformation $g:S^1\to S^1$ which also goes around $S^1$ $N$ times.
+This means that on the resulting $S^2$, the $U(1)$ bundle
+is characterized by $N\in \pi_1(S^1)\simeq \bZ$,
+and therefore has the magnetic charge $N$.
+
+
+Although not directly relevant to nature,
+at least at the mathematical level we can replace $\pi_1(U(1))=\bZ$ with $\pi_3(SU(2))$,
+and consider a codimension-4 particle in a $(4+1)$-dimensional system:
+\begin{example}
+A codimension-4 topological soliton with a core for the parameter space $X=SU(2)$
+can be considered.
+\end{example}
+For example, a D0-brane within a stack of D4-branes has such a realization,
+where D$p$-brane is a $(p+1)$-dimensional solitonic objects in string theory.
+
+Note that our argument in Sec.~\ref{sec:long-exact-and-bundles} 
+shows that the core of this soliton has the instanton charge $1$, 
+again characterized by the same $\pi_3(SU(2))=\bZ$.
+For this reason this is often called an `instanton-particle' in string theory.
+
+
+Our final example is the following:
+\begin{example}
+A codimension-3 topological soliton with a core for the parameter space $X=S^2$
+is known as 't Hooft-Polyakov monopole.
+\end{example}
+This was first introduced by 't Hooft \cite{tHooft:1974kcl} and Polyakov \cite{Polyakov:1974ek}.
+When we regard $S^2=SU(2)/U(1)$
+and consider a gauge theory setup where we have a larger group $SU(2)$ broken to $U(1)$,
+and identify $U(1)$ as the electromagnetic gauge group,
+it has a magnetic charge on $S^2$,
+whose charge is characterized by Proposition~\ref{prop:connecting-and-bundle} 
+via the image of $\pi_2(SU(2)/U(1))$ to $\pi_1(U(1))$ in the part of
+ the long exact sequence of  homotopy groups associated to the bundle $U(1)\to SU(2)\to SU(2)/U(1)$: \begin{equation}
+ \pi_2(SU(2)/U(1)) \to \pi_1(U(1)) \to \pi_1(SU(2))\to \pi_1(SU(2)/U(1))
+\end{equation} which is \begin{equation}
+ \bZ \to \bZ \to 0 \to 0.
+\end{equation}
+The exactness forces the first map to be the identity.
+Therefore, the minimal 't Hooft-Polyakov monopole characterized by $1\in \pi_2(S^2)=\bZ$
+has the unit magnetic charge $1\in \pi_1(U(1))$.
+
+In contrast, if we regard $S^2=SO(3)/SO(2)$
+and identify $SO(2)$ as the electromagnetic gauge group,
+the magnetic charge is characterized by the same token by studying \begin{equation}
+ \pi_2(SU(2)/U(1)) \to \pi_1(SO(2)) \to \pi_1(SO(3)) \to \pi_1(SU(2)/U(1))
+\end{equation} which is \begin{equation}
+ \bZ \to \bZ \to \bZ_2 \to 0.
+\end{equation}
+The exactness forces the first map to be a multiplication by $2$.
+Therefore, the minimal 't Hooft-Polyakov monopole characterized by $1\in \pi_2(S^2)=\bZ$
+has the magnetic charge $2\in \pi_1(SO(2))$, which has twice the minimal value.
+
+This subtle difference of the magnetic charge of the 't Hooft-Polyakov monopole by a factor of two
+between an $SU(2)$ gauge theory and an $SO(3)$ gauge theory
+ plays an important role in the modern study of topological properties of gauge theories.
+ See e.g.~\cite{Aharony:2013hda}.
 
 
 \section{Differential forms and de Rham cohomology}
