@@ -41,6 +41,7 @@
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{lemma}[definition]{Lemma}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{fact}[definition]{Fact}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{remark}[definition]{Remark}
 \newmdtheoremenv[backgroundcolor=black!0]{exercise}[definition]{Exercise}
 
 
@@ -1436,6 +1437,11 @@ where all the down arrows are the projections forgetting the fiber direction.
   \end{equation}  
   Here, $\iota$ is the inclusion of the fiber over a point $b$ in the base $B$.
 \end{notation}
+
+\begin{remark}
+In algebraic topology, there is a more general concept called a \emph{fibration}, which is denoted similarly: $F\to E\to B$.
+A fiber bundle is a fibration, but a fibration is not necessarily a fiber bundle.
+\end{remark}
 
 \begin{definition}
   \label{def:bundle-equiv}
@@ -3641,7 +3647,7 @@ Summarizing, we found:
 Let us now come to the most traditional use of algebraic topology in physics, 
 namely the study of topological solitons. 
 
-\subsubsection{Solitons without core}
+\subsubsection{Solitons without core, also known as textures}
 Suppose that we have a field on our space(time) taking values in a target space $X$,
 i.e. we have a map \begin{equation}
 f:\bR^D \to X.
@@ -3724,16 +3730,7 @@ which pointed out that the Hopfion charge is associated to a non-invertible symm
 a hot topic in recent years.
 
 
-
-\begin{example}
-The superfluid Helium 3 A-phase and B-phase have various topological solitons characterized by $\pi_d(G/H_\text{A})$
-and $\pi_d(G/H_\text{B})$ we discussed in Example~\ref{ex:helium3}.
-\end{example}
-
-The description of $\pi_d(G/H_\text{A})$ is a good exercise of the long exact sequence we learned above.
-I am not familiar with the status of experimental verification of these predicted topological solitons.
-
-\subsubsection{Solitons with core}
+\subsubsection{Solitons with core, better known as topological defects}
 
 Next let us have a look at what can be called with \emph{solitons with core}.
 Consider a situation where we have a codimension-$d$ configuration
@@ -3818,14 +3815,6 @@ characterized by $\pi_1(U(1))=\bZ$,
 is known as the Abrikosov/Nielsen-Olsen vortex.
 \end{example}
 
-\if0
-\begin{figure}[h]
-\centering
-\includegraphics[width=.3\textwidth]{R2S2.png}
-\caption{Putting a vortex configuration on $S^2$.}
-\label{fig:R2S2}
-\end{figure}
-\fi
 
 Let us further identify this $G=U(1)$ is identified with the electromagnetic $U(1)$.
 In this case, we can show that the core region contains a unit magnetic flux in the following manner;
@@ -3846,6 +3835,15 @@ we need to use a $U(1)$ gauge transformation $g:S^1\to S^1$ which also goes arou
 This means that on the resulting $S^2$, the $U(1)$ bundle
 is characterized by $N\in \pi_1(S^1)\simeq \bZ$,
 and therefore has the magnetic charge $N$.
+See Fig.~\ref{fig:vortex-flux} for an illustration.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=.8\textwidth]{vortex-flux.png}
+\caption{To measure the magnetic flux, we can put a vortex configuration on $S^2$.
+This requires a nontrivial gauge transformation around the equator.}
+\label{fig:vortex-flux}
+\end{figure}
 
 
 Although not directly relevant to nature,
@@ -3901,6 +3899,24 @@ between an $SU(2)$ gauge theory and an $SO(3)$ gauge theory
  plays an important role in the modern study of topological properties of gauge theories.
  See e.g.~\cite{Aharony:2013hda}.
 
+\subsubsection{A remark and suggested questions}
+
+Note that $\pi_d(X)$ can correspond to a codimension-$d$ texture (i.e.~a topological soliton without core)
+and also to a codimension-$(d+1)$ topological defect (i.e.~a topological soliton with core).
+In general they can coexist, but I do not know any concrete examples.
+
+\begin{question}
+The superfluid Helium 3 A-phase and B-phase have various topological solitons characterized by $\pi_d(G/H_\text{A})$
+and $\pi_d(G/H_\text{B})$ we discussed in Example~\ref{ex:helium3}.
+Learn about it. 
+\end{question}
+
+The description of $\pi_d(G/H_\text{A})$ is a good exercise of the long exact sequence we learned above.
+I am not familiar with the status of experimental verification of these predicted topological solitons.
+
+\begin{question}
+Look for an experimental paper on a topological soliton, either with or without core, and study it.
+\end{question}
 
 \section{Differential forms and de Rham cohomology}
 \label{sec:deRham}
