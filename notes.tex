@@ -39,10 +39,11 @@
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{question}[definition]{Question}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{proposition}[definition]{Proposition}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{lemma}[definition]{Lemma}
-\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{fact}[definition]{Fact}
-\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{remark}[definition]{Remark}
 \newmdtheoremenv[backgroundcolor=black!0]{exercise}[definition]{Exercise}
+\theoremstyle{remark}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{remark}[definition]{Remark}
 
 
 
@@ -1667,9 +1668,12 @@ Actually we have:
 \end{itemize}
 
 \begin{fact}
-These three Hopf fibrations exhaust 
+These three Hopf fibrations, together with a final one
+$S^7\to S^{15}\to S^8$
+ exhaust 
 such fibrations $S^n\to S^m\to S^{m-n}$.
 \end{fact}
+The last one, related to octonions, is not a principal fiber bundle, since $S^7$ is not a group.
 
 We can also use the fact that Hopf fibrations are nontrivial to show that
 the fibrations given in Examples \ref{ex:RPn}, \ref{ex:CPn}, \ref{ex:HPn} 
