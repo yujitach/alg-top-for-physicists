@@ -1661,6 +1661,24 @@ We can also give a more explicit parameterization of the map above:
 \end{equation}
 This shows that the fiber above a point on $S^2$ is parameterized by $\psi$.
 
+We can stereographically project points on $S^3$ to $\bR^3$ via \begin{equation}
+(a,b,c,d) \mapsto \frac{1}{1-a}(b,c,d),
+\end{equation} see Fig.~\ref{fig:stereo}.
+Using this, we can draw the fibers of each point on $S^2$ as circles within $\bR^3$.
+In Fig.~\ref{fig:hopf-fibers}, I drew the fibers of $(\cos 2\pi k/8, \sin 2\pi k/8, 0)$ for $k=0,1,\ldots,7$ in this manner.
+\begin{figure}[h]
+\centering   
+\includegraphics[width=0.3\textwidth]{stereo.png}
+  \caption{Stereographical projection from $S^3$ to $\bR^3$}
+  \label{fig:stereo}
+\end{figure}
+\begin{figure}[h]
+\centering   
+\includegraphics[width=0.5\textwidth]{hopf-fibers.png}
+  \caption{Fibers of the Hopf fibration, drawn after a stereographic projection.}
+  \label{fig:hopf-fibers}
+\end{figure}
+
 \item All the three fibrations above have the form
 $S^n \to S^m \to S^{m-n}$.
 One wonders if there are other examples of this form.
@@ -2876,7 +2894,7 @@ then the integral of the magnetic field around $C'$
 is proportional to the linking number of $C$ and $C'$.}
 One can show that this is independent under continuous deformations of $f$.
 This is one definition of the Hopf invariant of $f$.
-See Fig.~\ref{fig:hopf-invariant} for an illustration.
+See Fig.~\ref{fig:hopf-invariant} for an illustration of the definition.
 
 \begin{figure}
   \centering
@@ -2885,6 +2903,10 @@ See Fig.~\ref{fig:hopf-invariant} for an illustration.
   given by considering the linking number of the inverse images of two points in $S^2$.}
   \label{fig:hopf-invariant}
 \end{figure}
+
+We drew the actual fibers of the Hopf fibration $S^1\to S^3\to S^2$ in Fig.~\ref{fig:hopf-fibers}.
+By inspection, we see that two fibers have the linking number $1$. 
+Therefore, the Hopf fibration $S^3\to S^2$ has the Hopf invariant $1$.
 
 We can similarly define linking numbers of two $S^{n-1}$'s within $S^{2n-1}$,
 where the previous case corresponds to $n=2$.
