@@ -158,10 +158,18 @@
 
 
 
-\section*{Acknowledgements and a disclaimer}
+\section*{Acknowledgements and disclaimers}
 
 I'd like to thank our Physics Department for giving me this opportunity to give this course.
 I'd like to ask participants to point out as many errors as possible in these notes and also during lectures.
+
+In general, the lecture notes contain much more than I will or can actually cover in the lecture. 
+In the same vein, there are many remarks in this lecture notes which can be skipped without affecting the understanding of later parts. 
+Similarly, many remarks in the lecture notes  give mathematical and/or physical facts without any explanation.
+Because of these reasons, a reader should not fret  when s/he finds something s/he does not understand in the lecture notes.
+I simply wish this lecture notes to be a starting point from which a reader can start to explore various topics of algebraic topology.
+But again, because of this nature of this lecture notes, I do not want to include wrong or incorrect information. 
+Please do not hesitate to report to me (by emailing \url{yuji.tachikawa@ipmu.jp} for example) if you find anything wrong in the lecture notes.
 
 This is the first time I'm heavily utilizing AI to prepare my lecture notes.
 More concretely I'm using GitHub Co-pilot for \LaTeX, which is based on Chat-GPT.
@@ -175,6 +183,8 @@ The possibly only original part is the selection of the contents and the order o
 But this particular sentence was also auto-suggested by Co-pilot, when I typed `The possibly only'...
 }
 If anybody notices any parts which look like a direct copy from some other source, please let me know.
+
+
 
 \section{General introduction}
 
@@ -362,7 +372,6 @@ Not only that, in math, the proofs are usually reliable, so you can just use the
 In physics, the statements often relies on unwritten assumptions, so we need utmost caution when we want 
 to use results in other papers. 
 Maybe we physicists have something to learn from mathematicians in this regard...
-
 
 \subsection{Aside: some rare use of `useless' math subfields in physics}
 Before proceeding to the main part of the lectures,
@@ -2908,7 +2917,7 @@ We drew the actual fibers of the Hopf fibration $S^1\to S^3\to S^2$ in Fig.~\ref
 By inspection, we see that two fibers have the linking number $1$. 
 Therefore, the Hopf fibration $S^3\to S^2$ has the Hopf invariant $1$.
 
-We can similarly define linking numbers of two $S^{n-1}$'s within $S^{2n-1}$,
+We can similarly define linking numbers of two $S^{n-1}$'s within $S^{2n-1}$ for $n>2$,
 where the previous case corresponds to $n=2$.
 Then, for a map $f: S^{2n-1}\to S^{n}$,
 the inverse image of a generic point in $S^n$ is a $(n-1)$-dimensional space,
@@ -2919,16 +2928,44 @@ It is relatively easy to construct a map $S^{2n-1}\to S^n$ with Hopf invariant 2
 \end{theorem}
 
 Also, by an explicit computation we can show  that \begin{proposition}
-The Hopf fibrations $S^1\to S^1$, $S^3\to S^2$, $S^7\to S^4$,
+The Hopf fibrations $S^3\to S^2$, $S^7\to S^4$, $S^{15}\to S^8$,
 all have Hopf invariant one.
 \end{proposition}
 and in fact 
 \begin{theorem}
 There is a map $f:S^{2n-1}\to S^n$ with Hopf invariant one
-only when $n=1,2,4$.
+only when $n=2,4,8$.
 \end{theorem}
 This is a deep result in algebraic topology, known as the Hopf invariant one problem,
 and the efforts to solve this question inspired many developments in the field.
+
+\begin{proposition}
+For all other $n$, the minimal Hopf invariant for a map $f:S^{2n-1}\to S^n$ is two.
+\end{proposition}
+This can be shown by constructing an example with Hopf invariant two using the Whitehead product.
+Here we do not have the time to give a general theory, so let us simply give the final constructed map.
+
+First, realize $S^{2n-1}$ as \begin{equation}
+(S^{n-1} \times D^n) \cup (D^n \times S^{n-1}), 
+\end{equation} where we identify the common boundary $S^{n-1}\times S^{n-1}$ with an appropriate orientation. 
+We then define the map $f:S^{2n-1}\to S^n$ as follows,
+using the map $g:D^n \to S^n$ collapsing the boundary to the basepoint:
+\begin{equation}
+f(p) = \begin{cases}
+g(b) & \text{if}\ p=(a,b) \in S^{n-1}\times D^n ,\\
+g(a) & \text{if}\ p=(a,b) \in D^{n}\times S^{n-1}.
+\end{cases}
+\end{equation}
+Then the inverse image $f^{-1}(s)$ of $s\in S^{n-1}$ for a generic point $s$ away from the basepoint is  \begin{equation}
+f^{-1}(s)= (\{s\} \times S^{n-1} ) \cup (S^{n-1} \times \{s\}),
+\end{equation}
+and the linking number of $f^{-1}(s) \cup f^{-1}(t)$ within $S^3$ can be seen to be $2$, as \begin{equation}
+\text{linking number}(\{s\} \times S^{n-1} ,\{t\} \times S^{n-1} )  =0 
+\end{equation} and \begin{equation}
+\text{linking number}(\{s\} \times S^{n-1} ,S^{n-1}\times \{t\} )  =1.
+\end{equation}
+
+
 
 
 Another interesting fact is that 
