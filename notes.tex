@@ -2699,6 +2699,7 @@ the preimage of $q$, in contrast, consists of three points,
 with local orientations $+1$, $-1$, $+1$ respectively,
 again giving $+1-1+1=+1$ for the winding number.
 
+
 \begin{example}
   For a genus-$g$ surface $\Sigma_g$, \begin{multline}
   \pi_1(\Sigma_g)= \langle A_1,B_1,A_2,B_2,\ldots,A_g,B_g \mid \\
@@ -3858,6 +3859,30 @@ Note that the symmetry is broken from $G=U(1)=S^1$ to the trivial group $H=\{e\}
 but the full symmetry is realized at least at a point in the core region,
 where the entire  symmetry $G=U(1)$ is unbroken.
 In this manner, at the core of the topological soliton, the symmetry is forced to be restored. 
+
+Another application of the same line of ideas give a proof of the fundamental theorem of algebra.
+Consider a degree-$n$ polynomial $P(z)$ with complex coefficients, \begin{equation}
+P(z)=z^n + c_1 z^{n-1} +\cdots + c_n.
+\end{equation}
+Suppose that $P(z)$ does not have any zero.
+Then, we can always write $P(z)=|P(z)| e^{i\theta(z)}$ unambiguously,
+defining a map \begin{equation}
+\theta: \bC \to S^1.
+\end{equation}
+Let us restrict $\theta$ to a circle $z=r e^{i\phi}$  of radius $r$ within $\bC$.
+Clearly, it has winding number zero when $r$ is very small, since $P(z) \sim c_n$,
+while it has winding number $n$ when $r$ is very large, since $P(z)\sim z^n$.
+As the winding number should be constant when $r$ is continuously varied,
+this cannot happen.
+Therefore $P(z)$ has at least one zero, say at $z=z_0$.
+Therefore $P(z)=(z-z_0)Q(z)$.
+
+If you prefer a physics analogy, 
+say that $P(z)$ gives a field configuration.
+Then, away from cores, we have a map to $S^1$.
+At large $r$, the winding number is $n$. 
+Therefore, there should be at least one core, when $P(z)$ vanishes.
+
 
 
 This vortex configuration was first introduced by Abrikosov \cite{Abrikosov:1956sx} in the context of superconductivity 
