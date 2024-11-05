@@ -41,9 +41,9 @@
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{lemma}[definition]{Lemma}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{fact}[definition]{Fact}
 \newmdtheoremenv[backgroundcolor=black!0]{exercise}[definition]{Exercise}
-\theoremstyle{remark}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
-\newmdtheoremenv[backgroundcolor=black!0,linecolor=black!0]{aside}[definition]{Aside}
+\theoremstyle{remark}
+\newtheorem{aside}[definition]{Aside}
 %\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{remark}[definition]{Remark}
 \let\oldendaside\endaside
 \def\endaside{\hfill {$\lrcorner$} \oldendaside}
@@ -731,7 +731,7 @@ we also introduce the notations:
 We use the notation $GL(n,\bK)$ for the group of invertible $n\times n$ matrices over a field $\bK$.
 \end{definition}
 
-\subsubsection{Time reversal and $\bR$, $\bC$, $\bH$}
+\subsubsection{Aside: time reversal and $\bR$, $\bC$, $\bH$}
 
 Let me make a side remark concerning the natural role of $\bH$ in quantum mechanics.
 Let's consider a quantum mechanical system with finite-dimensional Hilbert space $\cH$.
@@ -3084,7 +3084,7 @@ are known as unstable groups.
 The stable homotopy groups of spheres are much easier to compute than the unstable groups.
 Still, the stable homotopy groups are not quite understood.
 Indeed, computing them is a major goal in algebraic topology;
-currently it is known up to $k\ge 83$ \cite{Isaksen}.
+currently it is known up to $k\le 83$ \cite{Isaksen}.
 
 In this field, there is a famous principle known as the 
 `Mahowald uncertainty principle' \cite[Sec.~3]{IsaksenICM},
