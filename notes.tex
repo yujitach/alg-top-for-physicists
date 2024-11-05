@@ -26,10 +26,10 @@
 \usepackage[safe]{tipa}
 
 \usepackage{xcolor}
-%\usepackage{amsthm}
+\usepackage{amsthm}
 \usepackage{mdframed}
 \usepackage{amsmath}
-\usepackage[amsmath]{ntheorem}
+%\usepackage[amsmath]{ntheorem}
 \usepackage{xypic}
 %\theorembodyfont{\normalfont}
 
@@ -43,8 +43,11 @@
 \newmdtheoremenv[backgroundcolor=black!0]{exercise}[definition]{Exercise}
 \theoremstyle{remark}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
+\newmdtheoremenv[backgroundcolor=black!0,linecolor=black!0]{aside}[definition]{Aside}
 %\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{remark}[definition]{Remark}
-
+\let\oldendaside\endaside
+\def\endaside{\hfill {$\lrcorner$} \oldendaside}
+\topsep2pt
 
 
 \newenvironment{claim}{  \begin{mdframed}[linecolor=black!0,backgroundcolor=black!10]\noindent\ignorespaces}{\end{mdframed}}
@@ -3314,7 +3317,49 @@ A different part of the same long exact sequnece for $n=3$ gives \begin{equation
   \stackrel{\partial}{\longrightarrow}  \underbrace{\pi_1(SO(2))}_{\bZ} \to \underbrace{\pi_1(SO(3))}=\bZ_2  \pi_1(S^2)=0.
 \end{equation}
 This forces $\partial:\bZ\to \bZ$ to be a multiplication by $2$,
-which tne means that $\pi_2(SO(3))=0$.
+which then means that $\pi_2(SO(3))=0$.
+
+\begin{aside}
+Before proceeding, let us see that the fact $\pi_1(SO(n))=\bZ_2$ 
+can be used to show that there is a nontrivial homomorphism $\pi_4(S^3) \to \bZ_2$.
+For this, pick a map $f:S^4\to S^3$, and assume that it is smooth.
+As in the discussion of the Hopf invariant,
+let us take the inverse image of a generic point $p$ on $S^3$, which is a disjoint union of circles.
+For each circle $S^1$, pick a disk $D^2$ filling it.
+In this manner, we can attach a coordinate frame (say $A$) at each point of $S^1$,
+by restricting $D^2 \times \bR^4$ (with a fixed coordinate frame in $\bR^4$) on its boundary.
+
+We also attach a (possibly different) coordinate frame at each point of $S^1$ in the following manner.
+The point $p$ on $S^3$ has a natural coordinate frame in $\bR^3$.
+Pulling this back to $S^1\subset S^4$ gives a coordinate frame to the transverse slice $\bR^3$ at each point of $S^1$.
+Together with the direction  tangent to $S^1$, 
+this gives another set of coordinate frame (say $B$).
+The two coordinate frames $A$ and $B$ are related by a four-dimensional rotation $g:S^1\to SO(4)$,
+which determines a class $\pi_1(SO(4))=\bZ_2=\{\pm1\}$.
+
+Recall that the inverse image $f^{-1}(p)$ consists of a disjoint union of circles.
+We compute a sign $\{\pm1\}$ for each circle as described above,
+and multiply them.
+This way we have a sign $\pm1$ constructed from a smooth map $f:S^4\to S^3$.
+It can be shown that this is independent of various choices made,
+and of continuous changes of $f$.
+This defines a homomorphism $\pi_4(S^3)\to \bZ_2$.
+
+We can explictly compute this sign for the map $f:S^4\to S^3$
+obtained from the suspension of the Hopf map $S^3\to S^2$,
+and it turns out to be $-1$.
+This means that $\pi_4(S^3)$ is nontrivial, and has $\bZ_2$ as a quotient.
+
+For those who know more about the algebraic topology,
+what is done here is the following:
+$S^4$ has a unique spin structure, and therefore
+$TS^4$ restricted to $S^1$  has a natural spin structure.
+The pull-back from a fixed point in $S^3$ also gives a spin structure on the normal bundle of $S^1$.
+Therefore we have a spin structure on $S^1$,
+which has two choices $\pm1$. 
+We now multiply this number for all the circles in $f^{-1}(p)$.
+\end{aside}
+
 
 As a final example, consider the computation of $\pi_4(Sp(n))$.
 We learned in Proposition \ref{prop:Sp/Sp} that there is a fiber bundle
@@ -3334,6 +3379,7 @@ As $\pi_4(Sp(1))=\bZ_2$, we inductively find that
 This suggests the existence of the mod-2 $SU(2)=Sp(1)$ anomaly of Witten 
 carries on to higher $Sp(n)$ gauge theories,
 and it indeed turns out to be the case.
+
 
 \subsubsection{Idea of the proof}
 The idea of the proof of this important theorem is as follows.
