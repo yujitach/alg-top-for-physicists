@@ -44,9 +44,15 @@
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{notation}[definition]{Notation}
 \theoremstyle{remark}
 \newtheorem{aside}[definition]{Aside}
+\newtheorem{remark}[definition]{Remark}
 %\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{remark}[definition]{Remark}
 \let\oldendaside\endaside
 \def\endaside{\hfill {$\lrcorner$} \oldendaside}
+\let\oldendremark\endremark
+\def\endremark{\hfill {$\lrcorner$} \oldendremark}
+
+\renewenvironment{proof}{\noindent\textsl{Proof outline:}}{\hfill$\square$}
+
 \topsep2pt
 
 
@@ -145,6 +151,7 @@
 \def\pt{\mathrm{pt}}
 \def\Ker{\mathop{\mathrm{Ker}}}
 \def\Im{\mathop{\mathrm{Im}}}
+\def\Lk{\mathop{\mathrm{Lk}}}
 
 \begin{document}
 
@@ -168,6 +175,7 @@ I'd like to ask participants to point out as many errors as possible in these no
 
 In general, the lecture notes contain much more than I will or can actually cover in the lecture. 
 In the same vein, there are many remarks in this lecture notes which can be skipped without affecting the understanding of later parts. 
+(Many such non-essential parts are marked as \emph{asides}.)
 Similarly, many remarks in the lecture notes  give mathematical and/or physical facts without any explanation.
 Because of these reasons, a reader should not fret  when s/he finds something s/he does not understand in the lecture notes.
 I simply wish this lecture notes to be a starting point from which a reader can start to explore various topics of algebraic topology.
@@ -911,11 +919,6 @@ is often denoted by \begin{equation}
   [x_1:x_2:\cdots:x_{n+1}].
 \end{equation}
 
-Before proceeding, we note that $\CP^n$ parameterize physically-distinct pure states 
-in an $(n+1)$-dimensional Hilbert space.
-Indeed, two nonzero ket vectors $\ket{\psi}$ and $\ket{\psi'}$ represent the same physical state
-when there is a complex number $c$ such that $\ket{\psi'}=c\ket{\psi}$.
-This is exactly the condition \eqref{eq:proj-ident}.
 
 It is instructive to give explicit coordinate patches.
 Let $U_i$ be the points on $\CP^n$ with $x_i\neq 0$.
@@ -963,13 +966,23 @@ we have $S^n$, $S^{2n+1}$, $S^{4n+3}$ at this point.
 The identification \eqref{eq:proj-ident} still acts within this sphere
 if $|c|=1$. 
 Depending on $\bK=\bR,\bC,\bH$, the group of such $c$ is $O(1)=\{\pm1\}=S^0$, $U(1)=S^1$, $Sp(1)=SU(2)=S^3$, respectively.
-Therefore, we have \begin{equation}
-\RP^n=S^n/O(1), \quad \CP^n=S^{2n+1}/U(1), \quad \HP^n=S^{4n+3}/Sp(1).
-\label{eq:sphere-proj}
-\end{equation}
+Therefore, we have \begin{proposition}
+\label{prop:sphere-proj}
+$\RP^n=S^n/O(1), \quad \CP^n=S^{2n+1}/U(1), \quad \HP^n=S^{4n+3}/Sp(1)$.
+\end{proposition}
+
+\begin{remark}
+Before proceeding, we note that $\CP^n$ parameterize physically-distinct pure states 
+in an $(n+1)$-dimensional Hilbert space.
+Indeed, two nonzero ket vectors $\ket{\psi}$ and $\ket{\psi'}$ represent the same physical state
+when there is a complex number $c$ such that $\ket{\psi'}=c\ket{\psi}$.
+This is exactly the condition \eqref{eq:proj-ident}.
+\end{remark}
+
 
 \subsubsection{Homogeneous spaces}
 \label{sec:homogeneous}
+\paragraph{Generalities:}
 Another large class of quotient spaces
 are the homogeneous spaces.
 \begin{definition}
@@ -1002,6 +1015,7 @@ determined by the original symmetry $G$ and the unbroken symmetry $H$.
 Note that mathematicians call the subgroup $H$ as the stabilizer of $m_0$,
 whereas physicists usually call it the unbroken subgroup.
 
+\paragraph{Wine bottle potential:}
 Let us give some examples.
 We start with two trivial examples.
 Let $G=SO(2)$ act on $(x,y)\in \bR^2$ by rotations.
@@ -1026,6 +1040,7 @@ with minimum either at the origin or at the circle of radius $r_0$.}
 \label{fig:winebottle}
 \end{figure}
 
+\paragraph{Generalized wine bottles:}
 Let us generalize.
 Let $SO(n)$ act on $\bR^n$ by rotations.
 A rotationally invariant potential $V:\bR^n\to \bR$ 
@@ -1062,6 +1077,7 @@ and we found that:
 $ Sp(n)/Sp(n-1)\simeq S^{4n-1}$.
 \end{proposition}
 
+\paragraph{Observables in quantum mechanics:}
 Let us discuss a different but common example we see in quantum mechanics.
 Consider an $n$-state system with the Hilbert space $\cH=\bC^n$.
 The unitary group $U(n)$ acts on it.
@@ -1094,6 +1110,7 @@ the natural symmetry group is $PU(n)$.
 This difference can produce subtle topological effects,
 as we will see during this lecture series.
 
+\paragraph{Chiral symmetry breaking in QCD:}
 As our next example, 
 let us consider the chiral symmetry breaking in QCD.
 For simplicity let us consider the two-flavor case.
@@ -1120,7 +1137,7 @@ We thus found:
 We have $SU(2)\times SU(2)/SU(2)_\text{diagonal} = SU(2)$.
 \end{proposition}
 
-
+\paragraph{Superfluid $^3$He:}
 Our final example is the superfluid $^3$He;
 its theory can be learned e.g.~in \cite{SuperfluidHe3Textbook,VolovikBook}.
 It has a phase diagram as given in Fig.~\ref{fig:3He}.
@@ -1233,10 +1250,10 @@ or the Klein bottle $\RP^2\#\RP^2$.
 \end{fact}
 It is a fun exercise to show that $\RP^2 \# \RP^2 \# \RP^2$ is homeomorphic to $\RP^2 \# T^2$.
 
-\subsection{Some other fun manifolds}
+\subsection{Aside: some other fun manifolds}
 
 
-\paragraph{The de-singularization of $\bC^2/\bZ_2$:}
+\subsubsection{The de-singularization of $\bC^2/\bZ_2$}
 Let's consider $\bC^2$ parameterized by $(z,w)$,
 and consider the $\bZ_2$ action $(z,w)\mapsto (-z,-w)$.
 The quotient space $\bC^2/\bZ_2$ is singular at the origin.
@@ -1283,7 +1300,7 @@ So $\tilde X$ can be visualized as a copy of $\bC$ attached smoothly at each poi
 and is a smooth manifold.
 This is an example of a fiber bundle we discuss in the next section.
 
-\paragraph{A K3 manifold:}
+\subsubsection{A K3 manifold}
 
 The manifold $\tilde X$ introduced above was non-compact. 
 It can be used to construct a rather important compact manifold of dimension 4.
@@ -1303,7 +1320,7 @@ Kummer, K\"ahler, and Kodaira who studied it, and also the mountain K2 in the Hi
 The construction given here is due to Kummer.
 }
 
-\subsection{Some curious facts about manifolds}
+\subsection{Aside: some curious facts about manifolds}
 \label{sec:smooth-vs-topological}
 
 \subsubsection{Smooth vs.~topological manifolds}
@@ -1591,7 +1608,7 @@ Summarizing, we found:
 \subsubsection{Examples}
 
 Now many of the examples we saw in Sec.~\ref{sec:quotient} can be rephrased as principal bundles.
-In particular, the equation \eqref{eq:sphere-proj} means the following:
+In particular, Proposition \eqref{prop:sphere-proj} means the following:
 \begin{example}
   \label{ex:RPn}
 $S^n\to \RP^n$ is a principal $O(1)=\bZ_2$-bundle.
@@ -1627,12 +1644,14 @@ the total space of a trivial $S^1$ fiber bundle over $S^2$.
 $S^3$ and $S^1\times S^2$.
 This we will do later.)
 
-We have a few comments.
-\begin{itemize}
-\item The first example is a 2:1 map,
+%We have a few comments.
+\begin{remark}
+The first example is a 2:1 map,
 already drawn in Fig.~\ref{fig:cyl-mob} 
 as a map from the boundary $S^1$ of the M\"obius strip to the base $S^1$.
-\item The second example can be given a different description. 
+\end{remark}
+\begin{remark}
+The second example can be given a different description. 
 Regard $S^3$ as parameterizing norm-one states
 in a qubit:
 \begin{equation}
@@ -1690,13 +1709,13 @@ In Fig.~\ref{fig:hopf-fibers}, I drew the fibers of $(\cos 2\pi k/8, \sin 2\pi k
   \caption{Fibers of the Hopf fibration, drawn after a stereographic projection.}
   \label{fig:hopf-fibers}
 \end{figure}
+\end{remark}
 
-\item All the three fibrations above have the form
+
+Note that all the three fibrations above have the form
 $S^n \to S^m \to S^{m-n}$.
 One wonders if there are other examples of this form.
 Actually we have:
-\end{itemize}
-
 \begin{fact}
 These three Hopf fibrations, together with a final one
 $S^7\to S^{15}\to S^8$
@@ -2155,6 +2174,7 @@ which gives a smoothly-varying inner product
 on each fiber.
 \end{definition}
 
+\paragraph{Unit sphere bundle:}
 With a metric, we can consider the unit sphere bundle $Sph(TM)$.
 
 \begin{example}
@@ -2173,6 +2193,8 @@ but here is a special argument applicable to this particular case.
 \begin{example}
 $Sph(TS^2) \simeq SO(3)$.
 \end{example}
+
+\begin{proof}
 To see this, note that $SO(3)$ naturally acts on $TS^2$ by rotation;
 if you are unsure, realize $TS^2$ as a subspace of $(\vec v,\vec w) \bR^3\times \bR^3$
 with the constraint $\vec v\cdot \vec v=1$, $\vec w\cdot \vec v=0$.
@@ -2186,9 +2208,16 @@ As we saw in Sec.~\ref{sec:homogeneous}, the orbit is of the form $SO(3)/H$, whe
 Now, $\vec v_0$ is fixed by $SO(2)\subset SO(3)$, but this $SO(2)$ rotates $\vec w_0$.
 Therefore $H=\{e\}$, and the orbit is $SO(3)$ itself.
 Clearly this orbit is $Sph(TS^2)$, and we are done.
-AS the total space is different from $S^3$, we conclude that the fiber bundle $S^1\to Sph(TS^2)\to S^2$ is different from the Hopf bundle $S^1\to S^3\to S^2$.
+\end{proof}
 
+Note that, at this point, we learned of the existence of three different $S^1$ bundles over $S^2$:
+\begin{itemize}
+\item The trivial one, $S^1\to S^1\times S^2\to S^2$,
+\item The Hopf bundle, $S^1\to S^3\to S^2$,
+\item the bundle $S^1\to Sph(TS^2)\to S^2$.
+\end{itemize}
 
+\paragraph{Reduction of the structure group to $O(n)$ or $O(n-1,1)$:}
 We now consider a different use of the metric.
 With a Riemannian metric, we can form an orthogonal basis of the tangent space at each point.
 Take $U\times \bR^n$ with the basis vectors $\partial/\partial x^i$ as before.
@@ -2886,7 +2915,8 @@ the resulting integer is known as its \emph{degree} in mathematics.
 
 A more interesting one is the following:
 \begin{theorem}
-  $\pi_3(S^2)=\bZ$ and the Hopf fibration $S^3\to S^2$ corresponds 
+  $\pi_3(S^2)=\bZ$. 
+  Furthermore, the Hopf fibration $S^3\to S^2$ corresponds 
   to the generator of $\bZ$.
 \end{theorem}
 
@@ -2899,9 +2929,9 @@ Its inverse image $f^{-1}(p)$ is a collection of circles $C_1,\ldots, C_n$ in $S
 Take another point $q$ on $S^2$.
 Its inverse image $f^{-1}(q)$ is another collection of circles $C'_1,\ldots, C'_m$ in $S^3$.
 We now consider \begin{equation}
-\sum_{i,j} (\text{linking number of $C_i$ and $C'_j$}), \label{eq:Hopf-invariant-crude}
+\sum_{i,j} \Lk(C_i,C'_j), \label{eq:Hopf-invariant-crude}
 \end{equation}
-where the linking number of two circles is defined in the standard way.\footnote{This appears in the integrated form of the equation of electromagnetism.
+where the linking number $\Lk$ of two circles is defined in the standard way.\footnote{This appears in the integrated form of the equation of electromagnetism.
 Namely, if a current $I$ flows in a loop $C$,
 then the integral of the magnetic field around $C'$ 
 is proportional to the linking number of $C$ and $C'$.}
@@ -2926,9 +2956,14 @@ where the previous case corresponds to $n=2$.
 Then, for a map $f: S^{2n-1}\to S^{n}$,
 the inverse image of a generic point in $S^n$ is a $(n-1)$-dimensional space,
 and then we can define a higher-dimensional Hopf invariant of $f$ as in \eqref{eq:Hopf-invariant-crude}.
-It is relatively easy to construct a map $S^{2n-1}\to S^n$ with Hopf invariant 2 for general $n$, and therefore
+Now, it is known that  \begin{equation}
+\Lk (A,B)=(-1)^n \Lk (B,A)
+\label{eq:Lk-sym}
+\end{equation} in general, which implies that the expression \eqref{eq:Hopf-invariant-crude} gives zero when $n$ is odd.
+As we see below in Proposition~\ref{prop:whitehead}, 
+it is relatively easy to construct a map $S^{2n-1}\to S^n$ with Hopf invariant 2 when  $n$ is even, and therefore
 \begin{theorem}
-  $\pi_{2n-1}(S^n)$ contains a  $\bZ$ summand.
+  $\pi_{4m-1}(S^{2m})$ contains a  $\bZ$ summand.
 \end{theorem}
 
 Also, by an explicit computation we can show  that \begin{proposition}
@@ -2942,13 +2977,17 @@ only when $n=2,4,8$.
 \end{theorem}
 This is a deep result in algebraic topology, known as the Hopf invariant one problem,
 and the efforts to solve this question inspired many developments in the field.
-
+We also have
 \begin{proposition}
-For all other $n$, the minimal Hopf invariant for a map $f:S^{2n-1}\to S^n$ is two.
+\label{prop:whitehead}
+For all other $n=2m$, the minimal Hopf invariant for a map $f:S^{4n-1}\to S^{2m}$ is two.
 \end{proposition}
+
+\begin{proof}
 This can be shown by constructing an example with Hopf invariant two using the Whitehead product.
 Here we do not have the time to give a general theory, so let us simply give the final constructed map.
 
+For now let $n$ be an integer, without assuming that it is even.
 First, realize $S^{2n-1}$ as \begin{equation}
 (S^{n-1} \times D^n) \cup (D^n \times S^{n-1}), 
 \end{equation} where we identify the common boundary $S^{n-1}\times S^{n-1}$ with an appropriate orientation. 
@@ -2963,12 +3002,18 @@ g(a) & \text{if}\ p=(a,b) \in D^{n}\times S^{n-1}.
 Then the inverse image $f^{-1}(s)$ of $s\in S^{n-1}$ for a generic point $s$ away from the basepoint is  \begin{equation}
 f^{-1}(s)= (\{s\} \times S^{n-1} ) \cup (S^{n-1} \times \{s\}),
 \end{equation}
-and the linking number of $f^{-1}(s) \cup f^{-1}(t)$ within $S^3$ can be seen to be $2$, as \begin{equation}
-\text{linking number}(\{s\} \times S^{n-1} ,\{t\} \times S^{n-1} )  =0 
-\end{equation} and \begin{equation}
-\text{linking number}(\{s\} \times S^{n-1} ,S^{n-1}\times \{t\} )  =1.
+Now, we have \begin{align}
+\Lk (\{s\} \times S^{n-1} ,\{t\} \times S^{n-1} )  &=0 ,\\
+\Lk (\{s\} \times S^{n-1} ,S^{n-1}\times \{t\} )  &=1,
+\end{align}
+Using this we can compute \begin{equation}
+\Lk (f^{-1}(s),f^{-1}(t)) = \begin{cases}
+2 & \text{(even $n$),} \\
+0 & \text{(odd $n$)} \\
+\end{cases}
 \end{equation}
-
+where we used \eqref{eq:Lk-sym}.
+\end{proof}
 
 
 
@@ -2986,6 +3031,9 @@ let us have a look at the homotopy groups of spheres $\pi_{n+k}(S^n)$
 for small $n$ and $k$, which are tabulated in Table~\ref{tab:pi_nS^m}.
 The data are taken from 岩波数学辞典 \cite[付録, 公式 7, V]{Jiten},
 which also has an English translation \cite{EDM}.
+There we showed $\pi_d(S^d)\simeq \bZ$ in red,
+and the $\bZ$ summand of $\pi_{2m-1}(S^m)$ in blue.
+
 
 \begin{table}[h]
   \[
@@ -3009,8 +3057,6 @@ which also has an English translation \cite{EDM}.
 \caption{Table of $\pi_{n+k}(S^n)$ \label{tab:pi_nS^m}}
 \end{table}
 
-Here we showed $\pi_d(S^d)\simeq \bZ$ in red,
-and the $\bZ$ summand of $\pi_{2d-1}(S^d)$ in blue.
 
 We clearly see more patterns in the table. 
 This comes from the following general fact.
@@ -3113,6 +3159,7 @@ of the Hopf fibration $p:S^3\to S^2$.
 But it is difficult to see that this map $\Sigma p$ 
 generates a $\bZ_2$, and that there is no other generator.
   
+\begin{remark}
 The way it appears in four-dimensional physics is the following.
 The weak force is described by a $SU(2)$ gauge theory,
 and therefore we have an $SU(2)$ principal bundle over our spacetime.
@@ -3151,6 +3198,7 @@ Therefore, the sign \eqref{eq:Witten-anomaly} always becomes $(-1)^{4s}=+1$,
 making the theory consistent.
 This for example means that you cannot just change the number of colors $SU(3)$ to $SU(4)$, 
 keeping everything else in the Standard Model fixed.
+\end{remark}
 
 
 \subsection{Long exact sequence of homotopy groups of fiber bundles}
@@ -3261,12 +3309,15 @@ As $\pi_n(\bR^k)=0$, the long exact sequence simply gives
 \end{equation} meaning that \begin{equation}
   \pi_n(S^1)=\pi_{n-1}(\bZ).
 \end{equation} As $\pi_0(\bZ)=\bZ$ and $\pi_{n\ge 1}(\bZ)=0$,
-we conclude that \begin{equation}
+we conclude 
+\begin{example}
+$
   \pi_n(S^1)=\begin{cases}
-    \bZ & n=1, \\
-    0 & n\neq 1.
+    \bZ & (n=1), \\
+    0 & (n\neq 1).
   \end{cases}
-\end{equation}
+$
+\end{example}
 
 Suppose $\Gamma$ acts on $S^n$ freely, with $n\ge 2$. 
 We have the fiber bundle $\Gamma\to S^n\to S^n/\Gamma$.
@@ -3278,17 +3329,19 @@ Then we have the long exact sequence, a part of which is \begin{equation}
 Recall $\RP^n=S^n/\bZ_2$. Therefore we have \begin{equation}
   \pi_1(\RP^n)=\bZ_2.
 \end{equation}
-Recall further that $SO(3)=\bZ_2$. Then we have \begin{equation}
-  \pi_1(SO(3))=\bZ_2.
-\end{equation}
+Recall further that $SO(3)=\bZ_2$. Then we have 
+\begin{example}
+$  \pi_1(SO(3))=\bZ_2 $.
+\end{example}
 
 Next, let us apply the long exact sequence of homotopy groups to the Hopf fibration $S^1\to S^3\to S^2$.
 We learned above that $\pi_k(S^1)=0$ when $k>1$.
 Therefore the long exact sequences gives \begin{equation}
   0=\pi_{k}(S^1)\to \pi_{k}(S^3)\to \pi_k(S^2)\to \pi_{k-1}(S^1)=0
-\end{equation} when $k\ge 3$, meaning that \begin{equation}
-  \pi_k(S^3)=\pi_k(S^2)
-\end{equation} again with $k\ge 3$. 
+\end{equation} when $k\ge 3$, meaning that 
+\begin{proposition}
+$  \pi_k(S^3)=\pi_k(S^2)$ for $k\ge 3$.
+\end{proposition}
 This in particular shows that $\pi_3(S^2)=\bZ$, the basic fact we already mentioned,
 and also explains the pattern in Table~\ref{tab:pi_nS^m}
 in the two columns for $S^2$ and $S^3$.
@@ -3464,9 +3517,10 @@ we need to know some homotopy groups to start with.
 We already gave a table of $\pi_n(S^m)$ for some values of $n,m$.
 Here we discuss homotopy groups of Lie groups.
 
-
+\paragraph{$\pi_n(U(1))$:}
 Let us start with $U(1)$. As $U(1)=S^1$, we already know $\pi_n(U(1))$.
 
+\paragraph{$\pi_0(G)$:}
 Let us then discuss non-Abelian Lie groups $G$.
 For groups, $\pi_0(G)$, the set of connected components, itself is a group.
 For example, $O(n)$ has two components,
@@ -3475,6 +3529,7 @@ Then $\pi_0(O(n))=\bZ_2$.
 For the rest of this subsection, we only consider connected Lie groups,
 for which $\pi_0(G)=1$.
 
+\paragraph{$\pi_1(G)$:}
 Let us next consider $\pi_1(G)$. 
 \begin{fact}
 $\Gamma$ is always known to be an Abelian group.
@@ -3497,6 +3552,7 @@ so we have \begin{equation}
 \bZ_2 \to Spin(n)\to SO(n).
 \end{equation}
 
+\paragraph{$\pi_{2,3,4}(G)$:}
 Consider compact Lie groups $G$ such that 
 it is connected (i.e.~$\pi_0(G)=0$)
 and simply-connected (i.e.~$\pi_1(G)=0$).
@@ -3528,6 +3584,7 @@ $\pi_4(G)$ for groups $G$ in \eqref{eq:list-simple-Lie} are
 either $\bZ_2$ for $G=Sp(n)$ or $0$ otherwise.
 \end{fact}
 
+\paragraph{$\pi_{n\ge 5}(G)$:}
 
 We tabulate in Table~\ref{tab:pi_nG}
 the homotopy groups of simply connected Lie groups $\pi_{n}(G)$ 
@@ -3740,7 +3797,9 @@ Summarizing, we found:
 \begin{proposition}
 \label{prop:connecting-and-bundle}
   Given a map $f:S^{n}\to G/H$,
-  the pull-back bundle $f^*(G)\to S^n$ is classified by 
+  the principal $G$-bundle $f^*(G)\to S^n$ 
+  obtained by pulling back $G\to G/H$
+  is classified by 
   the class $\partial[f]\in \pi_{n-1}(H)$.
 \end{proposition}
 
@@ -3842,6 +3901,7 @@ a hot topic in recent years.
 
 \subsubsection{Solitons with core, better known as topological defects}
 
+\paragraph{Generalities:}
 Next let us have a look at what can be called with \emph{solitons with core}.
 Consider a situation where we have a codimension-$d$ configuration
 with a map to the target space $X$, where $X$ is the space of order parmeters, say.
@@ -3893,6 +3953,7 @@ In the core region, the field values come to the origin of the field space.}
 \label{fig:vortex}
 \end{figure}
 
+\paragraph{Vortices:}
 An example illustrating the discussion above is when $X=S^1$.
 The space $S^1$ of order parameters appears as the space of potential minimum of a wine-bottle potential, as we saw in Sec.~\ref{sec:homogeneous}.
 In this case we can consider a field configuration illustrated in Fig.~\ref{fig:vortex}.
@@ -3906,6 +3967,28 @@ but the full symmetry is realized at least at a point in the core region,
 where the entire  symmetry $G=U(1)$ is unbroken.
 In this manner, at the core of the topological soliton, the symmetry is forced to be restored. 
 
+
+
+
+This vortex configuration was first introduced by Abrikosov \cite{Abrikosov:1956sx} in the context of superconductivity 
+in condensed matter physics,
+and by Nielsen and Olsen \cite{Nielsen:1973cs} in high energy physics. 
+By now these vortices are experimentally observed, see Fig.~\ref{fig:vortex-exp}.
+\begin{figure}[h]
+\centering
+\includegraphics[width=.5\textwidth]{vortices.pdf}
+\caption{A scanning SQUID-microscope view of the vortices in a superconducting material.
+Taken from \cite{VortexExp}.}
+\label{fig:vortex-exp}
+\end{figure}
+Summarizing, 
+\begin{example}
+A codimension-2 topological soliton with a core for the parameter space $X=U(1)$,
+characterized by $\pi_1(U(1))=\bZ$,
+is known as the Abrikosov/Nielsen-Olsen vortex.
+\end{example}
+
+\begin{aside}
 Another application of the same line of ideas give a proof of the fundamental theorem of algebra.
 Consider a degree-$n$ polynomial $P(z)$ with complex coefficients, \begin{equation}
 P(z)=z^n + c_1 z^{n-1} +\cdots + c_n.
@@ -3928,29 +4011,11 @@ say that $P(z)$ gives a field configuration.
 Then, away from cores, we have a map to $S^1$.
 At large $r$, the winding number is $n$. 
 Therefore, there should be at least one core, when $P(z)$ vanishes.
+\end{aside}
 
 
-
-This vortex configuration was first introduced by Abrikosov \cite{Abrikosov:1956sx} in the context of superconductivity 
-in condensed matter physics,
-and by Nielsen and Olsen \cite{Nielsen:1973cs} in high energy physics. 
-By now these vortices are experimentally observed, see Fig.~\ref{fig:vortex-exp}.
-\begin{figure}[h]
-\centering
-\includegraphics[width=.5\textwidth]{vortices.pdf}
-\caption{A scanning SQUID-microscope view of the vortices in a superconducting material.
-Taken from \cite{VortexExp}.}
-\label{fig:vortex-exp}
-\end{figure}
-Summarizing, 
-\begin{example}
-A codimension-2 topological soliton with a core for the parameter space $X=U(1)$,
-characterized by $\pi_1(U(1))=\bZ$,
-is known as the Abrikosov/Nielsen-Olsen vortex.
-\end{example}
-
-
-Let us further identify this $G=U(1)$ is identified with the electromagnetic $U(1)$.
+Coming back to physics interpretations of algebraic topology,
+let us further identify this $G=U(1)$ is identified with the electromagnetic $U(1)$.
 In this case, we can show that the core region contains a unit magnetic flux in the following manner;
 we will give a more traditional approach using the vector potential later.
 To measure the magnetic flux topologically,
@@ -3980,6 +4045,8 @@ This requires a nontrivial gauge transformation around the equator.}
 \end{figure}
 
 
+\paragraph{Instanton particles:}
+
 Although not directly relevant to nature,
 at least at the mathematical level we can replace $\pi_1(U(1))=\bZ$ with $\pi_3(SU(2))$,
 and consider a codimension-4 particle in a $(4+1)$-dimensional system:
@@ -3995,6 +4062,7 @@ shows that the core of this soliton has the instanton charge $1$,
 again characterized by the same $\pi_3(SU(2))=\bZ$.
 For this reason this is often called an `instanton-particle' in string theory.
 
+\paragraph{Monopoles:}
 
 Our final example is the following:
 \begin{example}
@@ -4033,11 +4101,9 @@ between an $SU(2)$ gauge theory and an $SO(3)$ gauge theory
  plays an important role in the modern study of topological properties of gauge theories.
  See e.g.~\cite{Aharony:2013hda}.
 
-\subsubsection{A remark and suggested questions}
+\subsubsection{Some suggested questions}
 
-Note that $\pi_d(X)$ can correspond to a codimension-$d$ texture (i.e.~a topological soliton without core)
-and also to a codimension-$(d+1)$ topological defect (i.e.~a topological soliton with core).
-In general they can coexist, but I do not know any concrete examples.
+
 
 \begin{question}
 The superfluid Helium 3 A-phase and B-phase have various topological solitons characterized by $\pi_d(G/H_\text{A})$
@@ -4050,6 +4116,14 @@ I am not familiar with the status of experimental verification of these predicte
 
 \begin{question}
 Look for an experimental paper on a topological soliton, either with or without core, and study it.
+\end{question}
+There are tons of papers of this kind. Find one, have a look, and discuss the content!
+
+\begin{question}
+Note that $\pi_d(X)$ can correspond to a codimension-$d$ texture (i.e.~a topological soliton without core)
+and also to a codimension-$(d+1)$ topological defect (i.e.~a topological soliton with core).
+In general they can coexist, but I do not know any concrete examples.
+Are there any nice examples, preferably with some experimental realization?
 \end{question}
 
 \section{Differential forms and de Rham cohomology}
