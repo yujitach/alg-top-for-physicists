@@ -4175,6 +4175,266 @@ Are there any nice examples, preferably with some experimental realization?
 \section{Differential forms and de Rham cohomology}
 \label{sec:deRham}
 
+\subsection{Differential forms}
+Given a smooth manifold $M$, we have introduced its cotangent bundle $T^*M$.
+On a patch $M\supset U \xrightarrow{f} \bR^n$ with $f(m)=(x^1,\ldots,x^n)$,
+the fiber had a basis $dx^i$.
+Introduce another patch $M\supset \tilde U \xrightarrow{\tilde f} \bR^n$ with $\tilde f(m)=(\tilde x^1,\ldots,\tilde x^n)$.
+Then the basis $d\tilde x^a$ of the fiber of $T^*M$ over $\tilde U$ is related to the basis $dx^i$ on the overlap $U\cup \tilde U$ \begin{equation}
+  d\tilde x^a = \sum_{j} \frac{\partial \tilde x^a}{\partial x^j} dx^j.
+\end{equation}
+
+A section of $T^*M$ has an expression \begin{equation}
+  \omega = \sum_i \omega_i(m) dx^i
+\end{equation} on a patch $U$, where $\omega_i$ is a function $U\to \bR$.
+On another patch $\tilde U$, we have \begin{equation}
+  \omega = \sum_a \tilde\omega_a(m) d\tilde x^a
+\end{equation} where $\tilde\omega_a$ is a function $\tilde U\to \bR$.
+
+Combining the definitions above, we find \begin{equation}
+\omega_i(m)=\sum_a \tilde\omega_a(m) \frac{\partial \tilde x^a}{\partial x^i}.
+\end{equation}
+This means that the section $\omega$ of the cotangent bundle $T^*M$ is simply another name for the covariant vector field in general relativity.
+
+\begin{definition}
+  Given a vector space $V$ of dimension $n$ with a basis $e^1,\ldots,e^n$, 
+  its antisymmetric tensor power $\wedge^p V$ is the vector space with the basis \begin{equation}
+    e^{i_1}\wedge \cdots \wedge e^{i_p}
+  \end{equation} where $1\le i_1<\cdots<i_p\le n$.
+  It has the dimension $\binom{n}{p}$.
+\end{definition}
+
+You don't have to think what \emph{exactly is} $e^1\wedge e^2$.
+It is simply a symbol which you can manipulate, following the rules below.
+\begin{definition}
+Between two elements of $V$,
+we define the symbol $\wedge$ to satisfy the following rules:
+\begin{align}
+  e^i\wedge e^j &= - e^j\wedge e^i,\\
+  \sum_i (a_i e^i) \wedge \sum_j (b_j e^j) &= \sum_{i,j} a_i b_j e^i\wedge e^j.
+\end{align}
+More generally, we demand $\wedge$ to be an associative product operation,
+so that $a\wedge b\in \wedge^{p+q} V$ for $a\in \wedge^p V$ and $b\in \wedge^q V$.
+\end{definition}
+That these rules do not run into contradiction is a somewhat nontrivial fact,
+but we will not go into the details here.
+
+
+By performing these operations at each fiber, we have $\wedge^p T^*M$,
+whose section on a patch has the form \begin{align}
+  \omega   &=
+  \sum_{i_1<\cdots<i_p} \omega_{i_1\cdots i_p}(m) dx^{i_1}\wedge \cdots \wedge dx^{i_p} \\
+  &= 
+  \frac{1}{p!} \sum_{i_1,\ldots,i_p} \omega_{i_1\cdots i_p}(m) dx^{i_1}\wedge \cdots \wedge dx^{i_p} 
+\end{align}
+where $\omega_{i_1\cdots i_p}$ is a function $U\to \bR$ 
+and we require
+$\omega_{i_1,\ldots,i_p}(m)$ to be antisymmetric under the exchange of $i_1,\ldots,i_p$
+in the second line above.
+
+\begin{definition}
+A section of $\wedge^p T^*M$ is called a differential $p$-form on $M$.
+In physics it is also called an antisymmetric tensor field with $p$ indices.
+The space of all $p$-forms on $M$ is denoted by $\Omega^p(M)$.
+\end{definition}
+
+We usually drop the adjective `differential' and simply call them $p$-forms.
+Note that a zero-form is simply a function on $M$,
+and a one-form is a covariant vector field.
+Note also that given a $p$-form $\omega$ and a $q$-form $\eta$,
+$\omega\wedge\eta$ is a $(p+q)$-form.
+
+
+Let us now introduce the exterior derivative $d$.
+\begin{definition}
+For a function $f:M\to \bR$, we define its exterior derivative as \begin{equation}
+df = \sum_i \frac{\partial f}{\partial x^i} dx^i
+\end{equation} where $x^i$ is a coordinate on a patch $U$.
+\end{definition}
+Note that $df$ is defined on individual patches $U$ of $M$.
+That they agree on the overlaps $U\cap \tilde U$ follows easily from the rules given above.
+
+\begin{definition}
+  For a $p$-form $\omega$, its exterior derivative $d\omega$ is a $(p+1)$-form \begin{equation}
+    d\omega = \sum_{i_1<\cdots<i_p} (d\omega_{i_1\cdots i_p}) \wedge dx^{i_1}\wedge \cdots \wedge dx^{i_p}.
+  \end{equation}
+\end{definition}
+Again this is defined on a single patch; one needs to show that they agree on the overlaps.
+
+\begin{proposition}
+  The exterior derivative $d$ satisfies the following properties.
+  \begin{itemize}
+    \item $d$ is linear: $d(a \omega + b \eta) = a d\omega + b d\eta$ for  $a,b\in \bR$.
+    \item $d$ satisfies the Leibniz rule: $d(\omega\wedge \eta) = d\omega \wedge \eta + (-1)^p \omega \wedge d\eta$ for a $p$-form $\omega$ and a $q$-form $\eta$.
+    \item $d$ satisfies $d^2=0$. 
+  \end{itemize}
+\end{proposition}
+In mathematics an operator which is linear, satisfies the Leibniz rule, and satisfies $d^2=0$ is called a \emph{differential}.
+
+On $M=\bR^3$, differential forms and $d$ are often introduced in the context of electromagnetism, written with vector calculus.
+Given a scalar $f:\bR^3\to \bR$, we have \begin{equation}
+df = \frac{\partial f}{\partial x}dx + \frac{\partial f}{\partial y}dy + \frac{\partial f}{\partial z}dz
+\end{equation}
+and so its three components can be identified with \begin{equation}
+(\frac{\partial f}{\partial x},\frac{\partial f}{\partial y},\frac{\partial f}{\partial z}) = \nabla f = \mathrm{grad}\ f.
+\end{equation}
+
+Given a vector field $\mathbf{E}$, package it as a one-form \begin{equation}
+E= E_x dx + E_y dy + E_z dz.
+\end{equation}
+Then \begin{equation}
+dE = \left(\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z}\right) dy\wedge dz
++ \left(\frac{\partial E_x}{\partial z} - \frac{\partial E_z}{\partial x}\right) dz\wedge dx
++ \left(\frac{\partial E_y}{\partial x} - \frac{\partial E_x}{\partial y}\right) dx\wedge dy
+\end{equation}
+whose three components can be identified with \begin{equation}
+\left(\frac{\partial E_z}{\partial y} - \frac{\partial E_y}{\partial z},\frac{\partial E_x}{\partial z} - \frac{\partial E_z}{\partial x},\frac{\partial E_y}{\partial x} - \frac{\partial E_x}{\partial y}\right) = \nabla\times \mathbf{E} = \mathrm{rot}\ \mathbf{E}.
+\end{equation}
+
+Given a vector field $\mathbf{B}$, we can also package it as a two-form \begin{equation}
+B = B_x dy\wedge dz + B_y dz\wedge dx + B_z dx\wedge dy.
+\end{equation}
+Then \begin{equation}
+  dB=(\frac{\partial B_x}{\partial x} + \frac{\partial B_y}{\partial y} + \frac{\partial B_z}{\partial z}) dx\wedge dy\wedge dz
+\end{equation}
+whose single component can be identified with \begin{equation}
+\frac{\partial B_x}{\partial x} + \frac{\partial B_y}{\partial y} + \frac{\partial B_z}{\partial z} = \nabla\cdot \mathbf{B} = \mathrm{div}\ \mathbf{B}.
+\end{equation}
+Then our single equation $d^2=0$ corresponds to the three statements \begin{equation}
+  \mathrm{rot} \circ \mathrm{grad} = 0,\quad
+  \mathrm{div} \circ \mathrm{rot} = 0.
+\end{equation}
+
+On $M=\bR^4$,
+the scalar potential $\phi$ and the vector potential $\mathbf{A}$ of the Maxwell theory
+can be neatly packaged in a one-form \begin{equation}
+A = \phi dt + A_x dx + A_y dy + A_z dz.
+\end{equation}
+Then $F=dA$ is a two-form \begin{equation}
+  \begin{aligned}
+  F &= 
+ E_x dt\wedge dx + E_y dt\wedge dy + E_z dt\wedge dz \\
+&\quad + B_x dy\wedge dz + B_y dz\wedge dx + B_z dx\wedge dy .
+\end{aligned}
+\end{equation}
+As $d^2=0$, we have $dF=0$, which gives two of the four Maxwell equations:
+\begin{equation}
+\mathrm{rot}\ \mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t},\quad
+\mathrm{div}\ \mathbf{B} = 0.
+\end{equation}
+
+On a general manifold $M$, the field strength $F$ is a two-form.
+The vector potential $A$ is \emph{not} quite a one-form, however,
+as we will soon see below.
+
+\subsection{Pull-back and the integration of differential forms}
+
+In vector analysis, the following Stokes theorems are often used:
+\begin{align}
+\int_L (\mathrm{grad}\ f) \cdot d\vec x &= f(q)-f(p), \label{eq:grad-stokes}\\
+\int_D (\mathrm{rot}\ \vec A) \cdot d\vec \sigma &= \int_{\partial D} \vec A \cdot d\vec x, \label{eq:rot-stokes}\\
+\int_B (\mathrm{div}\ \vec E) dV &= \int_{\partial B} \vec E \cdot d\vec \sigma,\label{eq:div-stokes}
+\end{align}
+where $L$ is a curve starting at $p$ and ending at $q$,
+$D$ is a two-dimensional surface with unit normals $\vec \sigma$ given at each point,
+and $B$ is a three-dimensional region with volume element $dV$.
+
+These are all special cases of the Stokes theorem for differential forms.
+To state it, we first need to introduce the integration of a differential form.
+On a smooth manifold $M$ of dimension $n$,
+$n$-forms are also known as the top forms, 
+since $(n+1)$-forms and above are automatically zero.
+On a patch $U$, an $n$-form $\omega$ is given by \begin{equation}
+\omega = \omega(m) dx^1\wedge \cdots \wedge dx^n
+\end{equation} where $\omega(m)$ is a function $U\to \bR$.
+On a different patch $\tilde U$, we have \begin{equation}
+\omega = \tilde \omega(m) d\tilde x^1\wedge \cdots \wedge d\tilde x^n
+\end{equation} where $\tilde \omega(m)$ is a function $\tilde U\to \bR$,
+and \begin{equation}
+\omega(m) = \tilde \omega(m) \det \frac{\partial \tilde x^i}{\partial x^j}.
+\end{equation}
+This means that the $n$-form $\omega$ is a density on $M$,
+and it makes sense to integrate $\omega$ over $M$.
+\begin{definition}
+Take a smooth manifold $M$ of dimension $n$.
+Let $\omega$ be an $n$-form on $M$.
+Its integral $\int_M \omega$ is defined by covering $M$ by non-overlapping patches $U$,
+and summing up $\int_U \omega(m) dx^1\wedge \cdots dx^n$ over all patches.
+\end{definition}
+
+To state the Stokes theorem in general,
+we need to discuss the integral of a $p$-form on $M$ on a $p$-dimensional submanifold $N$ of $M$.
+For this, we need to introduce the pullback of a differential form.
+\begin{definition}
+Take a map $f:X\to Y$ between two manifolds,
+of dimension $m$ and $n$, respectively.
+Take a $p$-form $\omega$ on $Y$.
+Its pull-back $f^*(\omega)$ is a $p$-form on $X$ defined as follows.
+Let $U\subset X$ be mapped to $f(U)\subset V \subset Y$,
+with coordinates $x^{i=1,\ldots,m}$ and $y^{a=1,\ldots,n}$ for $U$ and $V$, respectively.
+$\omega$ on $Y$ is given as \begin{equation}
+\omega = \sum_{a_1<\cdots<a_p} \omega_{a_1\cdots a_p}(y) dy^{a_1}\wedge \cdots \wedge dy^{a_p}.
+\end{equation}
+Then $f^*(\omega)$ on $U$ is given by the same expression as above,
+where $y^a$ are now understood to be the composition $y^a\circ f: U\to \bR^n$.
+The pull-back is a map \begin{equation}
+f^*: \Omega^p(Y)\to \Omega^p(X).
+\end{equation}
+\end{definition}
+That this definition is well-defined and does not depend on the patches chosen 
+needs some work, but is a straightforward computation.
+Note also that the direction of the arrow $X\to Y$ and the direction of the arrow $f^*: \Omega^p(Y)\to \Omega^p(X)$ are opposite to each other.
+
+\begin{proposition}
+  Given $f:X\to Y$ and $g:Y\to Z$,
+  we have \begin{equation}
+  f^*: \Omega^p(Y)\to \Omega^p(X),\quad
+  g^*: \Omega^p(Z)\to \Omega^p(Y),\quad
+  (g\circ f)^* : \Omega^p(Z)\to \Omega^p(X).
+  \end{equation}
+  They satisfy $(g\circ f)^* = f^*\circ g^*$.
+\end{proposition}
+
+\begin{proposition}
+The pull-back $f^*$ satisfies the following properties.
+\begin{itemize}
+\item $f^*$ is linear: $f^*(a\omega + b\eta) = a f^*(\omega) + b f^*(\eta)$ for $a,b\in \bR$.
+\item $f^*$ preserves the product: $f^*(\omega\wedge \eta) = f^*(\omega)\wedge f^*(\eta)$.
+\item $f^*$ commutes with the exterior derivative: $f^*(d\omega) = d(f^*(\omega))$.
+\end{itemize}
+\end{proposition}
+
+Because of this property, we can typically forget where the form is defined.
+Writing $f^*(\omega)$ as $\omega$, when $f$ is understood from the context,
+does not cause any trouble.
+
+\begin{definition}
+Given a $p$-form $\omega$ on $M$ and a $p$-dimensional submanifold $N$ of $M$,
+we define the integral of $\omega$ over $N$ as \begin{equation}
+\int_N \omega := \int_N \iota^*(\omega)
+\end{equation}
+where $\iota:N\to M$ is the inclusion map.
+\end{definition}
+
+The general Stokes theorem is the following:
+\begin{proposition}
+Take a $(p+1)$-dimensional submanifold $N$ of $M$, possibly with a boundary $\partial N\neq \varnothing$.
+Take a $p$-form $\omega$ on $M$.
+Then we have \begin{equation}
+\int_N d\omega = \int_{\partial N} \omega.
+\end{equation}
+\end{proposition}
+It is a good exercise to show that all the standard Stokes theorems in vector analysis, \eqref{eq:grad-stokes}, \eqref{eq:rot-stokes}, and \eqref{eq:div-stokes}, 
+are special cases of this construction on $\bR^3$.
+For example, given a curve $C$ in $\bR^3$ starting from $p$ and ending at $q$,
+its boundary $\partial C$ consists of points $p$ and $q$,
+where the orientation of $p$ is negative and that of $q$ is positive.
+Then, given a function $f$, we have \begin{equation}
+\int_C df = \int_{\partial C} f = \int_q f - \int_p f = f(q)-f(p).
+\end{equation}
+
+\subsection{Pairing of de Rham cohomology and homology}
+
 \section{Cellular cohomology}
 
 \section{Characteristic classes}
