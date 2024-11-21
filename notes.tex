@@ -3229,6 +3229,25 @@ $f_{i-1}\circ f_i=0$ and furthermore
 for all $i$.
 \end{definition}
 
+This might sound a bit too opaque, so let us start with two simpler cases.
+\begin{proposition}
+  An exact sequence $1\stackrel{f}{\to} A\stackrel{g}{\to} 1$ means that $A\simeq 1$.
+\end{proposition}
+To see this, we expand the definitions of the condition $\Im f=\Ker g$.
+$\Ker g$ is actually the entirety of $A$, since $g$ maps everything to $1$.
+$\Im f$ is simply $\{e\}\subset A$.
+Therefore, $A=\{e\}=1$.
+
+\begin{proposition}
+An exact sequence $1\stackrel{f}{\to} A\stackrel{g}{\to} B\stackrel{h}{\to} 1$ means that $A\simeq B$.
+\end{proposition}
+To see this, we expand the definitions of the condition $\Im f=\Ker g$ and $\Im g=\Ker h$.
+As $\Im f=\{e\}$, we have $\Ker g=\{e\}$, i.e.~$g$ is injective.
+As $\Ker h=B$, we have $\Im g=B$, i.e.~$g$ is surjective.
+Therefore $g$ is a bijection, and $A\simeq B$.
+
+
+A slight generalization is the following:
 \begin{definition}
   A short exact sequence of groups is an exact sequence of groups of the following form: \begin{equation}
   1 \to A \to B \to C \to 1.
@@ -3247,13 +3266,9 @@ Then $A$ can be $\bZ_2\times \bZ_2$ or $\bZ_4$.
 In the latter case, the homomorphisms are given by \begin{equation}
 0 \to \{0,1\} \xrightarrow{\times 2} \{0,1,2,3\} \xrightarrow{\mod 2} \{0,1\} \to 0.
 \end{equation}
+Still, a short exact sequence severely restricts the possibility of $B$ given $A$ and $C$.
 
-But there are cases when the extension is unique. 
-The most obvious but still useful cases are:
-\begin{example}
-An exact sequence $1\to A\to B\to 1$ means that $A\simeq B$.
-\end{example}
-
+Now, a general exact sequence can be decomposed into short exact sequences:
 \begin{proposition}
   An exact sequence of groups\begin{equation}
     \cdots 
@@ -3438,21 +3453,9 @@ and it indeed turns out to be the case.
 
 
 \subsubsection{Idea of the proof}
-The idea of the proof of this important theorem is as follows.
-Consider first the part \begin{equation}
-\pi_{n}(F) \stackrel{\iota_*}{\longrightarrow} \pi_{n}(E) \stackrel{p_*}{\longrightarrow} \pi_{n}(B).
-\end{equation}
-That $p_*\circ \iota_*=0$ is clear.
-But not only that, we need to show that $\Im \iota_* = \Ker p_*$,
-So, assume that $f:S^n\to E$ is such that $F=p\circ f: S^n\to B$ is homotopic to a trivial map.
-So there is a deformation $F_s$ for $s\in [0,1]$ such that $F_0=F$ and $F_1$ is the constant map.
-At each step $F_s$, we can find $f_s:S^n \to E$ such that $p\circ f_s=F_s$.
-As $p\circ f_0=F_0$ is a constant map to the base, $f_0$ is actually a map to a fiber, done.
+Here let us give an outline of the proof of Theorem~\ref{thm:long-exact-seq-homotopy}.
+To do this we first need to give the definition of the connecting map $\partial$.
 
-Next, consider the part \begin{equation}
-  \pi_{n+1}(B)\stackrel{\partial}{\longrightarrow}\pi_{n}(F) \stackrel{\iota_*}{\longrightarrow} \pi_{n}(E).
-\end{equation}
-For this we need to define the map $\partial$ to start with.
 \begin{figure}[h]
   \centering
   \includegraphics[width=0.8\textwidth]{connecting.png}
@@ -3483,17 +3486,30 @@ For this we need to define the map $\partial$ to start with.
     \partial [f] := [\tilde f(-,1)]\in \pi_n(F).
   \end{equation}
 \end{definition}
-See Fig~\ref{fig:connecting} for an illustration.
-With this definition, the property $\Im \partial = \Ker \iota_*$ is fairly tautological.
-
-Finally, consider the part \begin{equation}
-  \pi_{n+1}(E) \stackrel{p_*}{\longrightarrow} \pi_{n+1}(B) \stackrel{\partial}{\longrightarrow} \pi_{n}(F).
-\end{equation}
-Again, the property $\Im p_* = \Ker \partial$ is fairly tautological.
+See Fig~\ref{fig:connecting} for an illustration of the definition.
 
 To get a better idea of the connecting map, it is instructive 
-to compute the process explicitly in the case of the Hopf fibration.
-For example, consider the following step: \begin{equation}
+to compute the process explicitly in a couple of examples.
+For a first example, consider the fiber bundle $\bZ_2 \to S^1 \to S^1$,
+where the second map is $2:1$. 
+Let us study the connecting map $\partial$ at the portion \begin{equation}
+  \pi_1(\bZ_2)_{=0}\to \pi_1(S^1)_{=\bZ} \to \pi_1(S^1)_{=\bZ} \stackrel{\partial}{\longrightarrow} \pi_0(\bZ_2)_{=\bZ_2} \to \pi_0(S^1)_{=\bZ}.
+\end{equation}
+To compute $\partial$, we take the generator of $\pi_{1}(S^1)=\bZ$,
+which is the identity map $f:S^1\to S^1$.
+We now consider the source $S^1$ as $S^0 \times [0,1]$ as shown in Fig.~\ref{fig:partial-example}.
+We lift it to the total space.
+As shown in the figure,
+at the end of the process, we have the identity map $\tilde f(-,1): S^0\to \bZ_2$, generating $\pi_0(\bZ_2)=\bZ_2$.
+\begin{figure}
+  \centering
+  \includegraphics[width=0.6\textwidth]{partial-example}
+  \caption{An illustration of the connecting map $\partial$ for the fiber bundle $\bZ_2\to S^1\to S^1$.}
+  \label{fig:partial-example}
+\end{figure}
+
+For the second example, consider the following step
+associated to the Hopf fibration $S^1\to S^3\to S^2$: \begin{equation}
 0= \pi_2(S^3) \to \pi_2(S^2) \stackrel{\partial}{\longrightarrow} \pi_1(S^1) \to \pi_1(S^3)=0.
 \end{equation}
 Consider the identity map $f:S^2\to S^2$ and let us compute $\partial f$.
@@ -3511,6 +3527,33 @@ g(\phi,\theta) := (\cos(\theta/2),\sin(\theta/2)e^{i\phi}).
 We indeed see that \begin{equation}
 (\partial f)(\phi):= g(\phi,\pi) = (0,e^{i\phi})
 \end{equation} which indeed wraps once around the fiber over $(0,0,1)$.
+
+Now that we have some idea of the connecting map $\partial$,
+let us proceed to the proof itself:
+
+\begin{proof}
+Consider first the part \begin{equation}
+\pi_{n}(F) \stackrel{\iota_*}{\longrightarrow} \pi_{n}(E) \stackrel{p_*}{\longrightarrow} \pi_{n}(B).
+\end{equation}
+That $p_*\circ \iota_*=0$ is clear.
+But not only that, we need to show that $\Im \iota_* = \Ker p_*$,
+So, assume that $f:S^n\to E$ is such that $F=p\circ f: S^n\to B$ is homotopic to a trivial map.
+So there is a deformation $F_s$ for $s\in [0,1]$ such that $F_0=F$ and $F_1$ is the constant map.
+At each step $F_s$, we can find $f_s:S^n \to E$ such that $p\circ f_s=F_s$.
+As $p\circ f_0=F_0$ is a constant map to the base, $f_0$ is actually a map to a fiber, done.
+
+Next, consider the part \begin{equation}
+  \pi_{n+1}(B)\stackrel{\partial}{\longrightarrow}\pi_{n}(F) \stackrel{\iota_*}{\longrightarrow} \pi_{n}(E).
+\end{equation}
+With the definition of $\partial$, the property $\Im \partial = \Ker \iota_*$ is fairly tautological.
+
+Finally, consider the part \begin{equation}
+  \pi_{n+1}(E) \stackrel{p_*}{\longrightarrow} \pi_{n+1}(B) \stackrel{\partial}{\longrightarrow} \pi_{n}(F).
+\end{equation}
+Again, the property $\Im p_* = \Ker \partial$ is fairly tautological.
+This concludes the outline of the proof of the theorem.
+\end{proof}
+
 
 
 \subsection{Homotopy groups of Lie groups}
