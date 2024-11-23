@@ -4433,7 +4433,110 @@ Then, given a function $f$, we have \begin{equation}
 \int_C df = \int_{\partial C} f = \int_q f - \int_p f = f(q)-f(p).
 \end{equation}
 
-\subsection{Pairing of de Rham cohomology and homology}
+\subsection{de Rham cohomology}
+
+The preceding discussions imply the following two statements:
+\begin{proposition}
+For a $p$-dimensional \emph{closed} submanifold $N$ of $M$,
+the $p$-form $\omega$ and $\omega+d\eta$ give the same integral over $N$.
+\end{proposition}
+Indeed, \begin{equation}
+  \int_N (\omega+d\eta)-\int_N \omega=\int_N d\eta=\int_{\partial N} \eta=0,
+\end{equation}
+since we assumed $\partial N=\varnothing$.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=.5\textwidth]{nearby.png}
+  \caption{Two `nearby' submanifolds $N_1$ and $N_2$ within $M$.}
+  \label{fig:nearby}
+  \end{figure}
+  
+\begin{proposition}
+  If the $p$-form $\omega$ satisfies $d\omega=0$,
+  $\int N_1 \omega = \int N_2 \omega$ for two `nearby '$p$-dimensional  submanifolds $N_1$ and $N_2$ of $M$, 
+  where $N_1$ and $N_2$ are defined to be `nearby' 
+  if there is a $(p+1)$-dimensional submanifold $U$ such that $\partial U = N_1\sqcup \overline{N_2}$.
+\end{proposition}
+See Fig.~\ref{fig:nearby} for an illustration of the concept `nearby';
+the notation $\sqcup$ is for the disjoint union,
+and the overline above $N_2$ means that the orientation is reversed. 
+Note that the terminology `nearby' is introduced here just for this proposition
+and is not a standarad one.
+A proper concept to be used here is the homology, but the definition is fairly complicated and will be postponed for a while.
+The proof is extremely simple: \begin{equation}
+\int N_1 \omega - \int N_2 \omega = \int_{\partial U}\omega=\int U d\omega = 0.
+\end{equation}
+
+This motivates us the following definitions.
+\begin{definition}
+A $p$-form $\omega$ is called \emph{closed} when $d\omega=0$,
+and is called \emph{exact} when it has the form $\omega=d\eta$ for some $(p-1)$-form $\eta$.
+\end{definition}
+Since $d^2=0$, we have
+\begin{proposition}
+An exact form is automatically closed.
+\end{proposition}
+
+We can now introduce an equivalence relation between two closed $p$-forms, 
+by defining $\omega_1\sim \omega_2$ if $\omega_1-\omega_2=d\eta$ for some $(p-1)$-form $\eta$.
+\begin{definition}
+  The equivalence class $[\omega]$ of a closed $p$-form $\omega$ is called its \emph{cohomology class}.
+  The space of all such cohomology classes  is denoted by $H^p_\text{dR}(M)$.
+  This is the de Rham cohomology group of $M$.
+\end{definition}
+Note that although it is called a group, it is simply a vector space over $\bR$.
+
+The preceding discussions on integrations of $p$-forms on $p$-dimensional submanifolds imply the following:
+\begin{proposition}
+  The integral of a cohomology class $[\omega] \in H^p_\text{dR}(M)$ 
+  on a $p$-dimensional closed submanifold $N$ of $M$ is well-defined.
+  Moreover, the integral of a cohomology class $[\omega]$ on two `nearby' submanifolds $N_1$ and $N_2$ is the same.
+\end{proposition}
+
+In particular, if $[\omega]$ is such that there is an $N$ with $\int_N \omega\neq 0$,
+then there is no $\eta$ such that $\omega=d\eta$.
+This also shows that $N$ is not the boundary of any $(p+1)$-dimensional submanifold $U$,
+so $N$ is guaranteed to be `nontrivial within $M$'.
+
+Recall that given a map $f:X\to Y$, there was a pull-back map $f^*: \Omega^p(Y)\to \Omega^p(X)$.
+This induces a map $f^*: H^p_\text{dR}(Y)\to H^p_\text{dR}(X)$,
+which we also call as the pull-back.
+This is clearly a linear map between two vector spaces. 
+From this it easily follows that:
+\begin{proposition}
+  If $X$ and $Y$ are diffeomorphic, $H^p_\text{dR}(X)$ and $H^p_\text{dR}(Y)$ are isomorphic.
+\end{proposition}
+
+\begin{proposition}
+  For a compact $M$, $H^p_\text{dR}(M)$ is finite dimensional.
+\end{proposition}
+Note that the space of closed $p$-forms and exact $p$-forms are function spaces
+and typically infinite dimensional. 
+That their `difference' is finite dimensional is an interesting fact,
+which we cannot prove here.
+
+In contrast to homotopy, the de Rham cohomology group is computable,
+in the sense that there is an algorithm to compute it,
+given the description of a manifold in terms of patches,
+although we can not go into the details here.
+But this makes the cohomology groups a useful object when studying the topology of a manifold.
+
+
+\subsection{de Rham cohomology of $S^n$ and $\CP^n$}
+Let us at least  give some examples of nontrivial de Rham cohomology classes.
+
+Take $\CP^n$. Consider two patches given by \begin{equation}
+[1:x_2:x_3:\cdots:x_{n+1}]
+\end{equation} and \begin{equation}
+[y_1: 1: y_3:\cdots:y_{n+1}]
+\end{equation} respectively. Recall that the coordinates are related as $y_i = x_i/x_2$, with the convention $x_1=1$ and $y_2=1$. 
+There are other patches but they can be treated in the same manner.
+
+Let us consider the 2-form \begin{equation}
+\omega= \frac{dx_2\wedge d\bar{x_2} + dx_3\wedge d\bar{x_3} + \cdots + dx_{n+1}\wedge d\bar{x_{n+1}}}{(1+|x_2|^2+\cdots+|x_{n+1}|^2)^2}.
+\end{equation} 
+
 
 \section{Cellular cohomology}
 
