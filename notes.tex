@@ -4522,20 +4522,107 @@ given the description of a manifold in terms of patches,
 although we can not go into the details here.
 But this makes the cohomology groups a useful object when studying the topology of a manifold.
 
+The cohomology groups have another structure.
+To see this, let $\alpha$ and $\beta$ a $p$-form and a $q$-form, respectively.
+When $d\alpha=0$ and $d\beta=0$, we have \begin{equation}
+d(\alpha \wedge \beta)=(d\alpha)\wedge \beta + (-1)^p\alpha \wedge  d\beta =0.
+\end{equation}
+Also, when $\alpha=d\eta$, \begin{equation}
+\alpha\wedge \beta=d(\eta\wedge \beta).
+\end{equation}
+This means that 
+\begin{proposition}
+The operation of taking two cohomology classes
+$[\alpha] \in H^p_\text{dR}(M)$,
+$[\beta] \in H^q_\text{dR}(M)$ 
+and forming $[\alpha\wedge \beta] \in H^{p+q}_\text{dR}(M)$ gives a
+well-defined bilinear multiplication \begin{equation}
+H^p_\text{dR}(M) \times H^q_\text{dR}(M)
+\to H^{p+q}_\text{dR}(M).
+\end{equation}
+\end{proposition}
 
-\subsection{de Rham cohomology of $S^n$ and $\CP^n$}
+
+As $\alpha\wedge \beta=(-1)^{pq}\beta\wedge \alpha$,
+
+
+\subsection{Examples of de Rham cohomology}
 Let us at least  give some examples of nontrivial de Rham cohomology classes.
 
-Take $\CP^n$. Consider two patches given by \begin{equation}
-[1:x_2:x_3:\cdots:x_{n+1}]
+\begin{proposition}
+$H^0_\text{dR}(M)=\bR^k$,
+where $k$ is the number of connected components of $M$.
+\end{proposition}
+To see this, note that there is no exact $0$-form, since there is no $-1$-form to start with.
+A closed $0$-form is a function $f$ such that $df= \frac{\partial f}{\partial x_i}dx_i=0$ at every point.
+This means that all the partial derivatives of $f$ vanish at every point on $M$.
+Therefore $f$ is locally constant,
+and is specified by assigning a constant at each connected component of $M$.
+
+\begin{example}
+$H^p_\text{dR}(S^n)$ is given by \[
+H^p_\text{dR}(S^n)= \begin{cases}
+\bR & (p=0),\\
+0 & (p=1,\ldots, n-1),\\
+\bR & (p=n).
+\end{cases}
+\]
+\end{example}
+
+Let us start with $n=1$. Parameterize $S^1$ by $0\le \theta \le 2\pi$.
+We already discussed $p=0$ above in general.
+Take $p=1$, then. A one-form is $g:=g(\theta)d\theta$, and it satisfies $dg=0$ automatically.
+Assume such a $g(\theta)$ is given by $df=f'(\theta) d\theta$.
+This means $g(\theta)=f'(\theta)$, i.e.~$f(\theta)=c+ \int_0^\theta g(t)dt$.
+$f$ is a function on a circle, and therefore $f(0)=f(2\pi)$.
+This means that $g(\theta)d\theta$ is exact if and only if $\int_0^{2\pi} g(\theta)d\theta=0$.
+Note that this right hand side is simply $\int_{S^1} g$.
+Therefore, two one-forms $g_1$ and $g_2$ satisfy $[g_1]=[g_2]$ if and only if $\int_{S^1} g_1=\int_{S^2}g_2$.
+This means $H^1_\text{dR}(S^1)=\bR$.
+
+For general $n$ I only give a rough check of the statement.
+Take a $p$-dimensional closed submanifold $N\subset S^n$
+and consider  $\int_N \omega$.
+When $0<p<n$,
+we can always shrink $N$ within $S^n$ to find a $U\subset S^n$ such that $\partial U=N$.
+Then \begin{equation}
+\int_N \omega=\int_{U} d\omega=0.
+\end{equation}
+This is compatible with $H^p_\text{dR}(S^n)=0$ for $0<p<n-1$.
+For $p=n$, the cohomology class $[\omega]$ is detected by $\int_{S^n} \omega$; 
+note that $S^n$ cannot be shrunk within $S^n$, so it is OK that $\int_{S^n}\omega$ can be nonzero.
+
+
+\begin{example}
+$H^p_\text{dR}(\CP^n)$ is given by \[
+H^p_\text{dR}(\CP^n)= \begin{cases}
+\bR & (p: \text{even}), \\
+0 & (p: \text{odd}) .
+\end{cases}
+\]
+\end{example}
+
+Consider two patches given by \begin{equation}
+[1:z_2:z_3:\cdots:z_{n+1}]
 \end{equation} and \begin{equation}
-[y_1: 1: y_3:\cdots:y_{n+1}]
-\end{equation} respectively. Recall that the coordinates are related as $y_i = x_i/x_2$, with the convention $x_1=1$ and $y_2=1$. 
+[w_1: 1: w_3:\cdots:w_{n+1}]
+\end{equation} respectively. Recall that the coordinates are related as $w_i = z_i/z_2$, with the convention $z_1=1$ and $w_2=1$. 
 There are other patches but they can be treated in the same manner.
 
 Let us consider the 2-form \begin{equation}
-\omega= \frac{dx_2\wedge d\bar{x_2} + dx_3\wedge d\bar{x_3} + \cdots + dx_{n+1}\wedge d\bar{x_{n+1}}}{(1+|x_2|^2+\cdots+|x_{n+1}|^2)^2}.
+\omega= \frac{1}{-2i } \frac{dz_2\wedge d\bar{z_2} + dz_3\wedge d\bar{z_3} + \cdots + dz_{n+1}\wedge d\bar{z_{n+1}}}{1+|z_2|^2+|z_3|^2+\cdots+|z_{n+1}|^2}
+- ...
 \end{equation} 
+
+
+Now, the subspace of $\CP^n$ given by \begin{equation}
+\{ [z_1:z_2:\cdots:z_{n+1}] \mid  z_{m+2}=z_{m+3}=\cdots=z_{n+1}=0\} 
+\end{equation} is  $\CP^m$...
+
+
+
+
+
 
 
 \section{Cellular cohomology}
