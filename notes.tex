@@ -4600,6 +4600,11 @@ H^p_\text{dR}(\CP^n)= \begin{cases}
 0 & (p: \text{odd}) .
 \end{cases}
 \]
+Furthermore, denoting a nontrivial element of $H^2_\text{dR}(\CP^n)$ by $c$,
+$c^k \in H^{2k}_\text{dR}(\CP^n)$  is also nontrivial. 
+So, as an algebra, we have \[
+\bigoplus_p H^p_\text{dR}(\CP^n) = \bR[c]/(c^{n+1}).
+\]
 \end{example}
 
 Consider two patches given by \begin{equation}
@@ -4609,16 +4614,61 @@ Consider two patches given by \begin{equation}
 \end{equation} respectively. Recall that the coordinates are related as $w_i = z_i/z_2$, with the convention $z_1=1$ and $w_2=1$. 
 There are other patches but they can be treated in the same manner.
 
-Let us consider the 2-form \begin{equation}
-\omega= \frac{1}{-2i } \frac{dz_2\wedge d\bar{z_2} + dz_3\wedge d\bar{z_3} + \cdots + dz_{n+1}\wedge d\bar{z_{n+1}}}{1+|z_2|^2+|z_3|^2+\cdots+|z_{n+1}|^2}
-- ...
+Let us consider the 1-form $A_{(z)}$ defined on the 1st patch, given by \begin{equation}
+A_{(z)} = \frac{1}{2\pi} \frac{1}{2i} \frac{\sum_a (z_a d\bar z_a-\bar z_a dz_a)}{1+\sum_a |z_a|^2}.
 \end{equation} 
+We can consider similarly \begin{equation}
+A_{(w)} = \frac{1}{2\pi} \frac{1}{2i} \frac{\sum_a (w_a d\bar w_a-\bar w_a dw_a)}{1+\sum_a |w_a|^2}
+\end{equation}  defined on the 2nd patch.
+On the overlap of the two patches, a short computation shows that \begin{equation}
+A_{(z)}=A_{(w)} + \frac{1}{2\pi}\frac{1}{2i} (\frac{dw_1}{w_1}-\frac{d\bar w_1}{\bar w_1})
+=A_{(w)} + \frac{d\theta_1}{2\pi},
+\end{equation}
+where we introduced $w_1=r_1 e^{i\theta_1}$.  
+Therefore $A_{(z)}$ is not well defined around the locus $w_1=0$.
+But the equation above also shows \begin{equation}
+dA_{(z)}=dA_{(w)} \label{eq:CPzw}
+\end{equation} on the overlap. 
+Using this, we define the 2-form $\omega$ by $
+\omega := dA_{(z)} 
+$ on the first patch,
+and $
+\omega:=dA_{(w)}
+$ on the second patch. 
+Thanks to \eqref{eq:CPzw}, $\omega$ is well-defined everywhere, and $d\omega=0$.
+Explicitly, we have
+\begin{equation}
+\omega = \frac{1}{2\pi}\frac{1}{i} \left(
+\frac{\sum_a dz_a \wedge d\bar z_a}{1+\sum_a |z_a|^2}
+-\frac{(\sum_a \bar z_a dz_a) \wedge (\sum_a z_a d\bar z_a)}{(1+\sum_a |z_a|^2)^2}
+\right)
+\end{equation} on the first patch.
 
-
+We are going to show that $\omega^m$ is a nontrivial cohomology class for $m=0,\ldots, n$, by integrating them on suitable $2m$-dimensional submanifolds.
 Now, the subspace of $\CP^n$ given by \begin{equation}
 \{ [z_1:z_2:\cdots:z_{n+1}] \mid  z_{m+2}=z_{m+3}=\cdots=z_{n+1}=0\} 
-\end{equation} is  $\CP^m$...
+\end{equation} is  $\CP^m$.
+We do the computation inductively on $m$.
+For $m=1$, $\CP^1$ is simply parameterized by $z:=z_2$ alone. We need to compute \begin{equation}
+\int_{\CP^1} \omega = \int \frac1{2\pi} \frac{1}{i} \frac{dz \wedge d\bar z}{(1+|z_2|^2)^2} .
+\end{equation} This can be computed explicitly to be $=1$, 
+but to make the inductive process clearer, we instead write it as \begin{equation}
+\int_{\CP^1} \omega= \int_{z,\bar z} dA_{(z)} = \oint_{|z|=R} A_{(z)}
+= \oint_{|w|=1/R} (A_{(w)} + \frac{d\theta}{2\pi}).
+\end{equation} where we changed the patch from the 1st one (parameterized by $z:=z_2$)  to 
+the 2nd one (parameterized by $w:=w_1$) in the last equality.
+As $A_{(w)}$ is well-defined on the 2nd patch, its integral around $|w|=1/R$ vanishes in the limit $R\to \infty$, leaving only the second term, which gives \begin{equation}
+= \oint \frac{d\theta_1}{2\pi} = 1.
+\end{equation}
 
+For $m>1$, the approach is analogous. 
+We note $\omega^m = d(A_{(z)} \omega^{m-1})$ on the first patch.
+Going to the second patch, we have  \begin{equation}
+\int_{\CP^m} \omega^m = \oint_{\{  |w_1|=1/R  \} \cap \CP^m } 
+(A_{(w) } + \frac{d\theta_1}{2\pi} ) \omega^{m-1}
+= \int_{\CP^{m-1}} \omega^{m-1}.
+\end{equation}
+Doing this repeatedly, we find that it is equal to $1$.
 
 
 
