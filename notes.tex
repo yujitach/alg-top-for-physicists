@@ -4218,6 +4218,10 @@ so that $a\wedge b\in \wedge^{p+q} V$ for $a\in \wedge^p V$ and $b\in \wedge^q V
 \end{definition}
 That these rules do not run into contradiction is a somewhat nontrivial fact,
 but we will not go into the details here.
+\begin{remark}
+  Note that $\alpha\wedge \beta=(-1)^{pq}\beta\wedge \alpha$ when  $\alpha\in \wedge^p V$ and $\beta\in \wedge^q V$.
+We also note that we often simply write $\alpha\beta$ instead of $\alpha\wedge \beta$, if it is clear from the context.  
+\end{remark}
 
 
 By performing these operations at each fiber, we have $\wedge^p T^*M$,
@@ -4543,7 +4547,6 @@ H^p_\text{dR}(M) \times H^q_\text{dR}(M)
 \end{proposition}
 
 
-As $\alpha\wedge \beta=(-1)^{pq}\beta\wedge \alpha$,
 
 
 \subsection{Examples of de Rham cohomology}
@@ -4615,14 +4618,17 @@ Consider two patches given by \begin{equation}
 There are other patches but they can be treated in the same manner.
 
 Let us consider the 1-form $A_{(z)}$ defined on the 1st patch, given by \begin{equation}
-A_{(z)} = \frac{1}{2\pi} \frac{1}{2i} \frac{\sum_a (z_a d\bar z_a-\bar z_a dz_a)}{1+\sum_a |z_a|^2}.
+A_{(z)} =  \frac{1}{2i} \frac{\sum_a (z_a d\bar z_a-\bar z_a dz_a)}{1+\sum_a |z_a|^2}.
+\label{eq:CPnConn1}
 \end{equation} 
 We can consider similarly \begin{equation}
-A_{(w)} = \frac{1}{2\pi} \frac{1}{2i} \frac{\sum_a (w_a d\bar w_a-\bar w_a dw_a)}{1+\sum_a |w_a|^2}
+A_{(w)} =  \frac{1}{2i} \frac{\sum_a (w_a d\bar w_a-\bar w_a dw_a)}{1+\sum_a |w_a|^2}
+\label{eq:CPnConn2}
 \end{equation}  defined on the 2nd patch.
 On the overlap of the two patches, a short computation shows that \begin{equation}
-A_{(z)}=A_{(w)} + \frac{1}{2\pi}\frac{1}{2i} (\frac{dw_1}{w_1}-\frac{d\bar w_1}{\bar w_1})
-=A_{(w)} + \frac{d\theta_1}{2\pi},
+A_{(z)}=A_{(w)} + \frac{1}{2i} (\frac{dw_1}{w_1}-\frac{d\bar w_1}{\bar w_1})
+=A_{(w)} + {d\theta_1},
+\label{eq:CPnConn3}
 \end{equation}
 where we introduced $w_1=r_1 e^{i\theta_1}$.  
 Therefore $A_{(z)}$ is not well defined around the locus $w_1=0$.
@@ -4630,10 +4636,10 @@ But the equation above also shows \begin{equation}
 dA_{(z)}=dA_{(w)} \label{eq:CPzw}
 \end{equation} on the overlap. 
 Using this, we define the 2-form $\omega$ by $
-\omega := dA_{(z)} 
+\omega := dA_{(z)} /(2\pi)
 $ on the first patch,
 and $
-\omega:=dA_{(w)}
+\omega:=dA_{(w)}/(2\pi)
 $ on the second patch. 
 Thanks to \eqref{eq:CPzw}, $\omega$ is well-defined everywhere, and $d\omega=0$.
 Explicitly, we have
@@ -4642,6 +4648,7 @@ Explicitly, we have
 \frac{\sum_a dz_a \wedge d\bar z_a}{1+\sum_a |z_a|^2}
 -\frac{(\sum_a \bar z_a dz_a) \wedge (\sum_a z_a d\bar z_a)}{(1+\sum_a |z_a|^2)^2}
 \right)
+\label{eq:CPnConn4}
 \end{equation} on the first patch.
 
 We are going to show that $\omega^m$ is a nontrivial cohomology class for $m=0,\ldots, n$, by integrating them on suitable $2m$-dimensional submanifolds.
@@ -4663,16 +4670,228 @@ As $A_{(w)}$ is well-defined on the 2nd patch, its integral around $|w|=1/R$ van
 
 For $m>1$, the approach is analogous. 
 We note $\omega^m = d(A_{(z)} \omega^{m-1})$ on the first patch.
-Going to the second patch, we have  \begin{equation}
+The first patch is parameterized by $z_2$, \ldots, $z_{m+1}$,
+and therefore has the topology of $\bC^m=\bR^{2m}$.
+It has an asymptotic boundary $S^{2m-1}$ at infinity.
+So we have \begin{equation}
+\int_{\CP^m} \omega^m = \int_{\bC^m} d(A_{(z)} \omega^{m-1}) = \int_{S^{2m-1}} A_{(z)} \omega^{m-1},
+\end{equation}
+where the last integral is over the asymptotic boundary $S^{2m-1}$ of the first patch.
+
+Now, the complement of the first patch within $\CP^m$ is the locus \begin{equation}
+\{ [0:z_2:\cdots z_{m+1}] \in \CP^m \} \simeq \CP^{m-1}.
+\end{equation}
+So, the asymptotic boundary $S^{2m-1}$ is an $S^1$ fiber bundle over this $\CP^{m-1}$.
+Our idea is to first perform the integral of $A_{(z)} \omega^{m-1}$ over the fiber $S^1$, and then integrate the result over $\CP^{m-1}$.
+
+To identify the integral over $S^1$, it is useful to go to the second patch,
+in which the asymptotic boundary of the first patch
+is at $|w_1|=1/R$ with very small $R$.
+So we have  \begin{equation}
 \int_{\CP^m} \omega^m = \oint_{\{  |w_1|=1/R  \} \cap \CP^m } 
-(A_{(w) } + \frac{d\theta_1}{2\pi} ) \omega^{m-1}
+(A_{(w) } + \frac{d\theta_1}{2\pi} ) \omega^{m-1}.
+\end{equation}
+Now, $A_{(w)}$ is well-behaved at $w_1=0$, and therefore its integral over a small circle $|w_1|=1/R$ vanishes.
+Therefore only the contribution from $d\theta_1/(2\pi)$ remains, and we have \begin{equation}
+\int_{\CP^m} \omega^m = \oint \frac{d\theta_1}{2\pi} \int_{\CP^{m-1}} \omega^{m-1}
 = \int_{\CP^{m-1}} \omega^{m-1}.
 \end{equation}
 Doing this repeatedly, we find that it is equal to $1$.
 
 
 
+\subsection{Connection and the Maxwell field}
 
+We saw above that, on $M=\bR^3$, the relation between the vector potential and the magnetic field strength is given by $B=dA$,
+where $A=A_x dx + A_y dy + A_z dz$ and $B=B_x dy\wedge dz + B_y dz\wedge dx + B_z dx\wedge dy$.
+On a more complicated manifold, it is still true that the magnetic field $B$ is a 2-form,
+but the vector potential $A$ is not quite a 1-form.
+
+To motivate it, we start from the Hamiltonian of an electrically-charged particle of charge $q$ in a magnetic field, which is given by \begin{equation}
+H = \frac{1}{2m} \sum_{a=1,2,3}\left( -i\hbar\frac{\partial}{\partial x^a} - q A^\text{SI}_a \right)^2 ,
+\end{equation}
+acting on a wavefunction $\psi$. 
+The gauge transformation \begin{equation}
+A^\text{SI}_a \mapsto \tilde A^\text{SI}_a:=A^\text{SI}_a + \frac{\partial \chi}{\partial x^a}
+\end{equation} needs to be supplemented by the transformation of the wavefunction \begin{equation}
+\psi \mapsto \tilde \psi = e^{iq\chi/\hbar} \psi. \label{eq:gauge-tr}
+\end{equation}
+Indeed, one can check that \begin{equation}
+  \left( -i\hbar\frac{\partial}{\partial x^a} - q \tilde A^\text{SI}_a \right) 
+  e^{iq\chi/\hbar}\psi=
+  e^{iq\chi/\hbar} \left( -i\hbar\frac{\partial}{\partial x^a} - q A^\text{SI}_a \right) \psi
+\end{equation}
+and therefore the Hamiltonian after the gauge transformation, \begin{equation}
+\tilde H= \frac{1}{2m} \sum_{a=1,2,3}\left( -i\hbar\frac{\partial}{\partial x^a} - q \tilde A^\text{SI}_a \right)^2,
+\end{equation} is conjugate to the original Hamiltonian $H$: \begin{equation}
+\tilde H = e^{iq\chi/\hbar} H e^{-iq\chi/\hbar},
+\end{equation} and therefore the eigenvalues are unchanged. 
+
+Now, we can identify \eqref{eq:gauge-tr} as the patching rule of a complex line bundle $L\to M$  between two patches $U$ and $V$ of $M$:
+\begin{equation}
+  U\times \bC \ni (b,\psi(b)) \mapsto (b,\tilde\psi(b))=(b,g(b)\psi(b)) \in V\times \bC,
+\end{equation} where $g:U\cap V\to U(1)=\{|z|=1\}$, $g(b)=e^{iq\chi(b)/\hbar}$.
+We now consider \begin{equation}
+D\psi :=(d - i A )\psi = \sum_a \left(\frac{\partial}{\partial x^a} - i A_a\right)\psi dx^a
+\end{equation} and \begin{equation}
+D\tilde\psi:=(d - i\tilde A) \tilde\psi = \sum_a \left(\frac{\partial}{\partial x^a} - i \tilde A_a\right)\tilde\psi dx^a,
+\end{equation} where \begin{equation}
+A= \sum_a A_a dx^a, \qquad A_a := \frac{q}{\hbar} A^\text{SI}_a,
+\end{equation} and similarly for the tilded version, so that \begin{equation}
+\tilde A_a = A_a - i g^{-1} \frac{\partial g}{\partial x^a},
+\end{equation} or equivalently \begin{equation}
+\tilde A = A - i g^{-1} dg.
+\end{equation}
+We then find that \begin{equation}
+D\tilde \psi = (d + i\tilde A) \tilde\psi = g(b) (d + i A) \psi = g(b) D\psi,
+\end{equation}
+meaning that $D\psi$ on the patch $U$ and $D\tilde \psi$ on the patch $V$
+ combine to define a section of $(L\otimes T^*M) \to M$.
+
+\begin{definition}
+A connection on a complex line bundle $L\to M$ 
+(or equivalently a principal $U(1)$ bundle $P\to M$)
+is a collection of 1-forms $A_{(U)}$ on patches $U$ on $M$ such that \begin{equation}
+  A_{(V)}=A_{(U)} - i g^{-1} dg
+\end{equation}
+on the overlap $U\cap V$, when the line bundle is built from the patching rule \begin{equation}
+  U\times \bC \ni (b,\psi(b)) \mapsto (b,\tilde\psi(b))=(b,g(b)\psi(b)) \in V\times \bC,
+\end{equation}
+where $g:U\cap V\to U(1)$.
+\end{definition}
+
+We do not usually write the subscript $A_{(U)}$ explicitly,
+and we simply refer to them as $A$.
+
+Let $F_{(U)}=dA_{(U)}$ on each patch $U$.
+Then we have \begin{equation}
+F_{(V)}=dA_{(V)}=dA_{(U)} - i d(g^{-1} d g) = F_{(U)}.
+\end{equation}
+(To show the last equality above, 
+it is useful to note that $g=e^{i\theta(b)}$ for some function $\theta(b)$
+at least locally.
+Then $-ig^{-1}dg = d\theta$, so $d(g^{-1}dg)=d^2\theta=0$.)
+In any case, this means that $F_{(U)}$ and $F_{(V)}$ agree on the overlap $U\cap V$, and 
+patch together to form a 2-form on $M$.
+\begin{notation}
+  Given a $U(1)$ connection $A$, 
+the 2-form $F$, given locally at each patch by $F=dA$, is called the \emph{curvature} of the connection.
+\end{notation}
+
+When we studied the cohomology of $\CP^n$, we used $\omega$ defined \eqref{eq:CPnConn4},
+which used one-forms $A_{(z)}$, $A_{(w)}$ defined on each patch, see  \eqref{eq:CPnConn1},  \eqref{eq:CPnConn2},  \eqref{eq:CPnConn3}.
+We now recognize them as defining a $U(1)$ connection on $\CP^n$, where the patching function $g:U\cap V\to U(1)$
+was given by $g = e^{i\theta_1}$.
+Then the 2-form $\omega$ was  given by $\omega = F/(2\pi)$, where $F$ is the curvature 2-form.
+The 2-form $\omega$ there was closed. This is general:
+\begin{proposition}
+The curvature 2-form is closed, $dF=0$.
+\end{proposition}
+This can be checked on each patch easily, $dF=d^2A=0$.
+This does not mean that $F$ is always exact; for $F$ to be exact, 
+we need to find a 1-form $\eta$ \emph{globally defined on $M$} 
+such that $F=d\eta$.
+
+One important feature of the curvature 2-form is the following:
+\begin{proposition}
+The integral of the curvature 2-form $F$ over a 2-dimensional closed submanifold $N$ of $M$ is an integer multiple of $2\pi$.
+\end{proposition}
+Let us show this for $N=S^2$.
+We cover $S^2$ by two patches $U$ and $V$, corresponding to the northern and southern hemispheres,
+so that $U$ and $V$ share a common boundary, which is the equator.
+$F$ is given by $F=dA_{(U)}$ on $U$ and $F=dA_{(V)}$ on $V$.
+Then we have \begin{equation}
+  \int_{S^2} F = \int_{U} F+\int_V F
+  = \int_{\partial U} A_{(U)} + \int_{\partial V} A_{(V)}
+  = \int_{S^1} (A_{(U)}-A_{(V)})
+  =\int_{S^1} -i g^{-1} dg.
+\end{equation}
+where $g:S^1\to U(1)$ is a map from the equator to the group $U(1)$.
+
+We parameterize the source $S^1$ by $0\le s < 2\pi$,
+and the target $U(1)$ by $z=e^{i\theta}$.
+Then $g(s)=e^{i\theta(s)}$, and \begin{equation}
+\int_{S^2} F = \int_0^{2\pi} \frac{d\theta}{ds} ds = 2\pi n,
+\end{equation}
+where $n$ is the winding number of the map $g:S^1\to U(1)$.
+This integer $n$ is also known as the \emph{Chern number}.
+
+This fact was first found by Dirac on the physics side \cite{Dirac}.
+We recall that, to covert to SI, we use \begin{equation}
+  F^\text{SI} = \frac{\hbar}{q} F,\qquad
+  A^\text{SI} = \frac{\hbar}{q} A.
+\end{equation} 
+Recall also that, on $\bR^3$,
+$F=B_{x}dy\wedge dz + B_{y}dz\wedge dx + B_{z}dx\wedge dy$,
+and therefore the integral of $F$ over a 2-sphere $S^2$ is the magnetic flux through the sphere.
+We conclude the following:
+\begin{proposition}
+The magnetic flux through a 2-sphere $S^2$ is quantized in units of $2\pi \hbar/e$,
+where $e$ is the charge of the electron.
+\end{proposition}
+This is the Dirac quantization condition.
+
+\begin{aside}
+The Coulombic force between two minimally-charged electric particles, 
+placed by a distance of $r$ apart, is given by \begin{equation}
+  F = \frac{e^2}{4\pi \epsilon_0 r^2}.
+\end{equation} 
+Similarly, the Coulombic force between two minimally-charged magnetic monopoles,
+placed by a distance of $r$ apart, is given by \begin{equation}
+  F = \frac{g^2}{4\pi \epsilon_0 r^2}.
+\end{equation} where $g=2\pi \hbar/e$ as discussed above.
+Then we find that the ratio \begin{equation}
+\frac{\text{Force between unit \emph{electric} charges at distance $r$}}
+{\text{Force between unit \emph{magnetic} charges at distance $r$}}
+\end{equation}
+is independent of the distance $r$, and is given by 
+\begin{equation}
+= \frac{\mu_0}{\epsilon_0} \frac{e^4}{(2\pi \hbar)^2}
+= 4 (\frac{e^2}{4\pi \epsilon_0 \hbar c })^2 \sim 0.0002\cdots,
+\end{equation} 
+where we used $\mu_0 \epsilon_0=1/c^2$ in the last line.
+The combination within the parenthesis, \begin{equation}
+\alpha = \frac{e^2}{4\pi \epsilon_0 \hbar c } \sim \frac{1}{137},
+\end{equation} is known as the \emph{fine structure constant}.
+\end{aside}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{c|c}
+physics & mathematics \\
+\hline
+topology of Maxwell field & principal $U(1)$ bundle \\
+vector potential & connection \\
+field strength & curvature\\
+magnetic flux  & Chern number 
+\end{tabular}
+\caption{Translation table of terminologies \label{tab:translation}}
+\end{table}
+
+
+To close this section, a  few remarks are in order:
+\begin{itemize}
+\item As you have seen, the same concepts are named differently in physics and mathematics. 
+They are tabulated in Table~\ref{tab:translation}.
+\item The curvature 2-form $F$ is closed and therefore defines an element in the de Rham cohomology group.
+It has a special feature that the integral of $F/(2\pi)$ over a closed 2-dimensional submanifold is always an integer.
+This motivates us to look for an analogue of de Rham cohomology defined not with $\bR$ but with $\bZ$ from the start.
+This will lead us to the concept of (co)homology with coefficients in general Abelian group $A$, not just for $\bR$ and $\bZ$.
+\item As this integral is an integer, the integral of $F/(2\pi)$ over various 2-dimensional submanifolds is also independent of 
+continuous change of the $U(1)$-bundle and of the connection on it.
+Therefore these integers give topological invariants of the $U(1)$-bundle.
+This motivates us to look for a systematic way to obtain topological invariants of various other bundles.
+This will lead us to the theory of characteristic classes.
+\item In a 2+1 dimensional system, 
+the Hall conductivity $\sigma$ is characterized by a term 
+$\propto \sigma \int_M A\wedge F$ in the effective action of the system,
+where $A$ is the vector potential and $F$ is the magnetic field.
+This combination $\propto \int_M A\wedge F$ is known as the Chern-Simons term.
+As $A$ as a 1-form is only defined on each patch, the definition of the Chern-Simons term is delicate,
+which eventually leads to the quantization condition on the Hall conductivity $\sigma$ in a quantum setting,
+giving an algebraic-topological explanation of the integer quantum Hall effect.
+I hope to cover this  topic by the end of this lecture series!
+\end{itemize}
 
 
 \section{Cellular cohomology}
