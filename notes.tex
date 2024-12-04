@@ -38,6 +38,7 @@
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{example}[definition]{Example}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{question}[definition]{Question}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{proposition}[definition]{Proposition}
+\newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{corollary}[definition]{Corollary}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{lemma}[definition]{Lemma}
 \newmdtheoremenv[backgroundcolor=black!3,linecolor=black!0]{fact}[definition]{Fact}
 \newmdtheoremenv[backgroundcolor=black!0]{exercise}[definition]{Exercise}
@@ -152,6 +153,10 @@
 \def\Ker{\mathop{\mathrm{Ker}}}
 \def\Im{\mathop{\mathrm{Im}}}
 \def\Lk{\mathop{\mathrm{Lk}}}
+
+\def\Hom{\mathop{\mathrm{Hom}}}
+\def\Ext{\mathop{\mathrm{Ext}}}
+\def\Tor{\mathop{\mathrm{Tor}}}
 
 \begin{document}
 
@@ -4894,7 +4899,678 @@ I hope to cover this  topic by the end of this lecture series!
 \end{itemize}
 
 
-\section{Cellular cohomology}
+\section{(Co)homology with $\bZ$ or $\bZ_2$ coefficients}
+
+\subsection{Some motivations}
+We saw above that there is a well-defined integral of a de Rham cohomology class $[\omega]\in H^p_\text{dR}(M)$ 
+over a $p$-dimensional closed submanifold $N$ of $M$.
+This was due to $\int_N d\eta=\int_{\partial N}\eta=0$.
+We also saw that when $N_1$ and $N_2$ appear as the boundary of a manifold $N'$ of one higher dimension, we have \begin{equation}
+\int_{N_1} \omega - \int_{N_2} \omega = \int_{N'} d\omega = 0.
+\end{equation}
+It is also true that $N$, $N_{1,2}$ and $N'$ do not need to be actual submanifolds;
+they can all be replaced with maps $N\to M$, $N_{1,2}\to M$ and $N'\to M$, respectively,
+as differential forms can be pulled back.
+
+This means that the object on which we integrate $[\omega]\in H^p_\text{dR}(M)$ 
+can be taken to be the equivalence classes of $(N, f:N\to M)$
+such that two such pairs $(N_1,f_1)$ and $(N_2,f_2)$ are equivalent if they are the boundary of a pair $(N',f':N'\to M)$.
+This actually is the definition of the bordism group $\Omega_p(M)$.
+This is easier to compute than $\pi_p(M)$ but is still harder than $H_p(M;\bZ)$, the homology group with $\bZ$ coefficient, which we define now.
+
+For this, we note that the manipulations we did above using $N$, $N_{1,2}$ and $N'$ 
+are true not just for smooth manifolds but for polyhedra.
+
+Take a $p$-dimensional simplex $S \subset M$.
+It has $(p+1)$ faces $F_{i=1,\ldots,p+1}$, each of which is a $(p-1)$-dimensional simplex.
+Then we have \begin{equation}
+\int_S d\eta = \sum_{i=1}^{p+1}  \int_{F_i} \eta.
+\end{equation}
+Therefore, if we have a closed polyhedron $H$ consisting of many simplices $S_a$, \begin{equation}
+\int_H d\eta = \sum_a \int_{S_a} d\eta = \sum_a \sum_{i=1}^{p+1}  \int_{F_{a,i}} \eta,
+\end{equation}
+where $F_{a,i}$ is the $i$-th face of the $a$-th simplex $S_a$.
+As the same face appears with opposite orientations from two different simplices, the last sum vanishes. 
+
+Similarly, if two closed polyhedra $H_1$ and $H_2$ appears as the boundary of 
+a polyhedron $H'$ with one higher dimension, given a closed form $\omega$, we have \begin{equation}
+\int_{H_1} \omega - \int_{H_2} \omega = \int_{H'} d\omega = 0.
+\end{equation}
+So the integral of a closed form $\omega$, or equivalently of the de Rham cohomology class $[\omega]$,
+does not change when we move the polyhedron $H_1$ to $H_2$.
+
+This suggests the following definitions.
+
+\subsection{Singular (co)homology}
+
+We fix an Abelian group $A$, such as $A=\bR, \bZ, \bZ_2$.
+\begin{definition}
+A $p$-chain $c$ with $A$ coefficient, of a topological space $M$, is a formal sum of $p$-simplices $c=\sum_a n_a S_a$,
+where $n_a\in A$ and $S_a$ is a $p$-simplex (or more precisely, a map $f:S_a\to M$).
+The set of all $p$-chain with $A$ coefficient is written as $C_p(M;A)$.
+\end{definition}
+
+\begin{definition}
+Given a $p$-simplex $S$, the boundary $\partial S$ is a $(p-1)$-chain, given by the sum $\sum_i \pm F_i$ of its faces $F_i$, with the sign chosen appropriately.
+The boundary operator $\partial:C_p(M;A)\to C_{p-1}(M;A)$ is then defined by linearity.
+\end{definition}
+
+\begin{proposition}
+The boundary operator $\partial$ satisfies $\partial^2=0$.
+\end{proposition}
+
+\begin{definition}
+A chain $c$ is called a cycle if $\partial c=0$.
+The set of all $p$-cycles is written as $Z_p(M;A)$.
+A chain $c$ is called a boundary if $c=\partial c'$ for some $(p+1)$-chain $c'$.
+The set of all $p$-boundaries is written as $B_p(M;A)$.
+\end{definition}
+
+A $p$-cycle of $M$ is essentially a $p$-dimensional closed polyhedron in $M$ we discussed above. 
+
+\begin{definition}
+The singular homology group $H_p(M;A)$ is defined as the quotient \begin{equation}
+H_p(M;A) = \frac{Z_p(M;A)}{B_p(M;A)} = \frac{\Ker \partial: C_p(M;A)\to C_{p-1}(M;A)}{\Im \partial: C_{p+1}(M;A)\to C_p(M;A)}.
+\end{equation}
+\end{definition}
+
+The singular cohomology group is defined similarly. 
+\begin{definition}
+A $p$-cochain $c$ with $A$ coefficient, of a topological space $M$, is a $\bZ$-linear map $c:C_p(M;\bZ)\to A$.
+\end{definition}
+
+\begin{definition}
+  Given a $p$-cochain $c$, we define its coboundary $\delta c$ as a $(p+1)$-cochain, given by \begin{equation}
+    (\delta c)(a) = c(\partial a)
+  \end{equation} where $a$ is a $(p+1)$-chain.
+\end{definition}
+
+\begin{definition}
+A cochain $c$ is called a cocycle if $\delta c=0$.
+The set of all $p$-cocycles is written as $Z^p(M;A)$.
+A cochain $c$ is called a coboundary if $c=\delta c'$ for some $(p-1)$-cochain $c'$.
+The set of all $p$-coboundaries is written as $B^p(M;A)$.
+\end{definition}
+
+
+\begin{proposition}
+The coboundary operator $\delta$ satisfies $\delta^2=0$.
+\end{proposition}
+
+\begin{definition}
+The singular cohomology group $H^p(M;A)$ is defined as the quotient \begin{equation}
+H^p(M;A) = \frac{Z^p(M;A)}{B^p(M;A)} = \frac{\Ker \delta: C^p(M;A)\to C^{p+1}(M;A)}{\Im \delta: C^{p-1}(M;A)\to C^p(M;A)}.
+\end{equation}
+\end{definition}
+
+By construction, there is a pairing between $H^p(M;A)$ and $H_p(M;A)$:
+\begin{definition}
+Given  $[c]\in H^p(M;A)$ and $[c']\in H_p(M;A)$
+coming from a $p$-cochain $c$ and a $p$-chain $c'$,
+we define their pairing as \begin{equation}
+\langle [c],[c']\rangle = c(c').
+\end{equation}
+\end{definition}
+This is the counterpart of an integral of a de Rham cohomology class on a closed manifold.
+
+We note that, given a map $f:M\to M'$,
+we have a map $f_*:C_p(M;A)\to C_p(M';A)$, 
+compatible with the action of $\partial$.
+Therefore we have a map $f_*: H_p(M;A)\to H_p(M';A)$.
+It is fairly clear from the definition that $f_*$ only depends on the homotopy class of $f$.
+
+We can also define a map $f^*:C^p(M';A)\to C^p(M;A)$ by \begin{equation}
+(f^*c)(a) = c(f_*a),
+\end{equation} which is compatible with the action of $\delta$.
+Therefore we have a map $f^*: H^p(M';A)\to H^p(M;A)$.
+Summarizing, we have:
+\begin{proposition}
+Given a map $f:M\to M'$, we have natural homomorphisms 
+ $f_*: H_p(M;A)\to H_p(M';A)$ and $f^*: H^p(M';A)\to H^p(M;A)$,
+ which only depends on the homotopy class of $f$.
+\end{proposition}
+
+Note that homology preserves the direction of the arrow, while cohomology reverses it.
+
+\begin{corollary}
+  $H_p(M;A)$ and $H^p(M;A)$ only depends on the homotopy equivalence class of $M$.
+\end{corollary}
+
+So singular (co)homology groups are very nice as topological invariants,
+but they are not easy to compute from their definitions,
+as we need to consider arbitrary formal sums $c=\sum_a n_a S_a$ of arbitrary simplices.
+
+\subsection{Simplicial (co)homology}
+We can set up a similar (co)homology theory which is easier to compute.
+
+\begin{definition}
+  \label{def:simplicial}
+An abstract simplicial complex $K$ is a collection of simplices of various dimensions, such that \begin{itemize}
+\item if a simplex $\sigma$ is in $K$, then all its faces are also in $K$.
+\item given two simplices $\sigma_1$ and $\sigma_2$ in $K$, its intersection $\sigma_1\cap \sigma_2$ is either empty or a face of both $\sigma_1$ and $\sigma_2$. 
+\end{itemize}
+\end{definition}
+
+
+
+\begin{definition}
+Giving a manifold $M$ the structure of a simplicial complex $K$ is called a triangulation of $M$.
+\end{definition}
+
+\begin{proposition}
+  Any smooth manifold has a triangulation.
+\end{proposition}
+
+
+\begin{definition}
+  A simplicial $p$-chain $c$ of a simplicial complex $K$ is a formal sum of $p$-simplices $c=\sum_a n_a \sigma_a$ in $K$, where $n_a\in A$.
+  The set of all simplicial $p$-chains is written as $C_p(K;A)$.
+\end{definition}
+
+The boundary operator $\partial$ is defined as before, and it satisfies $\partial^2=0$.
+We can define the concept of cycles, boundaries, homology groups, cochains, coboundaries and cohomology groups as before.
+The resulting (co)homology groups are called the simplicial (co)homology groups.
+
+They are easier to compute than the singular (co)homology groups, 
+as we only need to consider definite simplices in a triangulation,
+not arbitrary formal sums of arbitrary simplices.
+Often the number of simplicies of a triangulation is finite, and 
+then all what is left is a finite-dimensional linear algebra over 
+the coefficient Abelian group $A$ of your choice, $\bR, \bZ, \bZ_2$.
+
+Unfortunately, it is not easy to define the map $f_*$ and $f^*$ 
+for simplicial (co)homology groups, given a map $f:K\to K'$ 
+between simplicial complexes,
+because we often need to consider maps which do not preserve the simplicial structure.
+What saves the day is the following remarkable theorem:
+\begin{theorem}
+For reasonable spaces $M$ with a structure of a simplicial complex,
+there is a natural isomorphism between the singular and simplicial (co)homology groups, 
+\begin{align}
+  H_p^\text{singular}(M;A)&\simeq H_p^\text{simplicial}(M;A)\\
+  H^p_\text{singular}(M;A)&\simeq H^p_\text{simplicial}(M;A).
+\end{align}
+
+\end{theorem}
+
+
+\subsection{Cellular (co)homology}
+
+The second condition in Definition \ref{def:simplicial} makes it somewhat hard to find a minimal triangulation of a manifold, though. 
+For example, internet says that a minimal triangulation of $T^2$ requires 14 triangles.
+Triangulations also only allow simplices. 
+There are more flexible structures called CW complexes, which allow more general basic objects to build up spaces,
+with a corresponding theory of (co)homology groups.
+Here CW stands for `closure-finite and weak topology'.
+
+\begin{definition}
+  A CW complex $X$ of dimension $0$ is a collection of points.
+\end{definition}
+
+\begin{definition}
+A CW complex $X$ of dimension $n$ is a topological space obtained by 
+gluing $n$-dimensional cells $e_i$ indexed by $i$, 
+i.e.~copies of $D^n$
+to a CW complex $X'$ of dimension $(n-1)$ by 
+attaching maps $f_i:\partial e_i = S^{n-1}\to X'$.
+\end{definition}
+
+\begin{example}
+$S^n$ can be built up by attaching a single $n$-cell to a point.
+\end{example}
+
+Consider $\CP^n$, parameterized by $[x_1:\cdots:x_{n+1}]$.
+The subspace $x_1=0$ is $\CP^{n-1}$.
+$\CP^n \setminus \CP^{n-1}$ is parameterized by $[1:x_2:\cdots:x_{n+1}]$,
+which is a copy of $\bC^n\simeq \bR^{2n}$.
+Topologically, we can replace it with $B^{2n}$, 
+with the attaching map $\partial B^{2n}=S^{2n-1}\to \CP^{n-1}$ given by 
+the fibration $S^{2n-1}\to \CP^{n-1}$.
+Doing this recursively, we find:
+\begin{example}
+$\CP^n$ has a structure of a CW complex with one $0$-cell, 
+one $2$-cell, \ldots, one $2n$-cell.
+\end{example}
+
+We can now define a cellular (co)homology theory.
+
+\begin{definition}
+Given a CW complex $X$,
+a cellular $p$-chain $c$ is a formal sum of $p$-cells $c=\sum_a n_a e_a$ in $X$, where $n_a\in A$.
+\end{definition}
+
+Compared to singular / simplicial cases, the definition of the boundary map is a bit trickier. 
+\begin{definition}
+Given a $p$-cell $e$ of $X$, $\partial e$ is defined to be \begin{equation}
+\partial e = \sum_{e'} n(e,e') e'
+\end{equation} where $e'$ runs over all $(p-1)$-cells, and $n(e,e')$ is 
+the winding number of the following composition of maps: \begin{equation}
+S^{p-1}\simeq  \partial e \xrightarrow{f_e} X_{p-1} \to X_{p-1}/(X_{p-1}\setminus e') \simeq S^{p-1}
+\end{equation}
+where $f_e$ is the attaching map of $e$.
+\end{definition}
+
+\begin{proposition}
+The boundary operator $\partial$ satisfies $\partial^2=0$.
+\end{proposition}
+
+We can then define the concepts of cycles, boundaries, homology groups, cochains, coboundaries and cohomology groups as before.
+We now have a remarkable fact:
+
+\begin{theorem}
+  For reasonable spaces $M$ with a structure of a CW complex,
+  singular, simplicial and cellular (co)homology groups are isomorphic.
+\end{theorem}
+
+We also have
+
+\begin{theorem}
+The de Rham cohomology of a smooth manifold $M$
+is isomorphic to the singular/simplicial/cellular 
+cohomology of $M$ with $\bR$ coefficient, i.e. \begin{equation}
+H^p_\text{dR}(M)\simeq H^p(M;\bR).
+\end{equation}
+\end{theorem}
+
+Summarizing,
+singular (co)homology groups are difficult to compute but their topological properties are easier to establish.
+Simplicial and cellular cohomology groups are can be computed algorithmically,
+ but their topological properties are harder to establish.
+They agree in any case, so we are in quite a good shape.
+
+For example, it is now very easy to prove the following:
+\begin{corollary}
+  The (co)homology groups $H^p(M;A)$ and $H_p(M;A)$ of a reasonable space of dimension $n$ can be nonzero
+  only for $0\le p\le n$.
+\end{corollary}
+This is because we can only have $p$-cells for $0\le p\le n$. Done.
+
+
+Simplicial/cellular complex also allows us to define the fundamental class of 
+a connected $n$-dimensional manifold $M$ in an intuitive way.
+Let us take a CW complex $M$.
+\begin{definition}
+If an $n$-chain $c=\sum_{\sigma} \pm \sigma$,
+where $\sigma$ runs over all the $n$-dimensional cells of $M$, is such that $\partial c=0$,
+then the homology class $[c]$ is called the fundamental class of $M$
+and is denoted by $[M]$.
+When such a chain with coefficients in $A$ exists, 
+we say that $M$ is $A$-orientable.
+\end{definition}
+
+A more general but equivalent definition of the orientability is:
+\begin{definition}
+  A connected space $M$ is called $A$-orientable if $H_n(M;A)\simeq A$.
+  In such a case, the homology class  corresponding to $1\in A$ 
+  is called the fundamental class of $M$ and is written as $[M]$.
+\end{definition}
+The fundamental class $[M]$ is the homology class of the whole space $M$
+as a polyhedron.
+
+Let us also give an outline of an important fact known as the Poincar\'e duality:
+\begin{theorem}
+  When a smooth compact $n$-dimensional manifold $M$ is $A$-orientable,
+  we have a natural isomorphism $H_p(M;A)\simeq H^{n-p}(M;A)$.
+\end{theorem}
+
+  
+\begin{proof}
+  We take a triangulation of $M$.
+  It has $p$-dimensional simplices for $p=0,\ldots,n$.
+  We now take a \emph{dual} cell decomposition of $M$:
+  we put zero cells at the `barycenters' of the $n$-simplices,
+  one cells at the barycenters of the $(n-1)$-simplices, and so on.
+  In this manner, the simplicial chain groups $C_p(M;A)$ 
+  and the cellular cochain groups $C^p(M;A)$ are isomorphic on the nose.
+  With the extra assumption of the $A$-orientability,
+  we can show that the action of $\partial$ and $\delta$ are also the same.
+  Therefore we have $H_p(M;A)\simeq H^{n-p}(M;A)$.
+\end{proof}
+
+Again the proof becomes much easier with the simplicial/cellular complex.
+
+Another application of a fundamental class is the following.
+Suppose we have a smooth $p$-dimensional submanifold $N$ of $M$,
+or more generally a smooth map $f:N\to M$.
+Assume $N$ is $A$-orientable.
+Then we can take the fundamental class $[N]\in H_p(N;A)$ of $N$,
+and send it via $f_*$ to $f_*([N])\in H_p(M;A)$.
+A natural question then arises: are all homology classes in $M$ of this form?
+Are there any degree-$p$ homology classes in $M$ which does not come 
+from a $p$-dimensional manifold?
+This was posed by Steenrod, and the way to answer it was found by Thom
+by introducing the concept of cobordism;
+indeed there are homology classes which do not come from manifolds
+and can only be given by a closed polyhedron.
+We will come back to this question later.
+
+\subsection{Examples}
+Let us move on to examples. 
+Cellular (co)homology allows us to compute the (co)homology groups of $S^n$ and $\CP^n$ very easily, 
+because there are so few cells in their CW complexes.
+
+\begin{example}
+The (co)homology groups of $S^n$ are given by \begin{align}
+H_p(S^n;A) &= \begin{cases} A & p=0,n \\ 0 & \text{otherwise} \end{cases}, \\
+H^p(S^n;A) &= \begin{cases} A & p=0,n \\ 0 & \text{otherwise} \end{cases}.
+\end{align}
+\end{example}
+This is very easy except for $n=1$, since there are only cells at dimension $n$ and $0$,
+and the boundary maps are forced to be trivial.
+
+\begin{example}
+  \label{ex:cohoCPn}
+The (co)homology groups of $\CP^n$ are given by \begin{align}
+H_p(\CP^n;A) &= \begin{cases} A & p=0,2,4,\ldots,2n \\ 0 & \text{otherwise} \end{cases}, \\
+H^p(\CP^n;A) &= \begin{cases} A & p=0,2,4,\ldots,2n \\ 0 & \text{otherwise} \end{cases}.
+\end{align}
+\end{example}
+This is also very easy, since there are only even-dimensional cells,
+and the boundary maps are just zero.
+
+The (co)homology group of $\RP^n$ is slightly trickier to compute,
+since it has cells in every dimension.
+Recall that $\RP^n$ is parameterized by $[x_1:\cdots:x_{n+1}]$,
+and the subspace $\RP^{n-1}$ is given by $x_1=0$.
+Its complement is parameterized by $[1:x_2:\cdots:x_{n+1}]$,
+which is a copy of $\bR^n$.
+Topologically, we have $B^n$ with the attaching map $\partial B^n=S^{n-1}\to \RP^{n-1}$, 
+which is the 2:1 map we repeatedly discussed.
+So we have a single cell $e^i$ at dimension $i$ for each $i$.
+The boundary map can be found by examining \begin{equation}
+\partial B^n = S^{n-1} \xrightarrow{2:1} \RP^{n-1} \to \RP^{n-1}/\RP^{n-2} \simeq S^{n-1}.
+\end{equation}
+This has the degree $2$ if $n$ is even, and $0$ if $n$ is odd.
+The chain groups and cochain groups are both given by $C_p(\RP^n;A)=A$ 
+and $C^p(\RP^n;A)=A$ for all $0\le p\ge n$, with the (co)boundary maps given as 
+\begin{equation}
+C_0 \xleftarrow{0} C_1 \xleftarrow{2} C_2 \xleftarrow{0} C_3 \xleftarrow{2} C_4 \cdots
+\end{equation}
+and 
+\begin{equation}
+C^0 \xrightarrow{0} C^1 \xrightarrow{2} C^2 \xrightarrow{0} C^3 \xrightarrow{2} C^4 \cdots
+\end{equation}
+respectively. 
+From this we see 
+\begin{example}
+The (co)homology groups of $\RP^n$ with $\bZ_2$ coefficient are given by \begin{equation}
+H_p(\RP^n;\bZ_2) = \bZ_2,\qquad
+H^p(\RP^n;\bZ_2) = \bZ_2
+\end{equation} for all $0\le p\le n$, while \begin{equation}
+\begin{array}{c|ccccccccccccccccc}
+  p& 0 &  1 & 2 & 3 & 4 & 5 & \cdots \\
+  \hline
+  H_p(\RP^n;\bZ) & \bZ & \bZ_2  & 0 & \bZ_2&  0 & \bZ_2 & \cdots \\
+  H_p(\RP^n;\bR) & \bR & 0 & 0 & 0 & 0 & 0 & \cdots \\
+  H^p(\RP^n;\bZ) & \bZ & 0 & \bZ_2  & 0 & \bZ_2&    0 & \cdots \\
+  H^p(\RP^n;\bR) & \bR & 0 & 0 & 0 & 0 & 0 & \cdots 
+\end{array} .
+\end{equation}
+\end{example}
+
+Note that $\RP^n$ is always $\bZ_2$-orientable,
+but $\bZ$- and $\bR$-orientable if and only if $n$ is odd.
+
+\begin{question}
+Let $\bZ_k$ acts on $\bC^n$ by \begin{equation}
+   (z_1,\ldots,z_n) \mapsto e^{2\pi i/k}(z_1,\ldots,z_n).
+\end{equation} 
+This gives an action of $\bZ_k$ on the unit sphere $S^{2n-1}\subset \bC^n$.
+Find a cell decomposition of the quotient space $S^{2n-1}/\bZ_k$,
+and compute the (co)homology groups, with coefficients $A=\bR$, $\bZ$, $\bZ_k$.
+\end{question}
+Hint: one cell in each dimension suffices. 
+Also, the answer can be found online; this space $S^{2n-1}/\bZ_k$ is known as a lens space.
+
+
+
+
+
+\subsection{Product}
+
+In the case of de Rham cohomology, 
+given $[\omega]\in H^p_\text{dR}(M)$ and $[\eta]\in H^q_\text{dR}(M)$ coming from
+closed differential forms $\omega$ and $\eta$,
+we can define their product $[\omega][\eta] := [\omega \wedge \eta]\in H^{p+q}_\text{dR}(M)$.
+As $\omega\wedge \eta=(-1)^{pq}\eta\wedge\omega$,
+the product of the cohomology classes also satisfied 
+$[\omega] [\eta]=(-1)^{pq}[\eta] [\omega]$.
+This was the graded commutativity of the de Rham cohomology groups.
+
+An analogous product can be defined for simplicial (co)homology groups, when the coefficient Abelian group $A$ has a product,
+ which is true for $A=\bZ,\bR,\bZ_2$ we have been discussing.
+
+For this, we regard a  $p$-cochain $c$, which is a $A$-linear map $c:C_p(M;A)\to A$,
+as $A$-valued functions \begin{equation}
+c(v_0,\ldots,v_p) = \pm c([v_0,\ldots,v_p]) 
+\end{equation}
+if $(v_0,\ldots,v_p)$ is a reordering of the vertices of a $p$-simplex in $M$,
+and zero otherwise.
+We note that in this notation \begin{equation}
+(\delta c)(v_0,\ldots,v_{p+1})= \sum_{i=0}^{p+1} (-1)^i c(v_0,\ldots,\widehat{v_i},\ldots,v_{p+1}),\label{eq:coboundary}
+\end{equation} 
+where $\widehat{v_i}$ means that $v_i$ is omitted from the argument of the function $c$.
+
+\begin{definition}
+The product of a $p$-cochain $c$ and a $q$-cochain $d$ as a $(p+q)$-cochain $c\cup d$ by \begin{equation}
+(c\cup d)(v_0,\ldots,v_{p+q}) = c(v_0,\ldots,v_p) d(v_p,\ldots,v_{p+q}).
+\end{equation}
+\end{definition}
+
+\begin{proposition}
+We have $\delta(c\cup d) = (\delta c)\cup d + (-1)^p c\cup (\delta d)$.
+\end{proposition}
+The proof easily follows from the  form of the coboundary operator $\delta$ given in \eqref{eq:coboundary}.
+
+As a result, we have
+\begin{proposition}
+The product of the cohomology classes $[c]\in H^p(M;A)$ and $[d]\in H^q(M;A)$,
+given by $[c]\cup [d] = [c\cup d]\in H^{p+q}(M;A)$,
+is well-defined.
+\end{proposition}
+
+This product is graded commutative as in the case of de Rham cohomology groups,
+but the proof is slightly trickier.
+In the de Rham cohomology case,
+the graded commutativity was due to the fact that the wedge product of differential forms is graded commutative,
+$\omega\wedge\eta=(-1)^{pq}\eta\wedge\omega$.
+In simplicial cohomology,
+$\omega \cup \eta \neq (-1)^{pq} \eta \cup \omega$ in general,
+but satisfies a more complicated relation \cite{SteenrodHigherProduct}:
+\begin{definition}
+The $\cup_1$ product of a $p$-cochain $c$ and a $q$-cochain $d$ is 
+a $(p+q-1)$-cochain
+defined by \begin{equation}
+(c\cup_1 d)(v_0,\ldots,v_{p+q-1}) = \sum_{i=0}^{p-1} (-1)^{(p-i)(q+1)}c(v_0,\ldots,v_i,v_{i+q},\ldots,v_{p+q-1}) d(v_i,\ldots,v_{i+q}).
+\end{equation}
+\end{definition}
+Then we have 
+\begin{proposition}
+For $p$-cochain $c$ and $q$-cochain $d$, we have \begin{equation}
+c\cup d-(-1)^{pq}d\cup c = \delta(c\cup_1 d) .
+\end{equation}
+\end{proposition}
+As a result, we have 
+\begin{corollary}
+The product of the cohomology classes $[c]\in H^p(M;A)$ and $[d]\in H^q(M;A)$
+satisfies $[c]\cup [d] = (-1)^{pq}[d]\cup [c]$.
+\end{corollary}
+
+Under this product, the generators of cohomology groups $H^{2k}(\CP^n;\bZ)=\bZ$
+given in Example~\ref{ex:cohoCPn}
+is known to be $c^k$, where $c$ is the generator of $H^2(\CP^n;\bZ)=\bZ$.
+
+\begin{aside}
+As an application of the product structure in cohomology groups,
+let us give another definition of the Hopf invariant
+of a map $f:S^{2n-1}\to S^n$.
+Recall  that $H^n(S^n;\bZ)=\bZ$.
+whose generator $[\omega]$ can be thought of the volume form with coefficient in $\bZ$.
+Pick a specific cochain $\omega\in Z^n(S^n;\bZ)$,
+and pull it back via $f$ to get an $n$-cochain $\omega'= f^*(\omega)\in Z^n(S^{2n-1};\bZ)$.
+As $H^n(S^{2n-1};\bZ)=0$, this cochain is a coboundary, $\omega'=\delta c$ for some $(n-1)$-cochain $c$.
+Then we define the Hopf invariant of $f$ as \begin{equation}
+  \text{Hopf}(f) = \langle c\cup \delta c,[S^{2n-1}]   \rangle \in \bZ,\label{eq:hopf-via-coho}
+\end{equation}
+where $\langle \cdot,\cdot\rangle$ is the pairing between homology and cohomology groups, i.e.~the integral of a cochain over a cycle.
+
+Note that the same construction can be done via differential forms.
+Indeed, take $\omega$ to be a volume form of $S^n$, satisfying $\int_{S^n}\omega=1$.
+Its pull-back $f^*(\omega)$ is exact, since $H^n_\text{dR}(S^{2n-1})=H^n(S^{2n-1};\bR)=0$.
+Therefore there is a $(n-1)$-form $\eta$ such that $f^*(\omega)=d\eta$.
+Then the Hopf invariant is given by \begin{equation}
+  \text{Hopf}(f) = \int_{S^{2n-1}} \eta\wedge d\eta.
+\end{equation}
+It is however not easy to see that this is actually an integer
+from this description using differential forms.
+\end{aside}
+
+\begin{question}
+  Show that the expression \eqref{eq:hopf-via-coho} is well-defined, i.e.~independent of the choice of $\omega$
+  representing $[\omega]$ and the choice of $c$ solving $\omega'=\delta c$.
+\end{question}
+\begin{question}
+  Show that the Hopf invariant \eqref{eq:hopf-via-coho} is zero when $n$ is odd.
+\end{question}
+
+\subsection{Universal coefficient theorem}
+
+So far we have defined $H_p(M;A)$ and $H^p(M;A)$ for Abelian groups $A$.
+In fact it is known that all of them can be obtained from $H_p(M;\bZ)$.
+These are known as universal coefficient theorems.
+\begin{theorem}
+For the cohomology groups, we have the short exact sequence \begin{equation}
+0\to \Ext(H_{p-1}(M;\bZ),A) \to H^p(M;A) \to \Hom(H_p(M;\bZ),A) \to 0,
+\end{equation} and for the homology groups, we have the short exact sequence
+\begin{equation}
+  0\to H_p(M;\bZ)\otimes_\bZ A \to H_p(M;A) \to \Tor(H_{p-1}(M;\bZ),A) \to 0,
+\end{equation}
+both of which split non-canonically.
+\end{theorem}
+Here, 
+\begin{itemize}
+\item $\Hom(A,B)$ are the homomorphisms from $A$ to $B$,
+\item $A\otimes_\bZ B$ is the tensor product of $A$ and $B$ over $\bZ$,
+i.e.~the Abelian group generated by $a\otimes b$ for $a\in A$ and $b\in B$
+where $\otimes$ is bilinear over $\bZ$,
+\item $\Tor(A,B)=\text{torsion}(A)\otimes_\bZ \text{torsion}(B)$, and 
+\item $\Ext(A,B)=\text{torsion}(A)\otimes_\bZ B$,
+\end{itemize}
+More explicitly, we always have the following structure \begin{align}
+  H_p(M;\bZ) &= \bZ^{b_p} \oplus \bZ_{k_{p}} \oplus \bZ_{k_{p}'}\oplus \cdots,\\
+H_p(M;\bZ_2)&= (\bZ_2)^{b_p}\oplus \bZ_{\gcd(2,k_{p})}\oplus \bZ_{\gcd(2,k_{p}')} \oplus \cdots\\
+& \qquad \qquad \oplus \bZ_{\gcd(2,k_{p-1})}\oplus \bZ_{\gcd(2,k_{p-1}')} \oplus \cdots ,\\
+H^p(M;\bR)&= \bR^{b_p},
+\end{align} and \begin{align}
+  H^p(M;\bZ)&= \bZ^{b_p} \oplus \bZ_{k_{p-1}}\oplus \bZ'_{k_{p-1}} \oplus \cdots,\\
+H^p(M;\bZ_2)&= (\bZ_2)^{b_p}\oplus \bZ_{\gcd(2,k_{p})}\oplus \bZ_{\gcd(2,k_{p}')} \oplus \cdots\\
+&\qquad \qquad \oplus \bZ_{\gcd(2,k_{p-1})}\oplus \bZ_{\gcd(2,k_{p-1}')} \oplus\cdots, \\
+H^p(M;\bR)&= \bR^{b_p},
+\end{align}
+where $b_p$ and $k_p$, $k_p'$, \ldots are defined by the decomposition 
+of $H_p(M;\bZ)$ in the first line above.
+
+\begin{question}
+Check this in the case of $\RP^n$.
+\end{question}
+
+When $M$ is a compact oriented connected $n$-dimensional manifold,
+we already said that 
+\begin{equation}
+  H_p(M;\bZ)\simeq H^{n-p}(M;\bZ); \label{eq:pd}
+\end{equation}
+this is the Poincar\'e duality.
+We also learned sometime ago that there is a natural bilinear pairing 
+\begin{equation}
+H^p(M;\bZ)\times H_p(M;\bZ) \to \bZ,
+\end{equation}
+corresponding to the integration of a $p$-form on a $p$-dimensional closed submanifold.
+
+The universal coefficient theorem above says that
+this is actually a perfect pairing between the free parts (the $\bZ^{b_p}$ part) of $H^p(M;\bZ)$ and $H_p(M;\bZ)$,
+meaning that the image of the pairing is the entirety of $\bZ$.
+Combining the Poincar\'e duality and the universal coefficient theorem,
+we have $b_p=b_{n-p}$.
+\begin{definition}
+  The numbers $b_p$ are called the Betti numbers of $M$.
+\end{definition}
+
+We finally note that the Poincar\'e duality has the following consequence:
+\begin{proposition}
+  Let $[N]\in H_p(M;\bZ)$ 
+  be a degree-$p$ homology class and $[\omega]\in H^{n-p}(M;\bZ)$ 
+  be the cohomology class corresponding to it via Poincar\'e duality.
+  Then, for an arbitrary class $[\eta]\in H^p(M;\bZ)$,
+  we have \begin{equation}
+    \langle [\eta],[N]\rangle = \langle [\eta]\cup [\omega],[M]\rangle.
+  \end{equation}  
+\end{proposition}
+
+\subsection{Hurewicz theorem}
+
+Before concluding this introductory section on (co)homology groups,
+let us mention the Hurewicz homomorphisms and the Hurewicz theorem.
+
+Let $f:S^n\to M$. This allows us to send the generator $[S^n] \in H^n(S^n;\bZ)=\bZ$ to $f^*([M])\in H^n(M;\bZ)$.
+As $f^*$ only depends on the homotopy class of the map $f$, 
+we found that this defines a homomorphism \begin{equation}
+  h:\pi_n(M;\bZ)\to H_n(M;\bZ).
+\end{equation}
+This is the Hurewicz homomorphism.
+Suppose $M$ is connected. Then 
+\begin{theorem}
+  The Hurewicz homomorphism $h:\pi_1(M;\bZ)\to H_1(M;\bZ)$ is given by the Abelianization.
+\end{theorem}
+Note that $\pi_1(M)$ can be a non-Abelian group,
+while $H_1(M;\bZ)$ is an Abelian group.
+Therefore there is no way that they can always be equal.
+The theorem above says that the relation is the simplest one imaginable.
+
+\begin{theorem}
+  Suppose $M$ is connected and simply connected,
+  i.e.~$\pi_0(M)=\pi_1(M)=0$.
+  Suppose further that $\pi_k(M)=0$ for $k<n$.
+  Then the Hurewicz homomorphism $\pi_n(M;\bZ)\to H_n(M;\bZ)$ is an isomorphism.
+\end{theorem}
+
+For example, take $M=\CP^n$.
+We already computed $\pi_k(\CP^n)$ using the long exact sequence of homotopy groups of the fibration $S^1\to S^{2n+1}\to \CP^n$,
+and we know $\pi_{0}(\CP^n)=\pi_1(\CP^1)=0$ and $\pi_2(\CP^2)=\bZ$.
+Therefore the Hurewicz homomorphism $\pi_2(\CP^2;\bZ)\to H_2(\CP^2;\bZ)=\bZ$ is an isomorphism.
+Indeed, the generator of $H_2(\CP^2;\bZ)$ is the submanifold $\CP^1\subset \CP^2$,
+and is the image of a sphere $S^2\simeq \CP^1$.
+
+
+As another example, consider $S^3\simeq SU(2)$.
+We have a $2:1$ map $SU(2)\to SO(3)$.
+$SO(3)$ has a finite subgroup $\Gamma$, which is the symmetry group of a regular icosahedron.
+Let $\hat\Gamma$ denote its inverse image in $SU(2)$.
+$\hat \Gamma$ is known as the binary icosahedral group.
+$\hat\Gamma\subset SU(2)$ is a finite subgroup,
+and therefore $S^3/\hat\Gamma$ is a compact $3$-manifold.
+We already computed that $\pi_1(S^3/\hat\Gamma)=\hat\Gamma$.
+What is the homology group of $M:=S^3/\hat\Gamma$?
+As it is connected and oriented, $H_0(M;\bZ)=H_3(M;\bZ)=\bZ$.
+By Hurewicz, $H_1(M;\bZ)$ is the Abelianization of $\hat\Gamma$,
+which is known to be trivial. 
+Therefore $H_1(M;\bZ)=0$.
+From the universal coefficient theorem, it then follows that $H^1(M;\bZ)=0$,
+from which we have $H_2(M;\bZ)=0$ via the Poinca\'e duality.
+Summarizing, we found 
+\begin{example}
+  The homology groups of $S^3/\hat\Gamma$ are given by \begin{equation}
+    H_p(S^3/\hat\Gamma;\bZ) = \begin{cases} \bZ & p=0,3 \\ 0 & \text{otherwise} \end{cases}
+  \end{equation}
+  and is the same as those of $S^3$.
+\end{example}
+This means that there are manifolds other than $S^3$ which have the same homology groups as $S^3$.
+Such manifolds are called homology spheres;
+the one constructed above was the first one and was discovered by Poincar\'e.
+
+We can ask an analgous question by replacing the homology group by the homotopy group: 
+is there a compact connected 3-dimensional manifold $M$ other than $S^3$ which has $\pi_1(M)=0$?
+The absence of such manifolds is the famous Poincar\'e conjecture, 
+which was proved by Perelman only in the 21st century.
 
 \section{Characteristic classes}
 
