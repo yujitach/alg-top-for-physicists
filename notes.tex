@@ -5714,7 +5714,7 @@ if no confusion arises.
 
 \subsection{Characteristic classes in $H^2(M;A)$}
 
-\subsubsection{First Chern class}
+\subsubsection{First Chern class of a $U(1)$ bundle}
 
 Let us move on to characteristic classes in $H^2(M;A)$.
 Consider a principal $U(1)$ bundle $U(1)\to P\to M$ over $M$.
@@ -5809,8 +5809,176 @@ whereas $c_1(P)$ is intrincially defined with $\bZ$.
 For example, there is a principal $U(1)$ bundle over $S^3/\bZ_2$
 for which $F$ is zero but $c_1(P)$ is nontrivial.
 
-\subsubsection{Second Stiefel-Whitney class}
+\subsubsection{Second Stiefel-Whitney class of an $SO(3)$ bundle}
 
+Let us now suppose that we are given an $SO(3)$ bundle $SO(3)\to P\to M$.
+This is given by the data of the transition functions $g_{ij}(x)\in SO(3)$
+between patches $U_i$ and $U_j$.
+For consistency, they satisfy $g_{ij}(x)g_{jk}(x)g_{ki}(x)=1$ on a triple overlap.
+
+Let us consider when there is a lift to an $SU(2)$ bundle $SU(2)\to \tilde P\to M$.
+Let us denote by $p$ the projection map $p:SU(2)\to SO(3)$.
+If there is a lift, then there will be transition functions $\tilde g_{ij}(x)\in SU(2)$ such that \begin{align}
+  p(\tilde g_{ij}) &= g_{ij}, \label{eq:lift}\\
+  \tilde g_{ij}(x)\tilde g_{jk}(x)\tilde g_{ki}(x) &= 1.\label{eq:consistency}
+\end{align}
+When will we be able to find such functions?
+
+We assumed that each overlap $U_{ij}=U_i\cap U_j$ is contractible, 
+so we can work over each patch to find $\tilde g_{ij}(x)\in SU(2)$ satisfying 
+the first equation \eqref{eq:lift} above.
+But the second equation \eqref{eq:consistency} is not guaranteed. 
+
+Suppose that we chose $\tilde g_{ij}(x)$ over $U_{ij}$ so that \eqref{eq:lift} is satisfied.
+We now have \begin{equation}
+p(\tilde g_{ij}(x)\tilde g_{jk}(x)\tilde g_{ki}(x)) = g_{ij}(x)g_{jk}(x)g_{ki}(x)=1,
+\end{equation}
+therefore \begin{equation}
+\tilde g_{ij}(x)\tilde g_{jk}(x)\tilde g_{ki}(x) = \pm 1, \label{eq:this-quantity}
+\end{equation} in view of the short exact sequence \begin{equation}
+1\to \bZ_2 \to SU(2)\to SO(3)\to 1.
+\end{equation}
+Let us define $w(i,j,k)$ by this quantity \eqref{eq:this-quantity}.
+We can show that $w(i,j,k)$ is antisymmetric under the interchange of $i,j,k$,
+
+We now have \begin{equation}
+w(i,j,k)w(i,k,l)= p(\tilde g_{ij} \tilde g_{jk}\tilde g_{ki} ) 
+p(\tilde g_{ik} \tilde g_{kl} \tilde g_{li})
+=p(\tilde g_{ij} \tilde g_{jk}\tilde g_{kl} \tilde g_{li})
+\end{equation} and similarly \begin{equation}
+  w(l,i,j)w(l,j,k)= p(\tilde g_{li} \tilde g_{ij}\tilde g_{jl} ) 
+  p(\tilde g_{lj} \tilde g_{jk} \tilde g_{kl})
+  =p(\tilde g_{li}\tilde g_{ij} \tilde g_{jk}\tilde g_{kl} )  
+\end{equation} and therefore \begin{equation}
+  w(i,j,k)w(i,k,l) = w(l,i,j)w(l,j,k),
+\end{equation}  meaning that $\delta w=0$.
+Therefore $w$ is a \v Cech 2-cocycle, defining a cohomology class $[w]\in H^2(M;\bZ_2)$.
+
+
+If we choose a different lift $\hat g_{ij}(x)\in SU(2)$, then we have 
+$\hat g_{ij}(x)= f_{ij} g_{ij}(x)$ for some $f_{ij}\in \bZ_2$.
+BY a short computation we find that 
+\begin{equation}
+\hat w(i,j,k) = w(i,j,k) + (\delta f)(i,j,k)
+\end{equation} (where we use an additive notation) and therefore $[w]=[\hat w]$.
+
+Note that $w=0$ and $[w]=0$ if $\tilde g_{ij}(x)\in SU(2)$ satisfies \eqref{eq:consistency}.
+Convesely, if $[w]=0$, there is a choice of $f_{ij}\in \bZ_2$ such that $\hat g_{ij}(x)= f_{ij} g_{ij}(x)$ has $\hat (w,i,k)=0$ for all $i,j,k$,
+meaning that $\hat g_{ij}(x) \hat g_{jk}(x)\hat g_{ki}(x)=1$.
+This means that the $SO(3)$ bundle $SO(3)\to P\to M$ lifts to an $SU(2)$ bundle $SU(2)\to \tilde P\to M$.
+
+Summarizing, we found the following theorem:
+\begin{theorem}
+  We can associate a cohomology class $w_2(P)\in H^2(M;\bZ_2)$ to an $SO(3)$ bundle $SO(3)\to P\to M$,
+  such that $w_2(P)=0$ if and only if the bundle $P$ lifts to an $SU(2)$ bundle.
+  This $w_2(P)$ is called the second Stiefel-Whitney class of $P$.
+\end{theorem}
+
+\begin{remark}
+  Therefore, the second Stiefel-Whitney class $w_2(P)$ is the obstruction of the bundle to be an $SU(2)$ bundle.
+\end{remark}
+
+Let us give two simple examples of a bundle with nontrivial $w_2(P)$.
+Over a 2-sphere $S^2$, take the northern and southern hemispheres $U_N$ and $U_S$ as the two patches.
+An $SO(3)$ bundle is specified by a map from the equator to $SO(3)$, $g:S^1\to SO(3)$. 
+They are classified by $\pi_1(SO(3))=\bZ_2$.
+The pairing of $w_2(P)$ on $S^2$, $\langle w_2(P),S^2\rangle$, is given by this number in $\bZ_2$.
+
+Simiarly, an $SU(2)$ bundle over $S^2$ is specified by $\tilde g: S^1\to SU(2)$.
+The map $p:SU(2)\to SO(3)$ gives a map $\pi_1(SU(2))\to \pi_1(SO(3))$.
+As $\pi_1(SU(2))=0$,
+any $SU(2)$ bundle regarded as an $SO(3)$ bundle 
+corresponds to the trivial class in $\pi_1(SO(3))=\bZ_2$.
+
+\begin{example}
+Consider the $SO(3)$ bundle over $S^2$ given by 
+the map $g: S^1\to SO(3)$ which corresponds to a $360^\circ$ rotation within $SO(3)$, so that $[g]\in \pi_1(SO(3))=\bZ_2$ is nontrivial.
+This bundle has $\langle w_2(P),S^3\rangle=1$ and cannot be lifted to an $SU(2)$ bundle.
+\end{example}
+
+Let us next consider an $SO(3)$ bundle over $T^2$.
+We construct this by thinking $T^2$ as a quotient of $\bR^2$ parameterized by $(s,t)$ under the identification $(s,t)\sim (s+1,t)\sim (s,t+1)$.
+We start from a trivial $\bR^3$ bundle over $\bR^2$ given by
+$\bR^2\times \bR^3$, parameterized by $(s,t;x,y,z)$.
+We now make two identifications:
+\begin{align}
+  (s,t;x,y,z) &\sim (s+1,t;-x,-y,z),\label{eq:SO3foo}\\
+  (s,t;x,y,z) &\sim (s,t+1;x,-y,-z).\label{eq:SO3bar}
+\end{align}
+The first is associated to the $SO(3)$ transformation $\mathrm{diag}(-1,-1,1)$,
+and the second to $\mathrm{diag}(1,-1,-1)$.
+
+Let us try to lift this to an $SU(2)$ bundle. 
+We start from $\bR^2\times \bC^2$, parameterized by $(s,t;v)$.
+A lift of $\mathrm{diag}(-1,-1,1)\in SO(3)$ to $SU(2)$ is simply $\sigma_z$,
+and a lift of $\mathrm{diag}(1,-1,-1)\in SO(3)$ to $SU(2)$ is $\sigma_x$.
+So we try to perform the following identifications:
+\begin{align}
+  (s,t;v) &\sim (s+1,t;\sigma_z v),\\
+  (s,t;v) &\sim (s,t+1;\sigma_x v).
+\end{align}
+But this is inconsistent, since \begin{equation}
+  (s,t;v)\sim (s+1,t;\sigma_z v)\sim (s+1,t+1;\sigma_x\sigma_x v)
+\end{equation} and \begin{equation}
+  (s,t;v)\sim (s,t+1;\sigma_x v)\sim (s+1,t+1;\sigma_z\sigma_x v)
+\end{equation} but \begin{equation}
+  \sigma_x\sigma_x = - \sigma_z\sigma_x.
+\end{equation}
+This means that the $SO(3)$ bundle over $T^2$ defined by \eqref{eq:SO3foo} and \eqref{eq:SO3bar} cannot be lifted to an $SU(2)$ bundle,
+and that $\langle w_2(P),T^2\rangle=1 \in \{0,1\}=\bZ_2$.
+
+\subsubsection{Second Stiefel-Whitney class of an $SO(n)$ bundle}
+
+
+We can replace $0\to \bZ_2\to SU(2)\to SO(3)\to 0$ by $0\to \bZ_2\to Spin(n)\to SO(n)\to 0$, and conclude 
+\begin{proposition}
+  We can associate a characteristic class, called
+  the second Stiefel-Whitney class $w_2(P)$,
+  to an $SO(n)$ bundle $SO(n)\to P\to M$.
+  This characteristic class vanishes, $w_2(P)=0$, if and only if the bundle $P$ lifts to a principal $Spin(n)$ bundle.
+\end{proposition}
+
+
+Given a manifold $M$, we can consider its tangent bundle $TM$, which is an associated vector bundle to an $O(n)$ bundle.
+If $M$ is orientable, $w_1(TM)=0$, and $TM$ is an $SO(n)$ bundle.
+We can ask if it can be further lifted to $Spin(n)$.
+We learned that this is controled by the second Stiefel-Whitney class $w_2(TM)$ of $M$.
+Summarizing, we have the following proposition:
+\begin{proposition}
+The second Stiefel-Whitney class $w_2(M)$ of a manifold $M$ is zero if and only if $M$ is spin.
+\end{proposition}
+
+Although we cannot prove it yet, we have the following important theorem:
+\begin{theorem}
+Any orientable manifold of dimension $\leq 3$ is spin.
+\end{theorem}
+
+\begin{remark}
+There is a non-spin manifold of dimension 4. An example is $\CP^2$.
+\end{remark}
+
+%\subsubsection{General degree-2 obstruction classes}
+
+By going over the construction of $c_1(P)$ of a $U(1)$ bundle and 
+of $w_2(P)$ of an $SO(n)$ bundle again,
+we see that the procedure is completely parallel.
+Namely, for the former, we used the sequence \begin{equation}
+0\to \bZ\to \bR \to U(1)\to 0 
+\end{equation} whereas in the latter, for $SO(3)$ we used \begin{equation}
+0\to \bZ_2\to SU(2)\to SO(3)\to 0
+\end{equation} and more generally we used \begin{equation}
+0\to \bZ_2\to Spin(n)\to SO(n)\to 0.
+\end{equation}
+
+The same argument can be applied to any short exact sequence of groups \begin{equation}
+0\to A\to \Gamma \to G\to 0
+\end{equation} for which $A$ is a discrete Abelian group,
+namely:
+\begin{proposition}
+  Given a principal $G$ bundle $G\to P\to M$,
+  we can associate a cohomology class $v_2(P)\in H^2(M;A)$,
+  such that $v_2(P)=0$ if and only if the bundle $P$ lifts to a principal $\Gamma$ bundle.
+\end{proposition}
 
 \section{Classifying spaces}
 
