@@ -121,12 +121,17 @@ Compute its homology groups $H_p(M;\bZ)$ and $H^p(M;\bZ)$.
 
 Hint: the cell decomposition and much more is explained in Hatcher's textbook, Example 2.43.
 
-\section{A $U(1)$ bundle with zero $F$ and nonzero $c_1$}
+\section{$U(1)$ bundles with zero $[F]$ and nonzero $c_1$}
 
-In the exercise above, you will find that $H^2(M;\bZ)=\bZ_k$ for $M=S^{2n-1}/\bZ_k$.
-It is therefore possible to have a $U(1)$ bundle over it such that its first Chern class is the generator $1$ of this $\bZ_k$.
-An example of such a $U(1)$ bundle is given as follows.
+In the exercise above, you find that $H^2(M;\bZ)=\bZ_k$ for $M=S^{2n-1}/\bZ_k$.
+This means that it is possible to have  a $U(1)$ bundle $P$ over it such that
+ its first Chern class $c_1(P)$ is the generator $1$ of this $\bZ_k$.
+As $k\cdot 1=0\in \bZ_k$, $kc_1(P)=0$. 
+Correspondingly, $k[F]=0$ in the de Rham cohomology class,
+but this simply means that $[F]=0$.
+This means that the curvature \emph{does not} contain all the information of the first Chern class.
 
+Let us study a systematic construction of such $U(1)$ bundles.
 We first consider a trivial $U(1)$ bundle over $S^{2n-1}$, parameterized by \[
 (z_1,\ldots,z_n;w)
 \] where $w\in \bC$ parameterizes the fiber. 
@@ -136,13 +141,19 @@ We now let $\bZ^k$ to act also on the fiber: \[
 \]
 Compute $c_1$ of this bundle  following the steps described below.
 \begin{itemize}
-\item This line bundle comes from a $\bZ_k$ bundle.
-\item As discussed in the lectures, it determines an element in $a\in H^1(M;\bZ_k)$.
-\item (Optional) Learn from some textbooks that, if a $U(1)$ bundle comes from a $\bZ_k$ bundle via 
-the embedding $\bZ_k \subset U(1)$, 
-$c_1\in H^2(M;\bZ)$ is given by $c_1=\beta(a)\in H^1(M;\bZ_k)$,
+\item Argue that this line bundle comes from a $\bZ_k$ bundle over $M$.
+As discussed in the lectures, it determines an element in $a\in H^1(M;\bZ_k)$.
+\item Using a fine enough cover and the definition of $c_1(P)$ in the lecture notes, 
+show that  \[
+c_1(P)=\beta(a)\in H^2(M;\bZ)
+\]
 where $\beta$ is the Bockstein associated to $0\to\bZ \xrightarrow{\times k}\to \bZ\to \bZ_k\to 0$.
-\item Compute $a$ and $\beta(a)$ using a cell decomposition of $M=S^{2n-1}/\bZ_k$.
+(Hint: in the lecture notes we used the sequence $0\to\bZ\to \bR\to U(1)\to 0$ instead.)
+\item 
+Now that we established the formula above, we can compute the Bockstein in the cellular cohomology,
+not in the \v Cech cohomology.
+Compute $a$ and $\beta(a)$ using a cell decomposition of $M=S^{2n-1}/\bZ_k$,
+and show that $\beta(a)$ is indeed $1\in \bZ_k$.
 \end{itemize}
 
 \section{Density matrices vs.~wavefunctions for $n$-level systems}
