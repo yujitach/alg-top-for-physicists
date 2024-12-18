@@ -5574,6 +5574,244 @@ which was proved by Perelman only in the 21st century.
 
 \section{Characteristic classes}
 
+Now that we have learned the basics of (co)homology groups with coefficients in $\bZ_2$ and/or $\bZ$,
+let us see how they arise in the study of principal $G$-bundles or vector bundles.
+The cohomology classes associated to bundles are called characteristic classes.
+
+\subsection{\v Cech cohomology}
+
+Characteristic classes we deal with below are usually constructed within the framework of \v Cech cohomology, 
+which we have not introduced yet.
+Due to the time constraints, we only outline the idea. 
+
+Let $M$ be a space, and pick a `fine enough' cover $\{U_i\}$ of $M$,
+so that all nonempty intersections $U_{i_1} \cap U_{i_2} \cap \cdots \cap U_{i_k}$ is contractible.
+We then associate the following simplicial complex:
+\begin{itemize}
+\item    a vertex $v_i$ for each $U_i$,
+\item an edge $E(v_i,v_j)$ for each nonempty intersection $U_{ij}=U_i\cap U_j$,
+\item a triangle $T(v_i,v_j,v_k)$ for each nonempty intersection $U_{ijk}=U_i \cap U_j \cap U_k$,
+\end{itemize}
+and so on. 
+\begin{definition}
+The simplicial complex associated to an open cover is called the \emph{nerve} of the cover.
+\end{definition}
+
+\begin{definition}
+The \v Cech cohomology of a space $M$ is the simplicial cohomology 
+of the nerve of a `fine enough' cover of $M$.
+\end{definition}
+
+A \v Cech $p$-cochain $c$ with $A$ coefficient, associated for a cover $\{U_i\}$,
+ is then  simply the set of elements \begin{equation}
+ c(i_0,i_1,\cdots, i_p)
+\end{equation}
+antisymmetric under the interchange of $i_0,\ldots,i_p$,
+and the coboundary $\delta$ is given as before by \begin{equation}
+(\delta c)(i_0,\cdots, i_{p+1})=\sum_{k=0}^{p+1}(-1)^k c(i_0,\ldots,\widehat{ i_k},\ldots, i_{p+1}).
+\end{equation}
+It would be useful to have explicit formulas: \begin{align}
+(\delta a)(i,j) &= a(i) - a(j),\\
+(\delta b)(i,j,k) &= b(j,k) -b(i,k) + b(i,j) = b(i,j) + b(j,k)+ b(k,i),\\
+(\delta c)(i,j,k,l) &= c(j,k,l) - c(i,k,l) + c(i,j,l) - c(i,j,k).
+\end{align}
+
+\subsection{Characteristic classes in $H^1(M;A)$}
+
+\subsubsection{Discrete Berry phase}
+We start with characteristic classes of degree $p=1$.
+Let $A$ be a finite abelian group, say $A=\bZ_2$.
+Consider a principal $A$-bundle $A\to P\to M$ over $M$.
+Take a fine enough patch.
+It is specified by patching $U_i\times A$ and $U_j\times A$ over $U_{ij}$ by a map $g_{ij}:U_{ij}\to A$, via \begin{equation}
+   U_i\times A\ni (x,a) \mapsto (x,g_{ij}(x)+a)\in U_j\times A.
+\end{equation} 
+As $A$ is finite, $g_{ij}(x)$ is simply a constant, which we denote by $g_{ij}$.
+Over a triple intersection $U_{ijk}$, let us
+go from $U_i$ to $U_j$, $U_j$ to $U_k$, and $U_k$ to $U_i$. This effects
+\begin{equation}
+(x,a) \mapsto (x,g_{ij}a)\mapsto (x,g_{ij}g_{jk}a)\mapsto (x,g_{ij} g_{jk}g_{ki}a),
+\end{equation} and therefore we have \begin{equation}
+  g_{ij}g_{jk}g_{ki}=1.
+\end{equation}
+This means that the $g_{ij}$'s form a \v Cech 1-cochain, and therefore a cohomology class $[g] \in H^1(M;A)$.
+(Note that we used multiplicative notations for the group operation here.)
+
+Let us consider another principal $A$-bundle $A\to \tilde P\to M$ over $M$,
+specified by $\tilde g_{ij}\in A$.
+The bundles $P$ and $\tilde P$ are equivalent when we can find a map
+\begin{equation}
+  U_i\times A \ni (x,a) \mapsto (x,f_i a)\in U_i\times A
+\end{equation}
+such that $f_i g_{ij}= \tilde g_{ij} f_j$.
+This is equivalent to \begin{equation}
+\tilde g_{ij} = g_{ij} f_i f_j^{-1}, 
+\end{equation} or as a \v Cech 1-cochain, \begin{equation}
+\tilde g = g + \delta f
+\end{equation} (where we switched to additive notation for the group operation).
+Therefore the cohomology classes are the same: $[g]=[\tilde g]$.
+
+The consideration above also shows that for any $[g]\in H^1(M;A)$,
+the corresponding cochain $g_{ij}$ defines a principal $A$-bundle over $M$.
+Summarizing:
+\begin{proposition}
+  The cohomology class $\in H^1(M;A)$ is in one-to-one correspondence with the isomorphism classes of principal $A$-bundles over $M$.
+\end{proposition}
+
+\begin{remark}
+A principal $A$-bundle being trivial is therefore equivalent to the corresponding $[g]\in H^1(M;A)$ being zero.
+In this sense, $[g]$ is called the \emph{obstruction} of the bundle to be trivial.
+\end{remark}
+
+A 1-cycle $C$ on $M$ is a closed path on $M$.
+In the \v Cech setting, it is a sequence of edges
+$i_1 \to i_2 \to \cdots \to i_{n+1}=i_1$.
+The pairing between $[g]\in H^1(M;A)$ and $C$ is given by \begin{equation}
+  \langle [g],C\rangle = \sum_{k=1}^{n} g_{i_k i_{k+1}}
+\end{equation} (written additively),
+and is the total effect of the $A$ transformation when you go around the cycle $C$.
+This can be called a discrete Berry phase (for a cond-mat person),
+a discrete Wilson line (for a hep-th person),
+and a holonomy (for a math person).
+
+\subsubsection{First Stiefel-Whitney class}
+
+
+A characteristic class in $H^1(M;\bZ_2)$ can be defined for an $O(n)$-bundle
+$O(n)\to P\to M$  too.
+For this, note that $\det: O(n)\to \bZ_2$ is a homomorphism.
+Using this, we can construct a principal $\bZ_2$ bundle  $\bZ_2\to \det(P)\to M$,
+and then we can form the corresponding cohomology class $[g]\in H^1(M;\bZ_2)$.
+\begin{definition}
+  This cohomology class is denoted by $w_1(P)$, and is called the first Stiefel-Whitney class of $P$.
+\end{definition}
+
+If the transition functions $g_{ij}(x)\in O(n)$ of an $O(n)$ bundle 
+is acutally in $g_{ij}(x)\in SO(n)$, then its determinant is by definition always $+1$.
+Therefore $w_1(P)=0$ for an $SO(n)$ bundle,
+and converse is also true.
+
+\begin{proposition}
+  The first Stiefel-Whitney class $w_1(P)$ of an $O(n)$ bundle $O(n)\to P\to M$ is zero if and only if the bundle $P$ comes from an $SO(n)$ bundle.
+\end{proposition}
+
+\begin{remark}
+In this sense, $w_1(P)$ is called the \emph{obstruction} of the bundle to be an $SO(n)$ bundle.
+When the obstruction vanishes, people say the $O(n)$ bundle \emph{lifts to} an $SO(n)$ bundle,
+or the structure group $O(n)$ \emph{lifts to} or \emph{reduces to} $SO(n)$.
+Such an $O(n)$ bundle is also called \emph{orientable}.
+\end{remark}
+
+
+Given a manifold $M$, we can consider its tangent bundle $TM$, which is an associated vector bundle to an $O(n)$ bundle.
+We can take its first Stiefel-Whitney class $w_1(TM)\in H^1(M;\bZ_2)$,
+which is often simply written as $w_1(M)$ or even just as $w_1$ 
+if no confusion arises.
+
+\begin{proposition}
+  The first Stiefel-Whitney class $w_1(M)$ of a manifold $M$ is zero if and only if $M$ is orientable.
+\end{proposition}
+
+\subsection{Characteristic classes in $H^2(M;A)$}
+
+\subsubsection{First Chern class}
+
+Let us move on to characteristic classes in $H^2(M;A)$.
+Consider a principal $U(1)$ bundle $U(1)\to P\to M$ over $M$.
+Take a fine enough patch.
+We can try what we did above for finite Abelian $A$,
+but one crucial difference is that the patching function $g_{ij}(x)$ in \begin{equation}
+  U_i\times U(1)\ni (x,a) \mapsto (x,g{ij}(x)a)\in U_j\times U(1)
+\end{equation} is a function,
+and therefore does not determine a cochain,
+which requires it to be a constant.
+
+Let us now write $g_{ij}(x)=e^{2\pi i\theta_{ij}(x)}$, for a real function $\theta_{ij}(x)$.
+This is possible, as we assumed $U_{ij}=U_i\cap U_j$ to be contractible.
+On the triple overlap, we have $g_{ij}(x)g_{jk}(x)g_{ki}(x)=1$, and therefore \begin{equation}
+\theta_{ij}(x)+\theta_{jk}(x)+\theta_{ki}(x) = 0 \mod 1.
+\end{equation} Define an integer $c(i,j,k)$ by \begin{equation}
+c(i,j,k) = \theta_{ij}(x)+\theta_{jk}(x)+\theta_{ki}(x) \in \bZ.
+\end{equation}
+
+On a quadruple overlap, we have \begin{equation}
+  \delta c(i,j,k,l) = c(j,k,l) - c(i,k,l) + c(i,j,l) - c(i,j,k) 
+  = \sum \pm \theta_{ij} \pm \theta_{jk} \pm \theta_{kl} \pm \theta_{li} = 0 ,
+\end{equation}
+and therefore $c$ is a \v Cech 2-cocyclce, defining an element $[c]\in H^2(M;\bZ)$.
+
+If we take a different lift $\tilde \theta_{ij} (x) = \theta_{ij}(x) + n(i,j)$ where $n(i,j)\in \bZ$,
+we find that $\tilde c(i,j,k)= c(i,j,k) +(\delta n)(i,j,k)$,
+and therefore $[c]=[\tilde c]$.
+
+We take a different patching function $\hat g_{ij}(x) = \hat f_j(x) \hat f_i(x)^{-1} g_{ij}(x)$,
+then we have \begin{equation}
+\hat \theta_{ij}(x)= \theta_{ij}(x) + \tilde f_i(x)-\tilde f_j(x),
+\end{equation} For this we simply have $\hat c(i,j,k)=c(i,j,k)$.
+
+Summarizing, we have
+\begin{proposition}
+Given a principal $U(1)$ bundle $U(1)\to P\to M$,
+we can construct a cohomology class $c_1(P)\in H^2(M;\bZ)$,
+known as the first Chern class of $P$.
+\end{proposition}
+
+\begin{remark}
+When $P$ is trivial, $c_1(P)$ is clearly zero.
+So $c_1(P)$ is the obstruction of the bundle to be trivial.
+\end{remark}
+
+
+We have an imporant theorem, whose proof we will see in the next section:
+\begin{theorem}
+Any class $c_1\in H^2(M;\bZ)$ is the first Chern class of some principal $U(1)$ bundle over $M$.
+\end{theorem}
+
+
+Take a 2-cycle $C$ on $M$. 
+In our \v Cech setting, it is a collection of triangles forming a closed surface,
+where each vertex $v_i$ of the triangle is taken from the corresponding patch $U_i$, see Fig.~\ref{fig:2cycle} for a tetrahedron.
+
+\begin{figure}
+\centering
+\includegraphics[width=.3\textwidth]{c1.png}
+\caption{A 2-cycle $C$ on $M$ \label{fig:2cycle}}
+\end{figure}
+
+The pairing $\langle c_1(P),C\rangle$ is by definition 
+the sum of $c(i,j,k)$ over four triangles there.
+In this particular case, we can take the equator to cross the edges $12$, $13$ and $14$ so that $g_{23}(x)=g_{34}(x)=g_{42}(x)=1$. 
+We take $g_{12}(x)$, $g_{13}(x)$ and $g_{14}(x)$ to be the patching function $g(x)$ on the equator restricted to the overlap of patches $U_{12}$, $U_{13}$ and $U_{14}$.
+For ease of computation we can set $g_{13}(x)=g_{14}(x)=1$ 
+and the only nontrivial thing happens in $g_{12}(x)$.
+Then the only nontrivial $\theta_{ij}(x)$ is $\theta_{12}(x)$.
+$\theta_{12}(x_3)$ on $x_3\in U_{123}$ is an integer independent of $x_3$, which is $c(1,2,3)$. 
+Similarly, $\theta_{12}(x)$ on $x\in U_{124}$ is an integer independent of $x_4$, which is $c(1,2,4)$.
+$c(1,3,4)$ and $c(2,3,4)$ are zero by definition.
+Therefore the pairing is given by \begin{equation}
+\langle c_1(P),C\rangle = c(1,2,3) - c(1,2,4) = \theta_{12}(x_3)-\theta_{12}(x_4),
+\end{equation} which is the winding number of $g(x)$ on the equator. 
+
+Therefore it characterizes the topological class of the bundle $P$ over the 2-cycle $C$.
+Combining with our discussion of the de Rham cohomology class $[F/(2\pi)]\in H^2(M,\bR)$ associated to a connection of the $U(1)$ bundle, 
+we have found the following important relation:
+\begin{proposition}
+  The first Chern class $c_1(P)$ of a principal $U(1)$ bundle $U(1)\to P\to M$ 
+  satisfies 
+  \begin{equation}
+    \langle c_1(P),C\rangle = \int_C \frac{F}{2\pi},
+  \end{equation}
+  where $F$ is the curvature 2-form of the connection on the same bundle.
+\end{proposition}
+
+Note that the 2-form $F/(2\pi)$ is defined with real numbers but somehow integrates to an integer,
+whereas $c_1(P)$ is intrincially defined with $\bZ$.
+For example, there is a principal $U(1)$ bundle over $S^3/\bZ_2$
+for which $F$ is zero but $c_1(P)$ is nontrivial.
+
+\subsubsection{Second Stiefel-Whitney class}
+
+
 \section{Classifying spaces}
 
 \section{Chern-Simons terms and bordism groups}
