@@ -158,6 +158,8 @@
 \def\Ext{\mathop{\mathrm{Ext}}}
 \def\Tor{\mathop{\mathrm{Tor}}}
 
+\def\I{\mathrm{i}}
+
 \begin{document}
 
 \centerline{\Large Algebraic topology for physicists}
@@ -5785,12 +5787,12 @@ Consider a principal $U(1)$ bundle $U(1)\to P\to M$ over $M$.
 Take a fine enough patch.
 We can try what we did above for finite Abelian $A$,
 but one crucial difference is that the patching function $g_{ij}(x)$ in \begin{equation}
-  U_i\times U(1)\ni (x,a) \mapsto (x,g{ij}(x)a)\in U_j\times U(1)
+  U_i\times U(1)\ni (x,a) \mapsto (x,g_{ij}(x)a)\in U_j\times U(1)
 \end{equation} is a function,
 and therefore does not determine a cochain,
 which requires it to be a constant.
 
-Let us now write $g_{ij}(x)=e^{2\pi i\theta_{ij}(x)}$, for a real function $\theta_{ij}(x)$.
+Let us now write $g_{ij}(x)=e^{2\pi\I\theta_{ij}(x)}$, for a real function $\theta_{ij}(x)$.
 This is possible, as we assumed $U_{ij}=U_i\cap U_j$ to be contractible.
 On the triple overlap, we have $g_{ij}(x)g_{jk}(x)g_{ki}(x)=1$, and therefore \begin{equation}
 \theta_{ij}(x)+\theta_{jk}(x)+\theta_{ki}(x) = 0 \mod 1.
@@ -6043,6 +6045,267 @@ namely:
   we can associate a cohomology class $v_2(P)\in H^2(M;A)$,
   such that $v_2(P)=0$ if and only if the bundle $P$ lifts to a principal $\Gamma$ bundle.
 \end{proposition}
+
+\subsection{A characteristic class in $H^3(M;A)$}
+
+We discussed the question of lifting an $SO(3)$ bundle to an $SU(2)$ bundle above.
+This was a natural question in the physics context of considering 
+the action of the rotation group $SO(3)$ on a wavefunction transforming as a spinor.
+
+In a more general quantum mechanical context, a real three-dimensional space
+also arise as the space of Hermitean operators $\sigma_{x,y,z}$
+of a two-level system, or a qubit.
+An $\bR^3$ bundle, or equivalently an $SO(3)$ bundle over a parameter space $M$
+can be thought of as a family of a qubit over $M$,
+described in terms of observables or dually, in terms of density matrices. 
+A $\bC^2$ bundle, or equivalently a $U(2)$ bundle over $M$, 
+can also be thought of as a family of a qubit over $M$.
+We can wonder if there are subtle distinctions between the two.
+
+\subsubsection{An example}
+
+Before discussing the general theory, let us consider an example.
+Take the $\bR^3$-bundle over $T^2$ given by the identifications \eqref{eq:SO3foo} and \eqref{eq:SO3bar} above.
+It cannot be lifted to $SU(2)$. Can we lift it to $U(2)$?
+Yes it is; we simply take the identifications \begin{align}
+  (s,t;v) &\sim (s+1,t;\sigma_z v),\\
+  (s,t;v) &\sim (s,t+1;e^{\pi \I s}\sigma_x v).
+\end{align}
+These identifications are now consistent, since \begin{equation}
+  (s,t;v)\sim (s+1,t;\sigma_z v)\sim (s+1,t+1;e^{\pi \I (s+1)}\sigma_x\sigma_z v)
+\end{equation} whereas \begin{equation}
+  (s,t;v)\sim (s,t+1;e^{\pi \I s}\sigma_x v)\sim (s+1,t+1;e^{\pi \I s}\sigma_z\sigma_x v).
+\end{equation}
+
+Given a $U(2)$ bundle, we can take its determinant $\det:U(2)\to U(1)$ to get a $U(1)$ bundle. 
+Call it $L\to M$ 
+Taking its coorindate to be $w$, we find the identificaiton \begin{align}
+  (s,t;w) &\sim (s+1,t;w),\\
+  (s,t;w) &\sim (s,t+1;e^{2\pi I s}w).
+\end{align}
+This means that the determinant $U(1)$ bundle $L$ of the $U(2)$ bundle over $T^2$
+lifting our $SO(3)$ bundle has a nontrival first Chern class $c_1(L)$,
+satisfying $\langle c_1(L),T^2\rangle=1$.
+This can be shown more generally:
+any $U(2)$ bundle over $T^2$ lifting our $SO(3)$ bundle 
+has a nontrivial first Chern class which is odd: $\langle c_1(L),T^2\rangle=1$ modulo 2.
+
+This observation can be used to construct an example
+where an $\bR^3$ bundle over $M$ cannot be lifted to a $U(2)$ bundle.
+To do this, simply add another coordinate $u\sim u+1$ to $T^2$,
+but with a twisted identification \begin{equation}
+(s,t,u) \sim (s+1,t,u),\quad
+(s,t,u) \sim (s,t+1,u),\quad
+(s,t,u) \sim (s,-t,u+1).
+\end{equation}
+This makes the total parameter space to be $S^1$ (parameterized by $s$)
+times a Klein bottle (parameterized by $t,u$).
+We take the $\bR^3$ bundle over this space given by the identifications \eqref{eq:SO3foo} and \eqref{eq:SO3bar} above,
+without the $u$-dependence. More precisely, we take the identifications \begin{align}
+  (s,t,u;x,y,z) &\sim (s+1,t,u;-x,-y,z),\\
+  (s,t,u;x,y,z) &\sim (s,t+1,u;x,-y,-z),\\
+  (s,t,u;x,y,z) &\sim (s,-t,u+1;x,y,z).
+\end{align}
+
+To see that this cannot be lifted to a $U(2)$ bundle, we can use the following argument.
+Suppose there is a $U(2)$ bundle lifting it.
+At constant fixed $u=u_0$, the determinant $U(1)$ bundle $L\to T^2$
+has a nontrivial value $\langle c_1(L),T^2\rangle = 1 $ mod 2.
+We can continuously change $u_0$.
+As we go around the $u$-circle, the value $ \langle c_1(L),T^2\rangle$
+cannot change, since it is an integer.
+However, the twisted identification $(t,u)\sim (-t,u+1)$
+requires that the orientation of $T^2$ is reversed as we go around the $u$-circle,
+so $\langle c_1(L),T^2\rangle$ must change its sign.
+This is a contradiction, and therefore the $\bR^3$ bundle over $T^2\times S^1$ cannot be lifted to a $U(2)$ bundle.
+
+As will be explained now, this impossiblity to lift is 
+due to the existence of the obstruction class in $H^3(M;\bZ)$.
+On $T^2$, $H^3(T^2;\bZ)=0$, and the obstruction was simply absent,
+which explains why the $SO(3)$ bundle over $T^2$ could be lifted to a $U(2)$ bundle.
+On a three-dimensional space, however, the obstruction can in general be nontrivial,
+leading to the impossibility of lifting the $SO(3)$ bundle to a $U(2)$ bundle.
+
+\begin{remark}
+It appears that there are some circles of theoretical physicisits studying 
+quantum mechanics and/or quantum information,
+where people think that density matrices have 
+the same descriptive power as wavefunctions.
+The example above shows that this is not quite true,
+when we consider a continuous family of such systems over a parameter space.
+\end{remark}
+
+\subsubsection{General theory}
+
+So, let us ask when an $SO(3)$ bundle $SO(3)\to P\to M$ can be lifted to a $U(2)$ bundle $U(2)\to \tilde P\to M$.
+As always, take a fine enough cover $U_i$, so that all nonempty intersections $U_{i_1}\cap U_{i_2}\cap \cdots \cap U_{i_k}$ are contractible.
+The data of the $SO(3)$ bundle is given by the transition functions $g_{ij}(x)\in SO(3)$, satisfying \begin{equation}
+  g_{ij}(x)g_{jk}(x)g_{ki}(x)=1.
+\end{equation}
+
+We already discussed the lifting to $SU(2)$. 
+To reuse some of the discussions,
+it is useful to think of \begin{equation}
+U(2) = \frac{U(1)\times SU(2)}{\bZ_2}, \label{eq:U2}
+\end{equation} where $\bZ_2 \subset U(1)\times SU(2)$ is generated by $(-1,-1)$.
+Indeed, any $2\times 2$ unitary matrix $U$ can be written as \begin{equation}
+U= e^{2\pi\I \theta} \tilde U
+\end{equation} where $\det\tilde U=1$, but this splitting is not unique;
+we have an ambiguity of $(e^{2\pi\I \theta},\tilde U) \sim (-e^{2\pi\I \theta},-\tilde U)$.
+
+A $U(2)$ bundle is specified by the transition functions $\tilde g_{ij}(x)\in U(2)$, satisfying \begin{equation}
+  \tilde g_{ij}(x)\tilde g_{jk}(x)\tilde g_{ki}(x)=1.
+\end{equation}
+Using \eqref{eq:U2}, it can also be given by pairs \begin{equation}
+(e^{2\pi\I\theta_{ij}(x)},h_{ij}(x))\in U(1)\times SU(2)
+\end{equation} satisfying \begin{align}
+  e^{2\pi\I\theta_{ij}(x)}e^{2\pi\I\theta_{jk}(x)}e^{2\pi\I\theta_{ki}(x)}&=(-1)^{w_{ijk}},\label{eq:rel-theta}\\
+  h_{ij}(x)h_{jk}(x)h_{ki}(x)&=(-1)^{w_{ijk}},\label{eq:rel-h}
+\end{align}
+where $w_{ijk}\in \{0,1\}$ defined on each $U_{ijk}$.
+
+For this $U(2)$ bundle to lift a given $SO(3)$ bundle, we simply need to have \begin{equation}
+p(h_{ij})=g_{ij}.
+\end{equation}
+This is the condition we repeatedly used in the previous section,
+where we learned that the condition \eqref{eq:rel-h}
+implies that  $w_{ijk}$ is a \v Cech 2-cocycle,
+defining a cohomology class $[w]\in H^2(M;\bZ_2)$.
+The condition \eqref{eq:rel-theta} imposes an additional constraint.
+
+To see this, consider \begin{equation}
+  n_{ijk}(x):=2(\theta_{ij}(x)+\theta_{jk}(x)+\theta_{ki}(x)).\label{eq:n}
+\end{equation}
+From \eqref{eq:rel-theta} we know it is actually a constant $n_{ijk}$ on each $U_{ijk}$,
+which satisfies \begin{equation}
+  n_{ijk} = w_{ijk} \mod 2.\label{eq:nw}
+\end{equation}
+
+
+$n_{ijk}$ is actually a \v Cech 2-cocycle, defining a cohomology class $[n]\in H^2(M;\bZ)$.
+To see this, we note that the determinant map $\det:U(2)\to U(1)$ 
+sends $(e^{2\pi\I\theta},h)\mapsto e^{2\pi\I\cdot 2\theta}$.
+Therefore the patching functions $e^{2\pi\I\cdot 2\theta_{ij}(x)}$ define a principal $U(1)$ bundle $U(1)\to L\to M$,
+and the relation \eqref{eq:n} says that $n_{ijk}$ is the \v Cech 2-cocycle 
+giving its first Chern class $c_1$.
+This means that the cohomology class $w_2(P)\in H^2(M;\bZ_2)$ of the $SO(3)$ bundle 
+is the mod-2 reduction of the cohomology class $c_1(L)\in H^2(M;\bZ)$ of the $U(1)$ bundle $L$.
+
+Conversely, suppose that, for a given $SO(3)$ bundle $SO(3)\to P\to M$,
+there is a $U(1)$ bundle $U(1)\to L\to M$ 
+such that $w_2(P)$ is the mod-2 reduction of $c_1(L)$.
+Let $g_{ij}(x)\in SO(3)$ be the transition functions of $P$,
+and $h_{ij}(x)\in SU(2)$ be their lifts to $SU(2)$.
+Let $e^{2\pi \I \cdot 2\theta_{ij}(x)}$ be the patching functions of $L$,
+and define $w$ and $n$ as above.
+The condition that the cohomology classes (not the cocycles themselves)
+satisfy $w_2(P)=c_1(L)$
+ means that we have \begin{equation}
+  n_{ijk} +(\delta m)_{ijk}= w_{ijk} +(\delta v)_{ijk} \mod 2.
+\end{equation}
+This means that we can re-take $\theta_{ij}(x)\mapsto \theta_{ij}(x)+ m_{ij}/2 $ and $h_{ij}(x)\mapsto h_{ij}(x) (-1)^{v_{ij}}$
+so that the relation \eqref{eq:nw} is satisfied on the nose,
+which gives a lift of the $SO(3)$ bundle to a $U(2)$ bundle.
+
+
+
+Summarizing our discussion so far, we have the following proposition:
+\begin{proposition}
+  An $SO(3)$ bundle $SO(3)\to P\to M$
+  lifts to a $U(2)$ bundle $U(2)\to \tilde P\to M$ if and only if
+   $w_2(P)\in H^2(M;\bZ_2)$ is 
+  the mod 2 reduction of a class $c\in H^2(M;\bZ)$ .
+\end{proposition}
+where we used the fact that any class $c\in H^2(M;\bZ)$ is
+the first Chern class of some principal $U(1)$ bundle $L$ over $M$ 
+(which we have not proved but will prove in the next section).
+
+We now need to study when a class $w\in H^2(M;\bZ_2)$ is the mod-2 reduction of a class $c\in H^2(M;\bZ)$.
+The class $w$ is represented by a \v Cech 2-cocycle $w_{ijk}\in \bZ_2$.
+When it is a mod-2 reduction of a class $c\in H^2(M;\bZ)$,
+we can pick a lift $c_{ijk}$ which is a \v Cech 2-cocycle in $\bZ$.
+
+But it is not always the case that there is such a cocycle lift.
+Pick any lift $c_{ijk}\in \bZ$ of $w_{ijk}$.
+This is a cochain, but is not guaranteed to be a cocycle.
+Let us study its failure to be a cocycle.
+We have \begin{equation}
+(\delta c)_{ijkl} = c_{jkl}-c_{ikl}+c_{ijl}-c_{ijk} 
+\end{equation} which is always even because \begin{equation}
+  = w_{ijk}+w_{jkl}+w_{kli}+w_{lij} = (\delta w)_{ijkl}=0\mod 2.
+\end{equation}
+Let us define, then, \begin{equation}
+  d_{ijkl} = \frac12(c_{jkl}-c_{ikl}+c_{ijl}-c_{ijk})\in \bZ.
+\end{equation}
+This is a \v Cech 3-cocycle, because \begin{equation}
+(\delta d)_{ijklm} = \frac12 (\delta\delta c)_{ijklm} =0.
+\end{equation}
+We have thus defined a class $[d]\in H^3(M;\bZ)$.
+By construction, this class vanishes if there is a cocycle lift $c_{ijk}$ of $w_{ijk}$.
+
+Conversely, if this class vanishes, we have a cochain $d=\delta e$.
+We then define $c_{ijk}+2e_{ijk}$ to be the new lift of $w_{ijk}$;
+by construction it is a cocycle.
+
+So we learned that the class $w\in H^2(M;\bZ_2)$ is the mod-2 reduction of a class $c\in H^2(M;\bZ)$ 
+if and only if the class $[d]\in H^3(M;\bZ)$ constructed above vanishes.
+The consturction might have looked rather ad hoc, 
+so let us slightly generalize the construction.
+
+Let us take a short exact sequence of Abelian groups \begin{equation}
+  0\to A\to B\to C\to 0.
+\end{equation}
+The case discussed above corresponds to the case \begin{equation}
+  0\to \bZ\xrightarrow{\times2} \bZ\xrightarrow{\mod2} \bZ_2\to 0.
+\end{equation}
+We study when a class $w\in H^2(M;C)$ comes from a class $c\in H^2(M;B)$.
+For this purpose, take a cocycle representative $w_{ijk}\in C$ of $w$,
+and take an arbitrary lift $c_{ijk}\in B$.
+By construction, $(\delta c)_{ijkl}$ is in the kernel of $B\to C$,
+i.e.~in the image of $A\to B$.
+Therefore we can write \begin{equation}
+  (\delta c)_{ijkl} = d_{ijkl}
+\end{equation} for some $d_{ijkl}\in A$.
+This defines a \v Cech 3-cocycle $[d]\in H^3(M;A)$.
+The class $w\in H^2(M;C)$ comes from a class $c\in H^2(M;B)$ if and only if $[d]\in H^3(M;A)$ vanishes.
+Let us summarize:
+
+\begin{definition}
+  The homomorphism $\beta:H^2(M;B)\to H^3(M;A)$
+  constructed above, associated to the short exact sequence $0\to A\to B\to C\to 0$,
+  is called the Bockstein homomorphism.
+\end{definition}
+
+\begin{proposition}
+  A class $w\in H^2(M;C)$ comes from a class $c\in H^2(M;B)$
+  if and only if its Bockstein $\beta(w)\in H^2(M;A)$ vanishes.
+\end{proposition}
+
+Coming back to the question of the lift of an $SO(3)$ bundle to a $U(2)$ bundle,
+we now have the following proposition:
+\begin{proposition}
+  An $SO(3)$ bundle $SO(3)\to P\to M$
+  lifts to a $U(2)$ bundle $U(2)\to \tilde P\to M$ if and only if
+  the Bockstein $\beta(w_2(P))\in H^3(M;\bZ)$ vanishes.
+\end{proposition}
+
+\begin{remark}
+Therefore, the degree-3 class $\beta(w_2(P))$ 
+is the obstruction of the $SO(3)$ bundle to be lifted to a $U(2)$ bundle.
+$\beta(w_2(P))$ is also known as the integral third Stiefel-Whitney class of the $SO(3)$ bundle, 
+and is denoted by $W_3(P)$.
+The more ordinary third Stiefel-Whitney class $w_3(P)\in H^3(M;\bZ_2)$ is the mod-2 reduction of $W_3(P)$.
+\end{remark}
+
+\begin{question}
+Here we only discussed the case of lifting an $SO(3)$ bundle to a $U(2)$ bundle,
+which corresponds to the question of density matrices of 2-level systems (i.e.~qubits).
+What happens when we consider $n$-level systems instead,
+where the symmetry is $U(n)$ acting on the Hilbert space $\bC^n$,
+while the symmetry acting on the density matrices is \begin{equation}
+PU(n):=\frac{U(n)}{U(1)} = \frac{U(1)\times SU(n)}{\bZ_n},
+\end{equation}where $\bZ_n$ is embedded in $U(1)\times SU(n)$ as $(e^{2\pi I/n},e^{-2\pi I/n})$?
+\end{question}
 
 \section{Classifying spaces}
 
