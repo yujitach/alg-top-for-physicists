@@ -5322,9 +5322,73 @@ and compute the (co)homology groups, with coefficients $A=\bR$, $\bZ$, $\bZ_k$.
 Hint: one cell in each dimension suffices. 
 Also, the answer can be found online; this space $S^{2n-1}/\bZ_k$ is known as a lens space.
 
+\begin{question}
+Let $\Sigma_g$ be an oriented compact 2-dimensional surface of genus $g$.
+Show that the (co)homology groups of $\Sigma_g$ are given by \begin{equation}
+H_p(\Sigma_g;A) = \begin{cases} 
+  A & p=0, \\ 
+  A^{2g} & p=1, \\
+  A & p=2, \\
+\end{cases}\qquad
+H^p(\Sigma_g;A) =\begin{cases} 
+  A & p=0, \\ 
+  A^{2g} & p=1, \\
+  A & p=2. \\
+\end{cases}
+\end{equation}
+\end{question}
 
+\subsection{Relation to Kitaev's toric code}
 
+Let $A=\{0,1\}=\bZ_2$ and take a two-dimensional cell complex $M$,
+consisting of vertices $v$, edges $e$ and faces $f$.
+For simplicity assume that each face $f$ is a polygon with edges $e_1,\ldots,e_{n_f}$.
+Introduce a qubit $\bC^2$ per edge $e$.
+The Hilbert space of the system has the basis $\ket{\{m_e\}}$ where $m_e=0,1$.
+So the basis of the Hilbert space is indexed by an element $m=\{m_e\}\in C^1(M;\bZ_2)$.
 
+For each $f$, we add a local term in the Hamiltonian, 
+given by 
+\begin{equation}
+  A_f=-\prod_{e: \text{edges of}\ f} (\sigma_z)_e.
+\end{equation}
+Note that 
+\begin{equation}
+A_f \ket{m} = \begin{cases}
+  -\ket{m} & \text{if}\ (\delta m)(f)=0,\\
+  +\ket{m} & \text{if}\ (\delta m)(f)=1.
+\end{cases}
+\end{equation}
+Therefore, it gives penalties to basis elements such that $\delta m\neq 0$.
+By taking the coefficient very large, we can make the ground state of the system to be the one with $\delta m=0$.
+
+For each vertex $v$, we also add a local term in the Hamiltonian,
+given by 
+\begin{equation}
+  B_v=-\prod_{e: \text{edges attached to}\ v} (\sigma_x)_e.
+\end{equation}
+Denote by $c_v\in C^0(M;\bZ_2)$ 
+a cochain which is 1 at the vertex $v$ and 0 otherwise.
+$\{c_v\}_v$ is a basis of $C^0(M;\bZ_2)$.
+A short reflection shows that \begin{equation}
+B_v \ket{m} = \ket{m+\delta c_v}.
+\end{equation}
+Therefore, by taking the coefficient of $B_v$ in the Hamiltonian very large,
+the dynamics of the system averages over the orbit of the action $m\mapsto m+\delta c_v$,
+dynamically realizing the quotient via $\delta$ applied to $C^o(M;\bZ_2)$.
+
+Therefore we see that the ground state of the system has a basis indexed by the cohomology group $H^1(M;\bZ_2)=\bZ^{2g}$,
+thus encoding $g$ logical qubits.
+
+As good observables, take a 1-cycle $C$ in $M$.
+The pairing of a cochain $m$ with $C$ is given by \begin{equation}
+\langle m,C\rangle = \sum_{e\in C} m(e).
+\end{equation} Multiplicatively, we have \begin{equation}
+W_C:= (-1)^{\langle m,C\rangle} = \prod_{e\in C} (-1)^{m(e)} = \prod_{e \in C} (\sigma_z)_e.
+\end{equation}
+On the ground state of the system, $W_C$ only depends on the homology class $[C]\in H_1(M;\bZ_2)$,
+which has a natural pairing with the ground states,
+which are in turn indexed by the cohomology classes in  $H^1(M;\bZ_2)$.
 
 \subsection{Product}
 
