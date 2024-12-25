@@ -3724,6 +3724,7 @@ We cover $X$ via $V_i:=f^{-1}(U_i)$ and define local trivializations by mapping 
 \end{equation}
 
 \begin{theorem}
+\label{thm:bundle-equiv}
 Given a bundle $F\to E\to B$
 and two maps $f,g:X\to B$ which are homotopic to each other,
 the pull-back bundles $f^*(E)$ and $g^*(E)$ are equivalent as bundles.
@@ -6126,6 +6127,7 @@ which explains why the $SO(3)$ bundle over $T^2$ could be lifted to a $U(2)$ bun
 On a three-dimensional space, however, the obstruction can in general be nontrivial,
 leading to the impossibility of lifting the $SO(3)$ bundle to a $U(2)$ bundle.
 
+\if0
 \begin{remark}
 It appears that there are some circles of theoretical physicisits studying 
 quantum mechanics and/or quantum information,
@@ -6134,6 +6136,7 @@ the same descriptive power as wavefunctions.
 The example above shows that this is not quite true,
 when we consider a continuous family of such systems over a parameter space.
 \end{remark}
+\fi
 
 \subsubsection{General theory}
 
@@ -6307,7 +6310,188 @@ PU(n):=\frac{U(n)}{U(1)} = \frac{U(1)\times SU(n)}{\bZ_n},
 \end{equation}where $\bZ_n$ is embedded in $U(1)\times SU(n)$ as $(e^{2\pi I/n},e^{-2\pi I/n})$?
 \end{question}
 
-\section{Classifying spaces}
+\subsection{Classifying spaces}
+\subsubsection{For principal $G$-bundles}
+
+We now introduce the concept of the classifying space of principal $G$-bundles.
+
+\begin{definition}
+The base $B$ of a principal $G$ fiber bundle $G\to E\to B$ such that 
+$\pi_k(E)=0$ for any $k$
+is called a classifying space and is denoted by $BG$.
+We denote the entire fiber bundle by $G\to EG\to BG$.
+\end{definition}
+
+\begin{remark}
+It is not immediate that such a classifying bundle $EG\to BG$ exists,
+or it is unique if it exists. 
+It turns out that such an $EG\to BG$ always exists, and is homotopically unique.
+\end{remark}
+
+As an example, recall the $U(1)$ fiber bundle $U(1)\to S^{2n+1}\to \CP^n$.
+This satisfies $\pi_k(S^{2n+1})=0$ up to $k<2n+1$.
+Therefore, by suitably taking the limit $n\to \infty$, we see
+\begin{example}
+$BU(1)=\CP^n$.
+\end{example}
+
+The importance of the concept of the classifying space comes from the following:
+
+\begin{theorem}
+\label{thm:classifying}
+Any principal $G$ bundle $E\to X$ over any space $X$ is obtained by pulling back $EG\to BG$ by a map $f: X\to BG$.
+Furthermore, there is a one-to-one correspondence between
+principal $G$ bundles over $X$ up to equivalence
+and maps $f:X\to BG$ up to homotopy.
+\end{theorem}
+
+\begin{proof}(of Theorem \ref{thm:classifying})
+We already quoted a theorem (Theorem~\ref{thm:bundle-equiv}) saying that 
+two homotopic maps $f,f': X\to Y$ gives two equivalent bundles under the pull-back.
+So we only have to show that such a map $f:X\to BG$ can be constructed, 
+from a principal $G$-bundle $G\to E\to X$.
+We assume $X$ is given  the structure of a CW complex.
+We construct the map inductively.
+On the 0-th skeleton $X_0$, it is clear that we can construct a map $f_0: X_0\to BG$ such that the pull back is the $G$-bundle over $X_0$.
+We now show that if we have the map up to $f:X_k\to BG$,
+we can extend it to $f: X_{k+1}\to BG$.
+For this, we only have to deal with each cell.
+Therefore, what needs to be done is the following:
+given a principal $G$-bundle $E\to B^{k+1}$,
+together with a map $f: S^k \to BG$ such that the pull-back $f^*(EG)\to S^k$ agrees with $E$ restricted to its boundary,
+construct a map $f:B^k\to BG$ such that the statement holds.
+
+To do this, we note that any bundle $G\to E\to B^{k+1}$ is topologically trivial, 
+and therefore its restriction on the boundary $S^k$ is also topologically trivial.
+This means that it has a section $S^k \to E$.
+Using the equivalence of $E\to S^k$ and $f^*(EG)\to S^k$,
+we can consider this section as a map $S^k \to EG$.
+As $\pi_{k}(EG)=0$ from assumption, we can extend this map to $B^{k+1}\to EG$.
+Composing with the projection $EG\to BG$, we have extended the map to $B^{k+1}\to BG$.
+It is routine to check that the map thus obtained satisfies the 
+\end{proof}
+
+\begin{remark}
+That $BU(1)=\CP^\infty$ was infinite dimensional might have been worrying to you.
+But the proof above shows that, to classify principal $G$-bundles over $X$ of dimension at most $n$,
+we only have to demand $\pi_{k}(BG)=0$ up to $k<n$.
+Therefore, $\CP^n$ with finite but sufficiently large $n$ suffices for most of the purpose of theoretical physicists.
+Taking $n$ infinity does however simplify statements of theorems etc., 
+which is why we still refer to infinite dimensional classifying spaces.
+\end{remark}
+
+The existence of classifying spaces is a nontrivial theorem:
+\begin{theorem}
+The classifying bundle $G\to EG\to BG$ exists for any group $G$.
+\end{theorem}
+which we do not have the time to go into.
+But the uniqueness up to homotopy is a simple corollary of the theorem above:
+\begin{proposition}
+Two classifying bundles $EG\to BG$ and $E'G\to B'G$ are homotopically the same.
+\end{proposition}
+\begin{proof}
+By the theorem above, we have maps $f:BG\to B'G$ and $g:B'G\to BG$ 
+such that the bundles pull back to each other. 
+In particular, $g\circ f: BG\to BG$ pulls back the bundle $EG\to BG$ to itself.
+Therefore, $g\circ f$ is homotopic to the identify.
+\end{proof}
+
+
+\subsubsection{For cohomology groups}
+
+There are also classifying spaces for cohomology groups.
+For this, we need a few preparations.
+\begin{definition}
+For an Abelian group $A$,
+any space $X$ such that $\pi_k(X)=A$ and $\pi_\ell(X)=0$ for $\ell\neq k$ is called a $K(A,k)$ space,
+and is called the Eilenberg-Mac Lane space.
+\end{definition}
+
+
+We also need:
+\begin{theorem}
+For any $A$ and $k$,
+$K(A,k)$ spaces exist, and are unique up to homotopy.
+\end{theorem}
+
+As an example, consider $U(1)\to S^{2n+1}\to \CP^n$ again.
+From the long exact sequence in homotopy, we see $\pi_k(\CP^n)$ is nonzero only at $\pi_2=\bZ$ and $\pi_{2n+1}=\bZ$.
+Suitably taking the limit $n\to \infty$,
+we see that 
+\begin{example}
+$K(\bZ,2)=\CP^\infty$.
+\end{example}
+
+The importance of the Eilenberg-Mac Lane spaces $K(A,k)$ lies in the following.
+\begin{theorem}
+\label{thm:coh-cl}
+For any space $X$, 
+there is a one-to-one correspondence between cohomology classes $a \in H^k(X;A)$ 
+and homotopy classes of maps $f: X\to K(A,k)$.
+\end{theorem}
+\begin{proof}
+Here we only give the construction of $f$, given a cohomology class $a$.
+We assume that $X$ is given the structure of a simplicial complex,
+and work inductively.
+We pick an explicit cocycle $a(\sigma)$ representing $a$.
+As $\pi_{\ell}(X)=0$ when $\ell<k$,
+we can pick a map $f:X_{k-1}\to K(A,k)$, which is homotopic to the identity.
+For each $k$-simplex $\sigma$, regard it as $B^k$.
+Its boundary is already mapped to the basepoint.
+So we need to specify a map $S^k \to K(A,k)$.
+Here we choose a map representing the element $a(\sigma)\in A=\pi_k(K(A,k))$. 
+We now have a map $f:X_k \to K(A,k)$.
+To extend this to $f:X_{k+1}\to K(A,k)$,
+we need to extend, for each $(k+1)$-simplex $\sigma\simeq B^{k+1}$,
+the already given map $S^k \to K(A,k)$
+to $B^{k+1}\to K(A,k)$.
+This is possible exactly because $a(\sigma)$ is a cocycle.
+\end{proof}
+
+
+We have seen that $\CP^\infty$ is both $BU(1)$ and $K(\bZ,2)$.
+Therefore:
+\begin{theorem}
+\label{thm:u1-cl}
+For any $X$, there is a one-to-one correspondence between principal $U(1)$ bundles over $X$
+and the cohomology classes in $H^2(X;\bZ)$.
+\end{theorem}
+Comparing the proofs above by going into details, 
+you find that the cohomology class obtained in this manner is 
+$c_1$ of the $U(1)$ bundle you started with.
+
+This can be argued in a more formal way.
+For this, we go back to the general situation.
+\begin{proposition}
+$H^k(K(A,k);A)=\Hom(A,A)$.
+\end{proposition}
+\begin{proof}
+This follows from Hurewicz and the universal coefficient theorem.
+\end{proof}
+
+\begin{definition}
+$\iota \in H^k(K(A,k);A)$ is the identity map in $\Hom(A,A)\simeq H^k(K(A,k);A)$.
+\end{definition}
+
+We can refine Theorem \ref{thm:coh-cl} above as follows:
+\begin{theorem}
+The correspondence of $f: X\to K(A,k)$  and $f(\iota)\in H^k(X;A)$ is a bijection.
+\end{theorem}
+
+Now, on $BU(1)=\CP^\infty$, $H^2(\CP^\infty;\bZ)=\Hom(\bZ,\bZ)=\bZ$,
+and $c_1$ of the bundle $U(1)\to S^{2\infty+1}\to \CP^\infty$ is the generator $\iota$.
+Now, $c_1$ of the pullback is the pullback of $c_1$, we have succeeded in refining Theorem~\ref{thm:u1-cl} into
+\begin{theorem}
+For any $X$,
+the correspondence between  a principal $U(1)$ bundle $U(1)\to P\to X$
+and its 1st Chern class $c_1(P)\in H^2(X;\bZ)$ 
+establishes a bijection between equivalence classes of principal $U(1)$ bundles over $X$
+and cohomology classes in $H^2(X;\bZ)$.
+\end{theorem}
+
+\begin{corollary}
+Any cohomology class  in $H^2(X;\bZ)$ is the first Chern class of a principal $U(1)$ bundle.
+\end{corollary}
 
 \section{Chern-Simons terms and bordism groups}
 
