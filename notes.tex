@@ -160,6 +160,10 @@
 
 \def\I{\mathrm{i}}
 
+\def\alert#1{{#1}}
+\def\Sq{\mathop{\mathrm{Sq}}\nolimits}
+\def\tr{\mathop{\mathrm{tr}}\nolimits}
+
 \begin{document}
 
 \centerline{\Large Algebraic topology for physicists}
@@ -6655,6 +6659,7 @@ In particular, we have derived that $q^\text{here}=\hbar n$ for some integer $n$
 
 \subsection{Quantization of the Hall conductance}
 
+\subsubsection{Physics background}
 In a two-dimensional material, 
 the relation between the applied voltage and the electric current is generally given by \begin{equation}
   \begin{pmatrix}
@@ -6671,6 +6676,7 @@ the Hall conductance $\sigma_{xy}$ is quantized to an integer multiple of $e^2/h
 where $e$ is the elementary charge and $h$ is the Planck constant:
 \begin{equation}
 \sigma_{xy} = \nu \frac{e^2}{h}.
+\label{eq:hallquant}
 \end{equation}
 This is known as the integer quantum Hall effect.
 See Fig.~\ref{fig:experiments} for one classic and one more recent experimental results.
@@ -6686,11 +6692,337 @@ Right: from a modern experiment in 2015 \cite{Bestwick}.
 \end{figure}
 
 There are various theoretical ways to understand this quantization phenomenon.
-Here we would like to discuss one which is not usually discussed in the textbooks.\footnote{%
+Here we would like to discuss one which is not usually discussed in the textbooks.
 I am not saying that this is better than the others.
 It is just that other methods are covered in many other standard textbooks,
-and that this method fits very well with the content of this lecture series.}
+and that this method fits very well with the content of this lecture series.
 
+The general situation where we have the \emph{integer} quantum Hall effect is
+when the system is gapped and has a unique ground state
+even on a nontrivial spatial manifold such as a torus $T^2$.
+In contrast, when the system is gapped but has multiple ground states
+on a nontrivial spatial manifold,
+the Hall conductance is quantized not to an integer but to a rational number.
+This is the \emph{fractional} quantum Hall effect.
+Finally if the system is not gapped the Hall conductance is not quantized.
+See Table~\ref{tab:Hall} for a summary.
+
+\begin{table}
+  \centering
+\begin{tabular}{c|c||c}
+Gapped?  & \# of ground states & Quantization of $\sigma_{xy}$\\
+\hline
+Yes& unique  & Integer\\
+Yes& multiple  & Rational\\
+No & N/A & Not quantized
+\end{tabular}
+\caption{Quantization of the Hall conductance in various situations.
+\label{tab:Hall}}
+\end{table}
+
+\subsubsection{Mathematical analysis}
+
+Suppose the system is gapped and has a unique ground state.
+Imagine putting the system on a nontrivial three-dimensional manifold $M_3$,
+with an external Maxwell field $P\to M_3$ 
+to probe the electrical property of the system.
+It does not matter if this is experimentally realizable or not;
+the point is the mere possibility of putting the system on such nontrivial manifolds.
+The partition function $Z$ of the system 
+depends on $M_3$ and the external Maxwell field $P\to M_3$.
+It is dominated by the contribution from the single ground state,
+and therefore is simply a phase: \begin{equation}
+Z(M_3,P) = \exp( (i/\hbar) S(M_3,P))\label{eq:Zphase}
+\end{equation}
+where $S(M_3,P)$ should be a well-defined real number modulo integer.
+
+
+When the system is gapped but with multiple ground states,
+$Z(M_3,P)$ is a sum of contributions from each ground state,
+and therefore cannot be taken to be a simple phase.
+When the system is not gapped, $Z(M_3,P)$ is even more complicated.
+The simple-looking relation \eqref{eq:Zphase} 
+is the one crucial input from physics
+needed to derive the integer quantization of the Hall conductance
+mathematically.
+
+We note that the induced electric current and the charge density
+is given by the variation of $S$ with respect to the external Maxwell field:
+\begin{equation}
+  \delta S=\int_{M_3} (\rho^\text{SI} \delta A^\text{SI}_t 
+  + \sum_a j^\text{SI}_a \delta A^\text{SI}_a) dt dx dy.
+\end{equation}
+Suppose we have the Hall conductance $\sigma^\text{SI}:=\sigma_{xy}$.
+We want $j^\text{SI}_x=\sigma E_y^\text{SI}$ and $j^\text{SI}_y=-\sigma E_x^\text{SI}$.
+A short computation shows that \begin{align}
+S&=\frac{\sigma^\text{SI}}2 \int_{M_3} 
+(A^\text{SI}_t F_{xy}^\text{SI} + A^\text{SI}_x F_{yt}^\text{SI} + A^\text{SI}_y F_{tx}^\text{SI}) dt dx dy \\
+&= \frac{\sigma^\text{SI}}2 \int_{M_3} A^\text{SI}\wedge F^\text{SI}
+\label{eq:halldef}
+\end{align} does the job,
+when $A$ is a globally-defined 1-form on $M_3$.
+The factor of $1/2$ comes from the fact that $\delta A$ arises
+both from varying $A$ and from varying $F$.
+
+But in a more general situation when $A$ is not a globally-defined 1-form,
+this expression does not make sense,
+but $\exp(i/\hbar)S$ needs to be well-defined.
+Let us proceed as before.
+For a while let us use $A^\text{geometric}$ instead of $A^\text{SI}$.
+Suppose $M_3$ is a boundary of $N_4$, $M_3=\partial N_4$.
+Then we have \begin{equation}
+  \int_{M_3} A^\text{geometric}\wedge F^\text{geometric}
+  = \int_{N_4} F^\text{geometric}\wedge F^\text{geometric}
+\end{equation}
+when $A^\text{geometric}$ is a globally-defined 1-form.
+This motivates us to \emph{define} the left hand side by the right hand side:
+\begin{equation}
+  \int_{M_3} A^\text{geometric}\wedge F^\text{geometric}
+  := \int_{N_4} F^\text{geometric}\wedge F^\text{geometric}.
+  \label{eq:AFdef}
+\end{equation}
+There are two issues with this approach:
+\begin{itemize}
+\item It is not clear whether a suitable $N_4$ exists for any given $M_3$.
+Similarly, it is not clear, even assuming the existence of such an $N_4$,
+whether the $U(1)$ bundle on $M_3$ can be extended to $N_4$.
+These are the questions of the existence.
+Note that we did not have this issue when we discussed an analogous definition of $\int_C A$, 
+since it was clear that any $C=S^1$ can be extended to $D^2$,
+and that any $U(1)$ bundle on $S^1$ can be extended the interior.
+\item Assuming that an appropriate $N_4$ and an extension of the $U(1)$ bundle exist, they are not unique. 
+Furthermore, the right hand side depends on the gauge configuration not just on $M_3$ but on the entirety of $N_4$.
+THerefore it is not clear whether this gives a suitably well-defined quantity.
+\end{itemize}
+
+Unfortunately, we do not have time to go into the existence issue,
+which can be studied using the theory of bordisms.
+In general dimensions and for general $G$-bundles, the answer is no.
+But luckily in this spaceime dimensions and for $U(1)$ bundles, 
+the answer turns out to be yes.
+
+
+To study the issue stemming from the non-uniqueness, 
+we consider two possibly different $N_4$ and $N_4'$,
+and two possibly different extensions of the $U(1)$ field configuration.
+We then have \begin{equation}
+  \int_{N_4'} F^\text{geometric}\wedge F^\text{geometric}
+  - \int_{N_4} F^\text{geometric}\wedge F^\text{geometric}
+  = \int_{W_4} F^\text{geometric}\wedge F^\text{geometric},
+\end{equation}
+where $W_4=N_4'\cup \overline{N_4}$,
+see Fig.~\ref{fig:paste2}.
+
+\begin{figure}
+\[
+\includegraphics[width=.5\textwidth]{paste2.png}
+\]
+\caption{$M_3$ as a boundary and the auxiliary bounding 4-manifolds $N_4$ and $N_4'$.
+\label{fig:paste2}}
+\end{figure}
+
+We now note that $[F^\text{geometric}/2\pi]$ comes from 
+the first Chern class $c_1(P)\in H^2(W_4;\bZ)$ of the $U(1)$ bundle $P\to W_4$,
+and in particular
+\begin{equation}
+\frac{1}{(2\pi)^2} \int_{W_4} F^\text{geometric}\wedge F^\text{geometric}
+= \langle
+c_1(P)\cup c_1(P), [W_4]
+\rangle \in \bZ.
+\end{equation}
+
+This means that
+the right hand side of \eqref{eq:AFdef} is well-defined modulo $(2\pi)^2$,
+and therefore the following expression is well-defined for an integer $n$: \begin{equation}
+\exp\left(
+i\frac{n}{2\pi} \int_{M_3} A^\text{geometric}\wedge F^\text{geometric}
+\right)
+=
+\exp\left(
+\frac{i}{\hbar} \frac{n e^2}{h } \int_{M_4} A^\text{SI}\wedge F^\text{SI}
+\right).
+\end{equation}
+Comparing with \eqref{eq:halldef}, this means that 
+the partition function \eqref{eq:Zphase} is well-defined when
+\begin{equation}
+\sigma^\text{SI} = 2n \frac{ e^2}{h}
+\end{equation}
+for an integer $n$.
+And this is off by a factor of 2 from the usual expression, \eqref{eq:hallquant}.
+
+What saves the day is the following mathematical theorem:
+\begin{theorem}
+  \label{thm:spin-even}
+  On a closed spin 4-manifold $W_4$
+  and a class $a\in H^2(W_4;\bZ)$, the quantity
+  \[
+  \langle a\cup a, [W_4]\rangle
+  \]
+  is not just an integer but an even integer.
+\end{theorem}
+
+
+We now require all the manifolds involved, $M_3$, $N_4$, $N_4'$ and $W_4$ to be spin.
+Then the right hand side of \eqref{eq:AFdef} is well-defined modulo $\alert{2}(2\pi)^2$,
+and therefore for any integer $\nu$, the expressions
+\begin{equation}
+  \exp\left(
+  i\frac{\nu}{\alert{2}\cdot 2\pi} \int_{M_3} A^\text{geometric}\wedge F^\text{geometric}
+  \right)
+  =
+  \exp\left(
+  \frac{i}{\hbar} \frac{\nu e^2}{\alert{2} h } \int_{M_4} A^\text{SI}\wedge F^\text{SI}
+  \right)
+  \end{equation}
+is well-defined. This means that the Hall conductance should satisfy
+\begin{equation}
+  \sigma^\text{SI} = \nu \frac{e^2}{h}.
+\end{equation}
+
+We have thus learned that the quantization of the Hall conductance
+with odd $\nu$ requires spin structures on the manifolds involved.
+This is perfectly reasonable physically,
+since electrons are particles with spin $1/2$,
+and require spin structures on the manifolds to propagate.
+Its effect on the quantization unit of the integer quantum Hall effect
+is a rather indirect but intriguing consequence of this physical requirement.
+
+\subsection{Comments}
+We end this section with a few comments. 
+\subsubsection{Abelian Chern-Simons terms}
+We discussed in this section how to define $\int_C A$ and $\int_{M_3} A\wedge F$ 
+when $A$ is not a globally-defined 1-form.
+We saw that $\int_C A$ can be made well-defined modulo $2\pi$,
+and that $\int_{M_3} A\wedge F$ can be made well-defined modulo $(2\pi)^2$
+on orientable manifolds and modulo $2(2\pi)^2$ on spin manifolds.
+
+In higher dimensions the natural generalizations are given by \begin{equation}
+\int_{M_{2n-1}} A\wedge F^{n-1}\label{eq:abelian-CS}
+\end{equation} and are known as the (abelian) Chern-Simons terms.
+This term appears in various contexts in theoretical physics.
+For example the next version $\int_{M_5} AF^2$ appears 
+in the study of the perturbative $U(1)$ anomalies of chiral fermions in four dimensions.
+
+Using the fact that $F/2\pi$ corresponds to $c_1$ of the $U(1)$ bundle,
+it is easy to make \eqref{eq:abelian-CS} well-defined 
+modulo $(2\pi)^n$ on orientable manifolds.
+But we already saw that this was not enough for the quantization of the Hall conductance for $n=2$.
+Similarly it is not enough if you want to apply the $n=3$ version to the study of the $U(1)$ anomalies.
+It is known that, very roughly speaking, the spin structure allows us to refine the definition from modulo $(2\pi)^n$ to modulo $n! (2\pi)^n$.
+But explaining it will require a lot more time than we have here.
+
+\subsubsection{The $n=2$ case again}
+
+In the $n=2$ case, the spin structure allowed us to reduce
+ the ambiguity of the expression $\int A\wedge F$ 
+from modulo $(2\pi)^2$ to modulo $2(2\pi)^2$.
+Such a factor of 2 refinement of the ambiguity is known under the general name of \emph{quadratic refinement}.
+In our case this relied on the mathematical fact which we quoted as Theorem~\ref{thm:spin-even}.
+Here we provide what kind of algebraic topology is involved in this theorem,
+by showing how this is proved. 
+
+We want to show $\langle a\cup a, [W_4]\rangle$ is even for $a\in H^2(W_4;\bZ)$
+if $W_4$ is spin.
+Let $\tilde a\in H^2(W_4;\bZ_2)$ be the mod-2 reduction of $a$.
+Since \begin{equation}
+\langle a\cup a, [W_4]\rangle = \langle \tilde a\cup \tilde a, [W_4]\rangle \mod 2,
+\end{equation}
+it suffices to show that \begin{equation}
+\langle \tilde a\cup \tilde a, [W_4]\rangle \equiv 0 \mod 2, 
+\end{equation} 
+forall $\tilde a\in H^2(W_4;\bZ_2)$
+if $W_4$ is spin.
+
+Now, it happens that there is a natural transformation \begin{equation}
+\Sq^k: H^n(M;\bZ_2)\to H^{n+k}(M;\bZ_2)
+\end{equation} called the Steenrod square, such that \begin{equation}
+\Sq^k a_k = a_k \cup a_k
+\end{equation} for $a_k\in H^k(M;\bZ_2)$.
+
+Let $n$ be the dimension of $M$. Take  $a_{n-k}\in H^{n-k}(M;\bZ_2)$.
+THen $\Sq^k a_{n-k}\in H^n(M;\bZ_2)$.
+We can then consider the quantity \begin{equation}
+  \langle \Sq^k a_{n-k}, [M]\rangle \mod 2.
+\end{equation}
+This is a linear map defined on $H^{n-k}(M;\bZ_2)$,
+and therefore there should be an element $\nu_k\in H^k(M;\bZ_2)$
+such that \begin{equation}
+  \langle \Sq^k a_{n-k}, [M]\rangle \equiv \langle \nu_k \cup a_{n-k}, [M]\rangle \mod 2.
+\end{equation}
+These classes $\nu_k$ are known as the Wu classes of the manifold.
+It turns out that the Wu classes can be written in terms of the Stiefel-Whitney classes of $M$.
+In particular, $\nu_2(M)=w_1(M)^2 + w_2(M)$.
+
+With this we can complete our derivation:\begin{align}
+\langle \tilde a\cup \tilde a, [W_4]\rangle 
+&\equiv \langle \Sq^2 \tilde a, [W_4]\rangle \\
+&\equiv \langle \nu_2 \cup \tilde a, [W_4]\rangle\\
+&\equiv \langle (w_1^2 + w_2) \cup \tilde a, [W_4]\rangle =0,
+\end{align}
+where in the last equality we used the fact that we assumed $W_4$ is spin,
+which means that $w_1(W_4)=0$ from the orientability
+and $w_2(W_4)=0$ from the spin condition.
+
+\subsubsection{More general Chern-Simons terms}
+The Abelian Chern-Simons terms we discussed above have the crucial property
+\begin{equation}
+\int_{M_{2n-1}} A\wedge F^{n-1} = \int_{M_{2n}} F^n
+\end{equation} when $A$ is a globally-defined 1-form
+and $M_{2n-1}=\partial M_{2n}$.
+Note that the right hand side comes from the differential form expression
+of a characteristic class,
+and the modulo $(2\pi)^n$ ambiguity is related to the fact that 
+the characteristic class is actually defined over $\bZ$. 
+We also saw that we needed to reduce this ambiguity using the spin structure.
+
+There are many other similar terms of this form.
+For example, for $SU(N)$ bundles, 
+the gauge curvature $F$ is a globally well-defined $N\times N$ matrix-valued 2-form,
+and $\tr F^n$ is a globally well-defined $N$-form.
+This is a characteristic class of the $SU(N)$ bundle,
+which is actually defined over $\bZ$.
+From this one can define the Chern-Simons terms $\mathrm{CS}(A)$ for $SU(N)$ bundles
+as \begin{equation}
+\int_{M_{2n-1}} \mathrm{CS}(A) = \int_{M_{2n}} \tr F^{n}.
+\end{equation}
+
+The tangent bundle of a manifold is an $SO(n)$ bundle
+whose connection is usually denoted by $\omega$.
+The curvature is the Riemannian curvature tensor, and usually denoted by $R$.
+In three dimensions we then have \begin{equation}
+\int_{M_3} \mathrm{CS}(\omega) = \int_{M_4} \tr R^2.
+\end{equation}
+$\tr R^2$ on the right hand side is (a constant multiple of)
+the characteristic class $p_1$, called the first Pontryagin class.
+The differential form expression on the left hand side is the gravitational Chern-Simons term.
+Its presence in the effective action leads to the thermal Hall conductivity,
+and the quantization of the thermal Hall conductance
+follows in a similar manner 
+by considering the ambiguity of the gravitational Chern-Simons term 
+as we did for the abelian Chern-Simons term.
+
+There is a crucial difference, however.
+In the case of the abelian Chern-Simons term, we have the obvious property
+\begin{equation}
+\langle c_1(P)^2,[M_4]\rangle \in\bZ
+\end{equation} for arbitrary orientable manifolds,
+which was refined to \begin{equation}
+  \langle c_1(P)^2,[M_4]\rangle \in 2 \bZ
+\end{equation} on spin manifolds.
+In the case of the gravitational Chern-Simons, 
+it is fairly clear that \begin{equation}
+\langle p_1(TM),[M] \rangle \in \bZ
+\end{equation} since $p_1\in H^4(M;\bZ)$,
+However, even on generic orientable manifolds,
+we have \begin{equation}
+\langle p_1(TM),[M] \rangle \in 3 \bZ.
+\end{equation} 
+On spin manifolds, this is further refined to \begin{equation}
+\langle p_1(TM),[M] \rangle \in 48 \bZ.
+\end{equation} 
+And this factor of $48$ is actually necessary 
+to account for the unit of quantization of the thermal Hall conductance
+from this approach.
 
 
 \if0
