@@ -4709,6 +4709,7 @@ Doing this repeatedly, we find that it is equal to $1$.
 
 
 \subsection{Connection and the Maxwell field}
+\label{subsec:U1connection-as-Maxwell}
 
 We saw above that, on $M=\bR^3$, the relation between the vector potential and the magnetic field strength is given by $B=dA$,
 where $A=A_x dx + A_y dy + A_z dz$ and $B=B_x dy\wedge dz + B_y dz\wedge dx + B_z dx\wedge dy$.
@@ -4846,7 +4847,7 @@ placed by a distance of $r$ apart, is given by \begin{equation}
 \end{equation} 
 Similarly, the Coulombic force between two minimally-charged magnetic monopoles,
 placed by a distance of $r$ apart, is given by \begin{equation}
-  F = \frac{g^2}{4\pi \epsilon_0 r^2}.
+  F = \frac{g^2}{4\pi \mu_0 r^2}.
 \end{equation} where $g=2\pi \hbar/e$ as discussed above.
 Then we find that the ratio \begin{equation}
 \frac{\text{Force between unit \emph{electric} charges at distance $r$}}
@@ -6493,8 +6494,206 @@ and cohomology classes in $H^2(X;\bZ)$.
 Any cohomology class  in $H^2(X;\bZ)$ is the first Chern class of a principal $U(1)$ bundle.
 \end{corollary}
 
-\section{Chern-Simons terms and bordism groups}
+\subsubsection{Classifying spaces and characteristic classes}
 
+Classifying spaces gives us a uniform way to understand characteristic classes,
+which have so far been constructed in a case-by-case basis.
+Suppose we are given a principal $G$ bundle $G\to P\to X$.
+Correspondingly, we have a map $f_P:X\to BG$.
+Now, take a cohomology class $a\in H^k(BG;A)$.
+We can pull it back to $X$ to obtain $f_P^*(a)\in H^k(X;A)$.
+In this manner, we have constructed a cohomology class in $H^k(X;A)$
+from a given principal $G$ bundle.
+
+For example, take $G=U(1)$.
+Then $H^2(BU(1);\bZ)=H^2(\CP^\infty;bZ)=\bZ$.
+Denote its generator by $c_1$.
+Then, for any principal $U(1)$ bundle $U(1)\to P\to X$,
+we have a map $f_P:X\to BU(1)$.
+we have a cohomology class $f_P^*(c)\in H^2(X;\bZ)$.
+We can identify this with the first Chern class $c_1(P)$ of the bundle $P$,
+i.e.~\begin{equation}
+f_P^*(c_1)=c_1(P).
+\end{equation}
+
+Similarly, for $G=SO(3)$, we have $H^2(BSO(3);\bZ_2)=\bZ_2$,
+whose generator we denote by $w_2$.
+Then, for any principal $SO(3)$ bundle $SO(3)\to P\to X$,
+we have a map $f_P:X\to BSO(3)$.
+And we have a cohomology class $f_P^*(w_2)\in H^2(X;\bZ_2)$
+obtained by pulling back $w_2$.
+This is the second Stiefel-Whitney class $w_2(P)$ of the bundle $P$,
+i.e.~\begin{equation}
+f_P^*(w_2)=w_2(P).
+\end{equation}
+Analogously, there is a class $W_3\in H^3(BSO(3);\bZ)$,
+and \begin{equation}
+f_P^*(W_3)=W_3(P).
+\end{equation}
+
+From this point of view, to determine all possible characteristic classes
+for principal $G$ bundles,
+one simply needs to study $H^*(BG;A)$ for various choices of $A$.
+Therefore, the classification of characteristic classes
+is reduced to the study of cohomology groups of classifying spaces.
+
+\section{Chern-Simons terms}
+
+\subsection{Quantization of the electric charges}
+We saw above that the mathematical property of $U(1)$ bundles naturally leads to the Dirac quantization of the magnetic charges.
+How do we understand the quantization of the electric charges? 
+The way to understand it depends on whether you take the particle point of view or the wave point of view.
+
+\subsubsection{From the wave point of view}
+In the wave point of view, given a $U(1)$ bundle $P\to M$ on a spacetime $M$,
+an electrically charged field is a section of an associated complex line bundle $L\to M$.
+More concretely, if  the $U(1)$ bundle between two patches $U$ and $U'$ is given by \begin{equation}
+U\times U(1) \supset (U\cap U')\times U(1) \ni (x,z) 
+\mapsto (x,gz) \in (U\cap U')\times U(1)\subset U'\times U(1),
+\end{equation} with $g:U\cap U' \to U(1)=\{g\in \bC \mid |g|=1\}$,
+the allowed complex line bundles are patched by the rule \begin{equation}
+U\times \bC \supset (U\cap U')\times \bC \ni (x,v) 
+\mapsto (x,g^n v) \in (U\cap U')\times \bC\subset U'\times \bC.
+\end{equation}
+Here, $g^n$ needs to be a well-defined function, and therefore $n$ needs to be an integer. 
+
+Let $(x,\psi(x))$ be a section of this line bundle. Then the covariant derivative we discussed in Sec.~\ref{subsec:U1connection-as-Maxwell} becomes \begin{equation}
+D\psi := \sum_a\left(\frac{\partial}{\partial x^a} - i n A_a\right)\psi dx^a.
+\end{equation}
+The coefficient $n$ here means that the coupling between the Maxwell field $A$ and the charged field $\psi$ is proportional to $n$, 
+i.e.~the electric charge is proportional to $n$. 
+This is one way to understand the electric charge quantization.
+
+\subsubsection{From the particle point of view, part I}
+Let us instead use the particle point of view.
+The classical action of a charged non-relativistic particle of mass $m$ and charge $q$ is \begin{equation}
+S = \int \left(\frac m2 |v|^2 + q^\text{SI} (A^\text{SI}_t + \sum_a A^\text{SI}_a v^a) \right)dt 
+\end{equation} where $v^a= dx^a/dt$.
+Equivalently, we have \begin{equation}
+S = \int \frac m2 |v|^2 dt + q^\text{SI} \int  A^\text{SI},
+\end{equation} where $A^\text{SI}$ is now regarded as a 1-form and $\int A^\text{SI}$ is its integral.
+This is not perfectly OK, because the vector potential $A^\text{SI}$ is not really a 1-form.
+But this does not cause any problem in classical mechanics.
+Indeed, given the gauge transformation \begin{equation}
+A^\text{SI} \mapsto (A^\text{SI})':=A^\text{SI} + d\chi,
+\end{equation} the change in the  integral is  \begin{equation}
+\int_p^q (A^\text{SI})'-\int_p^q A^\text{SI} =  \chi(q)-\chi(p),
+\end{equation} which depends only on the boundary values.
+This does not affect the computation of the variational derivative of $S$.
+
+
+In quantum mechanics this causes a problem however. 
+Let us use a path integral formalism. Then we need to consider \begin{equation}
+Z=\int \mathcal D x^a \exp\left( \frac{i}{\hbar}(\int_C \frac m2 |v|^2 dt  +  q^\text{here} \int_C A^\text{geometric}) \right) 
+\end{equation}
+where we postulate \begin{equation}
+A^\text{geometric} = k A^\text{SI}
+\end{equation}
+with some proportionality factor $k$, so \begin{equation}
+q^\text{here} = q^\text{SI}/k.
+\end{equation}
+$A^\text{geometric} $ gets the gauge transformation \begin{equation}
+A^\text{geometric} \mapsto  (A^\text{geometric}) ' := A^\text{geometric} +  i g^{-1} d g
+\end{equation}  for $g\in U(1)$.
+This means that \begin{equation}
+\int_C (A^\text{geometric})'
+=
+\int_C A^\text{geometric}
++  2\pi w
+\end{equation}
+where $w\in \bZ$ is the winding number of $g:C\to U(1)$.
+This means that the value of the exponential gets shifted multiplicatively by \begin{equation}
+\exp(\frac{2\pi i}{\hbar} q^\text{here} w ),
+\end{equation} where $w$ is an arbitrary integer.
+This requires us to take $q^\text{here}=\hbar n$ for some integer $n$,
+i.e.~$q^\text{SI}= k \hbar n $ for some integer $n$.
+This makes it reasonable to choose the proportionality factor $k$ above to be $k=e/\hbar$.
+
+\subsubsection{From the particle point of view, part 2}
+
+Let us derive the fact that $q^\text{here}$ needs to be an integer in a slightly different way,
+suitable for a generalization later. 
+When $A^\text{geometric}$ is a 1-form, and $C$ is a boundary $C=\partial D$ of a disk,
+we have the theorem of Stokes, \begin{equation}
+\int _C A^\text{geometric} = \int_D F^\text{geometric},
+\label{eq:Stokes}
+\end{equation}
+assuming that the Maxwell field is also defined on $D$.
+Although $A^\text{geometric}$ is not really a 1-form,
+$F^\text{geometric}$ is a genuine 1-form.
+So, we can try to \emph{define} the left hand side of \eqref{eq:Stokes} by the right hand side: \begin{equation}
+\int _C A^\text{geometric} := \int_D F^\text{geometric}
+\end{equation}
+in a more general setting where $A^\text{geometric}$ is not quite a 1-form.
+
+The right hand side is always well-defined, but we introduced a different issue.
+Namely, it depends on the gauge configuration not just on $C$ but on the entirety of $D$.
+To study the dependence, suppose that we extend the gauge configuration on $C$
+to $D$ and $D'$ in two different ways. 
+We need to study the difference of the right hand sides of \eqref{eq:Stokes} for $D$ and $D'$:
+\begin{equation}
+\int_{D'} F^\text{geometric} - \int_{D} F^\text{geometric} = \int_{D'\cup \overline{D}}  F^\text{geometric},
+\end{equation}
+see Fig.~\ref{fig:paste}.
+
+\begin{figure}
+\[
+\includegraphics[width=.5\textwidth]{paste.png}
+\]
+\caption{The contour $C$ and the auxiliary bounding surfaces $D$ and $D'$.
+\label{fig:paste}}
+\end{figure}
+
+We know that the integral of $F^\text{geometric}$ over a closed surface is quantized to be $2\pi w$ for some integer $w$.
+This means that $\int_D F^\text{geometric}$ modulo $2\pi w$
+is independent of the choice of the extension of the gauge configuration on $D$,
+and therefore \begin{equation}
+\exp(i n \int_C A^\text{geometric}) := \exp(i n \int_D F^\text{geometric})
+\end{equation}
+is well-defined for any integer $n$.
+In particular, we have derived that $q^\text{here}=\hbar n$ for some integer $n$.
+
+\subsection{Quantization of the Hall conductance}
+
+In a two-dimensional material, 
+the relation between the applied voltage and the electric current is generally given by \begin{equation}
+  \begin{pmatrix}
+  I_x\\I_y
+  \end{pmatrix}= \begin{pmatrix}
+  \sigma_{xx} & \sigma_{xy}\\
+  \sigma_{yx} & \sigma_{yy}
+  \end{pmatrix} \begin{pmatrix}
+  V_x\\V_y
+  \end{pmatrix},
+\end{equation} where $\sigma_{ij}$ are the components of the conductivity tensor.
+In a certain experimental situation where $\sigma_{xx}=\sigma_{yy}=0$,
+the Hall conductance $\sigma_{xy}$ is quantized to an integer multiple of $e^2/h$,
+where $e$ is the elementary charge and $h$ is the Planck constant:
+\begin{equation}
+\sigma_{xy} = \nu \frac{e^2}{h}.
+\end{equation}
+This is known as the integer quantum Hall effect.
+See Fig.~\ref{fig:experiments} for one classic and one more recent experimental results.
+
+\begin{figure}
+\[
+\includegraphics[width=.5\textwidth]{vK.pdf}
+\includegraphics[width=.5\textwidth]{Bestwick.pdf}
+\]
+\caption{Left: from von Klitzing's classic review \cite{vK}.
+Right: from a modern experiment in 2015 \cite{Bestwick}.
+\label{fig:experiments}}
+\end{figure}
+
+There are various theoretical ways to understand this quantization phenomenon.
+Here we would like to discuss one which is not usually discussed in the textbooks.\footnote{%
+I am not saying that this is better than the others.
+It is just that other methods are covered in many other standard textbooks,
+and that this method fits very well with the content of this lecture series.}
+
+
+
+\if0
 \section{K-theory}
 
 \section{Atiyah-Singer index theorem}
@@ -6502,6 +6701,7 @@ Any cohomology class  in $H^2(X;\bZ)$ is the first Chern class of a principal $U
 \section{Anomalies}
 
 \section{Computing \texorpdfstring{$\pi_4(S^3)$}{pi4(S3)}}
+\fi
 
 \bibliographystyle{ytamsalpha}
 %\baselineskip=.85\baselineskip%\let\ttfamily\relax
