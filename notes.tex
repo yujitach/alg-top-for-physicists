@@ -4470,7 +4470,7 @@ since we assumed $\partial N=\varnothing$.
   
 \begin{proposition}
   If the $p$-form $\omega$ satisfies $d\omega=0$,
-  $\int N_1 \omega = \int N_2 \omega$ for two `nearby '$p$-dimensional  submanifolds $N_1$ and $N_2$ of $M$, 
+  $\int_{N_1} \omega = \int_{N_2} \omega$ for two `nearby '$p$-dimensional  submanifolds $N_1$ and $N_2$ of $M$, 
   where $N_1$ and $N_2$ are defined to be `nearby' 
   if there is a $(p+1)$-dimensional submanifold $U$ such that $\partial U = N_1\sqcup \overline{N_2}$.
 \end{proposition}
@@ -4478,7 +4478,7 @@ See Fig.~\ref{fig:nearby} for an illustration of the concept `nearby';
 the notation $\sqcup$ is for the disjoint union,
 and the overline above $N_2$ means that the orientation is reversed. 
 Note that the terminology `nearby' is introduced here just for this proposition
-and is not a standarad one.
+and is not a standard one.
 A proper concept to be used here is the homology, but the definition is fairly complicated and will be postponed for a while.
 The proof is extremely simple: \begin{equation}
 \int_{N_1} \omega - \int_{N_2} \omega = \int_{\partial U}\omega=\int_U d\omega = 0.
@@ -4984,7 +4984,7 @@ H_p(M;A) = \frac{Z_p(M;A)}{B_p(M;A)} = \frac{\Ker \partial: C_p(M;A)\to C_{p-1}(
 
 The singular cohomology group is defined similarly. 
 \begin{definition}
-A $p$-cochain $c$ with $A$ coefficient, of a topological space $M$, is a $\bZ$-linear map $c:C_p(M;\bZ)\to A$.
+A $p$-cochain $c$ with $A$ coefficient, of a topological space $M$, is a homomorphism $c:C_p(M;\bZ)\to A$.
 \end{definition}
 
 \begin{definition}
@@ -5383,10 +5383,10 @@ B_v \ket{m} = \ket{m+\delta c_v}.
 \end{equation}
 Therefore, by taking the coefficient of $B_v$ in the Hamiltonian very large,
 the dynamics of the system averages over the orbit of the action $m\mapsto m+\delta c_v$,
-dynamically realizing the quotient via $\delta$ applied to $C^o(M;\bZ_2)$.
+dynamically realizing the quotient via $\delta$ applied to $C^0(M;\bZ_2)$.
 
-Therefore we see that the ground state of the system has a basis indexed by the cohomology group $H^1(M;\bZ_2)=\bZ^{2g}$,
-thus encoding $g$ logical qubits.
+Therefore we see that the ground state of the system has a basis indexed by the cohomology group $H^1(M;\bZ_2)=(\bZ_2)^{2g}$,
+thus encoding $2g$ logical qubits.
 
 As good observables, take a 1-cycle $C$ in $M$.
 The pairing of a cochain $m$ with $C$ is given by \begin{equation}
@@ -5990,11 +5990,11 @@ So we try to perform the following identifications:
   (s,t;v) &\sim (s,t+1;\sigma_x v).
 \end{align}
 But this is inconsistent, since \begin{equation}
-  (s,t;v)\sim (s+1,t;\sigma_z v)\sim (s+1,t+1;\sigma_x\sigma_x v)
+  (s,t;v)\sim (s+1,t;\sigma_z v)\sim (s+1,t+1;\sigma_x\sigma_z v)
 \end{equation} and \begin{equation}
   (s,t;v)\sim (s,t+1;\sigma_x v)\sim (s+1,t+1;\sigma_z\sigma_x v)
 \end{equation} but \begin{equation}
-  \sigma_x\sigma_x = - \sigma_z\sigma_x.
+  \sigma_x\sigma_z = - \sigma_z\sigma_x.
 \end{equation}
 This means that the $SO(3)$ bundle over $T^2$ defined by \eqref{eq:SO3foo} and \eqref{eq:SO3bar} cannot be lifted to an $SU(2)$ bundle,
 and that $\langle w_2(P),T^2\rangle=1 \in \{0,1\}=\bZ_2$.
@@ -6084,7 +6084,7 @@ These identifications are now consistent, since \begin{equation}
 \end{equation}
 
 Given a $U(2)$ bundle, we can take its determinant $\det:U(2)\to U(1)$ to get a $U(1)$ bundle. 
-Call it $L\to M$ 
+Let us call it $L\to M$.
 Taking its coorindate to be $w$, we find the identificaiton \begin{align}
   (s,t;w) &\sim (s+1,t;w),\\
   (s,t;w) &\sim (s,t+1;e^{2\pi I s}w).
