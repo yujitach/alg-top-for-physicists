@@ -177,9 +177,21 @@
 
 \newpage
 
+\vbox{}
 
+\vfill
+
+{\LARGE Part I: Material for the semester}
+\addcontentsline{toc}{section}{Part I: Material for the semester}
+
+\vfill
+
+\vbox{}
+
+\newpage
 
 \section*{Acknowledgements and disclaimers}
+\addcontentsline{toc}{section}{Ackonwledgements and disclaimers}
 
 I'd like to thank our Physics Department for giving me this opportunity to give this course.
 I'd like to ask participants to point out as many errors as possible in these notes and also during lectures.
@@ -7024,21 +7036,100 @@ And this factor of $48$ is actually necessary
 to account for the unit of quantization of the thermal Hall conductance
 from this approach.
 
-\section{General introduction for Part II}
 
-\subsection{Invertible topological phases}
+\newpage
 
-\subsection{Anomalies}
+\vbox{}
+
+\vfill
+
+{\LARGE Part II: Additional materials for the second semester}
+\addcontentsline{toc}{section}{Part II: Additional materials for the second semester}
+
+\vfill
+
+\vbox{}
+
+\newpage
+
+\section*{Short introduction to Part II}
+\addcontentsline{toc}{section}{Short introduction to Part II}
+
+The main reason why I got seriously interested in algebraic topology about ten years ago 
+was that it could be used to systematically analyze quantum anomalies in quantum field theories.
+Quantum anomalies in $d$ dimensions are now understood to be the boundary phenomena
+of invertible topological phases in $d+1$ dimensions.
+Explaining these relations using algebraic topology was my original aim in giving this set of lectures,
+but having one semester only allowed me to cover the materials just short of 
+actually talking about this relation, although the discussion of the quantization of 
+abelian Chern-Simons terms is very much related.
+This Part II is for the unofficial second semester of the course,
+and I intend to discuss the algebraic-topological treatment of 
+invertible topological phases and quantum anomalies.
+
+So far in this lecture series, I first presented mathematical concepts into some details,
+and then discussed applications to theoretical physics. 
+In this Part II, I would still occasionally introduce mathematical concepts first,
+but I will most probably start to give physics motivations first
+before getting into the mathematical definitions.
 
 \section{Classifying space for finite groups and group cohomology}
 
+For a group $G$, its classifying space $BG$ is such that principal $G$-bundles over $M$
+up to bundle equivalence are in 1-to-1 correspondence with
+maps $f:M\to BG$  up to homotopy.
+We already mentioned that it exists in general,
+and also mentioned that $BU(1)=\CP^\infty$, $BSU(2)=\HP^\infty$, and $B\bZ_2=\RP^\infty$.
+
+For hep-th purposes, it might be useful to know the construction of $BU(n)$ in general, 
+but I don't have the time now.
+Here we discuss the construction of $BG$ for finite $G$, which has a lot of applications
+in both hep-th and cond-mat.
+
 \subsection{Construction of $BG$}
+
+Recall the characterizing features of the classifying space: it is a principal $G$-bundle
+$G\to EG\to BG$ such that $EG$ is contractible. 
+That it is a principal $G$-bundle simply means that there is a free $G$ action on $EG$,
+i.e.~if $p\in EG$ satisfies $gp=g$, then $g=e$. 
+
+We construct such a space $EG$ by hand, as a simplicial complex.
+As the 0-simplices, we simply use elements of $G$. Denote them by $[g]$, $g\in G$.
+As the 1-simplices, we use $[g_1,g_2]$ for all $g_1,g_2\in G$,
+so that the boundary of $[g_1,g_2]$ is $[g_1]-[g_2]$.
+As the 2-simplices, we use $[g_1,g_2,g_3]$ for all $g_1,g_2,g_3\in G$,
+so that the boundary of $[g_1,g_2,g_3]$ is $[g_1,g_2]-[g_1,g_3]+[g_2,g_3]$,
+and so on.
+We define the $G$ action by defining \begin{equation}
+g[g_1,g_2,\ldots] = [gg_1,gg_2,\ldots].
+\end{equation}
+This action is clearly free.
+Also, the space thus constructed is contractible: 
+given a point $p$ in an $(n-1)$-simplex $[g_1,g_2,\ldots, g_{n}]$,
+we always have an $n$-simplex $[e,g_1,g_2,\ldots,g_n]$.
+We can then connect  $p$ and $e$ by a straight line within the $n$-simplex,
+and use it to contract all the points to $e$.
+
+$BG$ is the quotient $EG/G$. As \begin{equation}
+[g_1,g_2,\ldots] = [e, g_1{}^{-1} g_2, g_1{}^{-1} g_3,\ldots]
+\end{equation}
+we can  use the simplices of the form $[e,\ldots]$ as the representative 
+of the simplices of $EG$ identified by the quotient by $G$.
+It is customary to denote such an $n$-simplex of $BG$ by \begin{equation}
+(g_1|g_2|\cdots|g_n) := [e,g_1,g_1g_2,g_1g_2g_3,\ldots, g_1\cdots g_n].
+\end{equation}
+then its boundary is given by \begin{multline}
+(g_2|g_3|\cdots|g_n) - (g_1g_2|g_3|\cdots|g_n) + (g_1|g_2g_3|\cdots |g_n)\\
++\cdots + (-1)^{n-1}(g_1|g_2|\cdots |g_{n-2}|g_{n-1}g_n)+  (-1)^n(g_1|g_2|\cdots|g_{n-1}).
+\end{multline}
 
 \subsection{Simplicial cohomology of $BG$}
 
 \subsection{$H^2$ and the group extension}
 
 \subsection{$H^3$ and the anomaly of $1+1$d systems}
+
+\goodbreak
 
 \section{Fermion operators and spinors}
 
@@ -7047,6 +7138,8 @@ from this approach.
 \subsection{Real fermion operators and the 8-periodicity}
 
 \subsection{Spinors in general dimensions}
+
+\goodbreak
 
 \section{Free fermionic invertible phases and K-theory}
 
@@ -7060,11 +7153,15 @@ from this approach.
 
 \subsection{K and KO-theory}
 
+\goodbreak
+
 \section{Interacting fermionic invertible phases and spin bordism}
 
 \subsection{Mod-8 reduction of Fidkowski and Kitaev}
 
 \subsection{The gravitational Chern-Simons term}
+
+\goodbreak
 
 \section{Generalized (co)homology theories}
 
@@ -7074,6 +7171,7 @@ from this approach.
 
 \subsection{AHSS}
 
+\goodbreak
 
 
 \section{Sample computations}
