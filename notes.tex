@@ -7121,11 +7121,181 @@ It is customary to denote such an $n$-simplex of $BG$ by \begin{equation}
 then its boundary is given by \begin{multline}
 (g_2|g_3|\cdots|g_n) - (g_1g_2|g_3|\cdots|g_n) + (g_1|g_2g_3|\cdots |g_n)\\
 +\cdots + (-1)^{n-1}(g_1|g_2|\cdots |g_{n-2}|g_{n-1}g_n)+  (-1)^n(g_1|g_2|\cdots|g_{n-1}).
+\label{BG-boundary-map}
 \end{multline}
+
+By the general theorem we discussed before, it should be that
+any principal $G$-bundle over $M$ should correspond to a map $f:M\to BG$.
+This is realized in a following rather tautological manner.
+
+Suppose $M$ has the structure of a simplicial complex,
+such that each 0-simplex is a point $p_i$ in a patch $U_i$,
+each 1-simplex is a line connecting $p_i$ and $p_j$ for a nonzero intersection of two patches $U_i\cup U_j$,
+each 2-simplex is a triangle consisting of $p_i$, $p_j$, $p_k$ for a nonzero intersection of three patches $U_i\cup U_j\cup U_k$,
+and so on. 
+Let $g_{ij}\in G$ be the patching group element between two patches $U_i$ and $U_j$.
+
+Then, we simply map all $p_i$ to the single 0-simplex of $BG$ which is $()$,
+we map the edge from $p_i$ to $p_j$ to the 1-simplex $(g_{ij})$ of $BG$,
+the triangle consisting of $p_i$, $p_j$, $p_k$ to the 2-simplex $(g_{ij}|g_{jk})$,
+and so on.
+So, the map $M\to BG$ really just encodes the algebraic data of the patching elements $g_{ij}$ in a topological manner.
+
+(A drawing here would help the understanding.)
 
 \subsection{Simplicial cohomology of $BG$}
 
+Using the boundary map \eqref{BG-boundary-map}, we can write easily down
+the definition of the simplicial cohomology of $BG$ 
+with coefficient in an Abelian group $A$.
+$k$-cochains are simply functions \begin{equation}
+f(g_1,g_2,\ldots,g_k)\in A,
+\end{equation} and the coboundary map is \begin{multline}
+(\delta f)(g_1,g_2,\ldots,g_k,g_{k+1}) = 
+f(g_2,\ldots,g_k,g_{k+1}) - f(g_1g_2,g_3,\ldots,g_{k+1})  \\
++ f(g_1,g_2g_3,\ldots,g_{k+1}) +\cdots + 
+(-1)^{k}f(g_1,\ldots,g_{k-1},g_{k}g_{k+1})
++ (-1)^{k+1} f(g_1,\ldots,g_k).
+\end{multline}
+
+From these we now understand the definition of $H^k(BG;A)$.
+Here we used an explicit construction of $BG$ to write down
+the definition of these cohomology groups naturally associated 
+to a finite group $G$.
+The same definition can also be reached purely algebraically,
+and in this latter context the resulting cohomology groups are 
+called the group cohomology of $G$, and denoted (somewhat confusingly)
+by $H^k(G;A)$, which is \emph{different} from $H^k(G;A)$
+as defined when $G$ is interpreted as a topological space 
+with discrete topology.
+In this lecture series we stick to the former notation,
+but you should be aware that the latter notation is 
+also widely used in the literature.
+
+Explicitly, for a 1-cochain $f(g_1)$, \begin{equation}
+(\delta f)(g_1,g_2)=f(g_2)-f(g_1g_2)+f(g_1).
+\label{delta-1}
+\end{equation} 
+Therefore, $\delta f=0$ means that $f$ is a homomorphism $G\to A$.
+
+For a 2-cochain $f(g_1,g_2)$, \begin{equation}
+(\delta f)(g_1,g_2,g_3)=f(g_2,g_3)-f(g_1g_2,g_3)+f(g_1,g_2g_3)-f(g_1,g_2).
+\label{delta-2}
+\end{equation} 
+For a 3-cochain $f(g_1,g_2,g_3)$, \begin{multline}
+(\delta f)(g_1,g_2,g_3,g_4)=f(g_2,g_3,g_4)-f(g_1g_2,g_3,g_4)\\
++f(g_1,g_2g_3,g_4)-f(g_1,g_2,g_3g_4)+f(g_1,g_2,g_3).
+\label{delta-3}
+\end{multline}
+Let us see how these expressions arise naturally in other contexts.
+
 \subsection{$H^2$ and the group extension}
+
+\subsubsection{Basics}
+Consider an exact sequence of groups \begin{equation}
+1\to A\to \Gamma \to G\to 1,
+\label{central-ext}
+\end{equation} 
+$\Gamma$ is called an extension of $G$ by $A$.
+
+For simplicity, we assume that $A$ is in the center of $\Gamma$,
+i.e.~$\gamma a = a\gamma$ for all $\gamma \in \Gamma$.
+Such an extension is called a central extension.
+This in particular means that $A$ is Abelian.
+Note that we use multiplicative notation for the group operation,
+including that of $A$.
+
+We would like to describe $\Gamma$ in terms of $G$ and $A$.
+For this, we pick for each $g\in G$ a representative $\gamma_g\in \Gamma$.
+Then any element $\gamma\in \Gamma$ can be written 
+as $a \gamma_g $ for some $g\in G$ and $a\in A$.
+Now, $\gamma_g \gamma_h$ maps to $gh\in G$,
+and therefore there is an element $a(g,h)\in A$
+such that \begin{equation}
+\gamma_g \gamma_h = a(g,h) \gamma_{gh}.
+\end{equation}
+This $a(g,h)$ is a 2-cochain, which turns out to be a 2-cocycle.
+
+To see this, we compute $\gamma_g \gamma_h \gamma_k$ in two ways:
+we have
+\begin{equation}
+\gamma_g \gamma_h \gamma_k = a(g,h) \gamma_{gh} \gamma_k = a(g,h) a(gh,k) \gamma_{ghk}
+\end{equation} and we also have
+\begin{equation}
+\gamma_g\gamma_h \gamma_k = a(h,k) \gamma_{g} \gamma_{hk} = a(g,hk) a(h,k) \gamma_{ghk}
+\end{equation} and therefore \begin{equation}
+a(g,h) a(gh,k) = a(g,hk) a(h,k),
+\end{equation}
+which is $\delta a=0$ in \eqref{delta-2} written multiplicatively.
+
+We also note that the choice of $\gamma_g$ is not unique;
+we can equally well choose $\tilde\gamma_g:=\gamma_g b(g)$ for any $a\in A$.
+In this case, \begin{equation}
+\tilde \gamma_g \tilde \gamma_h = \tilde a(g,h) \tilde\gamma_{gh} 
+\qquad\text{where}\quad \tilde a(g,h)=\frac{b(g) b(h)}{g(gh)} a(g,h),
+\end{equation}
+which is $\tilde a=a + \delta b$ written multiplicatively, see \eqref{delta-1}.
+
+Therefore, we see that a central extension \eqref{central-ext}
+is classified by the second cohomology group $H^2(BG;A)$.
+
+\subsubsection{Example we learned in elementary school}
+We have seen this example in elementary school.
+(This has been pointe out in many places,
+but I don't remember where I first learned it.
+It can be found e.g.~in \cite{IsaksenElementary}, writen by an algebraic topologist.)
+
+
+Consider the extension 
+\begin{equation}
+0\to \bZ_{10}\to \bZ_{100}\to \bZ_{10}\to 0,
+\end{equation}
+where we use additive notation for the group operation,
+the map $\bZ_{10}\to \bZ_{100}$ is given by multiplication by 10,
+and the map $\bZ_{100}\to \bZ_{10}$ is given by modulo 10.
+Every element of $\bZ_{100}$ can then be written as $(a,g)$
+where $a\in \bZ_{10}$ and $g\in \bZ_{10}$,
+with the addition law \begin{equation}
+(a_1,g_1)+(a_2,g_2)=(a_1+a_2+a(g_1, g_2),g_1+g_2),
+\end{equation} where \begin{equation}
+a(g_1,g_2)=\begin{cases}
+0 & g_1+g_2<10,\\
+1 & g_1+g_2\geq 10.
+\end{cases}
+\end{equation}
+This is a 2-cocycle (have you ever checked it?), 
+and defines a nontrivial element of $H^2(B\bZ_{10};\bZ_{10})$.
+This important function $a(g_1,g_2)$ is known as 繰り上がり in Japanese,
+and the carry in English.
+
+\subsubsection{Projective representation in quantum mechanics}
+
+In quantum mechanics, we have an action of a group $G$ 
+on a Hilbert space $\cH$. 
+Most straightforwardly, it is given by a representation of $G$
+satisfying \begin{equation}
+U(g_1) U(g_2) = U(g_1 g_2).
+\end{equation}
+
+That said, as the physics only cares about an element $v\in \cH$ up to a phase,
+we can weaken this requirement to \begin{equation}
+U(g_1) U(g_2) = \alpha(g_1,g_2) U(g_1 g_2),
+\label{projective-rep}
+\end{equation}
+where $\alpha(g_1,g_2)\in U(1)=\{z \mid  |z|=1\}$.
+This is called a projective representation of $G$,
+and $\alpha(g_1,g_2)$ is called the projective phase.
+Using the same argument as above, we see that $\alpha(g_1,g_2)$ is a 2-cocycle,
+and replacing $U(g)$ by $U(g)b(g)$ for $b(g)\in U(1)$
+replaces $\alpha(g_1,g_2)$ by $\tilde \alpha(g_1,g_2)$ which is cohomologous.
+Therefore the type of a projective representation is specified by 
+a class in $H^2(BG;U(1))$.
+
+Regarding a quantum mechanical system as a 0+1d system,
+this projective phase is the simplest example of (quantum) anomalies,
+which can be understood as the inflow from the bulk.
+For this we need to learn the most basic case of the invertible topological phase
+in 1+1 dimensions.
 
 \subsection{$H^3$ and the anomaly of $1+1$d systems}
 
