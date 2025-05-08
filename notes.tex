@@ -9,6 +9,7 @@
 \usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
 \usepackage[colorlinks,citecolor=DarkGreen,linkcolor=FireBrick,urlcolor=FireBrick,linktocpage]{hyperref}
 \numberwithin{equation}{section}
+\numberwithin{figure}{section}
 \urlstyle{rm}
 \def\arxivfont{\rm}
 \def\doihref#1#2{\href{#1}{{\color{FireBrick!80!Black}#2}}}
@@ -7139,9 +7140,15 @@ Then, we simply map all $p_i$ to the single 0-simplex of $BG$ which is $()$,
 we map the edge from $p_i$ to $p_j$ to the 1-simplex $(g_{ij})$ of $BG$,
 the triangle consisting of $p_i$, $p_j$, $p_k$ to the 2-simplex $(g_{ij}|g_{jk})$,
 and so on.
-So, the map $M\to BG$ really just encodes the algebraic data of the patching elements $g_{ij}$ in a topological manner.
+So, the map $M\to BG$ really just encodes the algebraic data of the patching elements $g_{ij}$ in a topological manner, see Fig.~\ref{fig:map-to-bg}.
 
-(A drawing here would help the understanding.)
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.2]{map-to-bg.png} 
+\caption{A principal $G$-bundle defined by patches 
+and a map to $BG$. \label{fig:map-to-bg}}
+\end{figure}
+
 
 \subsection{Simplicial cohomology of $BG$}
 
@@ -7291,13 +7298,198 @@ replaces $\alpha(g_1,g_2)$ by $\tilde \alpha(g_1,g_2)$ which is cohomologous.
 Therefore the type of a projective representation is specified by 
 a class in $H^2(BG;U(1))$.
 
+In this case, the state vector after a symmetry operation differs by a phase
+depending on whether we act $gh$ at once,
+or we act $g$ and $h$ consecutively.
+The symmetry is not realized in the most standard and naive manner.
+But the way in which the symmetry is not realized in a standard way
+is still constrained by the cocycle condition.
+
+In hep-th we often consider partition functions rather than state vectors.
+In the quantum mechanical case, consider a thermal partition function
+with a symmetry action inserted. 
+When a symmetry action is projective, we have \begin{equation}
+\tr e^{-\beta H} U(g) U(h) = 
+\alpha(g,h) \tr e^{-\beta H} U(g h) .
+\end{equation}
+This is the partition function on $S^1$ of circumference $\beta$,
+with a $G$ bundle on it whose holonomy is $gh$.
+Depending on how to represent this $G$-bundle,
+either by a single patching place with $gh$,
+or by two patching places one with $g$ and another with $h$,
+we get slightly different partition functions,
+whose difference is simply a phase, constrained by a cocycle condition.
+
+
+
 Regarding a quantum mechanical system as a 0+1d system,
 this projective phase is the simplest example of (quantum) anomalies,
 which can be understood as the inflow from the bulk.
 For this we need to learn the most basic case of the invertible topological phase
 in 1+1 dimensions.
 
-\subsection{$H^3$ and the anomaly of $1+1$d systems}
+\subsubsection{$H^2$ and an invertible topological phase in 1+1d}
+
+Consider a 2d manifold $M$ equipped with triangulation,
+together with a principal $G$-bundle on it.
+This gives a map $f: M\to BG$.
+Now we pick a cohomology class $\alpha \in H^2(BG;U(1))$,
+where we regard $U(1)\simeq \bR/\bZ$ and use an additive notation.
+We pull back $\alpha$ via $f$, giving a class $f^*(\alpha) \in H^2(M;U(1))$.
+We can integrate it over $M$ to find a value $\int_M f^*(\alpha) \in \bR/\bZ$.
+Then we can consider a (rather trivial) 1+1d system whose partition function is given by \begin{equation}
+\exp(2\pi i \int_M f^*(\alpha)).
+\end{equation}
+If we expand and unwind the definitions, this simply means that we compute \begin{equation}
+\exp\left(2\pi i \sum_{\text{triangles}\ (ijk)\ \text{of $M$}}  \alpha(g_{ij},g_{jk}) \right).
+\end{equation}
+
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.2]{tri.png} 
+\caption{Two triangulations of a rectangle. \label{fig:tri}}
+\end{figure}
+
+This value is independent of the triangulation we put on the manifold.
+For example, consider two local configurations for the same rectangle 
+shown in Fig~\ref{fig:tri}.
+We have local factors \begin{equation}
+\alpha(g,h)+\alpha(gh,k)
+\end{equation} for the configuration on the left, and similarly \begin{equation}
+\alpha(g,hk)+\alpha(h,k)
+\end{equation} for the configuration on the right.
+The equality of the two expressions above is the condition $\delta \alpha=0$,
+given in \eqref{delta-2}.
+
+This construction was introduced to physics originally in \cite{Dijkgraaf:1989pz},
+although all possible $G$-bundle was summed over in that paper.
+(So it was a finite-group gauge theory).
+Here we keep the $G$-bundle as part of the background field.
+This invertible phase is often called the Dijkgraaf-Witten phase.
+
+This is the simplest nontrivial example of an \emph{invertible topological phase}.
+There are various reasons behind the name, but one of them is that the 
+the value of the partition function is always nonzero and thus invertible.
+It is also an example of $G$-symmetry-protected topological (SPT) phase.
+
+\subsubsection{An anomaly inflow}
+
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.2]{bndry.png} 
+\caption{A boundary of the 1+1d Dijkgraaf-Witten theory \label{fig:bndry}}
+\end{figure}
+
+Let us now consider the case where this 1+1d system has a 0+1d boundary,
+see Fig.~\ref{fig:bndry}.
+Here we also drew the dual diagram to the triangulation;
+the dual edge can be considered as the place where the corresponding $G$ transformation is performed.
+The dual edges are often called topological $G$ domain walls.
+On the boundary, these domain walls have corresponding actions on the boundary Hilbert space.
+On the left, we have consecutive actions of $U(g)$ and$U(h)$.
+On the right, we have a single action of $U(gh)$.
+On the left, we also have one additional triangle, providing an additional phase 
+$\exp(2\pi i \alpha(g,h))$.
+For the partition function on both sides to agree, we see that we need \begin{equation}
+U(g) U(h) \exp(2\pi i \alpha(g,h)) = U(gh),
+\end{equation}
+that is, the $G$ action on the boundary Hilbert space is projective,
+ whose projective phase is fixed by the choice of the bulk invertible Dijkgraaf-Witten phase.
+
+When we first discuss the projective symmetry action, 
+we regarded $\alpha(g,h)$ as a possibly-annoying additional phase,
+exhibiting a mild non-uniqueness  of the result of symmetry action,
+or equivalently, a quantum anomaly of the system.
+With the introduction of the bulk invertible phase,
+this non-uniquness is exactly what is needed to make 
+the total system of the 0+1d boundary
+and the 1+1d bulk \emph{independent} of how we decide to act by $gh$,
+either at once or consecutively by $g$ and then $h$.
+We say that there is an \emph{anomaly inflow} from the bulk.
+We also say that there is a \emph{bulk-boundary correspondence} in 
+in that the topological properties of the bulk dictates the anomaly of the boundary.
+
+\subsection{$H^3$ and the anomaly of 1+1d systems}
+
+So far we discussed a projective action (i.e.~an anomaly) in 0+1d 
+and the corresponding invertible phase in 1+1d.
+They were both controlled by $H^2$.
+Let us now discuss an anomaly in 1+1d and the corresponding invertible phase in 2+1d.
+As we will see, they are controlled by $H^3$.
+
+\subsubsection{Anomalies in 1+1d  and inflow from 2+1d}
+
+\begin{figure}
+\centering
+ \includegraphics[scale=.2]{walls.png} 
+\caption{Reconfiguring $G$ domain walls in 1+1d. \label{fig:walls}}
+\end{figure}
+
+We now consider $G$-domain walls in 1+1d.
+A drawing is given in Fig.~\ref{fig:walls} where we also gave dual triangulations.
+We are no longer requiring that they give the same result;
+rather, we suppose that there is a phase arising from the reconfiguration from the left to the right.
+Let us schematically denote the configuration on the left by $(gh)k$ and the right by $g(hk)$,
+and suppose that they are related by a phase $\alpha$: \begin{equation}
+Z_{(gh)k} = \exp(2\pi i \omega(g,h,k)) Z_{g(hk)}.\label{omega-phase}
+\end{equation}
+
+Now, consider \emph{four} domain walls $g_{1,2,3,4}$ joining to form a wall $g_1g_2g_3g_4$.
+We can change how we join the walls either as \begin{equation}
+g_1(g_2(g_3g_4)) \to g_1((g_2g_3)g_4)\to(g_1(g_2g_3))g_4 \to ((g_1g_2)g_3)g_4
+\end{equation} or as \begin{equation}
+g_1(g_2(g_3g_4)) \to (g_1g_2)(g_3g_4) \to ((g_1g_2)g_3)g_4.
+\end{equation}
+The consistency of these two procedures requires the condition \begin{equation}
+\omega(g_2,g_3,g_4)+\omega(g_1,g_2g_3,g_4)+ \omega(g_1,g_2,g_3) 
+= \omega(g_1,g_2,g_3g_4) +\omega(g_1g_2,g_3,g_4),
+\label{constraint}
+\end{equation}
+which is $\delta \omega=0$ given in \eqref{delta-3}.
+Therefore it is a 3-cocycle, and determines a class $\omega\in H^3(BG;U(1))$.
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.3]{2-3move.png} 
+\caption{Two local configurations. Left: three tetrahedra;
+right: two tetrahedra.  \label{fig:2-3move}}
+\end{figure}
+
+Note that the same class $\omega$ defines an invertible topological phase in 2+1d,
+exactly as before; the partition function on a manifold $M_3$ with a  $G$-bundle
+given by $f:M_3\to BG$ is given simply by \begin{equation}
+\exp(2\pi i \int_{M_3} f^*(\omega))
+= \exp\left(2\pi i \sum_{\text{tetrahedra}\ (ijkl)} \omega(g_{ij},g_{jk},g_{kl})\right).
+\end{equation} 
+This time, the invariance under the change in the choice of the triangulation 
+is guaranteed e.g.~by the local move given in Fig.~\ref{fig:2-3move}.
+On the left, we have three tetrahedra sharing the edge BD, i.e.~ABCD, ABDE and BCDE.
+On the right, we have two tetrahedra sharing the face ACE, i.e.~ABCE and ACDE.
+Equating the local contributions, we obtain \eqref{constraint}.
+
+
+We can now attach this invertible Dijkgraaf-Witten phase to the boundary,
+so that the phase \eqref{omega-phase} is provided by an additional simplex
+in the bulk, see Fig.~\ref{fig:3d2d-inflow}.
+As before, the combined boundary-bulk system 
+is unchanged by the change of the triangulation.
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.2]{3d2d-inflow.png} 
+\caption{Anomaly inflow from 2+1d to 1+1d. \label{fig:3d2d-inflow}}
+\end{figure}
+
+\subsubsection{A concrete 1+1d system}
+
+So far we have a fairly nice understanding of the anomaly of finite group symmetry in 1+1d.
+But can we write down an explicit system with this symmetry?
+The corresponding question in 0+1d was easy: we simply take whatever projective representations.
+Is there a similar operation in 1+1d?
+
+...
 
 \goodbreak
 
