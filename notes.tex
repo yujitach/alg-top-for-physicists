@@ -7482,14 +7482,182 @@ is unchanged by the change of the triangulation.
 \caption{Anomaly inflow from 2+1d to 1+1d. \label{fig:3d2d-inflow}}
 \end{figure}
 
-\subsubsection{A concrete 1+1d system}
+\subsubsection{`Hamiltonian' definition of the anomaly}
 
 So far we have a fairly nice understanding of the anomaly of finite group symmetry in 1+1d.
 But can we write down an explicit system with this symmetry?
 The corresponding question in 0+1d was easy: we simply take whatever projective representations.
-Is there a similar operation in 1+1d?
+Is there a similarly explicit construction in 1+1d?
+What does Fig.~\ref{fig:walls} and Eq.~\ref{omega-phase} mean in that explicit context?
 
-...
+Let us first make Eq.~\ref{omega-phase} more concrete. 
+This was done in  AQFT in \cite[Sec.~4.2]{Muger:2005ra} (although it was known much earlier;
+it is just that I could not find an earlier reference),
+and in cond-mat in \cite{Else:2014vma},
+and in hep-th in \cite{Seifnashri:2023dpa}.
+It seems to be most commonly known as the Else-Nayak argument in the literature.
+
+Let $\cH_{g,h}$ be the Hilbert space on one $g$-wall and one $h$-wall.
+Let $\cH_g$ be the Hilbert space on a single $gh$-wall placed somewhere.
+There should be a unitary operator 
+$u(g,h):\cH_{g,h}\to \cH_{g}$ supported locally around the junction point,
+see Fig.~\ref{fig:junction}.
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.3]{junction.png} 
+\caption{Junction unitary $u(g,h)$ of two walls. \label{fig:junction}}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.3]{rearrangement.png} 
+\caption{Two ways of combining three walls. \label{fig:rearrangement}}
+\end{figure}
+
+\begin{figure}[h]
+\centering
+ \includegraphics[scale=.3]{half.png} 
+\caption{Group transformation on the half-space. \label{fig:half}}
+\end{figure}
+
+To further rewrite $u(g,h)$ in terms of more basic ingredients,
+consider the operation of applying the group transformation on the half-space,
+as shown in Fig.~\ref{fig:half}: \begin{equation}
+U_g: \cH \to \cH_{g}.
+\end{equation}
+Then we can say \begin{equation}
+U_g U_h \propto u(g,h) U_{gh}.
+\end{equation}
+Here $u(g,h)$ is only defined up to a phase, as globally-acting unitary operators such as $U_g$ is 
+only defined as an operation on local operators $O$ as $O\mapsto U_g O U_g^{-1}$,
+and its phase part is not well-defined.
+
+We now consider the process of fusing three walls. There are two ways, as shown in 
+Fig.~\ref{fig:rearrangement}.
+Note that his Figure is the same as Fig.~\ref{fig:walls}, only viewed from sideways. 
+Studying how we rewrite $U_g U_h U_k$ into $U_{ghk}$ in two different orders,
+remembering that $U_g$ etc.~are only defined up to a phase,
+we find \begin{equation}
+( U_g u(h,k) U_g^{-1})  u(g,hk)= e^{2\pi i \omega(g,h,k)} u(g,h) u(gh,k)  .\label{uuouu}
+\end{equation}
+This can be considered as a more explicit version of Eq.~\ref{omega-phase}.
+
+Summarizing, we consider `global' operations $U_g$,
+whose action has a `projectivity' (i.e.~the failure of the 1-cocycle condition)
+not in terms of complex phases 
+but by local unitary operators $u(g,h)$.
+These in turn have a failure in the 2-cocycle-condition as in \eqref{uuouu},
+which gives the phases $\omega(g,h,k)$ we want.
+We can indeed show  that $\omega(g,h,k)$ is a 3-cocycle, from \eqref{uuouu},
+by a somewhat lengthy but straightforward computation.
+
+\subsubsection{Explicit spin chain models}
+
+
+As an explicit example, consider a `spin-chain' where each cite has the local Hilbert space $\bC^{|G|}$,
+spanned by $\ket{g}$ for $g\in G$.
+A state of the chain is then $\ket{\cdots g_i g_{i+1} g_{i+2} \cdots}$.
+We let $g\in G$ act on this chain as \begin{equation}
+\ket{\cdots g_i g_{i+1} g_{i+2} \cdots}
+\mapsto 
+\prod_i e^{2\pi i \alpha(g,  g_{i+1} ,  g_{i+1}^{-1} g_i )}
+\ket{\cdots gg_i ,  gg_{i+1},  gg_{i+2},  \cdots},
+\label{explicit-action}
+\end{equation}
+where $\alpha$ is a 3-cocycle. 
+
+Our aim is to show that this system has the anomaly $\omega=-\alpha$,
+by constructing $U_g$, $u(g,h)$ and $\omega(g,h,k)$ in turn.
+For definiteness, let $U_g$ be the same action restricted on the sites $i_L < i < i_R$.
+Then, from the cocycle condition on $\omega$, we find \begin{equation}
+U_g U_h = U_{gh} e^{2\pi i \omega(g,h,g_{i_L} )} e^{-2\pi i \omega(g,h,g_{i_R} )}.
+\end{equation} 
+Note that we can't let $i_R\to \infty$ and say that $U_g$ are well-defined including the phase.
+But you can let $i_R\to \infty$ if you accept that $U_g$ is defined only up to a phase,
+and  \begin{equation}
+u(g,h) \ket{ghk} = e^{2\pi \omega(g,h,k)} \ket{ghk}.
+\end{equation}
+We now study the action of both sides of \eqref{uuouu} on $\ket{ghkl}$.
+We find that \begin{equation}
+\alpha(h,k,\ell) +\alpha(g,hk,\ell) = \omega(g,h,k) + \alpha(g,h,k\ell)
++ \alpha(gh,k,\ell), 
+\end{equation} meaning that \begin{equation}
+\omega=-\alpha.
+\end{equation}
+
+
+For example, consider $G=\bZ_2=\{0,1\}$. In this case $H^3(BG,U(1))=\bZ_2$.
+The nontrivial cocycle is to set
+\begin{equation}
+\begin{cases}
+e^{2\pi \alpha(1,1,1)}=-1, & \\
+e^{2\pi \alpha(a,b,c)}=+1 & \text{if any of $a$, $b$, $c$ is 0}.
+\end{cases}
+\end{equation}
+Then the $\bZ_2$ action is the product of $X_i$ (exchanging $\ket0$ and $\ket1$)
+with additional phases as in \eqref{explicit-action}, i.e.~it acts on two consecutive sites as \begin{equation}
+\ket{00} \mapsto +\ket{11}, \quad
+\ket{01} \mapsto +\ket{10}, \quad
+\ket{10} \mapsto +\ket{01}, \quad
+\ket{11} \mapsto -\ket{00}.
+\end{equation}
+
+To write down explicit 1d spin-chain models
+with finite group symmetry $G$ with arbitrary anomaly $\omega$,
+we randomly pick a finite-range local operator $O_i$ supported around the site $i$.
+We then take its average by the group action,
+and then set $H=\sum_i O_i$.
+This  is translationally-invariant and finite-range.
+One concrete Hamiltonian obtainable in this manner for the anomalous $\bZ_2$ given above 
+is\footnote{%
+In an unpublished collaboration with Yunqin Zheng and Philip Boyle Smith in December 2021,
+we started to study this model from this motivation.
+After some numerical computations, we noticed that this should be a $c=1$ CFT in the long range limit.
+When we asked Katsura-san if he had seen this model in the literature,
+he told us that it is the Ashkin-Teller model at a special value of the parameters,
+after a Kramers-Wannier transformation.
+It is good to have a knowledgeable friend indeed.
+} \begin{equation}
+H=-\sum_i (Z_{i-1} X_i + Z_{i-1} Z_{i+1} + X_i Z_{i+1} ).
+\end{equation} 
+
+\subsection{Computing $H^k(BG;U(1))$}
+This is in general very hard. 
+When $G=\bZ_n$, we know \begin{equation}
+H^k(B\bZ_n;U(1))=\begin{cases}
+U(1) & (k=0),\\
+\bZ_n & (k=1,3,5,\ldots),\\
+0 & (k=2,4,6,\ldots).
+\end{cases}
+\end{equation} 
+The result $k=1$ is immediate, since $H^1(BG;U(1))$ are homomorphisms $G\to U(1)$.
+An explicit cocycle for $k=3$ is given by \begin{equation}
+\alpha(a,b,c)= \frac{1}n p(a,b) c \mod 1,
+\end{equation} where $a,b,c\in \{0,1,\ldots, n-1\}$ and $p(a,b)$ is 繰り上がり (the carrry), \begin{equation}
+p(a,b)=\begin{cases}
+0 & (a+b < n),\\
+1 & (a+b \ge n).
+\end{cases}
+\end{equation}
+
+For smallish group $G$, we can simply use GAP (an open-source computer algebra system 
+for groups and algebras written by mathematicians), or SAGE (a python-based system
+which wraps multiple computer algebra systems written by mathematicians in different subfields).
+For example, a GAP package called HAP has a function GroupHomology,
+which can compute $H_k(BG;\bZ)$. 
+From this, you can compute $H^k(BG;A)$ for arbitrary $A$ by the universal coefficient theorem.
+In particular, $H^k(BG;U(1))$ is simply the Pontryagin dual (i.e.~the group of
+homomorphisms to $U(1)$) of $H_k(BG;\bZ)$.
+There is also a proprietary computer algebra system for groups and algebras 
+written by mathematicians called Magma, but I have never used it.
+I have heard that it is somewhat better than GAP.
+
+For large finite group, computing $H^k(BG;U(1))$ is a nontrivial matter.
+For example, for the monster group $M$, (the largest of the sporadic finite simple group),
+$H^3(BM;U(1))$ is not yet determined, but is suspected to be $\bZ_{24}$.
+It is at least known that the anomaly $\omega$ 
+of the monster CFT is order $24$, and therefore $H^3(BM;U(1))$ contains $\bZ_{24}$ \cite{Johnson-Freyd:2017ble}.
 
 \goodbreak
 
