@@ -7661,11 +7661,142 @@ of the monster CFT is order $24$, and therefore $H^3(BM;U(1))$ contains $\bZ_{24
 
 \goodbreak
 
-\section{Fermion operators and spinors}
+\section{Fermions and spinors}
 
-\subsection{Complex fermion operators and the 2-periodicity}
+As a preparation of the materials to come, we need to learn the basics of 
+fermions and spinors.
 
-\subsection{Real fermion operators and the 8-periodicity}
+\subsection{Fermions and the 2-periodicity}
+Let us start with $n$ complex fermions $c_i$, satisfying the anticommutation relations \begin{equation}
+\{c_i , c_j\}=\{c_i^\dagger,c_j^\dagger\}=0,\qquad
+\{c_i,c_j^\dagger\}=\delta_{ij}.
+\end{equation}
+
+To give an explicit realization, we first note that a single complex fermion has the realization
+\begin{equation}
+c=\begin{pmatrix}
+0 & 1 \\
+0 & 0 
+\end{pmatrix},\quad
+c^\dagger=\begin{pmatrix}
+0 & 0\\
+1 & 0
+\end{pmatrix}
+\end{equation} acting on $\bC^2$.
+We note that $c$ and $c^\dagger$ both anticommute with $\sigma_z$.
+Using this, we then define \begin{equation}
+\begin{aligned}
+c_1 &:= c \otimes 1 \otimes 1\otimes \cdots \otimes 1 ,\\
+c_2 &:= \sigma_z \otimes c \otimes 1\otimes \cdots \otimes 1 ,\\
+c_3 &:= \sigma_z \otimes \sigma_z \otimes c \otimes \cdots \otimes 1 ,\\
+\vdots \\
+c_n &:= \sigma_z \otimes\sigma_z \otimes \sigma_z \otimes\cdots\otimes c,
+\end{aligned} 
+\label{complex-fermions}
+\end{equation} acting on \begin{equation}
+(\bC^2)^{\otimes n} := \underbrace{\bC^2\otimes \bC^2\otimes \cdots \otimes \bC^2}_\text{$n$ times}.
+\end{equation}
+We note that the fermion parity operator is given by \begin{equation}
+(-1)^F := \sigma_z \otimes\sigma_z \otimes \sigma_z \otimes\cdots\otimes \sigma_z
+\end{equation}
+and anticommutes with all $c_i$.
+
+We now decompose $c_i$'s into real and imaginary parts: \begin{equation}
+c_i = \frac12(\psi_{2i-1} + \mathrm{i} \psi_{2i}).
+\end{equation}
+Then $\psi_{1,\ldots,2n}$ have an uniform anticommutation relation \begin{equation}
+\{\psi_i,\psi_j\}=2\delta_{ij}, \qquad (\psi_i^\dagger = \psi_i).
+\label{maj-ac}
+\end{equation} 
+Explicit representatives are easily found from \eqref{complex-fermions},
+with the results \begin{equation}
+\begin{aligned}
+\psi_1 &:= \sigma_x \otimes 1 \otimes 1\otimes \cdots \otimes 1 ,\\
+\psi_2 &:= \sigma_y \otimes 1 \otimes 1\otimes \cdots \otimes 1 ,\\
+\psi_3 &:= \sigma_z \otimes \sigma_x \otimes 1\otimes \cdots \otimes 1 ,\\
+\psi_4 &:= \sigma_z \otimes \sigma_y \otimes 1\otimes \cdots \otimes 1 ,\\
+\psi_5 &:= \sigma_z \otimes \sigma_z \otimes \sigma_x \otimes \cdots \otimes 1 ,\\
+\psi_6 &:= \sigma_z \otimes \sigma_z \otimes \sigma_y \otimes \cdots \otimes 1 ,\\
+\vdots\\
+\psi_{2n-1} &:= \sigma_z \otimes\sigma_z \otimes \sigma_z \otimes\cdots\otimes \sigma_x,\\
+\psi_{2n} &:= \sigma_z \otimes\sigma_z \otimes \sigma_z \otimes\cdots\otimes \sigma_y.
+\end{aligned}
+\end{equation}
+These are often called Majorana (or real) fermions.
+Note that $2n$ Majorana fermions act on $V_{2n}:=\bC^{2^n}$, with $\dim V_{2n}=2^n$.
+If we want individual Majorana fermions to act on independent Hilbert spaces,
+we want $V_{2n} = V_1{}^{\otimes 2n}$, with $\dim V_{2n}= (\dim V_1)^{2n}$,
+meaning that a single Majorana fermion would need to act on 
+a Hilbert space $V_1$ with $\dim V_1=\sqrt2$.
+
+Why would you want to do this, you might ask. A natural setting is the following fermion chain.
+Consider a chain of $n$ qubits, with the Hamiltonian \begin{equation}
+H= A \psi_1 \psi_2 + B \psi_2\psi_3 + A \psi_3\psi_4 + B \psi_4\psi_5 + \cdots
++B\psi_{2n-2}\psi_{2n-1}+ A\psi_{2n-1} \psi_{2n}.
+\end{equation}
+This is the famous Kitaev chain (which is just the fermionic form of the Ising chain), 
+with gapless modes at $A=B$.
+Now consider two extreme limits. One is $A=1$, $B=0$: \begin{equation}
+H=A \psi_1 \psi_2  +   \psi_3\psi_4  + \cdots + \psi_{2n-1} \psi_{2n}.
+\end{equation}
+This is the sum of $\sigma_z$ on all $n$ qubits, and the ground state is non-degenerate.
+In the other limit $A=0$, $B=1$, we have \begin{equation}
+H= \psi_3 \psi_4  +  \psi_5\psi_6  + \cdots + \psi_{2n-2} \psi_{2n-1}.
+\end{equation}
+This doesn't contain $\psi_1$ and $\psi_{2n}$.
+Renaming the Majorana fermions, we can easily diagonalize it,
+and we see that the ground state is degenerate, with an action on $\psi_1$ and $\psi_{2n}$.
+Now, let's say $n$ is astronomically large and the two ends of the chain
+is a million light-year separate from each other.
+$\psi_1$ resides on one end,
+and $\psi_{2n}$  resides on the other end. 
+The ground state is two dimensional, so it is tempting to associate dimension $\sqrt{2}$ on one end
+and dimension $\sqrt{2}$ on the other.
+
+We will see eventually that this is a basic fermionic version of the anomaly inflow,
+where a single Majorana fermion on the end represents a fermionic anomaly
+of a 0+1d boundary, of an invertible fermionic phase in the 1+1d bulk.
+This bulk theory is known as the nontrivial phase of the Kitaev chain,
+or the Arf theory.
+
+In any case, we found that an odd number of Majorana fermions
+and an even number of Majorana fermions behave in rather different ways.
+In other words, the behavior of $n$ Majorana fermions 
+drastically depends on $n$ mod 2.
+The behavior has 2-periodicity.
+
+Another comment before proceeding is that, if we define
+$\psi_0:=(-1)^F$, the $2n+1$ operators $\psi_{0,\ldots, 2n}$ actually satisfy
+uniform anticommutation relations \eqref{maj-ac},
+where $i,j$ runs from $0$ to $2n$.
+It is still convenient to regard one of them as a special operator $(-1)^F$,
+determining the global fermion parity.
+In mathematics, the algebra \eqref{maj-ac} with $i,j=1,\ldots, 2n$ 
+is known as the Clifford algebra with $2n$ generators.
+An explicit realization of this algebra, together with $(-1)^F$,
+is called a \emph{graded} Clifford module
+(where the grading here is just mathematicians' name for the fermion parity).
+
+\subsection{Time-reveral-invariant fermions and the 8-periodicity}
+
+Let us further consider the case when we want time-reversal invariance, with $T^2=+1$.
+$T$ is an antiunitary operator, so $Ti=-iT$.
+We assume $T(-1)^F = (-1)^FT$.
+($T^2=(-1)^F$ is also possible, but we do not consider that here.)
+
+We can consider two types of Majorana fermions, $T\psi =+\psi T$ and $T\psi'  = -\psi'T^{-1}$.
+Note that the signs here are purely conventional.
+When we define $T' :=T(-1)^F$,
+we easily see that $T'\psi = -\psi T'$ and $T'\psi' = + \psi' T'$.
+So what is convention-independent is that $\psi$ and $\psi'$ have different behaviors under the time-reversal.
+
+That said, it is easier to work with if we declare that the Hilbert space $\bC^N$ comes from
+the complexification of a real Hilbert space $\bR^N$, with $T$ 
+simply acting by complex conjugation of coordinates.
+Then $\psi$ is a purely real matrix while $\psi'$ is a purely imaginary matrix.
+It is convenient, then, to define $\chi := i\psi'$, such that $T\chi = +\chi T$,
+so that $\chi$ is also a purely real matrix.
+The price we paid was that $\chi$ is then anti-hermitean, and $\chi^2=-1$.
 
 \subsection{Spinors in general dimensions}
 
