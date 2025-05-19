@@ -7804,6 +7804,58 @@ The price we paid was that $\chi$ is then anti-hermitean, and $\chi^2=-1$.
 
 \section{Free fermionic invertible phases and K-theory}
 
+\begin{table}
+\[
+\begin{array}{c||c|c|ccc}
+i & \text{grading}& \text{name} & \text{unitaries} & \begin{tabular}{c} gapped \\ Hamiltonians\end{tabular} & K^{-i}(pt)\\
+\hline
+0&  & \text{A} & U & BU \times \bZ& \bZ \\
+1 & \checkmark & \text{AIII} & BU & U & 0
+\end{array}
+\]
+\medskip
+\begin{itemize}
+\item `Grading' when checked implies the existence of a fixed unitary operator satisfying $S^2=1$,
+such that $SU=U^{-1}S$ or $SH=HS$.
+\item `Unitaries' and `gapped mass terms' are the classifying spaces for unitaries $U$ or
+gapped Hamiltonians $H$ with the specified symmetry properties.
+\item `Name' is the Cartan name of the classifying space of unitaries, 
+which is also used to name the symmetry classes.
+\item $K^{-i}(pt)$ is $\pi_0$ of the classifying space of gapped Hamiltonians.
+\end{itemize}
+\caption{Symmetry classes: two complex ones.}
+\end{table}
+\begin{table}
+\[
+\begin{array}{c||ccc|c|cccccccc}
+i & T^2 & \tilde T^2 & \text{grading}& \text{name} & \text{unitaries} & \begin{tabular}{c} gapped \\ Hamiltonians\end{tabular} & KO^{-i}(pt)\\
+\hline
+0& +1&&&\text{AI} & U/O  & BO \times \bZ& \bZ\\
+1& +1&+1&+&\text{BDI} & BO & O  &\bZ_2\\
+2& &+1&&\text{D} & O & O/U &\bZ_2\\
+3& -1&+1&-&\text{DIII}& O/U &U/Sp &0\\
+4& -1&&&\text{AII}&U/Sp & BSp\times \bZ & \bZ\\
+5& -1&-1&-&\text{CII}& BSp & Sp  & 0\\
+6& &-1&&\text{C}&Sp & Sp/U  &0 \\
+7& +1&-1&+&\text{CI} &Sp/U & U/O &0\\
+\end{array}
+\]
+\medskip
+\begin{itemize}
+\item $T$ is an antiunitary operator satisfying $T^2=\pm1$ with $TU=U^{-1}T$ or $TH=HT$.
+\item $\tilde T$ is an antiunitary operator satisfying $\tilde T^2=\pm1$ with $\tilde TU=U\tilde T$ or $\tilde TH=-H\tilde T$.
+\item `Grading' implies an existence of a unitary operator $S$ with $S^2=1$, 
+such that $\tilde T= TS$, with the sign specifying $TS=\pm ST$.
+It automatically satisfies $SU=U^{-1}S$ or $SH=HS$ as in the complex symmetry classes.
+\item  `Unitaries', `gapped mass terms' are the classifying spaces of unitaries $U$ or gapped Hamiltonians $H$
+satisfying the specified symmetry properties.
+\item `Name' is the Cartan type of the classifying space of the unitaries,
+which is also used to name the symmetry classes.
+\item $KO^{-i}(pt)$ is $\pi_0$ of the classifying space of gapped Hamiltonians.
+\end{itemize}
+\caption{Symmetry classes: eight real ones.}
+\end{table}
+
 \subsection{Bulk analysis}
 
 \subsection{Boundary analysis}
