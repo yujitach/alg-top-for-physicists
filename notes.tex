@@ -7795,20 +7795,25 @@ Therefore, in an irreducible representation, $\Gamma$ should act as a scalar.
 As  $\Gamma^2=(-1)^n$, this scalar is $\pm1$ when $n$ is even, and is $\pm i$ when $n$ is odd.
 Therefore there are two types of graded  irreducible representations,
 which we denote as $V_{2n}^{\bZ_2,\pm}$.
+They are irreducible as ungraded representations, but as we no longer have $(-1)^F$,
+they reduce to a single representation:
+ \begin{equation}
+V_{2n}=V_{2n}^{\bZ_{2},\pm} \qquad \text{(as ungraded representations)}.
+\end{equation}
 
-This is also irreducible as an ungraded representation: \begin{equation}
-V_{2n}^{\bZ_{2}}=V_{2n}.
-\end{equation}
 Now, the irreducible graded representation $V_{2n-1}^{\bZ_2}$ of $\Cliff_\bC(2n-1)$ 
-is also unique and  of dimension $2^n$, and is simply the same $V$ with the action of $\psi_{2n}$ forgotten: \begin{equation}
-V_{2n-1}^{\bZ_2}=V_{2n}^{\bZ_{2}}
+is also unique and  of dimension $2^n$, and is simply the same $V_{2n}$ 
+with the action of $\psi_{2n}$ forgotten: \begin{equation}
+V_{2n-1}^{\bZ_2}=V_{2n}.
 \end{equation}
-But this is \emph{not irreducible} as an ungraded representation of $\Cliff_\bC(2n-1)$,
+But this is not irreducible as an ungraded representation of $\Cliff_\bC(2n-1)$,
 since we can restrict to the eigenspaces of $(-1)^F \psi_{2n}$ with eigenvalue $\pm i$,
 which have dimensions $2^{n-1}$: \begin{equation}
-V_{2n-1}^{\bZ_2} = V_{2n-1} \oplus V_{2n-1}.
-\end{equation} We then have \begin{equation}
-V_{2n-1} = V_{2n-2}^{\bZ_2},
+V_{2n-1}^{\bZ_2} = V_{2n-1}^+ \oplus V_{2n-1}^-,
+\end{equation} where the two representations are distinguished by the value of 
+$\psi_1\cdots \psi_{2n-1}$.
+We then have \begin{equation}
+V_{2n-1}^\pm = V_{2n-2}^{\bZ_2,\pm},
 \end{equation} and so on.
 
 
@@ -8076,28 +8081,31 @@ We postulate the anticommutation relation \begin{equation}
 \{\gamma^\mu ,\gamma^\mu\} = 2\eta^{\mu\nu},
 \end{equation} where $\eta^{\mu\nu}$ is $(+--\cdots--)$ or $(-++\cdots++)$ 
 depending on the convention.
-But over complex numbers the convention does not matter (as we can multiply any generator by $i$).
+But over complex numbers the convention does not matter 
+(as we can multiply any generator by $i$).
 
-\paragraph{When $D$ is even, $D=2n$:}
-Suppose $D=2n$.
-Then $\psi$ takes values in the ungraded Clifford representation  $V_{2n}$ of dimension $2^n$. 
-Let \begin{equation}
+Now, the representation of $so(1,d)$ uses Lorentz generators $\gamma^\mu\gamma^\nu$
+but not $\gamma^\mu$ directly. 
+So we need to understand the representations of $\gamma^\mu\gamma^\nu$'s.
+For this it is convenient to define \begin{equation}
+\alpha^i :=\gamma^0\gamma^i,\qquad (i=1,\ldots, d).
+\end{equation} 
+Clearly $\alpha^i$'s generate all the necessary $\gamma^\mu\gamma^\nu$'s.
+This means that spinor representations in $D=d+1$ dimensions
+can be identified with the ungraded representations of $\Cliff_\bC(d)$.
+
+When $D$ is even, $D=2n$,
+there are two irreducible ungraded representations of $\Cliff_\bC(2n-1)$,
+which we denoted by $V_{2n-1}^\pm$, of dimension $2^{n-1}$.
+They are the chiral (or Weyl) spinor representations $S_\pm :=V_{2n-1}^\pm$ of $so(1,2n-1)$.
+The signs determine the eigenvalue of \begin{equation}
 \Gamma:= \gamma^0 \gamma^1\cdots \gamma^d. 
-\end{equation} This squares to a scalar $\Gamma^2 \propto 1$,
-and commute with the Lorentz generators $\gamma^\mu \gamma^\nu$.
-Therefore we can split $V_{2n}$ into two irreducible representations $S_+$ and $S_-$ of $so(1,2n-1)$,
-each of dimension $2^{n-1}$, distinguished by the value of $\Gamma$.
-They are known as the chiral or Weyl spinors,
-whereas $V_{2n}$ itself is known as the Dirac spinor.
+\end{equation}
 
-\paragraph{When $D$ is odd, $D=2n-1$:}
-Suppose $D=2n$.
-Then $\psi$ takes values in the ungraded Clifford representation  $V_{2n-1}$ of dimension $2^{n-1}$. 
-Here, considering $\Gamma$ as above does not help,
-since $\Gamma$ commute with every generator $\gamma^0$ to $\gamma^d$,
-and as such, $\Gamma$ is a scalar already on $V_{2n-1}$.
-This is the spinor representation of $so(1,d)$.
-
+When $D$ is odd, $D=2n+1$, 
+there is a single irreducible ungraded representation of $\Cliff_\bC(2n)$,
+which we denoted by $V_{2n}$, of dimension $2^n$.
+This is the spinor representation $S$ of $so(1,2n)$.
 
 \subsubsection{Real spinors}
 
@@ -8112,19 +8120,12 @@ We again postulate the anticommutation relation \begin{equation}
 \{\gamma^\mu ,\gamma^\mu\} = 2\eta^{\mu\nu},
 \end{equation} where $\eta^{\mu\nu}$ is $(+--\cdots--)$ or $(-++\cdots++)$ 
 depending on the convention.
-Then $\psi$ is an \emph{ungraded} representation of $\Cliff_\bR(1,d)$ or $\Cliff_\bR(d,1)$.
-Luckily, as we learned above, the convention on $\eta^{\mu\nu}$ does not matter,
-since there is at least one $+$-type Clifford generator. 
 
-As in the complex case, an ungraded Clifford representation 
-does not necessarily give an irreducible representation of $so(1,d)$.
-This can happen, as above, when $D=2n$ is even, 
-but there is one additional constraint. 
-The operator $\Gamma:=\gamma^0\gamma^1 \cdots \gamma^{d}$ 
-satisfies  to $\Gamma^2=+1$ when $D\equiv 2$ mod $4$ 
-but $\Gamma^2=-1$ when $D\equiv 0$ mod $4$.
-On a real vector space, an operator $\Gamma$ with $\Gamma^2=-1$ does not have eigenspaces.
-So, the real spinor can only be made chiral when $D\equiv 2$ mod $4$.
+As in the complex case, a spinor is a representation of $\alpha^i$'s.
+Luckily, the convention drops out, and we have \begin{equation}
+\{\alpha^i, \alpha^i\} = +2\delta^{ij}.
+\end{equation}
+Therefore, the real spinors of $so(1,d)$ are simply ungraded representations of $\Cliff_\bR(d,0)$.
 The information is summarized in Table~\ref{tab:spinors}.
 
 \begin{table}
@@ -8168,6 +8169,7 @@ They follow from the representation type of corresponding Clifford algebras.
 \subsection{Pin groups and pinors}
 Spin groups $Spin(n)$ is a double cover of $SO(n)$.
 There are two distinct double covers of $O(n)$ called $Pin^\pm(n)$.
+(The name $Pin$ was chosen because $Pin$ should be to $Spin$ as $O$ is to $SO$.)
 
 Take $\Cliff_\bR(n,0)$ generated by $\gamma_i$. 
 This contains $\bR^n$ as a subspace, as the linear combinations of $\gamma_i$ themselves: \begin{equation}
@@ -8201,9 +8203,23 @@ This can be shown e.g.~by realizing a $180^\circ$ rotation in the 1-2 plane
 by $\gamma_1\gamma_2$. 
 Then $(\gamma_1\gamma_2)^2=-1$.
 So this definition of $Spin(n)$ gives the desired double cover of $SO(n)$.
+Finally, this construction works equally well if we start from $\Cliff_\bR(0,n)$ instead,
+and leads to the same group $Spin(n)$.
 
+This construction of $Spin(n)$ can be used to construct double covers of $O(n)$.
+For this, we simply define $Pin^+(n)$ to be the subset of $\Cliff_\bR(n,0)$
+and $Pin^-(n)$ to be the subset of $\Cliff_\bR(0,n)$,
+both multiplicatively generated by elements of the form $w^i \gamma_i$ 
+within $\Cliff_\bR(n,0)$ or $\Cliff_\bR(0,n)$, respectively. 
+Then $\gamma_i$  is the lift of the reflection of the $i$-th direction.
+The difference between $Pin^\pm(n)$ is that $\gamma_i$ squares to $\pm1$.
 
-
+In the case of the Lorentz group $SO(d,1)$, the lift $Pin^\pm(d,1)$ is
+the group similarly defined using $\Cliff_\bR(d,1)$ or $\Cliff_\bR(1,d)$.
+The convention adopted in the physics literature is that
+$Pin^\pm(d,1)$ is such that the lift $\gamma^i$ 
+of the reflection of the \emph{spatial} direction is $\pm1$.
+\emph{Pinors} are then simply the ungraded representations of either $\Cliff_\bR(d,1)$ or $\Cliff_\bR(1,d)$.
 
 
 \goodbreak
