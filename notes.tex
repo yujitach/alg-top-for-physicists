@@ -7669,6 +7669,7 @@ As a preparation of the materials to come, we need to learn the basics of
 fermions and spinors.
 
 \subsection{Fermions and the 2-periodicity}
+\subsubsection{Complex fermions}
 Let us start with $n$ complex fermions $c_i$, satisfying the anticommutation relations \begin{equation}
 \{c_i , c_j\}=\{c_i^\dagger,c_j^\dagger\}=0,\qquad
 \{c_i,c_j^\dagger\}=\delta_{ij}.
@@ -7703,6 +7704,7 @@ We note that the fermion parity operator is given by \begin{equation}
 \end{equation}
 and anticommutes with all $c_i$.
 
+\subsubsection{Real fermions}
 We now decompose $c_i$'s into real and imaginary parts: \begin{equation}
 c_i = \frac12(\psi_{2i-1} + \mathrm{i} \psi_{2i}).
 \end{equation}
@@ -7784,10 +7786,35 @@ is a graded representation of $\Cliff_\bC(N)$ and vice versa.
 So it is somewhat redundant to introduce these two terminologies,
 but it  nonetheless turns out to be useful later.
 
+We constructed above an irreducible graded representation  of $\Cliff_\bC(2n)$ of dimension $2^n$.
+This is not actually unique. Consider the operator \begin{equation}
+\Gamma:=(-1)^F \psi_1\psi_2 \cdots \psi_{2n}.
+\end{equation}
+This commutes with every generator $\psi_{1,\ldots,2n}$, and also with $(-1)^F$.
+Therefore, in an irreducible representation, $\Gamma$ should act as a scalar.
+As  $\Gamma^2=(-1)^n$, this scalar is $\pm1$ when $n$ is even, and is $\pm i$ when $n$ is odd.
+Therefore there are two types of graded  irreducible representations,
+which we denote as $V_{2n}^{\bZ_2,\pm}$.
+
+This is also irreducible as an ungraded representation: \begin{equation}
+V_{2n}^{\bZ_{2}}=V_{2n}.
+\end{equation}
+Now, the irreducible graded representation $V_{2n-1}^{\bZ_2}$ of $\Cliff_\bC(2n-1)$ 
+is also unique and  of dimension $2^n$, and is simply the same $V$ with the action of $\psi_{2n}$ forgotten: \begin{equation}
+V_{2n-1}^{\bZ_2}=V_{2n}^{\bZ_{2}}
+\end{equation}
+But this is \emph{not irreducible} as an ungraded representation of $\Cliff_\bC(2n-1)$,
+since we can restrict to the eigenspaces of $(-1)^F \psi_{2n}$ with eigenvalue $\pm i$,
+which have dimensions $2^{n-1}$: \begin{equation}
+V_{2n-1}^{\bZ_2} = V_{2n-1} \oplus V_{2n-1}.
+\end{equation} We then have \begin{equation}
+V_{2n-1} = V_{2n-2}^{\bZ_2},
+\end{equation} and so on.
 
 
 \subsection{Time-reveral-invariant fermions and the 8-periodicity}
 
+\subsubsection{Time-reversal-invariant fermions and real Clifford algebras}
 Let us further consider the case when we want time-reversal invariance, with $T^2=+1$.
 $T$ is an antiunitary operator, so $Ti=-iT$.
 For now, assume the existence of the fermion parity operator $(-1)^F$ satisfying
@@ -7887,6 +7914,7 @@ the time-reversal properties of fermions, we have \begin{equation}
 (The presence of this shift by 2 when flipping the two types of fermions is one of the reasons
 we discuss both ungraded and graded representations of Clifford algebras.)
 
+\subsubsection{Explicit forms of real Clifford algebras}
 Let us study the structures of $\Cliff_\bR(n_+,n_-)$ and their ungraded representations.
 Thanks to \eqref{-} we only have to study the cases when $n_+=0$ or $n_-=0$.
 \begin{itemize}
@@ -7980,7 +8008,203 @@ In particular, we have \begin{equation}
 This is the 8-periodicity of real Clifford algebras, or equivalently,
 the 8-periodicity of time-reversal invariant fermion operators.
 
+\subsubsection{When can we gap $n$ time-reversal fermions?}
+
+Before continuing let us study a physics manifestation of the $8$-periodicity.
+Suppose we have $n$ time-reversal invariant fermions $\psi_i$
+acting on the Hilbert space $\cH$.
+We also assume the existence of $(-1)^F$.
+When can we find a Hermitean and $T$-invariant
+ Hamiltonian $H$ written in terms of $\psi_i$
+such that the ground states are non-degenerate? 
+To put in concisely, when can $n$ time-reversal invariant fermions be gapped?
+
+First, we can assume $n$ is even,
+since it can be checked that in the presence of $(-1)^F$, 
+on any representation of $\psi_{1,\ldots, 2m-1}$,
+$\psi_{2m}$ can be represented.
+Now, $\psi \psi'$ is T-invariant but not Hermitean.
+The first T-invariant Hermitean combination is $X:=\psi_1\psi_2\psi_3\psi_4$,
+which satisfies $X^2=1$.
+So we can use $-X$ as the Hamiltonian.
+The four Majorana fermions are represented on $V:=\bH^2\simeq \bC^4$,
+and therefore the eigenspace $W$ with $X=+1$ is complex two dimensional, $W=\bH=\bC^2$,
+and is still degenerate.
+
+This is due to the Kramers degeneracy. 
+Note that $X=ZZ'$ where $Z=\psi_1\psi_2$ and $Z'=\psi_3\psi_4$ as before,
+and the eigenspace $X=+1$ corresponds to the eigenspace of $Z$ and $Z'$ 
+where $Z=Z'=+i$ or $Z=Z'=-i$. 
+As such $W$ is not preserved by $T$, but $\tilde T:=T\psi_1\psi_3$ does.
+This new $\tilde T$ acting on the ground states satisfy $\tilde T^2=-1$,
+the sign of the Kramers degeneracy.
+(An alert reader will note that we did exactly the same argument above.)
+Note that we have an action of $\sigma_1:=i\psi_1\psi_4$, 
+$\sigma_2:=i\psi_2\psi_4$, $\sigma_3:=i\psi_3\psi_4$ on this subspace $W$,
+which satisfy the standard commutation relations of the Pauli matrices.
+
+Now consider two copies of four fermions, $\psi_{1,2,3,4}$ and $\psi_{1',2',3',4'}$.
+First consider the Hamiltonian $-X-X'$ where $X=\psi_1\psi_2\psi_3\psi_4$ and 
+$X'=\psi_{1'} \psi_{2'}\psi_{3'}\psi_{4'}$.
+This still leaves degenerate ground states $W\otimes W'$.
+We now add to the Hamiltonian the term $\sigma_1 \sigma_1' +\sigma_2 \sigma_2'+\sigma_3 \sigma_3'$. 
+The energy levels split into a single ground state and a triplet excited state.
+So we learned that we can gap time-reversal-invariant fermions only in a group of 8.
+
+Note that the total Hamiltonian  \begin{equation}
+H=X+X'+\sigma_1 \sigma_1' +\sigma_2 \sigma_2'+\sigma_3 \sigma_3'
+\end{equation} is quartic in $\psi$. 
+This is not a big deal in quantum mechanics, but in general dimensions this Hamiltonian 
+will be considered as an \emph{interacting} one.
+If we restrict to the \emph{free} Hamiltonian, i.e.~quadratic operators in $\psi$,
+there is simply no term one can write,
+and therefore time-reversal fermions can never be gapped.
+
+
 \subsection{Spinors in general dimensions}
+
+Let us switch our mind to the relativistic physics and consider the Dirac equation 
+in general $D=d+1$ dimensions: \begin{equation}
+(\gamma^0\partial_0 + \gamma^1\partial_1+\cdots+\gamma^d\partial_d + m ) \psi=0.
+\end{equation}
+Here we take the position that $\psi$ is a (Grassmann-valued) classical field 
+which will be later quantized.
+
+\subsubsection{Complex spinors}
+Let us first consider the case when $\psi$ forms a complex vector space.
+We postulate the anticommutation relation \begin{equation}
+\{\gamma^\mu ,\gamma^\mu\} = 2\eta^{\mu\nu},
+\end{equation} where $\eta^{\mu\nu}$ is $(+--\cdots--)$ or $(-++\cdots++)$ 
+depending on the convention.
+But over complex numbers the convention does not matter (as we can multiply any generator by $i$).
+
+\paragraph{When $D$ is even, $D=2n$:}
+Suppose $D=2n$.
+Then $\psi$ takes values in the ungraded Clifford representation  $V_{2n}$ of dimension $2^n$. 
+Let \begin{equation}
+\Gamma:= \gamma^0 \gamma^1\cdots \gamma^d. 
+\end{equation} This squares to a scalar $\Gamma^2 \propto 1$,
+and commute with the Lorentz generators $\gamma^\mu \gamma^\nu$.
+Therefore we can split $V_{2n}$ into two irreducible representations $S_+$ and $S_-$ of $so(1,2n-1)$,
+each of dimension $2^{n-1}$, distinguished by the value of $\Gamma$.
+They are known as the chiral or Weyl spinors,
+whereas $V_{2n}$ itself is known as the Dirac spinor.
+
+\paragraph{When $D$ is odd, $D=2n-1$:}
+Suppose $D=2n$.
+Then $\psi$ takes values in the ungraded Clifford representation  $V_{2n-1}$ of dimension $2^{n-1}$. 
+Here, considering $\Gamma$ as above does not help,
+since $\Gamma$ commute with every generator $\gamma^0$ to $\gamma^d$,
+and as such, $\Gamma$ is a scalar already on $V_{2n-1}$.
+This is the spinor representation of $so(1,d)$.
+
+
+\subsubsection{Real spinors}
+
+As we consider the Dirac field as a Grassmann-valued classical field which is to be quantized,
+it does not have to be complex (as a wavefunction should be).
+Any complex fields can be expanded in a real basis, so let us assume $\psi$ to be real.
+These are known as real or Majorana spinors.
+We  assume $d\ge 1$ i.e.~$D\ge 2$.
+
+
+We again postulate the anticommutation relation \begin{equation}
+\{\gamma^\mu ,\gamma^\mu\} = 2\eta^{\mu\nu},
+\end{equation} where $\eta^{\mu\nu}$ is $(+--\cdots--)$ or $(-++\cdots++)$ 
+depending on the convention.
+Then $\psi$ is an \emph{ungraded} representation of $\Cliff_\bR(1,d)$ or $\Cliff_\bR(d,1)$.
+Luckily, as we learned above, the convention on $\eta^{\mu\nu}$ does not matter,
+since there is at least one $+$-type Clifford generator. 
+
+As in the complex case, an ungraded Clifford representation 
+does not necessarily give an irreducible representation of $so(1,d)$.
+This can happen, as above, when $D=2n$ is even, 
+but there is one additional constraint. 
+The operator $\Gamma:=\gamma^0\gamma^1 \cdots \gamma^{d}$ 
+satisfies  to $\Gamma^2=+1$ when $D\equiv 2$ mod $4$ 
+but $\Gamma^2=-1$ when $D\equiv 0$ mod $4$.
+On a real vector space, an operator $\Gamma$ with $\Gamma^2=-1$ does not have eigenspaces.
+So, the real spinor can only be made chiral when $D\equiv 2$ mod $4$.
+The information is summarized in Table~\ref{tab:spinors}.
+
+\begin{table}
+\[
+\begin{array}{c||cc|c||cc|c}
+D
+& \multicolumn{2}{c|}{\text{spinor}_\bC}
+ &\dim_\bC 
+& \multicolumn{2}{c|}{\text{spinor}_\bR} 
+&\dim_\bR \\
+\hline
+2 & \bC & \bC & 1 & \bR & \bR & 1\\
+3 & \multicolumn{2}{c|}{\bC^2} & 2 &  \multicolumn{2}{c|}{\bR^2} & 2\\
+4 & \bC^2 & \bC^2 & 2 & \multicolumn{2}{c|}{\bC^2} & 4\\
+5 & \multicolumn{2}{c|}{\bC^4} & 4 &  \multicolumn{2}{c|}{\bH^2} & 8\\
+6 & \bC^4 & \bC^4 & 4 &  \bH^2 & \bH^2 & 8\\
+7 & \multicolumn{2}{c|}{\bC^8} & 8 &  \multicolumn{2}{c|}{\bH^4} & 16\\
+8 & \bC^8 & \bC^8 & 8  &  \multicolumn{2}{c|}{\bC^8}  & 16\\
+9 & \multicolumn{2}{c|}{\bC^{16}} & 16  &  \multicolumn{2}{c|}{\bR^{16}}  & 16\\
+10 & \bC^{16} & \bC^{16} & 16  &  \bR^{16}  & \bR^{16} & 16\\
+11 & \multicolumn{2}{c|}{\bC^{32}} & 32 &  \multicolumn{2}{c|}{\bR^{32}} & 32\\
+\end{array}
+\]
+\begin{itemize}
+\item $D$ is the relativists' dimension.
+\item spinor$_{\bC,\bR}$ shows the minimal spinor representations in each dimensions.
+If there are two chiral representations distinguished by the eigenvalue of $\Gamma$,
+ they are shown separately. 
+\item $\dim_{\bC,\bR}$ shows the dimensions of the minimal spinor representations.
+\item In the case of complex spinors, if there are $n$ fermions of the same type, the flavor symmetry is $u(n)$.
+\item In the case of real spinors, if there are $n$ fermions of the same type,
+ the flavor symmetry is $so(n)$, $u(n)$ or $sp(n)$
+ depending on the types of spinors shown in the column spinor$_\bR$ are
+$\bR$, $\bC$ or $\bH$, respectively.
+They follow from the representation type of corresponding Clifford algebras.
+\end{itemize}
+\caption{Properties of spinor representations in various dimensions $D=d+1$.
+\label{tab:spinors}}
+\end{table}
+
+\subsection{Pin groups and pinors}
+Spin groups $Spin(n)$ is a double cover of $SO(n)$.
+There are two distinct double covers of $O(n)$ called $Pin^\pm(n)$.
+
+Take $\Cliff_\bR(n,0)$ generated by $\gamma_i$. 
+This contains $\bR^n$ as a subspace, as the linear combinations of $\gamma_i$ themselves: \begin{equation}
+\bR^n \ni (v^i) \mapsto v^i\gamma_i \in \Cliff_\bR(n,0).
+\end{equation}
+Let us now define the action of $\gamma_a$ on $\bR^n $ via: \begin{equation}
+v^i \gamma_i \mapsto - \gamma_a (v^i \gamma_i) (\gamma_a)^{-1} .
+\end{equation}
+This acts as a reflection of the $a$-th direction of the vector $v=(v^i)$.
+Similarly, conjugating by $w^a \gamma_a$ acts on $\bR^n \subset \Cliff_\bR(n,0)$ 
+is a reflection w.r.t.~the hyperplane perpendicular to $w=(w^a)$.
+
+Now, all orthogonal transformations are generated by repeated reflections,
+and all rotations are generated by even number of repeated reflections.
+One definition of $Spin(n)$ is then the subset of $\Cliff_\bR(n,0)$ 
+multiplicatively generated by elements of the form
+\begin{equation}
+(w_1^i \gamma_i)(w_2^i \gamma_j).
+\end{equation}
+Any element $g\in Spin(n)$ determines a rotation via \begin{equation}
+v^i\gamma_i \mapsto g(v^i\gamma_i) g^{-1},
+\end{equation} giving a homomorphism \begin{equation}
+Spin(n)\to SO(n).
+\end{equation}
+This is clearly surjective. 
+It is also clear that the kernel contains $-1$, by taking $(-\gamma_1)(+\gamma_1)$, say.
+The kernel can be shown to be just $\{\pm1\}$.
+
+A $360^\circ$ rotation is this $-1$.
+This can be shown e.g.~by realizing a $180^\circ$ rotation in the 1-2 plane
+by $\gamma_1\gamma_2$. 
+Then $(\gamma_1\gamma_2)^2=-1$.
+So this definition of $Spin(n)$ gives the desired double cover of $SO(n)$.
+
+
+
+
 
 \goodbreak
 
