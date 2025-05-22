@@ -8013,6 +8013,36 @@ In particular, we have \begin{equation}
 This is the 8-periodicity of real Clifford algebras, or equivalently,
 the 8-periodicity of time-reversal invariant fermion operators.
 
+The structure of the  Clifford representations are explicitly tabulated in Table~\ref{tab:cliff}.
+Ungraded modules of $\Cliff_\bR(n_+,0)$,
+$\Cliff_\bR(n_+,1)$,
+$\Cliff_\bR(0,n_-)$,
+and
+$\Cliff_\bR(1,n_-)$
+are given. The graded representations can be easily obtained by increasing $n_+$ by one.
+
+\begin{table}
+\[
+\begin{array}{c||c|c||c|c}
+n & \Cliff_\bR(n,0) &\Cliff_\bR(n,1) & \Cliff_\bR(0,n) &\Cliff_\bR(1,n)  \\
+\hline
+0 & \bR &\bC  & \bR & \bR \quad \bR \\
+1 & \bR\quad \bR & \bR^2 & \bC & \bR^2 \\
+2 & \bR^2 &\bR^2\quad \bR^2& \bH & \bC^2\\
+3 & \bC^2 &\bR^4& \bH\quad\bH & \bH^2 \\
+4 & \bH^2 &\bC^4& \bH^2 &\bH^2 \quad \bH^2\\
+5& \bH^2\quad\bH^2 &\bH^4& \bC^4  & \bH^4\\
+6 & \bH^4 &\bH^4\quad\bH^4& \bR^8 & \bC^8\\
+7 & \bC^8 &\bH^8& \bR^8 \quad \bR^8  & \bR^{16}\\
+\hline
+8 &\bR^{16} &\bC^{16}& \bR^{16} & \bR^{16}\quad \bR^{16}\\
+9 &\bR^{16}\quad \bR^{16} &\bR^{32}& \bC^{16} &  \bR^{32}\\
+\end{array}
+\]
+\caption{Ungraded irreducible representations of real Clifford algebras. \label{tab:cliff}}
+\end{table}
+
+
 \subsubsection{When can we gap $n$ time-reversal fermions?}
 
 Before continuing let us study a physics manifestation of the $8$-periodicity.
@@ -8130,35 +8160,38 @@ The information is summarized in Table~\ref{tab:spinors}.
 
 \begin{table}
 \[
-\begin{array}{c||cc|c||cc|c}
+\begin{array}{c||c|cc|c||c|cc|c|c}
 D
+& \text{pinor}_\bC
 & \multicolumn{2}{c|}{\text{spinor}_\bC}
- &\dim_\bC 
-& \multicolumn{2}{c|}{\text{spinor}_\bR} 
-&\dim_\bR \\
+ &\dim_\bR 
+&\dim_\bR
+& \multicolumn{2}{c|}{\text{spinor}_\bR}
+&  \text{pinor}_\bR^+ 
+&  \text{pinor}_\bR^- 
+ \\
 \hline
-2 & \bC & \bC & 1 & \bR & \bR & 1\\
-3 & \multicolumn{2}{c|}{\bC^2} & 2 &  \multicolumn{2}{c|}{\bR^2} & 2\\
-4 & \bC^2 & \bC^2 & 2 & \multicolumn{2}{c|}{\bC^2} & 4\\
-5 & \multicolumn{2}{c|}{\bC^4} & 4 &  \multicolumn{2}{c|}{\bH^2} & 8\\
-6 & \bC^4 & \bC^4 & 4 &  \bH^2 & \bH^2 & 8\\
-7 & \multicolumn{2}{c|}{\bC^8} & 8 &  \multicolumn{2}{c|}{\bH^4} & 16\\
-8 & \bC^8 & \bC^8 & 8  &  \multicolumn{2}{c|}{\bC^8}  & 16\\
-9 & \multicolumn{2}{c|}{\bC^{16}} & 16  &  \multicolumn{2}{c|}{\bR^{16}}  & 16\\
-10 & \bC^{16} & \bC^{16} & 16  &  \bR^{16}  & \bR^{16} & 16\\
-11 & \multicolumn{2}{c|}{\bC^{32}} & 32 &  \multicolumn{2}{c|}{\bR^{32}} & 32\\
+2 & \bC^2 & \bC & \bC & 2 &1& \bR & \bR & \bR^2 & \bR^2\\
+3 & \bC^2\quad \bC^2 &\multicolumn{2}{c|}{\bC^2} & 4 &2 &  \multicolumn{2}{c|}{\bR^2} & \bR^2\quad \bR^2 & \bC^2 \\
+4 & \bC^4 & \bC^2 & \bC^2 & 4 & 4& \multicolumn{2}{c|}{\bC^2} & \bR^4 & \bH^2\\
+5 & \bC^4 \quad \bC^4& \multicolumn{2}{c|}{\bC^4} & 8 &  8& \multicolumn{2}{c|}{\bH^2} & \bC^4 & \bH^2 \quad \bH^2\\
+6 & \bC^8 & \bC^4 & \bC^4 & 8 & 8 & \bH^2 & \bH^2 & \bH^4 & \bH^4\\
+7 & \bC^8 \quad \bC^8 & \multicolumn{2}{c|}{\bC^8} & 16 &  16& \multicolumn{2}{c|}{\bH^4} & \bH^4\quad \bH^4 & \bC^8\\
+8 & \bC^{16} & \bC^8 & \bC^8 & 16  &  16& \multicolumn{2}{c|}{\bC^8}  & \bH^8 & \bR^{16}\\
+9 & \bC^{16} \quad \bC^{16} &\multicolumn{2}{c|}{\bC^{16}} & 32  &  16& \multicolumn{2}{c|}{\bR^{16}} &\bC^{16} & \bR^{16}\quad \bR^{16}  \\
+10 & \bC^{32} & \bC^{16} & \bC^{16} & 32  &   16& \bR^{16}  & \bR^{16} & \bR^{32} & \bR^{32}\\
+11 & \bC^{32} \quad\bC^{32}& \multicolumn{2}{c|}{\bC^{32}} & 64 & 32& \multicolumn{2}{c|}{\bR^{32}} & \bR^{32}\quad\bR^{32} & \bC^{32}\\
 \end{array}
 \]
 \begin{itemize}
 \item $D$ is the relativists' dimension.
-\item spinor$_{\bC,\bR}$ shows the minimal spinor representations in each dimensions.
-If there are two chiral representations distinguished by the eigenvalue of $\Gamma$,
- they are shown separately. 
-\item $\dim_{\bC,\bR}$ shows the dimensions of the minimal spinor representations.
-\item In the case of complex spinors, if there are $n$ fermions of the same type, the flavor symmetry is $u(n)$.
-\item In the case of real spinors, if there are $n$ fermions of the same type,
+\item spinor$_{\bC,\bR}$, pinor$_\bC$, pinor$_\bR^\pm$ show the minimal spinor representations in each dimensions.
+If there are two `chiral' representations,  they are shown separately. 
+\item $\dim_{\bR}$ shows the dimensions of the minimal spinor representations.
+\item In the case of complex (s)pinors, if there are $n$ fermions of the same type, the flavor symmetry is $u(n)$.
+\item In the case of real (s)pinors, if there are $n$ fermions of the same type,
  the flavor symmetry is $so(n)$, $u(n)$ or $sp(n)$
- depending on the types of spinors shown in the column spinor$_\bR$ are
+ depending on the types of spinors shown in the column spinor$_\bR$ or pinor$_\bR^\pm$ are
 $\bR$, $\bC$ or $\bH$, respectively.
 They follow from the representation type of corresponding Clifford algebras.
 \end{itemize}
