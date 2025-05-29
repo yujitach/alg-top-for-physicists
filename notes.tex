@@ -8496,6 +8496,72 @@ In this manner, we again see that the number of `essential massless/gapless degr
 is measured by $\bZ_2$,
 and this fact can also be seen from the sign of $\det\mathbf{m}$ in the bulk.
 
+\subsection{Ten symmetry classes}
+
+We would like to perform a general analysis of free fermionic invertible phases
+following the basic examples we saw above. 
+Before doing so, we need to study a subject which does not look immediately related.
+
+In the past Wigner proposed to study a very complicated quantum mechanical system
+by assuming that the Hamiltonian $H$ to be random, in the sense that
+each element is chosen randomly in a given ensemble, say Gaussian ensemble,
+and studying the properties of eigenvalues of such Hamiltonian. 
+A related question is to study the diagonalization problem of a random unitary operator $U$.
+
+There are many things we can say about such random matrices, and there is a big area of research known as random matrix theory. 
+It is known to reproduce reasonably well the level distribution of complex atomic nuclei,
+which is one of the originally expected applications. 
+Not only that, it is known that the zero of the Riemann zeta function 
+follows the same distribution as a random matrix of this kind,
+fueling the speculation that this number theoretical problem might be related to 
+quantum mechanics.
+
+In the vanilla random matrix theory, we consider arbitrary Hermitean matrices $H$,
+or arbitrary unitary matrices $U$.
+Imposing symmetry of course affects their properties. 
+So it is important to classify the type of symmetries. 
+The following ten symmetry classes can be motivated in multiple distinct ways.
+We proceed historically.
+
+\subsubsection{`Classical' symmetry classes}
+
+The most basic case is to consider all unitary matrices $U$ or all Hermitean matrices $H$.
+Note that $U=e^{iH}$, i.e.~$H$ can be thought of parameterizing the neighborhood of
+the identity element (the origin) of the space of $U$.
+
+We can also demand that entries of $U$ or $H$ are in $\bR$ or in $\bH$.
+Equivalently, we say that the Hilbert space $\cH$ on which $U$ or $H$ acts
+is equipped with a time-reversal symmetry $T$, which is an anti-unitary operator 
+satisfying either $T^2=+1$ or $T^2=-1$,
+and demand that $U$ or $H$ commutes with this $T$.
+
+In total we find \emph{three} basic symmetry classes.
+There are corresponding random matrix theories, or equivalently matrix models.
+The most basic case is to consider a Gaussian ensemble of such matrices,
+whose partition function is\begin{equation}
+\int dH e^{- c \tr H^\dagger H},
+\end{equation} 
+where $H$ is an Hermitean $N\times N$ matrix with entries in $\bC$, $\bR$ or $\bH$,
+with the variance $c$.
+There is a very interesting story how we should take the large $N$ limit, but that is not the main topic for us.
+These large $N$ limits are known as Gaussian unitary/orthogonal/symplectic ensemble 
+(GUE, GOE, GSE) respectively.
+
+
+\subsubsection{`Chiral' symmetry classes}
+
+In the early 1990s, Verbaarschot et al.~applied the random matrix model
+to the study of QCD. 
+There, the big matrix to be studied is the Dirac operator itself, $\gamma_\mu D_\mu$,
+acting on the space of quark wavefunctions, which is infinite dimensional,
+which we approximate by a huge but finite-size matrix in numerical lattice simulations. 
+
+To be continued ...
+
+\subsubsection{`BdG' symmetry classes}
+
+
+
 \begin{table}
 \[
 \begin{array}{c||c|c|ccc}
