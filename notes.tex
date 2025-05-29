@@ -8552,11 +8552,17 @@ These large $N$ limits are known as Gaussian unitary/orthogonal/symplectic ensem
 
 In the early 1990s, Verbaarschot et al.~applied the random matrix model
 to the study of QCD. 
-There, the big matrix to be studied is the Dirac operator itself, $\gamma_\mu D_\mu$,
+There, the big matrix to be studied is the Dirac operator itself, $\gamma^\mu D_\mu$,
 acting on the space of quark wavefunctions, which is infinite dimensional,
 which we approximate by a huge but finite-size matrix in numerical lattice simulations. 
-
-To be continued ...
+A distinguishing feature of $\gamma^\mu D_\mu$ is that it anti-commutes with $\gamma^5$, \begin{equation}
+\gamma^5 (\gamma^\mu D_\mu) + (\gamma^\mu D_\mu)\gamma^5=0, \qquad (\gamma^5)^2=+1.
+\end{equation}
+Abstracting these information, 
+let $H$ be the Hermitean Hamiltonian ($\gamma^\mu D_\mu$ in the example above),
+and $S$ be a unitary operator satisfying $S^2=+1$ ($\gamma^5$ in the example above),
+anti-commuting with each other, $SH+HS=0$. 
+(TBC)
 
 \subsubsection{`BdG' symmetry classes}
 
