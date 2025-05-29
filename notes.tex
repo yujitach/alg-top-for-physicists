@@ -166,6 +166,7 @@
 \def\alert#1{{#1}}
 \def\Sq{\mathop{\mathrm{Sq}}\nolimits}
 \def\tr{\mathop{\mathrm{tr}}\nolimits}
+\def\diag{\mathop{\mathrm{diag}}\nolimits}
 
 \begin{document}
 
@@ -8263,6 +8264,7 @@ All these info are gathered in Table~\ref{tab:spinors}.
 \subsection{Two basic examples}
 
 \subsubsection{1+1d boundary, 2+1d bulk, without additional invariance}
+\paragraph{Boundary analysis:}
 Consider a massless/gapless relativistic real fermion in $1+1$ dimensions. 
 It can either be left moving, \begin{equation}
 \frac{\partial}{\partial t} \psi + \frac{\partial} {\partial x}\psi =0
@@ -8279,23 +8281,32 @@ where $\alpha^1$ of \eqref{alphas} is represented by $\pm1$.
 
 To make them massive/gapped, we need to combine the two, and produce the dispersion relation \begin{equation}
 E=\pm\sqrt{p^2+m^2}.
-\end{equation} This arises if we have the equation of the following form
-for a real two-component $\psi$, \begin{equation}
-\gamma_0 \frac{\partial}{\partial t} \psi + \gamma_1 \frac{\partial} {\partial x}\psi  + m\psi=0
-\end{equation} in the relativistic convention, or \begin{equation}
-\frac{\partial}{\partial t} \psi +\alpha_1 \frac{\partial} {\partial x}\psi  + m\beta\psi=0
-\end{equation} in the non-relativistic convention.
-As $\beta\sim \gamma_0$  and $\alpha\sim \gamma_0\gamma_1$, 
-they need to anticommute. Also, when $p=0$, $\beta$ is such that 
-it should produce $\psi \sim e^{\pm imt}$ as solutions, 
-so $\beta$ needs to square to $-1$, while $\alpha_i$ squares to $+1$ (as we already saw above.)
+\label{massive-eigen}
+\end{equation} This arises if we have the equation %of the following form
+for a real two-component $\psi$, %\begin{equation}
+%\gamma_0 \frac{\partial}{\partial t} \psi + \gamma_1 \frac{\partial} {\partial x}\psi  + m\psi=0
+%\end{equation} in the relativistic convention, or 
+\begin{equation}
+\frac{\partial}{\partial t} \psi +\alpha_1 \frac{\partial} {\partial x}\psi  + m\beta\psi=0,
+\label{nonrel-dir}
+\end{equation} in the non-relativistic convention, where $\beta$ is some matrix.
+As Dirac originally argued, for $ ip\alpha_1 + m\beta$ to have eigenvalues \eqref{massive-eigen},
+we need \begin{equation}
+(\alpha_1)^2=+1, \quad \beta^2=-1, \quad \alpha_1\beta+\beta\alpha_1=0.
+\end{equation}
+%they need to anticommute. Also, when $p=0$, $\beta$ is such that 
+%it should produce $\psi \sim e^{\pm imt}$ as solutions, 
+%so $\beta$ needs to square to $-1$, while $\alpha_i$ squares to $+1$ (as we already saw above.)
 Therefore, the massive real fermion in 2d is characterized by an (ungraded) representation $\bR^2$ of $\Cliff_\bR(1,1)$, 
-which splits into $\bR_+$ and $\bR_-$ of $\Cliff_\bR(1)$ when we turn off the mass/gap.
+as the Table above shows.
+This representation splits into $\bR_+$ and $\bR_-$ of $\Cliff_\bR(1)$ when we turn off the mass/gap.
 
 So, if we have $n_L$ left-movers and $n_R$ right-movers, 
 we can combine $\mathrm{min}(n_L,n_R)$ of them and make them massive/gapped,
 but $|n_L-n_R|$ of them remain massless/gapless.
+So the number of `essentially gappless degrees of freedom' is measured by $\bZ$, so to speak.
 
+\paragraph{Bulk analysis:}
 Let us next a massive fermion in the 2+1d bulk, with the equation of motion \begin{equation}
 \frac{\partial}{\partial t} \psi +\alpha_1 \frac{\partial} {\partial x}\psi   
 +\alpha_2\frac{\partial}{\partial y}\psi + m\beta\psi=0,
@@ -8315,7 +8326,7 @@ For concreteness, take \begin{equation}
 1 &  0
 \end{pmatrix}.
 \end{equation}
-$m$ is then a real parameter. We have a disperson relation \begin{equation}
+$m$ is then a real parameter. We have a dispersion relation \begin{equation}
 E=\pm \sqrt{p_x^2 + p_y^2 + m^2}.
 \end{equation}
 
@@ -8353,8 +8364,11 @@ But if we have the phase $m\ll 0$ on $y<0$ and the phase $m\gg 0$ on $y>0$,
 a massless fermion of definite chirality (moving direction) appears.
 We will later learn that the bulk low-energy limit has an effective action 
 given by the gravitational Chern-Simons term, giving a nonzero thermal Hall conductivity.
+This nonzero thermal Hall conductivity, which is an integer quantity,
+measures the number of `the essentially massless degrees of freedom' on the boundary.
 
 \subsubsection{1+1d boundary, 2+1d bulk, with $T^2=(-1)^F$}
+\paragraph{Boundary analysis:}
 Let us repeat our analysis above, but with time reversal invariance imposed. 
 In 1+1d, the time reversal sends a mode moving in one direction to a mode moving in the opposite direction. 
 In the gapless/massless case,
@@ -8369,6 +8383,7 @@ the minimal situation is to have \begin{equation}
 0 & -1\\
 1& 0
 \end{pmatrix}
+\label{2dpin-}
 \end{equation} for pin$^-$ with $T^2=+1$, or \begin{equation}
 \gamma_0 = \begin{pmatrix}
 0 & -1\\
@@ -8378,20 +8393,108 @@ the minimal situation is to have \begin{equation}
 0 & 1\\
 1& 0
 \end{pmatrix}
-\end{equation} for pin$^+$ with $T^2=(-1)^F$.
+\label{2dpin+}
+\end{equation} for pin$^+$ with $T^2=(-1)^F$. In either case, the time-reversal transformation is given by \begin{equation}
+\psi'(t,x) := \gamma_0 \psi(-t,x).\label{t-r}
+\end{equation}
 
 Now suppose you want to make this massive/gapped. 
 We write \begin{equation}
-\gamma_0 \partial_t \psi + \gamma_1 \partial_x \psi + m\psi=0.
-\end{equation} The fact that $\psi$ is a real two-component vector 
-forces us to take $m$ to be real.
-To allow $\psi\sim e^{\pm i mt}$ when $\psi$ is $x$-independent, 
-$\gamma_0$ needs to have eigenvalue $\pm i$.
-This means that this pair of a left-moving fermion and a right-moving fermion
-can be made massive for pin$^+$ with $T^2=(-1)^F$,
-but this is impossible for pin$^-$ with $T^2=+1$.
-(This is opposite to what should be the case. ???)
+\gamma_0 \partial_t \psi + \gamma_1 \partial_x \psi + m\gamma_m\psi=0,
+\end{equation} with some real matrix $\gamma_m$.
+For this equation to be invariant under \eqref{t-r}, $\beta$ needs to anticommute with $\gamma_0$.
+Also, comparing with \eqref{nonrel-dir}, 
+we need $\alpha:=\gamma_0\gamma_1$ and $\beta:=\gamma_0\gamma_m$ to anticommute. 
+This requires $\gamma_m$ to anticommute with both $\gamma_0$ and $\gamma_1$.
+Essentially the only possible choice is then to take $\gamma_m=\sigma_3$.
 
+Furthermore, we need $(\gamma_0\gamma_1)^2=+1$ and $(\gamma_0\gamma_m)^2=-1$,
+which was also already argued. 
+This last condition is satisfied for \eqref{2dpin-} but not for \eqref{2dpin+}.
+This means that this pair of a left-moving fermion and a right-moving fermion
+can be made massive for \eqref{2dpin-}, i.e.~pin$^-$ with $T^2=+1$,
+but this is impossible for \eqref{2dpin+}, i.e.~pin$^+$ with $T^2=(-1)^F$.
+
+Let us concentrate on the nontrivial case $T^2=(-1)^F$.
+The difference from the non-time-reversal case was that if we have two pairs of 
+left-moving fermions and right-moving fermions, it can be made massive.
+Indeed, two pairs  can be considered as a complex 2-component vector; then 
+we can simply take $\gamma_m := i\sigma_3$, and we are done.
+Therefore, the number of `essentially massless degrees of freedom' in this case 
+is measured in $\bZ_2$, not in $\bZ$ as before.
+
+\paragraph{Bulk analysis:}
+Let us then consider the bulk theory in 2+1 dimensions with time-reversal symmetry with $T^2=(-1)^F$.
+The equation is \begin{equation}
+\gamma_0 \partial_t\psi +\gamma_1\partial_x\psi + \gamma_2\partial_y\psi + m\gamma_m \psi =0,
+\label{2+1treq}
+\end{equation}
+where $\gamma_{0,1,2,m}$ anticommute with each other, and \begin{equation}
+(\gamma_0)^2=(\gamma_m)^2=-1,\qquad (\gamma_1)^2=(\gamma_2)^2=+1.
+\end{equation}
+This is $\Cliff_\bR(2,2)$, whose minimal representation is $\bR^4$. 
+We want to consider varying $m$ along $y$ as above.
+When $m$ crosses from positive to negative around $y\sim 0$,
+a computation analogous to the one above shows that two massless/gapless modes 
+exponentially localized around $y\sim 0$ appear, one left-moving and one right-moving.
+
+What happens when we have \emph{two} copies of such systems?
+We need to analyze in more detail the space of mass terms. 
+Let us go back to the massless case again.
+$\gamma_{0,1,2}$ without $\gamma_m$ form $\Cliff_\bR(1,2)$ instead, whose minimal representation
+is $\bR^2_+$ and $\bR^2_-$. 
+Them $\gamma_m$ exchanges these two factors. 
+So our representation is of the form \begin{equation}
+\gamma_{0,1,2}=\begin{pmatrix}
+\square & 0 \\
+0 & -\square
+\end{pmatrix}, \qquad
+m \gamma_m=\begin{pmatrix}
+0 & -m \mathbf{1}_2 \\
+m \mathbf{1}_2 & 0
+\end{pmatrix}
+\end{equation}
+
+We now introduce $n$ copies of such fermions, with the equation of motion \begin{equation}
+\gamma_0 \partial_t\psi +\gamma_1\partial_x\psi + \gamma_2\partial_y\psi + \gamma_m(\mathrm{m}) \psi =0,
+\end{equation} where $\psi$ has $4n$ real components
+and $\mathrm{m}$ is the matrix of mass parameters.
+An explicit representation of matrices appearing above
+can be chosen to be  \begin{equation}
+\gamma_{0,1,2}=\begin{pmatrix}
+\square \otimes \mathbf{1}_n& 0 \\
+0 & -\square\otimes \mathbf{1}_n
+\end{pmatrix}, \qquad
+\gamma_m(\mathbf{m})=\begin{pmatrix}
+0 & -\mathbf{1}_2 \otimes \mathbf{m}\\
+\mathbf{1}_2 \otimes \mathbf{m}^{T} & 0
+\end{pmatrix}
+\end{equation} where $\mathbf{m}$ is now an $n\times n$ real matrix.
+Then the dispersion relation is \begin{equation}
+E=\pm \sqrt{p_x^2 + p_y^2 + \mathbf{m}^T \mathbf{m}}.
+\end{equation}
+
+Now, what happens when we change $\mathrm{m}$ from $-\diag(m,\ldots,m)$ to 
+$+\diag(m,\ldots,m)$ around $y\sim 0$? 
+If we choose the $y$ dependence to be \begin{equation}
+\mathrm{m}=m(y) \diag(1,1,\ldots, 1)
+\end{equation} where  $m(y)$ interpolates from $-M$ to $+M$ as before,
+we simply have $n$ massless time-reversal invariant fermions exponentially localized around $y\sim 0$.
+
+However, when $n=2k$ is even, we can continuously change this path to \begin{equation}
+\mathrm{m}(y) = M \begin{pmatrix}
+\cos\theta(y) & -\sin\theta(y) \\
+\sin\theta(y) & \cos\theta(y)
+\end{pmatrix} \otimes \mathbf{1}_k,
+\end{equation}such that $\theta(y)$ goes from $-\pi$ to $+\pi$.
+In this case the bulk mass never vanishes, and therefore no localized modes around $y\sim 0$ either.
+
+When $n$ is odd, there is no such deformation where the bulk mass never vanishes.
+This is because $\det \mathbf{m}$ changes from negative to positive in this case,
+and therefore it crosses zero at some point, producing at least one pair of localized modes around $y\sim 0$.
+In this manner, we again see that the number of `essential massless/gapless degrees of freedom' at the boundary 
+is measured by $\bZ_2$,
+and this fact can also be seen from the sign of $\det\mathbf{m}$ in the bulk.
 
 \begin{table}
 \[
