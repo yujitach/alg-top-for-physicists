@@ -8624,6 +8624,7 @@ the four cases,
 \item the case (2) with $S^2=1$ anticommuting with $\tilde T$.
 \end{enumerate}
 
+\subsubsection{Summary}
 In total, we have \emph{ten} symmetry classes.
 Let us study these ten cases in more detail.
 
@@ -8754,7 +8755,7 @@ U(N),\quad O(N),\quad Sp(n),\\
 \displaystyle
 \frac{U(N)}{U(N_+)\times U(N_-)} ,\quad
 \frac{O(N)}{O(N_+)\times O(N_-)} ,\quad
-\frac{Sp(n)}{Sp(n_+)\times Sp(n_-)} ,\\
+\frac{Sp(n)}{Sp(n_+)\times Sp(n_-)} ,\\[1em]
 \displaystyle \frac{U(N)}{O(N)},\quad
 \frac{U(N)}{Sp(n)},\quad
 \frac{O(2n)}{U(n)},\quad
@@ -8776,9 +8777,81 @@ and eight real classes, depending on whether the constraints involve
 anti-unitary operators or not.
 As there are only two complex classes, there seems no point in ordering them,
 but in the table we did choose a peculiar ordering of the eight real classes.
-This is related to the property of fermions, which is now explained.
+This is related to the property of fermions, which we now explain.
 
+\subsubsection{Shifting the complex classes}
+Let us start with the complex classes.
+The class A is the space of all unitary operators $U$.
+We didn't have any constraint on $U$.
 
+Let us add a constraint that there is a fermion operator $\psi$
+satisfying $\psi U=U^{-1}\psi$.
+(If $U=e^{iH}$, this is equivalent to $H\psi+\psi H=0$.)
+What is the space of such $U$? 
+Well, $\psi$ is simply another name for $S$, so we got the symmetry class AIII.
+
+What happens if we add two fermion operators $\psi_1$ and $\psi_2$
+anticommuting with each other satisfying $\psi_i U=U^{-1}\psi_i$?
+In other words, what happens if we add to the symmetry class AIII 
+another unitary operator $S'$ satisfying $S'^2=1$ and $S'S=-SS'$?
+Let $\cH$ be the Hilbert space on which $U$ acts.
+The operator $iSS'$ squares to $1$. Let $\cH_+$ be the eigenspace where $iSS'=+1$. 
+As $iSS'$ commutes with $U$, we simply have a unitary operator $U$ on $\cH_+$,
+and we got back to the symmetry class A.
+
+\subsubsection{Shifting the real classes}
+Let us now consider the real classes.
+We start from the class AI, with $TU=U^{-1}T$ and $T^2=+1$.
+If $U=e^{iH}$, this is equivalent to $TH+HT=0$.
+
+What happens if we add a fermion operator $\psi_{1,2,\ldots,n}$
+anticommuting with each other satisfying $\psi_i U=U^{-1}\psi_i$?
+Now we also need to specify how $\psi_i$ commutes with $T$.
+Let us consider the case where $\psi_i T = T\psi_i$.
+
+With a single $\psi$, i.e.~$n=1$, we simply rename $\psi$ as $S$,
+and we have the class BDI.
+With two fermion operators $\psi_1$ and $\psi_2$,
+consider the operator $i\psi_1\psi_2$ which squares to $1$.
+Let $\cH_+$ be the eigenspace where $i\psi_1\psi_2=+1$.
+$U$ acts within $\cH_+$, but $T$ does not. 
+Instead, consider $T':=T\psi_1$. 
+This preserves  $\cH_+$, squares to $+1$, and satisfy $T'U=UT'$.
+Therefore we have the class D, where $\tilde T:=T'$.
+
+With three fermion operators $\psi_1$, $\psi_2$ and $\psi_3$,
+we first use the first two to come to the class $D$.
+$\psi_3$ now anticommutes with $\tilde T$.
+Writing $S:=\psi_3$, this is class DIII.
+With the fourth fermion operator $\psi_4$, we consider the $+1$ eigenspace of
+$i\psi_3\psi_4$. This is preserved by $U$ and $T'':=\tilde T\psi_3$.
+$T''$ squares to $-1$, and satisfies $T''U=U^{-1}T''$.
+This is the class AII.
+
+We can continue the analysis in the similar way, 
+and find the class CII, the class C, and the class CI.
+At the eighth step we come back to the class AI.
+In Table~\ref{tab:real-classes}, we ordered the classes in this order and numbered them from $i=0$ to $i=7$.
+
+We have two remarks before continuing. 
+\begin{itemize}
+  \item To go from the $i$-th symmetry class to the $(i+1)$-st class, 
+  we are adding a constraint that there exists a `fermion' operator $\psi$ 
+  which satisfies $\psi U=U^{-1}\psi$. 
+  Here, the commutation relations of $\psi$ with $T$, $\tilde T$, or $S$ 
+  are always the same as the commutation relations 
+  of $H$ with $T$, $\tilde T$ or $S$, respectively.
+  \item Suppose we have a system in the $i$-th symmetry class,
+  and another system in the $j$-th symmetry class.
+  The combined system inherits time-reversal symmetries from both systems,
+  but they combine in a nontrivial way.
+  It turns out that the combined system is in the $(i+j)$-th symmetry class.
+  One can check this one by one, but an easier way it to note that the $i$-th
+  symmetry class is $TU=U^{-1}T$ with $T^2=+1$ together with $i$ fermion operators.
+  Then the combined system is simply $TU=U^{-1}T$ with $T^2=+1$ together with $(i+j)$ fermion operators.
+  This shows the utility of both the `shift' process 
+  and also the associated numbering of the symmetry classes. 
+\end{itemize}
 \subsection{Bulk analysis}
 
 \subsection{Boundary analysis}
