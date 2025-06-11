@@ -8624,7 +8624,8 @@ the four cases,
 \item the case (2) with $S^2=1$ anticommuting with $\tilde T$.
 \end{enumerate}
 
-
+In total, we have \emph{ten} symmetry classes.
+Let us study these ten cases in more detail.
 
 \begin{table}
 \[
@@ -8684,15 +8685,99 @@ The ten classes introduced so far are summarized in Table~\ref{tab:complex-class
 and Table~\ref{tab:real-classes}.
 They are named according to the Cartan classification,
 noticed first by Altland and Zirnbauer in the paper cited above.
-Let us see how it goes.
+The explanation is as follows.
 
 In each symmetry class, we are restricting the unitary $U$ by 
-some subset of $S$, $T$ and $\tilde T$,
-where \begin{itemize}
-\item $S$ is unitary, $S^2=1$, and $SU=U^{-1}S$,
-\item $T$ is antiunitary, $T^2=1$, and $TU=U^{-1}T$,
-\item $\tilde T$ is antiunitary, $\tilde T^2=1$, and $\tilde TU=U\tilde T$.
+some subset of $S$, $T$ and $\tilde T$, with the following conditions:
+\begin{itemize}
+\item $S$ is unitary, $S^2=1$, and $SU=U^{-1}S$, corresponding to $SH=-HS$.
+\item $T$ is antiunitary, $T^2=\pm1$, and $TU=U^{-1}T$, corresponding to $TH=+HT$.
+\item $\tilde T$ is antiunitary, $\tilde T^2=\pm1$, and $\tilde TU=U\tilde T$, corresponding to $\tilde H=-H\tilde T$.
 \end{itemize}
+Here we also listed the conditions on $H$ when $U=e^{itH}$.
+
+Let us now consider the space of all such unitary operators $U$  under a chosen set of constraints. 
+We go on one by one. Suppose $U$ acts on $\bC^N$.
+\begin{itemize}
+\item With no constraints, all such $U$ clearly form the space $U(N)$.
+\item With $\tilde T^2=+1$, $U$ acts within the real subspace $\bR^N$ where $\tilde T=+1$.
+Then $U$  is a real matrix, so they form the space $O(N)$.
+\item With $\tilde T^2=-1$, we can regard $\tilde T$ to be the multiplication by $j$ of the quaternion,
+with $N=2n$.
+So $U$'s are quaternionic unitary, and form $Sp(n)$.
+\end{itemize}
+So far we saw group manifolds. Let us now include $S$. 
+\begin{itemize}
+\item With $S^2=+1$, $\bC^N$ can be decomposed into two subspaces $V_+$ and $V_-$ depending on the eigenvalue of $S=\pm1$.
+Now consider $(US)^2=USUS=+1$. Therefore $US$ can be used to separeate $\bC^N$
+into $W_+$ and $W_-$, where $W_\pm$ are the eigenspaces of $US$ with eigenvalue $\pm1$. 
+Conversely, the pair of $W_+$ and $W_-$ determines $US$, and therefore $U$.
+Therefore the space of $U$ is the space of pairs of subspaces $W_+$ and $W_-$.
+More explicitly, let $u$ be a unitary matrix mapping $V_+$ to $W_+$ and $V_-$ to $W_-$. 
+Then $US=uSu^{-1}$, and $U$ is determined by $u$.
+This $u$ is not unique, since $u$ and $uu_0$ gives the same $U$
+if $u_0$ commutes with $S$. Such $u_0$'s form the group $U(N_+)\times U(N_-)$, where $N_\pm$ are the dimensions of $V_\pm$.
+So the space of $U$ is the quotient space $U(N)/ (U(N_+)\times U(N_-))$.
+\item With $S^2=+1$ and $\tilde T^2=+1$ commuting with $S$, we can work on $\bR^N$ instead of $\bC^N$, and we find that the space of $U$ is the quotient space $O(N)/(O(N_+)\times O(N_-))$.
+\item With $S^2=+1$ and $\tilde T^2=-1$ commuting with $S$, we can work on $\bH^n$ with $2n=N$ instead of $\bC^N$, and we find that the space of $U$ is the quotient space $Sp(n)/(Sp(n_+)\times Sp(n_-))$.
+\end{itemize}
+These three spaces are known as Grassmannians.
+They are known to become 
+the classifying spaces $BU(N_-)$, $BO(N_-)$ and $BSp(n_-)$ respectively,
+when we take the limit $N=N_++N_-\to\infty$ keeping $N_-$ fixed.
+
+We are now left with four cases involving $T$
+not treated yet.
+\begin{itemize}
+\item With $T^2=+1$, we have $UT=U^{-1}T$. Recalling $U^{-1}=U^\dagger$, 
+and working in the basis where $T$ is simply complex conjugation of matrix elements, we see $U=U^T$, i.e.~$U$ is a symmetric unitary matrix.
+Temporarily call the set of such matrices as $\mathcal{U}$.
+It is preserved by the action by $u\in U(N)$, given by $U\mapsto u U u^T$.
+Given a point $\mathbf{1}_N\in U(N)$, the subgroup of $U(N)$ fixing it is 
+$\{u\mid uu^T=\mathbf{1}_N\}$, which is the group of orthogonal matrices $O(N)$.Therefore, $\mathcal{U}=U(N)/O(N)$.
+\item With $T^2=-1$, we can similarly work in the quaternionic basis,
+to show that the space of $U$ is $U(N)/Sp(n)$, where $N=2n$.
+\item With $\tilde T^2=+1$ and $S\tilde T=-\tilde TS$ (and therefore $T^2=-1$),
+we first use $\tilde T$ to work in $\bR^N$, so $U$ is now restricted to $O(N)$.
+Now,  $I:=iS$ maps this $\bR^N$ to itself, and squares to $-1$,
+giving $\bR^N$ the structure of a complex vector space $\bC^n$, where $N=2n$.
+Similarly, $(UI)^2=-1$. As before, $UI=uIu^{-1}$, and $u$ determines $U$.
+Furthermore, $u$ and $uu_0$ give the same $U$ when $u_0 I (u_0)^{-1}=I$.
+Such $u_0$ form the group $U(n)$. Therefore, the space of $U$ is the quotient space $O(2n)/U(n)$.
+\item The final case is with $\tilde T^2=-1$, $S\tilde T=-\tilde TS$ (and therefore $T^2=+1$). Analyzing similarly as above, one finds that the space of $U$ is $Sp(n)/U(n)$, where $N=2n$.
+\end{itemize}
+
+In total, we found the following ten spaces of unitaries:
+\begin{equation}
+  \begin{array}{c}
+U(N),\quad O(N),\quad Sp(n),\\
+\displaystyle
+\frac{U(N)}{U(N_+)\times U(N_-)} ,\quad
+\frac{O(N)}{O(N_+)\times O(N_-)} ,\quad
+\frac{Sp(n)}{Sp(n_+)\times Sp(n_-)} ,\\
+\displaystyle \frac{U(N)}{O(N)},\quad
+\frac{U(N)}{Sp(n)},\quad
+\frac{O(2n)}{U(n)},\quad
+\frac{Sp(n)}{U(n)}.
+\end{array}
+\end{equation}
+They are all homogeneous spaces (i.e.~spaces of the form $G/H$ for some group $G$ and a subgroup $H$). 
+Not only that, they are all \emph{symmetric spaces} (i.e.~an invariant subset of a group $G$ under an order-2 action $\sigma:G\to G$ which is also a homogenous space $G/H$).
+Cartan classified such symmetric spaces, and found \emph{ten} infinite families and a number of exceptional ones. 
+The ten families we found above are exactly the infinite families found by Cartan and furthermore exhaust them.
+Cartan named them using the Dynkin name of $G$ 
+(i.e. A for $U$, $B$ for $SO$ odd, $C$ for $Sp$, $D$ for $SO$ even, etc.)
+together with roman numerals to distinguish the denominator $H$,
+which are given in Table~\ref{tab:complex-classes} and Table~\ref{tab:real-classes}.
+
+\subsection{`Shifting' the symmetry classes}
+The ten classes can be naturally separated into two complex classes
+and eight real classes, depending on whether the constraints involve
+anti-unitary operators or not.
+As there are only two complex classes, there seems no point in ordering them,
+but in the table we did choose a peculiar ordering of the eight real classes.
+This is related to the property of fermions, which is now explained.
+
 
 \subsection{Bulk analysis}
 
