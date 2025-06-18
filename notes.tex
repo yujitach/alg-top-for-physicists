@@ -8028,11 +8028,11 @@ are given. The graded representations can be easily obtained by increasing $n_+$
 n & \Cliff_\bR(n,0) &\Cliff_\bR(n,1) & \Cliff_\bR(0,n) &\Cliff_\bR(1,n)  \\
 \hline
 0 & \bR &\bC  & \bR & \bR \quad \bR \\
-1 & \bR\quad \bR & \bR^2 & \bC & \bR^2 \\
+1 & \bR_+\quad \bR_- & \bR^2 & \bC & \bR^2 \\
 2 & \bR^2 &\bR^2\quad \bR^2& \bH & \bC^2\\
 3 & \bC^2 &\bR^4& \bH\quad\bH & \bH^2 \\
 4 & \bH^2 &\bC^4& \bH^2 &\bH^2 \quad \bH^2\\
-5& \bH^2\quad\bH^2 &\bH^4& \bC^4  & \bH^4\\
+5& \bH^2_+\quad\bH^2_- &\bH^4& \bC^4  & \bH^4\\
 6 & \bH^4 &\bH^4\quad\bH^4& \bR^8 & \bC^8\\
 7 & \bC^8 &\bH^8& \bR^8 \quad \bR^8  & \bR^{16}\\
 \hline
@@ -8634,7 +8634,7 @@ Let us study these ten cases in more detail.
 i & \text{grading}& \text{name} & \text{unitaries} & \begin{tabular}{c} gapped \\ Hamiltonians\end{tabular} & K^{-i}(pt) & \text{hist.}\\
 \hline
 0&  & \text{A} & U & BU \times \bZ& \bZ  & \text{classic}\\
-1 & \checkmark & \text{AIII} & BU & U & 0 & \text{chiral}
+1 & \checkmark & \text{AIII} & BU\times \bZ & U & 0 & \text{chiral}
 \end{array}
 \]
 \medskip
@@ -8655,13 +8655,13 @@ which is also used to name the symmetry classes.
 i & T^2 & \tilde T^2 & \text{grading}& \text{name} & \text{unitaries} & \begin{tabular}{c} gapped \\ Hamiltonians\end{tabular} & KO^{-i}(pt)& \text{hist.}\\
 \hline
 0& +1&&&\text{AI} & U/O  & BO \times \bZ& \bZ & \text{classic}\\
-1& +1&+1&+&\text{BDI} & BO & O  &\bZ_2& \text{chiral}\\
+1& +1&+1&+&\text{BDI} & BO\times \bZ & O  &\bZ_2& \text{chiral}\\
 2& &+1&&\text{D} & O & O/U &\bZ_2 &\text{AZ}\\
 3& -1&+1&-&\text{DIII}& O/U &U/Sp &0&\text{AZ}\\
 4& -1&&&\text{AII}&U/Sp & BSp\times \bZ & \bZ& \text{classic}\\
-5& -1&-1&-&\text{CII}& BSp & Sp  & 0& \text{chiral}\\
+5& -1&-1&+&\text{CII}& BSp\times\bZ & Sp  & 0& \text{chiral}\\
 6& &-1&&\text{C}&Sp & Sp/U  &0 &\text{AZ}\\
-7& +1&-1&+&\text{CI} &Sp/U & U/O &0&\text{AZ}\\
+7& +1&-1&-&\text{CI} &Sp/U & U/O &0&\text{AZ}\\
 \end{array}
 \]
 \medskip
@@ -8730,7 +8730,7 @@ when we take the limit $N=N_++N_-\to\infty$ keeping $N_-$ fixed.
 We are now left with four cases involving $T$
 not treated yet.
 \begin{itemize}
-\item With $T^2=+1$, we have $UT=U^{-1}T$. Recalling $U^{-1}=U^\dagger$, 
+\item With $T^2=+1$, we have $TU=U^{-1}T$. Recalling $U^{-1}=U^\dagger$, 
 and working in the basis where $T$ is simply complex conjugation of matrix elements, we see $U=U^T$, i.e.~$U$ is a symmetric unitary matrix.
 Temporarily call the set of such matrices as $\mathcal{U}$.
 It is preserved by the action by $u\in U(N)$, given by $U\mapsto u U u^T$.
@@ -8771,6 +8771,17 @@ Cartan named them using the Dynkin name of $G$
 together with roman numerals to distinguish the denominator $H$,
 which are given in Table~\ref{tab:complex-classes} and Table~\ref{tab:real-classes}.
 
+In the tables, we took the limit $N\to\infty$, 
+by enlarging the Hilbert space $\cH$. 
+It is customary to denote the limiting infinite-dimensional symmetric spaces by 
+dropping $N$ or $n$ from the notation.
+For $G/(G\times G)$ for $G=U, O, Sp$, we used $BG$
+instead, as they are classifying spaces of $G$-bundles.
+Furthermore, we wrote $BG\times \bZ$ instead of just $BG$,
+to remind ourselves that $N_+$ and $N_-$ are not necessarily equal,
+and there is one additional integer-degree of parameters.
+(This process of going infinite-dimensional can be described more fully and rigorously, but we will not do so here.)
+
 \subsection{`Shifting' the symmetry classes}
 The ten classes can be naturally separated into two complex classes
 and eight real classes, depending on whether the constraints involve
@@ -8808,42 +8819,47 @@ What happens if we add a fermion operator $\psi_{1,2,\ldots,n}$
 anticommuting with each other satisfying $\psi_i U=U^{-1}\psi_i$?
 Now we also need to specify how $\psi_i$ commutes with $T$.
 Let us consider the case where $\psi_i T = T\psi_i$.
-
-With a single $\psi$, i.e.~$n=1$, we simply rename $\psi$ as $S$,
+\begin{enumerate}
+\item With a single $\psi$, i.e.~$n=1$, we simply rename $\psi$ as $S$,
 and we have the class BDI.
-With two fermion operators $\psi_1$ and $\psi_2$,
+\item With two fermion operators $\psi_1$ and $\psi_2$,
 consider the operator $i\psi_1\psi_2$ which squares to $1$.
 Let $\cH_+$ be the eigenspace where $i\psi_1\psi_2=+1$.
 $U$ acts within $\cH_+$, but $T$ does not. 
 Instead, consider $T':=T\psi_1$. 
 This preserves  $\cH_+$, squares to $+1$, and satisfy $T'U=UT'$.
 Therefore we have the class D, where $\tilde T:=T'$.
-
-With three fermion operators $\psi_1$, $\psi_2$ and $\psi_3$,
+\item With three fermion operators $\psi_1$, $\psi_2$ and $\psi_3$,
 we first use the first two to come to the class $D$.
 $\psi_3$ now anticommutes with $\tilde T$.
 Writing $S:=\psi_3$, this is class DIII.
-With the fourth fermion operator $\psi_4$, we consider the $+1$ eigenspace of
+\item With the fourth fermion operator $\psi_4$, we consider the $+1$ eigenspace of
 $i\psi_3\psi_4$. This is preserved by $U$ and $T'':=\tilde T\psi_3$.
 $T''$ squares to $-1$, and satisfies $T''U=U^{-1}T''$.
 This is the class AII.
+\item With the fifth fermion operator $\psi_5$, $T''$ anticommutes with $\psi_5$.
+Writing $S:=\psi_5$, we have the class CII.
+\item With the sixth fermion operator $\psi_6$, we consider the $+1$ eigenspace of
+$i\psi_5\psi_6$.
+This is preserved by $U$ and $T''':=T''\psi_5$. 
+$T'''$ squares to $-1$, and satisfies $T'''U=U T'''$.
+Defining $\tilde T:=T'''$, we have the class C.
+\item With the seventh fermion operator $\psi_7$, $T'''$ commutes with $\psi_7$.
+calling $S:=\psi_7$, we have the class CI.
+\item Finally, with the eighth fermion operator $\psi_8$, we consider the $+1$ eigenspace of
+$i\psi_7\psi_8$.
+This is preserved by $U$ and $T''''=T'''\psi_7$.
+$T''''$ squares to $+1$, and satisfies $T''''U=U^{-1}T''''$.
+This is the class AI, which is the same as the starting point.
+\end{enumerate}
 
-We can continue the analysis in the similar way, 
-and find the class CII, the class C, and the class CI.
-At the eighth step we come back to the class AI.
+The symmetry shifting process continues indefinitely, with periodicity modulo 8.
 In Table~\ref{tab:real-classes}, we ordered the classes in this order and numbered them from $i=0$ to $i=7$.
 
-We have two remarks before continuing. 
-\begin{itemize}
-  \item To go from the $i$-th symmetry class to the $(i+1)$-st class, 
-  we are adding a constraint that there exists a `fermion' operator $\psi$ 
-  which satisfies $\psi U=U^{-1}\psi$. 
-  Here, the commutation relations of $\psi$ with $T$, $\tilde T$, or $S$ 
-  are always the same as the commutation relations 
-  of $H$ with $T$, $\tilde T$ or $S$, respectively.
-  \item Suppose we have a system in the $i$-th symmetry class,
-  and another system in the $j$-th symmetry class.
-  The combined system inherits time-reversal symmetries from both systems,
+We have a remark before continuing. 
+   Suppose we have a system in the $i$-th symmetry class acting on $\cH_1$,
+  and another system in the $j$-th symmetry class acting on $\cH_2$.
+  The combined system on $\cH_1\otimes \cH_2$ inherits time-reversal symmetries from both systems,
   but they combine in a nontrivial way.
   It turns out that the combined system is in the $(i+j)$-th symmetry class.
   One can check this one by one, but an easier way it to note that the $i$-th
@@ -8851,8 +8867,132 @@ We have two remarks before continuing.
   Then the combined system is simply $TU=U^{-1}T$ with $T^2=+1$ together with $(i+j)$ fermion operators.
   This shows the utility of both the `shift' process 
   and also the associated numbering of the symmetry classes. 
+
+\subsection{Gapped Hamiltonians in $0+1$ dimensions}
+
+So far we have considered symmetry classes of unitary operators $U$.
+Pick a symmetry class.
+Assume $U=e^{iH}$, and require further that $H$ does not have a zero eigenvalue.
+Call such an $H$ a gapped Hamiltonian.
+
+Our $H$ should be considered as a one-particle Hamiltonian in a fermionic system.
+In cond-mat language, the energy being zero  corresponds to the Fermi energy,
+the positive eigenvalues are particles, and the negative eigenvalues are holes. 
+In hep-th language, the Fermi energy is implicitly set to zero, and the positive eigenvalues are particles, while the negative eigenvalues are antiparticles.
+In either case, as long as there is no zero eigenvalue of $H$,
+the system is gapped/massive.
+
+We would like to classify such gapped Hamiltonians, up to continuous deformations.
+We start with the $0+1$ dimensional cases.
+Consider the complex symmetry class A.
+The space of gapped Hamiltonians $H$ is the space of all Hermitean matrices $H$ with no zero eigenvalue.
+Consider changing the eigenvalues while keeping the eigenspaces fixed.
+Without crossing the eigenvalue zero, we can set all eigenvalues $\pm1$.
+Then we have split the one-particle Hilbert space $\cH$ into the 
+positive and negative eigenspaces $\cH_+$ and $\cH_-$.
+Such splitting was considered before when we discussed another complex symmetry class, 
+the class AII, and is parameterized by $U(N)/(U(N_+)\times U(N_-))$.
+For a fixed splitting $N=N_++N_-$, the space is connected,
+while two different splittings $(N_+,N_-)\neq (N_+',N_-')$ are not connected to each other.
+Therefore the space of gapped Hamiltonians in the complex symmetry class A
+is classified by an integer $N_+\in \bZ$.
+We can take the large $N$ limit, where the space of gapped Hamiltonians becomes
+\begin{equation}
+\prod_{N_+} \frac{U(N)}{U(N_+)\times U(N_-)} \xrightarrow{N\to\infty} BU\times \bZ.
+\end{equation}
+We then find the classification to be given by \begin{equation}
+  \pi_0(BU\times \bZ)=\bZ.
+\end{equation}
+
+The real symmetry class AI is similar.
+The only difference is that we have the time-reversal symmetry $T^2=1$
+imposed, commuting with $H$.
+Then $\cH$ are effectively real vector spaces, and we find $BO\times \bZ$
+instead of $BU\times \bZ$.
+The space of gapped Hamiltonians is then classified by \begin{equation}
+  \pi_0(BO\times \bZ)=\bZ.
+\end{equation}
+
+To analyze other symmetry classes, it is better to go systematically.
+\if0
+Let $U=e^{itH}$, and assume $H$ to be gapped.
+We can keep the eigenspaces fixed and change the eigenvalues continuously,
+so that all the eigenvalues are $\pm1$.
+Then $H^2=+1$.
+We now want to classify such $H$'s up to continuous deformations.
+For this purpose, fix one such $H$ and call it $H_0$.
+All other $H$ can be written as $H=H_0 U'$ for some unitary operator $U'$.
+
+The commutation relations of $U'$ with $T$, $\tilde T$ or $S$ 
+are the same as the commutation relations of $U$ with $T$, $\tilde T$ or $S$. 
+In addition, a short computation shows that $H_0 U'=(U')^{-1} H_0$.
+
+Writing $\psi:=H_0$, this means that $U'$ satisfies 
+
+  To go from the $i$-th symmetry class to the $(i+1)$-st class, 
+  we are adding a constraint that there exists a `fermion' operator $\psi$ 
+  which satisfies $\psi U=U^{-1}\psi$. 
+  Here, the commutation relations of $\psi$ with $T$, $\tilde T$, or $S$ 
+  are always the same as the commutation relations 
+  of $H$ with $T$, $\tilde T$ or $S$, respectively.
+\fi
+For notational brevity, let us assume that we are studying real symmetry classes.
+Complex symmetry classes can be treated similarly and are easier.
+Instead of studying the gapped Hamiltonians $H$ of type $n$, 
+let us study the gapped Hamiltonians $H$ 
+of type $0$ with $\psi_{1,\ldots,n}$.
+Now, we deform the eigenvalues of $H$ to $\pm1$ while keeping eigenspaces fixed.
+Then $H$ satisfies $H^2=+1$. By construction, $H$ anticommutes with $\psi_n$.
+Writing $\psi_{n+1}:=H$, we see that we are trying to extend 
+a fixed ungraded Clifford representation of $\psi_{1,\ldots,n}$ into 
+an ungraded Clifford representation of $\psi_{1,\ldots,n+1}$,
+by appropriately choosing $\psi_{n+1}$.
+
+Now, given one set of $\psi_{1,\ldots,n+1}$, let $G_n$ be the group of $U$ such that
+\begin{equation}
+U\psi_{i}U^{-1}=\psi_{i},\qquad i=1,\ldots, n.
+\end{equation}
+Then $\tilde\psi_{n+1}:=U\psi_{n+1}U^{-1}$ also does the job.
+But $UV\in G_n$ and $U\in G_n$ give the same $\tilde\psi_{n+1}$ if $V\psi_{n+1} V^{-1}=\psi_{n+1}$,
+i.e.~$V$ belongs to the group $G_{n+1}$ of $V$ such that \begin{equation}
+V\psi_{i}V^{-1}=\psi_{i},\qquad i=1,\ldots, n+1.
+\end{equation}
+Then, the space of all $\psi_{n+1}$ for fixed $\psi_{1,\ldots,n}$ is 
+the quotient space $G_n/G_{n+1}$.
+Now let us work them out.
+
+To follow the arguments below, please refer to Table~\ref{tab:cliff} to remind ourselves
+the structure of ungraded Clifford modules:
+\begin{itemize}
+  \item When $n=0$. The ungraded representation of $\Cliff_\bR(1,0)$ is
+   a direct sum of $N_+$ copies of $\bR_+$ and $N_-$ copies of $\bR_-$,
+   with $\Cliff_\bR(0,0)$ represented on $\bR^{N}$ where $N=N_++N_-$.
+   So $G_0=O(N)$, $G_1=O(N_+)\times O(N_-)$,
+   and therefore the space of $\psi_1$ is $O(N)/(O(N_+)\times O(N_-))$.
+\item When $n=1$. $\Cliff_\bR(2,0)$ is represented on $N$ copies of $\bR^2$,
+decomposing into $\Cliff_\bR(1,0)$ represented on $N$ copies of $\bR_+$ and $N$ copies of $\bR_-$.
+Then $G_1=O(N)\times O(N)$ while $G_2=O(N)$. So the space of $\psi_2$ is $(O(N)\times O(N))/O(N)=O(N)$.
+\item When $n=2$, $\Cliff_\bR(3,0)$ is represented on $N$ copies of $\bC^2$,
+which become $2N$ copies of $\bR^2$ under $\Cliff_\bR(2,0)$.
+Therefore, $G_2=O(2N)$ while $G_3=U(N)$, and the space of $\psi_3$ is $O(2N)/U(N)$.
+\item When $n=3$, $G_3=U(2N)$ and $G_4=Sp(N)$, so the space of $\psi_4$ is $Sp(N)/U(2N)$.
+\item When $n=4$, $G_4=Sp(N)$ and $G_5=Sp(N_+)\times Sp(N_-)$, so the space of $\psi_5$ is $Sp(N)/(Sp(N_+)\times Sp(N_-))$.
+\item When $n=5$, $G_5=Sp(N)\times Sp(N)$ and $G_6=Sp(N)$, so the space of $\psi_6$ is $(Sp(N)\times Sp(N))/Sp(N)=Sp(N)$,
+\item When $n=6$, $G_6=Sp(N)$ and $G_7=U(N)$, and the space of $\psi_7$ is $Sp(N)/U(N)$, and 
+\item When $n=7$, $G_7=U(N)$ and $G_8=O(N)$, and the space of $\psi_8$ is $U(N)/O(N)$.
 \end{itemize}
-\subsection{Bulk analysis}
+The resulting spaces of gapped Hamiltonians of each symmetry class 
+are also given in Table~\ref{tab:complex-classes} and Table~\ref{tab:real-classes}.
+Note that the space of gapped Hamiltonians of type $i$ is 
+the same as the space of unitaries of type $i-1$.\footnote{%
+It would be nice to have a more direct argument of this equality, but I do not know how at the moment.
+This also means that people could have named the symmetry classes using the space of gapped Hamiltonians
+instead of the space of unitaries. This would have shifted the names by one step.
+}
+The classification of the gapped Hamiltonians is then given by taking 
+$\pi_0$ of the space of the gapped Hamiltonians.
+They are listed at the columns $K^{-i}(pt)$ and $KO^{-i}(pt)$ in the Tables.
+We now need to explain this funny notation.
 
 \subsection{Boundary analysis}
 
