@@ -131,6 +131,7 @@
 \def\bC{\mathbb{C}}
 \def\bH{\mathbb{H}}
 \def\bK{\mathbb{K}}
+\def\bN{\mathbb{N}}
 \def\bR{\mathbb{R}}
 \def\bZ{\mathbb{Z}}
 
@@ -8262,6 +8263,7 @@ All these info are gathered in Table~\ref{tab:spinors}.
 \section{Free fermionic invertible phases and K-theory}
 
 \subsection{Two basic examples}
+\label{sec:basic-free-examples}
 
 \subsubsection{1+1d boundary, 2+1d bulk, without additional invariance}
 \paragraph{Boundary analysis:}
@@ -8994,14 +8996,240 @@ $\pi_0$ of the space of the gapped Hamiltonians.
 They are listed at the columns $K^{-i}(pt)$ and $KO^{-i}(pt)$ in the Tables.
 We now need to explain this funny notation.
 
-\subsection{Boundary analysis}
-
-\subsection{Relativistic version}
-
-\subsection{With internal symmetry}
-
 \subsection{K and KO-theory}
+There are many approaches to define $K$ theory and $KO$ theory,
+which in the end can be proved to be the same. 
+One definition which is closest to our consideration is the following: 
+\begin{equation}
+K^0(X) = [X, BU\times \bZ],\qquad K^{-1}(X)=[X, U]
+\end{equation}  and $K^i(X)$ for general $i$ is defined by considering $i$ mod 2.
+Here, $X$ is a space and $[X,Y]$ is the homotopy class of maps from $X$ to $Y$.
+Similarly, \begin{equation}
+\begin{aligned}
+KO^0(X)&=[X,BO\times \bZ], &
+KO^{-1}(X)&=[X,O], \\
+KO^{-2}(X)&=[X,O/U],&
+KO^{-3}(X)&=[X,U/Sp],\\
+KO^{-4}(X)&=[X,BSp\times \bZ], &
+KO^{-5}(X)&=[X,Sp], \\
+KO^{-6}(X)&=[X,Sp/U],&
+KO^{-7}(X)&=[X,U/O],\\
+\end{aligned}
+\end{equation} and $KO^i(X)$ for general $i$ is defined by considering $i$ mod 8.
 
+Note that the spaces appearing on the second slots of $[X,-]$ in the definition of $K^{-i}$ 
+and $KO^{-i}$ above  are exactly the symmetric spaces parameterizing gapped Hamiltonians
+of $i$-th complex/real symmetry type.
+When some concept $\mathcal{C}$ in algebraic topology, depending on $X$,
+can be represented in terms of homotopy class of maps $[X,C]$,
+the space $C$ is usually called the classifying space of $\mathcal{C}$.
+In this sense, the infinite-dimensional symmetric spaces given above are the classifying spaces of $K$ theory
+and of $KO$ theory.
+
+Taking $X=\pt$, 
+the 0+1-dimensional gapped Hamiltonian of complex/real symmetry type $i$ is classified by 
+$K^{-i}(\pt)$ and $KO^{-i}(\pt)$, as we already saw above.
+
+Usually, $K^0(X)$ and $KO^0(X)$ are introduced using a different definition.
+Consider a complex vector bundle $E\to X$.
+Given two such bundles $E_1\to X$ and $E_2\to X$, we can form the direct sum bundle $E_1\oplus E_2\to X$.
+This makes the set of equivalence classes $[E]$ of complex bundles on $X$ a monoid (i.e.~a set with an addition
+which satisfies associativity).
+We can introduce a formal additive inverse $-[E]$ to $[E]$, so that $[E]+ (-[E])=0$.
+
+To do this concretely, recall that we can construct $\bZ$ from $\bN$ 
+by considering pairs $(a,b) \in \bN^2$ with the sum $(a,b)+(c,d)=(a+c,b+d)$
+with the equivalence $(a+c,b+c)\sim (a,b)$. Then $(0,a)$ can be thought of as $-a$.
+Similarly, we just consider pairs $([E],[F])$ with the addition $([E],[F])+([E'],[F'])=([E]+[E'],[F]+[F'])$
+and an equivalence relation $([E]+[E'],[F]+[E'])\sim ([E],[F])$. Then $(0,[E])$ is $-[E]$.
+If we want, we can denote the pair $([E],[F])$ as $[E\ominus F]$, 
+where we can say that $E\ominus F$ is a formal difference of vector bundles.
+
+In this manner, we constructed an Abelian group of formal differences of equivalence classes of complex bundles over $X$.
+This is the standard definition of $K^0(X)$ (when $X$ is compact).
+Using real bundles instead of complex bundles, we get $KO^0(X)$.
+We can also use quaternionic bundles to define $KSp^0(X)$, but this turns out to be equal to $KO^4(X)$.
+
+We have defined  $K^0(X)$ and $KO^0(X)$ in two ways, one using bundles and another using classifying spaces.
+Showing that the two definitions are equivalent requires a significant amount of work,
+although the argument for $\bC$ and $\bR$ are perfectly parallel.
+A rough idea is the following. 
+
+First, one can show that any $n$-dimenisional complex vector bundle $E\to X$ 
+can be realized as a sub-bundle of a trivial $N$-dimensional vector bundle $\bC^N\times X$,
+for $N\gg n$.
+Over each point $x\in X$, $E_x$ defines an $n$-dimensional subspace of $\bC^N$,
+i.e.~a point in the Grassmannian $U(N)/(U(n)\times U(N-n))$.
+Its limit  $N\to\infty$ while keeping $n$ fixed, we get \begin{equation}
+BU(n) := \lim_{N\to \infty} \frac{U(N)}{U(n)\times U(N-n)}, 
+\end{equation} and $n$-dimensional complex vector bundles on $X$ up to equivalence
+is in 1-to-1 correspondence with $[X,BU(n)]$.
+
+Now we need to consider formal differences $E\ominus F$.
+Let us first show that we only have to consider the formal differences of the form $[E]-[\bC^N]$,
+where $[\bC^N]$ is a trivial bundle $\bC^N \times X$  on $X$.
+To see this, we use the fact that any $F$ is a subbundle of a trivial bundle $\bC^N$,
+which we already used above.
+Then, there is an $F'$ such that $[F]+[F']=N$, where we denoted $[\bC^N]$ simply by $N$.
+Then $[E]-[F] = [E\oplus F']-N$.
+
+We can further rewrite $[E]-N$ as \begin{equation}
+([E]-\dim E) + k
+\end{equation} with an integer $k$. So any formal difference can be described in terms of an integer $k\in \bZ$
+and a vector bundle $[E]$.
+An $n$-dimensional vector bundle is classified by $BU(n)$,
+and taking $n\to\infty$, we see that arbitrary vector bundle $E$ is classified by $BU$.
+Together with $k$, we found that $K^0(X)\simeq [X, BU\times \bZ]$. 
+Similarly, we find $KO^0(X)\simeq [X,BO\times \bZ]$ and $KSp^0(X)\simeq [X,BSp\times \bZ]$.
+
+There are also several different-looking definitions of $K^{-i}(X)$  and $KO^{-i}(X)$.
+One definition is to use complex/real bundles with an additional action of Clifford algebras.
+Another definition is to define them as \begin{equation}
+K^{-i}(X):=[X,\Omega^i (BU\times \bZ)], \qquad
+KO^{-i}(X):=[X,\Omega^i (BO\times \bZ)]
+\end{equation} for positive $i$, where $\Omega Y$ is the space of loops in $Y$, and $\Omega^iY:=\Omega^{i-1}(\Omega Y)$.
+We can show that \begin{equation}
+\Omega (BU\times \bZ)\simeq U,\qquad
+\Omega U\simeq BU
+\label{complex-loops}
+\end{equation} and similarly \begin{equation}
+\begin{aligned}
+\Omega (BO\times \bZ)&\simeq O,&
+\Omega O&=O/U,&
+\Omega O/U&=U/Sp,&
+\Omega U/Sp &=BSp\times \bZ, \\
+\Omega (BSp\times \bZ)&\simeq Sp,&
+\Omega Sp&=Sp/U,&
+\Omega Sp/U&=U/O,&
+\Omega U/O &=BO\times \bZ.
+\end{aligned}
+\label{real-loops}
+\end{equation}
+Then $K^{-i}(X)$ and $KO^{-i}(X)$ as defined above (at this point only for nonnegative $i$)
+ turn out to be 2-periodic and 8-periodic, respectively, and then $i$ can be extended by periodicity to negative $i$
+ using this property.
+ 
+One way to see that the relations \eqref{complex-loops} and \eqref{real-loops} are believable
+is to recall, say, for real symmetry type $i=2$, the space of unitaries are $O$ while the space of gapped Hamiltonians are $O/U$. 
+Now, take a gapped Hamiltonian $H$. From this, we can construct a `loop' in the space of unitaries 
+via $e^{itH}$, where $t$ is varied from $0$ to $2\pi$, if we recall that all the eigenvalues of $H$ was
+modified to be $\pm1$.
+This gives a map $O/U\to \Omega O$. This works analogously to all other symmetry types.
+The proof along this line was given in \cite{Wood}.
+
+
+\subsection{Gapped Hamiltonians in $d+1$ dimensions}
+
+\subsubsection{Cond-mat analysis}
+Let us now consider the same question in $d+1$ dimensions.
+Namely, suppose we have a free fermionic system
+described by a one-particle Hamiltonian of the form \begin{equation}
+H = p_1 \alpha_1 + p_2 \alpha_2 +\cdots + p_d \alpha_d + h_0,
+\label{gen-hamiltonian}
+\end{equation}
+where the $p$-independent part of the Hamiltonian, $h_0$, has a complex/real symmetry type $i$.
+For the energy spectrum to have the form \begin{equation}
+E^2 = (p_1)^2 + \cdots + (p_d)^2 + m^2,
+\end{equation} we want $\alpha_k$'s to anticommute with each other and also with $h_0$,
+so we have additional Clifford generators, effectively shifting the symmetry type by $d$ steps.
+One tricky point is that, as $p_k$ is odd under time reversal,
+ we want $\alpha_k$ to be odd, too: $T\alpha_k = -\alpha_k T$.
+ This is the opposite behavior of the fermions as we considered above,
+ so we end up shifting `up' in the Tables~\ref{tab:complex-classes} and~\ref{tab:real-classes}.
+This means that fermionic free gapped Hamiltonians of real/complex symmetry type $i$ 
+in dimension $d+1$ is classified by \begin{equation}
+K^{d-i}(\pt),\qquad KO^{d-i}(\pt),
+\end{equation} respectively. 
+This gives the famous `periodic tables' of 
+ topological insulators (where the electromagnetic $U(1)$ is not broken and therefore
+we consider symmetry classes without anti-unitary operators)
+and as topological superconductors (where the electromagnetic $U(1)$ is generically broken to $\bZ_2$ 
+due to Cooper pairs, which can be implemented using the existence of anti-unitary symmetry operators) \cite{Kitaev:2009mg,Schnyder:2008tya,Ryu:2010zza}.
+See Table~\ref{tab:periodic-table}.
+
+These constructions unify various invariants of topological insulators and superconductors devised in the past.
+For example, in 2+1d, the Chern number or equivalently the Hall conductivity
+of integer quantum Hall effect in 2+1d 
+corresponds to $\bZ$ of the symmetry class A,
+the thermal Hall conductivity 
+corresponds to $\bZ$ in the symmetry class D,
+and the $\bZ_2$ classification of class DIII is done by  the Kane-Mele invariant.
+  
+\begin{table}
+\[
+\begin{array}{c|c|cc}
+  \text{name} & i \setminus d & 0 & 1 \\
+  \hline
+  \text{A} & 0 & \bZ & 0\\
+  \text{AIII} & 1 & 0 & \bZ\\
+\end{array}
+\qquad
+\begin{array}{c|c|cccccccc|c}
+ \text{name} & i \setminus d & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 &\text{rel.}\\
+  \hline
+  \text{AI} & 0 & \bZ & 0 & 0 & 0 & \bZ & 0 & \bZ_2 & \bZ_2& \\
+  \text{BDI} & 1 & \bZ_2 & \bZ & 0 & 0 & 0 & \bZ & 0 & \bZ_2 & \text{pin$-$} \\
+  \text{D} & 2 & \bZ_2 & \bZ_2 & \bZ & 0 & 0 & 0 & \bZ & 0 &\text{spin}\\
+  \text{DIII} & 3 & 0 & \bZ_2 & \bZ_2 & \bZ & 0 & 0 & 0 & \bZ&\text{pin$+$}\\
+  \text{AII} & 4 & \bZ & 0 & \bZ_2 & \bZ_2 & \bZ & 0 & 0 & 0&\\
+  \text{CII} & 5 & 0 & \bZ & 0 & \bZ_2 & \bZ_2 & \bZ & 0 & 0&\\ 
+  \text{CI} & 6 & 0 & 0 & \bZ & 0 & \bZ_2 & \bZ_2 & \bZ  & 0&\\
+  \text{C} & 7 & 0 & 0 & 0 & \bZ & 0 & \bZ_2 & \bZ_2 & \bZ&\\
+\end{array}
+\]
+\caption{Periodic table of topological insulators
+and topological superconductors. \label{tab:periodic-table}}
+\end{table}
+
+\subsubsection{Relativistic analysis}
+
+Relativistic fermions also follow the same classification.
+Let us consider relativistic fermions in $D=d+1$ dimensions invariant under 
+the part of Lorentz group connected to the identity. 
+We saw in the section on spinors that they are ungraded representations of 
+the Clifford algebra $\Cliff_\bR(d,0)$, with \begin{equation}
+\{\alpha^i,\alpha^j\}=+2\delta^{ij}
+\end{equation} where $\alpha^i=\gamma^0\gamma^i$,
+when we use Majorana basis.
+The massive Dirac equation  is then of the form  \begin{equation}
+\partial_t \psi = \sum_i \alpha^i\partial_i \psi + m\beta \psi,
+\label{Maj-fer}
+\end{equation}
+where $m\beta$ is a real mass matrix. 
+For this to have the disperson relation $E^2= \sum (p_i)^2 + m^2$,
+$\beta$ needs to anticommute with $\alpha^i$'s,
+and satisfy $\beta^2=-1$.
+Therefore we are considering the extension of ungraded representations of $\Cliff_\bR(d,0)$
+to those of $\Cliff_\bR(d,1)$.
+Equivalently, the extension from $\Cliff_\bR(0,d-2)$ to $\Cliff_\bR(1,d-2)$,
+or equivalently from $\Cliff_\bR(8n-(d-2),0)$ to $\Cliff_\bR(8n-(d-2)+1,0)$.
+This is classified by $KO^{d-2}(\pt)$, so this is symmetry type D.
+
+Another way to see that this is symmetry type D is to compare \eqref{Maj-fer}
+with the general Hamiltonian \eqref{gen-hamiltonian}.
+Then $h_0$ in \eqref{gen-hamiltonian} corresponds to $i\beta$ in \eqref{Maj-fer}, 
+i.e.~$h_0$ in \eqref{gen-hamiltonian} is forced to be purely imaginary and 
+therefore there exists an antiunitary symmetry $\tilde T$ such that $\tilde Th_0=-h_0 \tilde T$,
+which is the defining property of the symmetry class D.
+This anti-unitary symmetry $\tilde T$, which automaticaly exists because of the
+relativistic nature of the system,
+is the manifestation of the fact that the CPT symmetry always exists in relativistic quantum field theories.
+
+We can also consider the relativistic case with parity symmetry.
+As discussed above, the Dirac equation in this case is \begin{equation}
+\gamma_0\partial_t\psi -\gamma_i \partial_i\psi + m\gamma_m\psi =0
+\end{equation}
+where $\gamma_0$ and $\gamma_m$ have the same type while $\gamma_i$'s have the opposite type.
+Concretely, in the case of pin+, we consider extension problems
+from $\Cliff_\bR(d,1)$ to $\Cliff_\bR(d,2)$,
+whereas in the case of pin-, we consider extension problems
+from $\Cliff_\bR(1,d)$ to $\Cliff_\bR(2,d)$.
+As such, pin+ cases are classified by $KO^{d-3}(\pt)$, of symmetry type DIII,
+while pin- cases are classified by $KO^{d-1}(\pt)$, of symmetry type BDI.
+
+This means, for example, that the  classification of massive fermions in 2+1d
+is trivial for pin-, $\bZ$ for spin, and $\bZ_2$ for pin+.
+This matches with the explicit analysis we performed in Sec.~\ref{sec:basic-free-examples}.
 \goodbreak
 
 \section{Interacting fermionic invertible phases and spin bordism}
@@ -9035,15 +9263,6 @@ We now need to explain this funny notation.
 
 
 
-\if0
-\section{K-theory}
-
-\section{Atiyah-Singer index theorem}
-
-\section{Anomalies}
-
-\section{Computing \texorpdfstring{$\pi_4(S^3)$}{pi4(S3)}}
-\fi
 
 \bibliographystyle{ytamsalpha}
 %\baselineskip=.85\baselineskip%\let\ttfamily\relax
