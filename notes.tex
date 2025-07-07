@@ -152,6 +152,8 @@
 
 \def\Spin{\mathit{Spin}}
 \def\pt{\mathrm{pt}}
+\def\Arg{\mathop{\mathrm{Arg}}}
+\def\sign{\mathop{\mathrm{sign}}}
 \def\Ker{\mathop{\mathrm{Ker}}}
 \def\Im{\mathop{\mathrm{Im}}}
 \def\Lk{\mathop{\mathrm{Lk}}}
@@ -8046,7 +8048,7 @@ n & \Cliff_\bR(n,0) &\Cliff_\bR(n,1) & \Cliff_\bR(0,n) &\Cliff_\bR(1,n)  \\
 
 
 \subsubsection{When can we gap $n$ time-reversal fermions?}
-
+\label{sec:fk}
 Before continuing let us study a physics manifestation of the $8$-periodicity.
 Suppose we have $n$ time-reversal invariant fermions $\psi_i$
 acting on the Hilbert space $\cH$.
@@ -9316,10 +9318,130 @@ This matches with the explicit analysis we performed in Sec.~\ref{sec:basic-free
 \goodbreak
 
 \section{Interacting fermionic invertible phases and spin bordism}
+We saw that the classification of gapped free fermionic Hamiltonians lead to 
+the periodic table of topological insulators and superconductors,
+summarized in Table~\ref{tab:periodic-table}.
+Let us focus on $\bZ$ on the diagonal, in particular
+$\bZ$ at $i=d=1$ (BDI or pin$-$),
+$\bZ$ at $i=d=2$ (D or spin), and $\bZ$ at $i=d=3$ (DIII or pin$+$). 
 
-\subsection{Mod-8 reduction of Fidkowski and Kitaev}
+When we allow interactions, $\bZ$ at $i=d=2$ is known to remain,
+but $\bZ$ at $i=d=1$ is known to reduce to $\bZ_8$,
+and $\bZ$ at $i=d=3$ is known to reduce to $\bZ_{16}$.
+The reduction at $i=d=1$ was first observed in \cite{Fidkowski:2009dba} and we
+actually already saw this in Sec.~\ref{sec:fk}.
+Indeed, if the bulk has $1+1$ dimensions, the boundary is simply a $0+1$-dimensional system, which is just another name for a quantum mechanical system.
+The pin$-$ condition means that $T^2=+1$, the standard time-reversal symmetry.
+In that case, we saw that we cannot gap the system with free (i.e.~quadratic)
+Hamiltonians, but with eight Majorana fermions with quartic Hamiltonian,
+it is possible to gap the system.
 
-\subsection{The gravitational Chern-Simons term}
+What is then the general theory of the classification of interacting fermionic invertible phases?
+The generally accepted answer now is that it is given in terms of 
+a certain dual version of the bordism groups, again a major topic 
+in algebraic topology.
+The aim of this section is to explain these matters.
+
+\subsection{Eta invariants}
+It is hard to conceptualize arbigrary interacting fermionic systems.
+But any quantum mechanical system should have a partition function on a closed spacetime.
+We are going to use such partition functions to characterize interacting fermionic invertible phases.
+For this purpose, we need to learn the partition functions of very massive free fermionic systems.
+
+\subsubsection{Definition}
+So, take an $d+1$-dimensional free fermionic system, Wick-rotate it,
+and consider it on a manifold $M_{d+1}$.
+It is given by a quadratic Lagrangian schematically of the form 
+$S=\int d^{d+1}x \bar\psi (m+iD)\psi$,
+where $D$ is the Dirac operator. Then the partition function is given by \begin{equation}
+Z(M_{d+1},m) = \int [d\psi][d\bar\psi] e^{-\int d^{d+1}x \bar\psi (m+iD)\psi}
+= \prod_{a} (m+i \lambda_a)
+\end{equation}
+where $\lambda_a$ are the eigenvalues of the Dirac operator $D$.
+
+We are only interested in the extreme long-distance limit, which means that we take $|m|\to\infty$.
+We now consider the ratio \begin{equation}
+\frac{Z(M_{d+1},m\to +\infty)}{Z(M_{d+1},m\to -\infty)} =
+\lim_{M\to +\infty}\prod_a \frac{i\lambda_a/M+1}{i\lambda_a/M-1},
+\end{equation}
+which is better-defined than either the numerator or the denominator alone.
+
+This is a pure phase, so write it as \begin{equation}
+  \frac{1}{2\pi}\Arg \frac{Z(M_{d+1},m\to +\infty)}{Z(M_{d+1},m\to -\infty)} = \lim_{M\to +\infty}\sum_a \frac1{2\pi}\Arg \frac{i\lambda_a/M+1}{i\lambda_a/M-1} 
+\end{equation},
+which is well-defined modulo 1.
+It can also be written in a suggestive notation as \begin{equation}
+  =\frac12 \text{``}\sum_a \sign \lambda_a \text{''}.
+\end{equation}
+by taking the limit $M\to \infty$ for individual $\lambda_a$ first.
+Of course this last expression requires regularization, 
+but thanks to the general theory of renormalization, any sensible regularization will do.
+
+This is called the \emph{eta invariant} of the Dirac operator $D$ on $M_{d+1}$,
+and is denoted by $\eta(D)$.  Equivalently, \begin{equation}
+Z(M_{d+1})=e^{2\pi i\eta(D)}
+\end{equation} where the left-hand side is the ratio of the partition functions
+of free fermionic systems with $m\to +\infty$ and $m\to -\infty$.
+
+Some comments are in order:
+\begin{itemize}
+\item The eta invariant might have scared you in the past, 
+but it is just the phase part
+of the partition function of an infinitely-massive free fermionic system,
+so there is nothing for you to be worried about.
+\item In this lecture series, we typically care about the eta invariant modulo 1, but it can be defined as a real number.
+In that case, the contribution of $\lambda_a=0$ is defined to be $+1/2$ by convention.
+Changing it to $-1/2$ does not affect the eta invariant modulo 1, 
+but does change the eta invariant by 1.
+\item If we go back to the original mathematical references,
+one finds that $\eta$ is defined without $1/2$ at the front,
+with the contribution from zero eigenvalues being $0$.
+What is written here is rather denoted by $\xi$.
+But using $\eta$ for $\xi$ is by now standard in the physics literature,
+and we follow this practice here.
+\item In the mathematical literature, zeta function regularization is usually used.
+But as already mentioned, any reasonable regularization will do, and 
+we will usually use the regularization by $e^{-s|\lambda_a|}$ with $s\to 0$ later.
+\end{itemize}
+
+\subsubsection{An example: complex fermion on $S^1$}
+
+As an example,  consider a complex fermion on $S^1$
+with the Dirac operator $D=i\partial_\theta+A$,
+where $A$ is the constant $U(1)$ gauge field.
+Taking the periodicity to be $\theta\sim \theta+2\pi$,
+the eigenvalues of $D$ are $\lambda_n = n+(1/2-a)$ for $n\in \bZ$,
+where \begin{equation}
+\frac12 -a :=\int_{0}^{2\pi} A d\theta  .
+\end{equation}
+Here the subtraction by $1/2$ is a convention, but a motivation is as follows.
+If we consider a fermionic system and take the Wick rotation,
+$\tr e^{-\beta H}$ corresponds to anti-periodic fermion in the thermal time direction,
+whereas a periodic fermion corresponds to $\tr (-1)^F e^{-\beta H}$ instead.
+And we wanted $a=0$ to correspond to the standard thermal partition function,
+which should be positive.   
+
+Now, assuming that $a$ is sufficiently small, $n+1/2-a$ for $  n\ge 0$ is positive, whereas $n+1/2-a$ for $n<0$ is negative.
+Then we have \begin{equation}
+\sum_{n\ge 0} (+1) e^{-s(n+1/2-a)} = 1/s+a+ O(s),\qquad
+\sum_{n<0} (-1)e^{-s|n+1/2-a|}= 1/s-a+O(s).
+\end{equation}
+So we have \begin{equation}
+  \eta(D)=\lim_{s\to 0}\frac12 (2a+O(s)) = a.
+\end{equation}
+That $\eta(D)=0$ for $a=0$ is consistent because this should be the phase of a
+thermal partition function, which should be real and positive.
+
+If $a$ is not necessarily small, we need to find an integer $m$ such that $|a-m| \le 1/2$.
+Then for $a':=a-m$, the spectrum $\{n+(1/2-a)\}$ is the same as $\{n+(1/2-a')\}$,
+so the computation above goes through, and we find 
+\begin{equation}
+\eta(D) = a' = a - m \in [-1/2,1/2].
+\end{equation}
+In this manner we find that $\eta(D)$ is not necessarily continuous as a real-valued function but it is continuous modulo 1.
+
+\subsubsection{Atiyah-Patodi-Singer index theorem}
+
 
 \goodbreak
 
