@@ -8056,11 +8056,14 @@ When can we find a Hermitean and $T$-invariant
 such that the ground states are non-degenerate? 
 To put in concisely, when can $n$ time-reversal invariant fermions be gapped?
 
+\paragraph{Two fermions.}
 First, we can assume $n$ is even,
 since it can be checked that in the presence of $(-1)^F$, 
 on any representation of $\psi_{1,\ldots, 2m-1}$,
 $\psi_{2m}$ can be represented.
 Now, $\psi \psi'$ is T-invariant but not Hermitean.
+
+\paragraph{Four fermions.}
 The first T-invariant Hermitean combination is $X:=\psi_1\psi_2\psi_3\psi_4$,
 which satisfies $X^2=1$.
 So we can use $-X$ as the Hamiltonian.
@@ -8080,6 +8083,39 @@ Note that we have an action of $\sigma_1:=i\psi_1\psi_4$,
 $\sigma_2:=i\psi_2\psi_4$, $\sigma_3:=i\psi_3\psi_4$ on this subspace $W$,
 which satisfy the standard commutation relations of the Pauli matrices.
 
+\paragraph{Six fermions.}
+\if0 % The following two paragraphs were suggested by copilot. I need to check if they are correct, just to gauge their usefulness.
+Now consider six time-reversal invariant fermions $\psi_{1,2,3,4,5,6}$.
+The first T-invariant Hermitean combination is $X:=\psi_1\psi_2\psi_3\psi_4\psi_5\psi_6$,
+which satisfies $X^2=1$.
+So we can use $-X$ as the Hamiltonian.
+The six Majorana fermions are represented on $V:=\bH^3\simeq \bC^8$,
+and therefore the eigenspace $W$ with $X=+1$ is complex three dimensional, $W=\bH^3=\bC^4$,
+and is still degenerate.
+
+This is due to the Kramers degeneracy.
+Note that $X=ZZ'$ where $Z=\psi_1\psi_2\psi_3$ and $Z'=\psi_4\psi_5\psi_6$ as before,
+and the eigenspace $X=+1$ corresponds to the eigenspace of $Z$ and $Z'$
+where $Z=Z'=+i$ or $Z=Z'=-i$.
+As such $W$ is not preserved by $T$, but $\tilde T:=T\psi_1\psi_4$ does.
+This new $\tilde T$ acting on the ground states satisfy $\tilde T^2=-1$,
+the sign of the Kramers degeneracy.
+(An alert reader will note that we did exactly the same argument above.)
+Note that we have an action of $\sigma_1:=i\psi_1\psi_4$,
+$\sigma_2:=i\psi_2\psi_4$, $\sigma_3:=i\psi_3\psi_4$ on this subspace $W$,
+which satisfy the standard commutation relations of the Pauli matrices.
+\fi
+In this case, the allowed Hamiltonians are still quartic in $\psi$: \begin{equation}
+H= \sum_{ijkl} c_{ijkl} \psi_i \psi_j \psi_k \psi_l,
+\end{equation} where $c_{ijkl}$ are real coefficients.
+We now consider the operator \begin{equation}
+  X:=\psi_1\psi_2\psi_3\psi_4\psi_5\psi_6.
+\end{equation}
+This is a real operator satisfying $X^2=-1$ commuting with $H$.
+As such any eigenspace of $H$ is doubly degenerate,
+so we cannot completely gap it.
+
+\paragraph{Eight fermions.}
 Now consider two copies of four fermions, $\psi_{1,2,3,4}$ and $\psi_{1',2',3',4'}$.
 First consider the Hamiltonian $-X-X'$ where $X=\psi_1\psi_2\psi_3\psi_4$ and 
 $X'=\psi_{1'} \psi_{2'}\psi_{3'}\psi_{4'}$.
@@ -8916,6 +8952,7 @@ The space of gapped Hamiltonians is then classified by \begin{equation}
 \end{equation}
 
 To analyze other symmetry classes, it is better to go systematically.
+We present two methods to do so.
 \if0
 Let $U=e^{itH}$, and assume $H$ to be gapped.
 We can keep the eigenspaces fixed and change the eigenvalues continuously,
@@ -8938,8 +8975,54 @@ Writing $\psi:=H_0$, this means that $U'$ satisfies
   are always the same as the commutation relations 
   of $H$ with $T$, $\tilde T$ or $S$, respectively.
 \fi
+
+Let us first make preparations common to both methods.
 For notational brevity, let us assume that we are studying real symmetry classes.
 Complex symmetry classes can be treated similarly and are easier.
+We can deform the eigenvalues of $H$ continuously to $\pm1$ without making any of the eigenvalues zero, while keeping eigenspaces fixed.
+This will not change the topological property of the Hamiltonians\footnote{%
+More properly, the space of gapped Hamiltonians and the space of gapped Hamiltonians with $H^2=1$ are deformation retracts of each other by this operation.
+}
+Then $H^2=+1$.
+
+\subsubsection{A direct analysis.}
+Let us first consider the symmetry classes without $S$, i.e.~the classes AI, D, AII,  and C.
+In this case, we pick a reference gapped Hamiltonian $H_0$ of type $i$.
+Then all other gapped Hamiltonians $H$ of type $i$ can be written as
+$H=UH_0$ where $U=HH_0$. 
+Then classifying all possible $H$ is equivalent to classifying all possible $U$.
+Now, a short computation shows that $H_0U=U^{-1}H_0$.
+Therefore, defining $S:=H_0$, we are essentially considering the problem of
+classifying $U$ with one additional $S$.
+This is symmetry type $i\pm1$, depending on how $S$ commutes with $T$ or $\tilde T$ present in symmetry type $i$.
+By a case-by-case analysis, we find that the resulting type is always $i+1$.
+This determines the space of gapped Hamiltonians in these four types.
+
+Next, consider the symmetry classes with $S$, i.e. BDI, DIII, CII, and CI.
+In this case, divide the Hilbert space $\cH$ into two subspaces $\cH_+$ and $\cH_-$,
+where $\cH_+$ is the eigenspace of $S$ with eigenvalue $+1$ and $\cH_-$ is the eigenspace of $S$ with eigenvalue $-1$.
+Then $H$ exchanges $\cH_+$ and $\cH_-$ due to the commutation relation $SH=-HS$.
+
+Pick a reference gapped Hamiltonian $H_0$ of type $i$.
+Then all other gapped Hamiltonians $H$ of type $i$ can be written as
+$H=UH_0$ where $U=HH_0$ as before. 
+This $U$ acts within $\cH_+$ and $\cH_-$ separately.
+When $S$ commutes with $T$ and $\tilde T=TS$, (i.e.~BDI and CII,)
+$T$ and $\tilde T$ act within $\cH_+$ as the same operator.
+Call this $T'$. By construction $T'U=UT'$.
+As such it counts as the anti-unitary operator of type $\tilde T$,
+so the classification of gapped $H$ in BDI and CII was reduced to the 
+classification of $U$ in D and C, respectively.
+When $S$ anticommutes with $T$ and $\tilde T=TS$, (i.e.~DIII and CI,)
+we instead consider $T'=TH_0$ as an antiunitary operator acting within $\cH_+$.
+$T'$ can then be checked to satisfy $T'U=U^{-1}T'$. 
+As such it counts as constraints on $U$ of type $T$, and 
+we find the classification problems of $U$ of type AII and AI, respectively.
+
+In summary, we always find the classification of $U$ of type $i+1$, in all of eight cases.
+
+\subsubsection{Using Clifford algebras.}
+Here is another approach, based on our previous analysis of Clifford representations.
 Instead of studying the gapped Hamiltonians $H$ of type $n$, 
 let us study the gapped Hamiltonians $H$ 
 of type $0$ with $\psi_{1,\ldots,n}$.
@@ -8987,7 +9070,7 @@ The resulting spaces of gapped Hamiltonians of each symmetry class
 are also given in Table~\ref{tab:complex-classes} and Table~\ref{tab:real-classes}.
 Note that the space of gapped Hamiltonians of type $i$ is 
 the same as the space of unitaries of type $i-1$.\footnote{%
-It would be nice to have a more direct argument of this equality, but I do not know how at the moment.
+%It would be nice to have a more direct argument of this equality, but I do not know how at the moment.
 This also means that people could have named the symmetry classes using the space of gapped Hamiltonians
 instead of the space of unitaries. This would have shifted the names by one step.
 }
