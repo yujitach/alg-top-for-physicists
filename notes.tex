@@ -9410,9 +9410,10 @@ As an example,  consider a complex fermion on $S^1$
 with the Dirac operator $D=i\partial_\theta+A$,
 where $A$ is the constant $U(1)$ gauge field.
 Taking the periodicity to be $\theta\sim \theta+2\pi$,
-the eigenvalues of $D$ are $\lambda_n = n+(1/2-a)$ for $n\in \bZ$,
+the eigenvalues of $D$ are $\lambda_n = n+(a-1/2)$ for $n\in \bZ$,
 where \begin{equation}
-\frac12 -a :=\int_{0}^{2\pi} A d\theta  .
+a-\frac12  :=\int_{0}^{2\pi} A d\theta  .
+\label{adef}
 \end{equation}
 Here the subtraction by $1/2$ is a convention, but a motivation is as follows.
 If we consider a fermionic system and take the Wick rotation,
@@ -9421,27 +9422,130 @@ whereas a periodic fermion corresponds to $\tr (-1)^F e^{-\beta H}$ instead.
 And we wanted $a=0$ to correspond to the standard thermal partition function,
 which should be positive.   
 
-Now, assuming that $a$ is sufficiently small, $n+1/2-a$ for $  n\ge 0$ is positive, whereas $n+1/2-a$ for $n<0$ is negative.
+We should also note that the spectrum $\{ n+(a-1/2)\}$ is invariant under the large gauge transformation $a\to a+1$.
+As such, the eta invariant should also be invariant under this change of $a$.
+We use this freedom to ensure that $|a|<1/2$.
+
+Then, among the spectrum, $n+a-1/2$ for $  n\ge 1$ is positive, whereas $n+a-1/2$ for $n\le 0$ is negative.
 Then we have \begin{equation}
-\sum_{n\ge 0} (+1) e^{-s(n+1/2-a)} = 1/s+a+ O(s),\qquad
-\sum_{n<0} (-1)e^{-s|n+1/2-a|}= 1/s-a+O(s).
+\sum_{n\ge 1} (+1) e^{-s(n+1/2-a)} = 1/s-a+ O(s),\qquad
+\sum_{n\le 0} (-1)e^{-s|n+1/2-a|}= 1/s+a+O(s).
 \end{equation}
 So we have \begin{equation}
-  \eta(D)=\lim_{s\to 0}\frac12 (2a+O(s)) = a.
+  \eta(D)=\lim_{s\to 0}\frac12 (-2a+O(s)) = -a.
 \end{equation}
-That $\eta(D)=0$ for $a=0$ is consistent because this should be the phase of a
+That $\eta(D)=0$ for $a=0$ is consistent with the analysis above, because this should be the phase of a
 thermal partition function, which should be real and positive.
 
-If $a$ is not necessarily small, we need to find an integer $m$ such that $|a-m| \le 1/2$.
-Then for $a':=a-m$, the spectrum $\{n+(1/2-a)\}$ is the same as $\{n+(1/2-a')\}$,
-so the computation above goes through, and we find 
-\begin{equation}
-\eta(D) = a' = a - m \in [-1/2,1/2].
-\end{equation}
-In this manner we find that $\eta(D)$ is not necessarily continuous as a real-valued function but it is continuous modulo 1.
+Note that $\eta(D)$ is not continuous at $a=\pm 1/2$ 
+(which should be regarded as a single point due to the large gauge transformation $a\sim a+1$),
+where it jumps by $\pm1$ between $\eta(D)=\pm1$.
+At the same time, we also find that $e^{2\pi i\eta(D)}$ 
+or equivalently $\eta(D)$ mod 1 is continuous. 
 
+Using \eqref{adef}, we can write our result on $\eta(D)$ as \begin{equation}
+\eta(D) \text{``}=\text{''}\frac12 -\int_{S^1} A d\theta.
+\end{equation}
+Here, the second term on the right hand side can be thought of as a one-dimensional
+Chern-Simons term. 
+As $A$ is not gauge-invariant under the large gauge transformation,
+the right hand side looks elementary but is not really well-defined and is gauge-dependent. 
+The left hand side, the eta invariant, is defined in a more complicated manner
+by using the spectrum of a differential operator and a regularized infinite sum.
+But by definition it is clearly gauge-invariant.
+In this sense, the eta invariant can be thought of as a better-defined version of the
+Chern-Simons terms. 
 \subsubsection{Atiyah-Patodi-Singer index theorem}
 
+\cite{Aharonov:1978gb}
+
+\if0
+$(x,y)$ 平面を、$z$ 方向の磁場 $B_z(x,y)$ の影響のもとに動く電子の運動を量子力学的に考えよう。
+$(x,y)$ 平面内のの有限の領域 $D$ において $B_z(x,y)$ はノンゼロで一定の値 $b >0 $ を取るが、
+その外では $B_z(x,y)=0$ であるとする。全磁場 $ \Phi:=\int_D B_z(x,y) dxdy $ は有限であるとする。
+
+古典的には、十分にエネルギーが低ければ、電子は領域 $D$ 内で円運動をする。よって、量子力学的にも、いくつか束縛状態があるであろうことが予測される。
+量子力学的には束縛状態の数はいくつであろうか? 
+また、古典的には、スピンが上向きの電子が十分小さい半径の円運動をしていると、
+同じ円軌道をスピンが下向きの電子が動くこともできるため、スピンが上向きの束縛状態とスピンが下向きの束縛状態の間には対応がある。
+これは、量子力学的にはどうなるだろうか? 
+これを、以下の誘導に従って考えよう。
+
+電子の波動関数はスピンの上向き、下向きの二成分をもち \begin{equation}
+\vec\psi(x,y)=\begin{pmatrix}
+\psi_\uparrow(x,y) \\
+\psi_\downarrow(x,y) \\
+\end{pmatrix}
+\end{equation}とあらわされ、ハミルトニアンは \begin{equation}
+H= \left[-i\frac{\partial}{\partial x}+ A_x(x,y)\right]^2 \mathbf{1}
++\left[-i\frac{\partial}{\partial y}+ A_y(x,y)\right]^2 \mathbf{1}
++B_z(x,y)\sigma_z
+\end{equation} とかける。
+ただし、簡単のため $m=\hbar=e=1$ なる単位系をとる。
+ここで、$A_{x}(x,y),A_y(x,y)$ はベクトルポテンシャルで、磁場は \begin{equation}
+B_z(x,y)=\frac{\partial A_y (x,y)}{\partial x} - \frac{\partial A_x(x,y)}{\partial y}
+\end{equation} とかけ、
+行列は\begin{equation}
+\mathbf{1}:=\begin{pmatrix}
+1 & 0 \\
+0 & 1 
+\end{pmatrix},\quad
+\sigma_x:=\begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix}, \quad
+\sigma_y:=\begin{pmatrix}
+0 & -i \\
+i & 0
+\end{pmatrix}, \quad
+\sigma_z:=\begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix}
+\end{equation}を用いた。
+
+
+\begin{itemize}
+\item[1.]
+ハミルトニアン $H$ とスピンの $z$ 成分 $\sigma_z$ は同時対角化できることを示せ。
+\item[2.] 
+次のように定義される演算子 $D$ \begin{equation}
+D=\sigma_x \left[-i\frac{\partial}{\partial x} + A_x(x,y) \right]
++\sigma_y \left[-i\frac{\partial}{\partial y}+A_y(x,y)\right]
+\end{equation} が、\begin{equation}
+H=D^2, \qquad [D,\sigma_z ]= -\sigma_z 
+\end{equation}を満たすことを示せ。
+\item[3.] 束縛状態 $\vec \psi(x,y)$ がエネルギーが $E$ およびスピン の$z$ 成分が $s_z$ の固有状態であるとする。
+	\begin{enumerate}
+	\item $E=0$ である必要十分条件が $D\vec\psi(x,y)=0$ であることを示せ。
+	\item $E\neq 0$ だとする。$D\vec\psi(x,y)$ はまたエネルギーおよびスピン $z$ の固有状態であるが、それぞれ固有値を求めよ。
+	\item $E\neq 0$ とする。$E$ が正であることを示せ。
+	\end{enumerate}
+\item[4.] ベクトルポテンシャルを\begin{equation}
+A_x(x,y)=\frac{\partial\phi}{\partial y}, 
+A_y(x,y)=-\frac{\partial\phi}{\partial x}
+\end{equation} という関係を満たす関数 $\phi(x,y)$ を用いて表わそう。
+\begin{enumerate}
+	\item $B_z(x,y)$ と $\phi(x,y)$ のみたす微分方程式を書きくだせ。
+	\item このとき、$r=\sqrt{x^2+y^2}$ が大きなところでは、$e^{\phi(x,y)}$ は\begin{equation}
+e^{\phi(x,y)} \sim r^c
+\end{equation} と振る舞った。$c$ を求めよ。
+	\end{enumerate}
+\item[5.] ゼロエネルギー固有状態を決定しよう。そのためには、上でみたように、$D\vec\psi(x,y)=0$ を解けばよい。
+	\begin{enumerate}
+	\item $f_\uparrow(x,y)$, $f_\downarrow(x,y)$ を\begin{equation}
+	\psi_\uparrow(x,y)=f_\uparrow(x,y) e^{\phi(x,y)}, \qquad
+	\psi_\downarrow(x,y)=f_\downarrow(x,y) e^{-\phi(x,y)}, 
+\end{equation} によって定義する。$D\vec\psi(x,y)=0$ から、$f_\uparrow(x,y)$, $f_\downarrow(x,y)$ に対する方程式を求めよ。
+	\item これより、$f_\uparrow(x,y)$ は $ z=x+iy$ の正則関数、
+	$f_\downarrow(x,y)$ は $z$ の反正則関数であることを示せ。
+	\item 束縛状態の波動関数は二乗可積分であることに注意して、スピンが上向きでエネルギーがゼロの状態はないことを示せ。
+	\item 同様にして、スピンが下向きでエネルギーがゼロの束縛状態の一次独立なものの数を、全磁束 $\Phi$ を用いてあらわせ。これを $N$ とする。
+	\end{enumerate}
+\item[6.] スピンが上向きの束縛状態の一次独立なものの数が $N_\uparrow$、
+スピンが下向きの束縛状態の一次独立なものの数が $N_\downarrow$ だとする。
+小問 3. に留意して、$N_\uparrow-N_\downarrow$ を求めよ。
+\fi
 
 \goodbreak
 
