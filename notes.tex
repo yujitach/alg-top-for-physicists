@@ -157,6 +157,7 @@
 \def\Ker{\mathop{\mathrm{Ker}}}
 \def\Im{\mathop{\mathrm{Im}}}
 \def\Lk{\mathop{\mathrm{Lk}}}
+\def\index{\mathop{\mathrm{index}}}
 
 \def\Hom{\mathop{\mathrm{Hom}}}
 \def\Ext{\mathop{\mathrm{Ext}}}
@@ -9455,33 +9456,58 @@ by using the spectrum of a differential operator and a regularized infinite sum.
 But by definition it is clearly gauge-invariant.
 In this sense, the eta invariant can be thought of as a better-defined version of the
 Chern-Simons terms. 
+
 \subsubsection{Atiyah-Patodi-Singer index theorem}
 
-\cite{Aharonov:1978gb}
+We introduced the concept of the eta invariant $\eta(D_M)$ of a Dirac operator $D_M$ on a manifold $M_{d+1}$.
+When $M_{d+1}$ is a boundary of a $(d+2)$-dimensional manifold $W_{d+2}$, i.e.~$M_{d+1}=\partial W_{d+2}$,
+it satisfies the following relation: \begin{equation}
+\eta(D_M)= (\index D_N) + \int_{N} \text{(differential form)},
+\label{APS}
+\end{equation}
+where $D_N$ is a Dirac operator on $N_{d+2}$, 
+$\index D_N$ is its index, which will be explained more fully soon, and
+$\text{(differential form)}$ is an integral of a gauge-invariant differential 
+form representation of a characteristic class.
 
-\if0
-$(x,y)$ 平面を、$z$ 方向の磁場 $B_z(x,y)$ の影響のもとに動く電子の運動を量子力学的に考えよう。
-$(x,y)$ 平面内のの有限の領域 $D$ において $B_z(x,y)$ はノンゼロで一定の値 $b >0 $ を取るが、
-その外では $B_z(x,y)=0$ であるとする。全磁場 $ \Phi:=\int_D B_z(x,y) dxdy $ は有限であるとする。
+When $M_{d+1}=\varnothing$, i.e.~when $N_{d+2}$ is closed, this is the Atiyah-Singer index theorem
+equating the index of the Dirac operator as the integral of a characteristic class.
+The Atiyah-Patodi-Singer index theorem is its generalization to manifolds with boundaries,
+and the eta invariants were first introduced as correction terms associated to the boundaries.
+Here in this lecture series, we introduced the eta invariants independently
+as the phase part of the partition function of the infinitely massive free fermion theory.
 
-古典的には、十分にエネルギーが低ければ、電子は領域 $D$ 内で円運動をする。よって、量子力学的にも、いくつか束縛状態があるであろうことが予測される。
-量子力学的には束縛状態の数はいくつであろうか? 
-また、古典的には、スピンが上向きの電子が十分小さい半径の円運動をしていると、
-同じ円軌道をスピンが下向きの電子が動くこともできるため、スピンが上向きの束縛状態とスピンが下向きの束縛状態の間には対応がある。
-これは、量子力学的にはどうなるだろうか? 
-これを、以下の誘導に従って考えよう。
+\paragraph{An example by Aharonov-Casher}
+Before giving a more general discussion, let us give an example
+where all three terms appearing in \eqref{APS} can be computed independently explicitly.
+This also has a surprisingly natural appearance in a rather elementary quantum mechanical setup,
+as first pointed out in \cite{Aharonov:1978gb}.\footnote{%
+And it was also used as one of the written exam questions of the entrance examination 
+of the master course  of our graduate school during 2010s.}
 
-電子の波動関数はスピンの上向き、下向きの二成分をもち \begin{equation}
+We know the physics of the Landau level, of two-dimensional electrons moving in the presence of
+constant magnetic field $B$.
+Let us include the effects of the spin of the electron explicitly using the Pauli equation,
+and also consider an infinite $(x,y)$-plane with $B_z(x,y)$ concentrated in a finite region $r<R$ , so that \begin{equation}
+\Phi:=\int_D B_z(x,y) dxdy
+\label{PhiFlux}
+\end{equation} is finite.
+We expect that there are around $\sim |\Phi|$ degenerate zero modes trapped in the region $r<R$.
+Let us check this explicitly.
+
+Electron wavefunctions now have two components: \begin{equation}
 \vec\psi(x,y)=\begin{pmatrix}
 \psi_\uparrow(x,y) \\
 \psi_\downarrow(x,y) \\
 \end{pmatrix}
-\end{equation}とあらわされ、ハミルトニアンは \begin{equation}
-H= \left[-i\frac{\partial}{\partial x}+ A_x(x,y)\right]^2 \mathbf{1}
-+\left[-i\frac{\partial}{\partial y}+ A_y(x,y)\right]^2 \mathbf{1}
-+B_z(x,y)\sigma_z
-\end{equation} とかける。
-ただし、簡単のため $m=\hbar=e=1$ なる単位系をとる。
+\end{equation} and the Hamiltonian is \begin{equation}
+H= \left[-i\frac{\partial}{\partial x}+ A_x(x,y)\right]^2% \mathbf{1}
++\left[-i\frac{\partial}{\partial y}+ A_y(x,y)\right]^2 %\mathbf{1}
++B_z(x,y)\sigma_z,
+\end{equation} 
+where we took the system of units where  $m=\hbar=e=1$,
+and $B_z=\partial_x A_y-\partial_y A_x$.
+\if0
 ここで、$A_{x}(x,y),A_y(x,y)$ はベクトルポテンシャルで、磁場は \begin{equation}
 B_z(x,y)=\frac{\partial A_y (x,y)}{\partial x} - \frac{\partial A_x(x,y)}{\partial y}
 \end{equation} とかけ、
@@ -9503,49 +9529,100 @@ i & 0
 0 & -1
 \end{pmatrix}
 \end{equation}を用いた。
+\fi
+We note that $H$ and $\sigma_z$ trivially commute,
+so the up-spin and down-spin electrons move independently.
 
-
-\begin{itemize}
-\item[1.]
-ハミルトニアン $H$ とスピンの $z$ 成分 $\sigma_z$ は同時対角化できることを示せ。
-\item[2.] 
-次のように定義される演算子 $D$ \begin{equation}
+That said, it is convenient to consider the following operator \begin{equation}
 D=\sigma_x \left[-i\frac{\partial}{\partial x} + A_x(x,y) \right]
 +\sigma_y \left[-i\frac{\partial}{\partial y}+A_y(x,y)\right]
-\end{equation} が、\begin{equation}
-H=D^2, \qquad [D,\sigma_z ]= -\sigma_z 
-\end{equation}を満たすことを示せ。
-\item[3.] 束縛状態 $\vec \psi(x,y)$ がエネルギーが $E$ およびスピン の$z$ 成分が $s_z$ の固有状態であるとする。
-	\begin{enumerate}
-	\item $E=0$ である必要十分条件が $D\vec\psi(x,y)=0$ であることを示せ。
-	\item $E\neq 0$ だとする。$D\vec\psi(x,y)$ はまたエネルギーおよびスピン $z$ の固有状態であるが、それぞれ固有値を求めよ。
-	\item $E\neq 0$ とする。$E$ が正であることを示せ。
-	\end{enumerate}
-\item[4.] ベクトルポテンシャルを\begin{equation}
+\label{PauliOp}
+\end{equation}
+which \emph{anticommutes} with $\sigma_z$ and satisfies 
+\begin{equation}
+H=D^2.
+\end{equation}
+
+As $D$ is Hermitean, $H=D^2$ shows that eigenvalues $E$ of $H$ satisfies $E\ge 0$,
+and a wavefunction $\psi$ is an eigenvector of $H$ with $E=0$ 
+if and only if $D\psi =0$.
+
+Now,  if $E\neq 0$, let $\psi$ be an eigenvector of $H$ such that $H\psi = E\psi$
+and $\sigma_z \psi = + \psi$.
+Let  $\psi':= D\psi \neq 0$. We can easily check that $\sigma_z \psi'=-\psi'$ and $H\psi'=E\psi'$.
+Therefore, whenever $E\neq 0$, the eigenvectors of $H$ with $\sigma_z=+1$ 
+and $\sigma_z=-1$ appear in pairs.
+
+In contrast, there is no such pairing when $E=0$, since $D\psi=0$. 
+Let us study eigenstates with $E=0$ more carefully.
+
+We now introduce a function $\phi(x,y)$ satisfying 
+\begin{equation}
 A_x(x,y)=\frac{\partial\phi}{\partial y}, 
-A_y(x,y)=-\frac{\partial\phi}{\partial x}
-\end{equation} という関係を満たす関数 $\phi(x,y)$ を用いて表わそう。
-\begin{enumerate}
-	\item $B_z(x,y)$ と $\phi(x,y)$ のみたす微分方程式を書きくだせ。
-	\item このとき、$r=\sqrt{x^2+y^2}$ が大きなところでは、$e^{\phi(x,y)}$ は\begin{equation}
-e^{\phi(x,y)} \sim r^c
-\end{equation} と振る舞った。$c$ を求めよ。
-	\end{enumerate}
-\item[5.] ゼロエネルギー固有状態を決定しよう。そのためには、上でみたように、$D\vec\psi(x,y)=0$ を解けばよい。
-	\begin{enumerate}
-	\item $f_\uparrow(x,y)$, $f_\downarrow(x,y)$ を\begin{equation}
+A_y(x,y)=-\frac{\partial\phi}{\partial x}.
+\end{equation}
+Then $B_z=-\triangle \phi$.
+The relation \eqref{PhiFlux} means that \begin{equation}
+\phi(x,y) \sim \frac{\Phi}{2\pi}\log  r
+\end{equation} when $r\gg 0$. 
+Indeed, \begin{equation}
+\int B_z dxdy = \int_{\text{$S^1$ at large $R$}} A 
+= \int_{0}^{2\pi}  (\mathrm{div}\, \phi \cdot \vec n )\,  d\theta = 2\pi R  \frac{\Phi}{2\pi} \frac{1}R 
+=\Phi.
+\end{equation}
+
+To solve $D\psi=0$, we assume $\sigma_z=+1$ or $\sigma_z=-1$.
+We then define $f_\uparrow(x,y)$, $f_\downarrow(x,y)$ via\begin{equation}
 	\psi_\uparrow(x,y)=f_\uparrow(x,y) e^{\phi(x,y)}, \qquad
-	\psi_\downarrow(x,y)=f_\downarrow(x,y) e^{-\phi(x,y)}, 
-\end{equation} によって定義する。$D\vec\psi(x,y)=0$ から、$f_\uparrow(x,y)$, $f_\downarrow(x,y)$ に対する方程式を求めよ。
-	\item これより、$f_\uparrow(x,y)$ は $ z=x+iy$ の正則関数、
-	$f_\downarrow(x,y)$ は $z$ の反正則関数であることを示せ。
-	\item 束縛状態の波動関数は二乗可積分であることに注意して、スピンが上向きでエネルギーがゼロの状態はないことを示せ。
-	\item 同様にして、スピンが下向きでエネルギーがゼロの束縛状態の一次独立なものの数を、全磁束 $\Phi$ を用いてあらわせ。これを $N$ とする。
-	\end{enumerate}
-\item[6.] スピンが上向きの束縛状態の一次独立なものの数が $N_\uparrow$、
-スピンが下向きの束縛状態の一次独立なものの数が $N_\downarrow$ だとする。
-小問 3. に留意して、$N_\uparrow-N_\downarrow$ を求めよ。
-\fi
+	\psi_\downarrow(x,y)=f_\downarrow(x,y) e^{-\phi(x,y)}.
+\end{equation} 
+The equation $D\psi=0$ can be easily rewritten into the form \begin{equation}
+\frac{ \partial } {\partial \bar z} f_\uparrow =0,\qquad
+\frac{ \partial } {\partial  z} f_\downarrow =0,
+\end{equation}
+where $z=x+iy$ and $\bar z=x-iy$. This means that $f_\uparrow$ is a holomorphic function
+and $f_\downarrow$ is an antiholomorphic function.
+Then, \begin{equation}
+\psi_\uparrow = P_\uparrow(z) e^\phi, \qquad
+\psi_\downarrow = P_\downarrow(\bar z) e^{-\phi}, 
+\end{equation}
+where $P_\uparrow(z)$ and $P_\downarrow(\bar z)$ are polynomials.
+
+Note that $e^{\phi} \sim r^{\Phi/2\pi}$ $e^{-\phi} \sim r^{-\Phi/2\pi}$.
+For definiteness, we choose $\Phi$ to be negative.
+Then, $\psi_\downarrow$ is never square integrable,
+whereas $\psi_\uparrow$ is square integrable when the polynomial 
+\begin{equation}
+P_\uparrow( z)=c_n  z^n + c_{n-1}  z^{n-1}+ \cdots
+\end{equation}
+is such that the top nonzero term $z^n$ satisfy $n \le (\Phi/2\pi)-1$.
+So we found that $\psi_\uparrow$ form a solution space
+which is  $\lfloor \Phi/2\pi\rfloor$-dimensional.
+
+Summarizing, we found that the number $N_\pm$ of $E=0$ solutions 
+with $\sigma_z=\pm1$ is given by \begin{equation}
+N_+ =\lfloor  \frac{\Phi}{2\pi}  \rfloor, \qquad N_-=0.
+\end{equation}
+We write this as \begin{equation}
+\tilde\eta(a)= (N_+-N_-) -\int \frac{F}{2\pi}, 
+\label{AC}
+\end{equation} where \begin{equation}
+a=\int_{\text{$S^1$ at large $r=R$}} A
+\end{equation} and \begin{equation}
+\tilde\eta(a)=\lfloor a\rfloor-a.
+\end{equation}
+Our result \eqref{AC} should be compared to the general APS index theorem \eqref{APS}:
+\begin{itemize}
+\item $N_+-N_-$ is the index of the bulk Dirac operator \eqref{PauliOp},
+where the `chirality' was the $\sigma_z$ eigenvalue, 
+\item $\int \frac{F}{2\pi}$ is the differential form expression for the first Chern class of the $U(1)$ bundle, and
+\item $-f(a)$ is the eta invariant on $S^1$ evaluated at very large radius, except the subtraction of $1/2$.
+This absence of the subtraction is due to the fact that the APS theorem should be formulated
+on a manifold with cylindrical boundary. Then, we need to perform a coordinate change 
+from $(x,y)$ to $(r,\theta)$, which famously exchanges periodic and antiperiodic boundary conditions 
+on the fermions, which is a point that confuses almost every student of 2d CFT and string theory.
+\end{itemize}
+
 
 \goodbreak
 
