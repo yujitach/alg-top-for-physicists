@@ -9754,9 +9754,25 @@ If we start from a real fermion in two dimensions and Wick rotate to the Euclide
 we still need to halve the degrees of freedom, although spinors in 2d Euclidean signature are complex
 and we cannot consider real-valued spinor fields.
 It turns out that the eigenvalues of the Euclidean Dirac spectrum are automatically doubly degenerate\footnote{%
-I need to explain this.}
+Take $D=(i\partial_x)\sigma_x + (i\partial_y) \sigma_y$,
+and $T=K\sigma_y$, 
+\if0  and $T=K\sigma_x$ \fi 
+where $K$ is the complex conjugation on two-component spinors. 
+This $T$ commutes with the $\theta$ rotation of the $(x,y)$-plane, so it can consistently act on spinors on a curved manifold.
+\if0
+We have $T^2=+1$, $DT=-TD$, $\sigma_z T=-T\sigma_z$.
+\fi
+We have $T^2=-1$ and $DT=TD$. %, $\sigma_z T=-T\sigma_z$.
+This algebra forces every eigenvalue of $D$ to be doubly degenerate;
+So, this is the standard Kramers degeneracy.
+We also note that $R_x: \psi(x,y)\mapsto \sigma_z\sigma_x \psi(-x,y)$ 
+and $R_y:\psi(x,y)\mapsto \sigma_z \sigma_y\psi(x,-y)$ 
+commute with $D$ and defines a pin$-$ action on the fermion wavefunctions.
+They also commute with $T$, and so the eigenstates are doubly degenerate on unorientable pin$-$ manifolds too.
+In the end all these come from the fact that $Spin(2) \subset Pin^-(2)\subset Spin(3)$ and the spinor representation of $Spin(3)$ has natural quaternionic structure.
+}
 and we can consistently take half of the eigenvalues.
-For example, on $T^2$ with $n=0$, we simply has periodic spinors on $T^2$.
+For example, on $T^2$ with $n=0$, we simply have periodic spinors on $T^2$.
 Clearly there are two zero modes of $D$. Taking half of them, we simply have one zero eigenvalue,
 and \begin{equation}
 \eta(D_{T^2}^\text{real}) = \frac12, 
