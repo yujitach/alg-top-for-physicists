@@ -6678,6 +6678,7 @@ is well-defined for any integer $n$.
 In particular, we have derived that $q^\text{here}=\hbar n$ for some integer $n$.
 
 \subsection{Quantization of the Hall conductance}
+\label{sec:hall}
 
 \subsubsection{Physics background}
 In a two-dimensional material, 
@@ -6984,6 +6985,7 @@ which means that $w_1(W_4)=0$ from the orientability
 and $w_2(W_4)=0$ from the spin condition.
 
 \subsubsection{More general Chern-Simons terms}
+\label{sec:gravCS}
 The Abelian Chern-Simons terms we discussed above have the crucial property
 \begin{equation}
 \int_{M_{2n-1}} A\wedge F^{n-1} = \int_{M_{2n}} F^n
@@ -9457,7 +9459,8 @@ But by definition it is clearly gauge-invariant.
 In this sense, the eta invariant can be thought of as a better-defined version of the
 Chern-Simons terms. 
 
-\subsubsection{Atiyah-Patodi-Singer index theorem}
+\subsubsection{Atiyah-Patodi-Singer index theorem: an example}
+\label{sec:AC}
 
 We introduced the concept of the eta invariant $\eta(D_M)$ of a Dirac operator $D_M$ on a manifold $M_{d+1}$.
 When $M_{d+1}$ is a boundary of a $(d+2)$-dimensional manifold $W_{d+2}$, i.e.~$M_{d+1}=\partial W_{d+2}$,
@@ -9477,7 +9480,7 @@ and the eta invariants were first introduced as correction terms associated to t
 Here in this lecture series, we introduced the eta invariants independently
 as the phase part of the partition function of the infinitely massive free fermion theory.
 
-\paragraph{An example by Aharonov-Casher}
+%\paragraph{An example by Aharonov-Casher.}
 Before giving a more general discussion, let us give an example
 where all three terms appearing in \eqref{APS} can be computed independently explicitly.
 This also has a surprisingly natural appearance in a rather elementary quantum mechanical setup,
@@ -9623,6 +9626,188 @@ from $(x,y)$ to $(r,\theta)$, which famously exchanges periodic and antiperiodic
 on the fermions, which is a point that confuses almost every student of 2d CFT and string theory.
 \end{itemize}
 
+\subsubsection{Atiyah-Patodi-Singer index theorem: general discussions}
+\paragraph{Odd-dimensional $M_{d+1}$ with even-dimensional $N_{d+2}$.}
+
+Now let us explain the terms appearing in the APS index theorem \eqref{APS}
+in a general situation.
+Let us start with the case when the boundary $M_{d+1}$ is odd dimensional.
+In this case, we consider a Dirac operator $D_N$ acting on a complex spinor on $N_{d+2}$, which is even dimensional.
+This spinor can couple not only to spacetime curvature but additionally to $U(k)$ gauge field $F$.
+
+In even dimensions, there are positive- and negative-chirality spinors, distinguished by the eigenvalue of the chirality operator $\Gamma$, anticommuting with $D_N$.
+Let $n_\pm$ be the number of zero modes $D\psi=0$ with $\Gamma\psi=\pm \psi$.
+Then we define the index of $D_N$ to be \begin{equation}
+\index D_N := n_+ - n_-.
+\end{equation}
+The differential form contribution is known to have the following form:
+\begin{equation}
+\int_N \text{(differential form)} = \int_N \hat A(N) \cdot \tr e^{F/(2\pi)},
+\end{equation}
+where $\hat A(N)$ is the differential form constructed from the spatial curvature known as the A-roof genus,
+and $F$ is the $U(k)$ curvature, which we take to be a differential form valued in $k\times k$ Hermitean matrix.
+The explicit form of $\hat A(N)$ is \begin{equation}
+\hat A(N)=1-\frac{1}{24} p_1 + \frac{1}{5760}(-4p_2+7p_1^2) + \cdots
+\end{equation} where \begin{equation}
+p_1=-\frac12\tr (\frac{R}{2\pi})^2,\qquad p_2=  \frac12\left((\frac12\tr (\frac{R}{2\pi})^2)^2 - \frac12\tr (\frac{R}{2\pi})^4 \right), \ldots
+\end{equation}
+are the Pontryagin classes.
+
+For example, when the boundary $M_3$ is three-dimensional and the bulk $N_4$ is four-dimensional,
+and the spinor is coupled to $U(1)$ gauge field $F$, we have \begin{equation}
+\eta(D_M)=\index D_N + \int_N (\frac12 c_1^2-\frac1{24}p_1),
+\end{equation} where $c_1=F/2\pi$ is the 1st Chern class we discussed some time ago.
+We can also consider almost the same situation with zero $U(1)$ gauge field. 
+Denoting the corresponding Dirac operators with a superscript $0$, we have \begin{equation}
+\eta(D_M^0)=\index D_N^0 + \int_N (-\frac1{24}p_1).\label{D0}
+\end{equation} Then \begin{equation}
+\eta(D_M)-\eta(D_M^0)=(\index D_N-\index D_N^0) + \int_N \frac12 c_1^2.
+\end{equation} This means that $\eta(D_M)-\eta(D_M^0)$ is essentially a (better-defined version of)
+the Abelian Chern-Simons term
+\begin{equation}
+\frac12 \frac{A}{2\pi} \frac{F}{2\pi}
+\end{equation}
+which is defined modulo 1. 
+Recall that $c_1$ is the natural element in $H^2(N;\bZ)$,
+and $c_1^2$ is naturally in $H^4(N;\bZ)$.
+Making sense of this division by $1/2$ was a major topic in Sec.~\ref{sec:hall}.
+Here we saw it from a different point of view.
+
+From \eqref{D0} we can think of $\eta(D_M^0)$ as a better-defined gravitational Chern-Simons term,
+cf.~our discussions in Sec.~\ref{sec:gravCS}.
+For general $SO(n)$  bundles, $p_1\in H^4(N;\bZ)$ is the natural integrally-defined cohomology class,
+with the differential-form representative given above.
+From \eqref{D0} we see that \begin{equation}
+\int_N \frac{p_1}{24}=\index D_N \in \bZ.
+\end{equation} Actually, with $d+2=4$, the spinor bundle has a quaternionic structure,
+i.e.~there is an anti-linear map $\psi \mapsto j\psi$ which commutes with $D_N$ and $\Gamma$.
+(This is an Euclidean version of the Kramers degeneracy.)
+Therefore, all eigenspaces of $D_N$ and $\Gamma$ are doubly-degenerate,
+$n_\pm$ are both even, and therefore $\index D_N$ is even. So we actually have \begin{equation}
+\int_N \frac{p_1}{48} \in \bZ.
+\end{equation}
+Writing $\omega$ the spin connection and $R=d\omega+\omega\wedge \omega$,
+we have \begin{equation}
+d\tr \left( \omega d\omega +  \frac23 \omega^3\right) = \tr R^2.
+\end{equation}
+Therefore, $\eta(D_M)$ can be thought of as a better version of \begin{equation}
+\frac{1}{48}\int_M \frac{1}{2\cdot (2\pi)^2}\tr \left(\omega d\omega +\frac23\omega^3\right),
+\end{equation}
+which is defined modulo 1. 
+The extra factor of $1/48$ is the most nontrivial part.
+
+Coming back to our definition of the eta invariant, this is the phase part of the effective action of a single very massive fermion in 2+1 dimensions.
+Applying the Kubo formula to this effective action leads to thermal quantum Hall effect,
+with the minimal quantized coefficient.
+
+\paragraph{Even-dimensional $M_{d+1}$ with odd-dimensional $N_{d+2}$.}
+
+When the boundary $M_{d+1}$ is even dimensional, the differential form contribution simply vanishes,
+since the differential forms constructed from curvature 2-forms are always of even degree
+and their integral over odd-dimensional $N_{d+2}$ is zero.
+The chirality operator needs to be defined with care, but in the end we define the index as before, leading to the simpler formula \begin{equation}
+\eta(D_M)=\index D_N.
+\end{equation}
+This means that the eta invariant on an even dimensional manifold which is a boundary, i.e.~of the form $M_{d+1}=\partial N_{d+2}$, is zero mod 1.
+In other words, $e^{2\pi i \eta(D_M)}=1$.
+Note that this is only for $M$ which is a boundary.
+This plays an important role soon.
+
+
+\subsubsection{Another example: $T^2$, $S^2$ and  $S^2/\bZ_2=\RP^2$}
+
+\paragraph{Complex massive fermion on $T^2$}
+As another set of examples, let us consider eta invariants in two dimensions.
+The simplest case is $T^2$.
+Consider complex spinors charged under $U(1)$.
+This gives rise to the same operator $D$ we considered in Sec.~\ref{sec:AC} following Aharonov-Casher,
+with the infinite $(x,y)$ plane replaced by a finite periodic torus. 
+But note that there we considered the two-dimensional part as the bulk, with $S^1$ at infinity as the boundary.
+Here we are considering the eta invariant of $D$ defined on the two-dimensional part.
+
+But the analysis carried out there can be borrowed. Any nonzero eigenvalues of $H=D^2$ came in pairs 
+with opposite values of $\Gamma=\sigma_z$. In this basis $D$ is like $\begin{pmatrix}
+0 & x\\
+x & 0
+\end{pmatrix}$, leading to the eigenvalues $\pm x$ for $D$.
+Unless $x\neq 0$, this pair contributes to the eta invariant as $(+1)e^{-s|x|}+(-1)e^{-s|x|}$ before taking the $s\to 0$ limit.
+So, only the zero eigenvalues contribute, so
+\begin{equation}
+\eta(D_{T^2})=\frac{n_++n_-}{2} \mod 1,
+\end{equation} where $n_\pm$ are the numbers of zero modes of $D$ with $\Gamma=\sigma_z=\pm1$.
+
+Using the index theorem, we know that \begin{equation}
+\index D_{T^2}=n_+-n_-=\int_{T^2} \frac{F}{2\pi} =: n.
+\end{equation} (When $F$ is uniform, it turns out that $(n_+,n_-)=(|n|,0)$ or $(0,|n|)$ depending on the sign of $n$.
+This is the standard Landau degeneracy.)
+As $(n_++n_-)/2 \equiv (n_+-n_-)/2$ mod 1, we find \begin{equation}
+\eta(D_{T^2})=\frac{n}2 \mod 1, 
+\end{equation} or equivalently \begin{equation}
+e^{2\pi i\eta(D_{T^2})}=(-1)^n.
+\end{equation}
+
+\paragraph{Real massive fermion on $T^2$}
+When $n=\int_{T^2} F/2\pi=0$, $e^{2\pi i\eta(D_{T^2})}=+1$.
+But note that this is for a complex massive fermion in the Euclidean signature.
+
+If we start from a real fermion in two dimensions and Wick rotate to the Euclidean signature,
+we still need to halve the degrees of freedom, although spinors in 2d Euclidean signature are complex
+and we cannot consider real-valued spinor fields.
+It turns out that the eigenvalues of the Euclidean Dirac spectrum are automatically doubly degenerate\footnote{%
+I need to explain this.}
+and we can consistently take half of the eigenvalues.
+For example, on $T^2$ with $n=0$, we simply has periodic spinors on $T^2$.
+Clearly there are two zero modes of $D$. Taking half of them, we simply have one zero eigenvalue,
+and \begin{equation}
+\eta(D_{T^2}^\text{real}) = \frac12, 
+\end{equation} and \begin{equation}
+e^{2\pi i\eta(D_{T^2}^\text{real})}=-1.
+\end{equation}
+
+
+\paragraph{Real massive fermion on $S^2$. }
+Next, consider the Dirac operator on $S^2$.
+We all know how scalar-valued functions on $S^2$ decomposes into the representations of $so(3)$:
+we have $V_\ell$ for $\ell=0,1,2,\ldots,$ with $\dim V_\ell=2\ell+1$.
+Spinor-valued functions can be obtained by tensoring $V_{1/2}$. We end up having 
+two copies of $V_\ell$ for $\ell=1/2,3/2,\ldots$.
+It turns out that the eigenvalue of $D$ on a copy of $V_\ell$ is $2\ell+1$ while the eigenvalue on the other copy is $-(2\ell+1)$.
+Note that each eigenvalue appears even times, as mentioned above.
+In any case, the eta invariant is  automatically zero.
+
+\paragraph{Real massive fermion on $\RP^2$. }
+Consider next $S^2/\bZ_2=\RP^2$. This is non-orientable, but has a pin$^-$ structure.
+To see this, consider $\RP^2$ as the northern hemisphere with the equator with identification.
+The spin structure around the equator should be NS (antiperiodic), since the equator can be shrunk to a small circle around
+the north pole.
+Now, going around the equator once is the antipodal identification twice.
+As the antipodal identification does an orientation flip, 
+this means that the orientation flip squares to $-1$ acting on the spinor. So this is pin$-$.
+
+A more detailed analysis shows that on $\RP^2$ the (s)pinor wavefunctions decompose
+as a single copy for each $V_\ell$, $\ell=1/2,3/2,\ldots$,
+with alternating signs of Dirac eigenvalues, $(-1)^{\ell-1/2} (2\ell+1)$. 
+The eta invariant for the real fermion is then \begin{equation}
+\eta(D_{\RP^2}^\text{real})=
+\lim_{s\to 0}\frac12\sum_{\ell=\frac12,\frac32,\ldots} (-1)^{\ell-1/2} \frac{2\ell+1}{2} e^{-s(2\ell+1)} = \frac18,
+\end{equation}
+where the denominator $1/2$ in $\frac{2\ell+1}{2}$ is because we need to take half of the Dirac eigenvalues
+to consider the partition function of a real fermion.
+
+An alternative computation using the APS index theorem is as follows. 
+Consider $T^3$, with coordinates $(x,y,z)$ with $x\sim x+1$, $y\sim y+1$ and $z\in z+1$.
+We take the quotient $(x,y,z)\sim (-x,-y,-z)$.
+There are $2^3$ fixed points at $(x,y,z)$ where $x,y,z\in \{0,1/2\}$.
+The neighborhood of each fixed point looks like $\bR^3/\bZ_2$.
+So we can remove a $B^3/\bZ_2$ with $\RP^2$ boundary around each fixed point,
+we get a smooth manifold $M_3$ with eight $\RP^2$ boundary.
+The pinor bundle is two-dimensional on $M_3$, the Dirac zero modes are simply constants,
+with two zero modes. We need to take one out of these two, since we are interested in a real fermion.
+Therefore \begin{equation}
+8\eta(D_{\RP^2}^\text{real})=1,
+\end{equation} leading to \begin{equation}
+\eta(D_{\RP^2}^\text{real})=1/8.
+\end{equation}
 
 \goodbreak
 
