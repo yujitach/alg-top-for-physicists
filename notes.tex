@@ -136,6 +136,7 @@
 \def\bZ{\mathbb{Z}}
 
 \def\cH{\mathcal{H}}
+\def\cS{\mathcal{S}}
 
 \def\sT{\mathsf{T}}
 
@@ -9830,6 +9831,183 @@ Therefore \begin{equation}
 \end{equation} leading to \begin{equation}
 \eta(D_{\RP^2}^\text{real})=1/8.
 \end{equation}
+
+\subsection{General low-energy effective action of invertible phases}
+
+So far we learned the properties of the eta invariant, 
+i.e.~the (phase part of the) low-energy effective action
+of very massive free fermions.
+Let us extrapolate and postulate the properties of 
+the phase part of the low-energy effective action of 
+general invertible phases, i.e.~ gapped phases such that the ground state Hilbert space 
+on a closed spatial manifold is always one-dimensional.
+
+Given a theory $T$ in dimension $d+1$, we put the theory on a Wick-rotated, Euclidean manifold $M_{d+1}$.
+This is equipped with a metric, and also background $G$  gauge field if the theory $T$ in question
+has $G$ symmetry.
+For example, if the theory $T$ has $U(1)$ symmetry (corresponding to the electromagnetism),
+we equip $M_{d+1}$ with a $U(1)$ gauge field (i.e.~the Maxwell field which we use to probe the system $T$).
+For brevity of notation, we keep these additional data implicit and just call the entirety as $M_{d+1}$.
+
+We then have the partition function, i.e.~the exponential of the effective action, of the form \begin{equation}
+Z_T(M_{d+1})=\exp( - S_T(M_{d+1})) 
+\end{equation} Let us focus on the phase part of $Z_T$, i.e.~the imaginary part of $S_T$, and write \begin{equation}
+S_T(M_{d+1}) = \text{real part} + 2\pi i I_T(M_{d+1}).
+\end{equation}
+Here, $I_T(M_{d+1})$ should be well-defined modulo $1$.
+
+We assume the following properties:
+\begin{enumerate}
+\item For a disjoint union, we should have
+\begin{equation}
+I_T(M_{d+1}\sqcup M_{d+1}')=I_T(M_{d+1})+ I_T(M_{d+1}').
+\end{equation}
+\item Under the orientation reversal, we have 
+\begin{equation}
+I_T(\overline{M_{d+1}})=-I_T(M_{d+1}).
+\end{equation}
+\item There is a characteristic class $J_T(R,F)$ of degree $d+2$ constructed from
+the metric curvature $R$ and the $G$ curvature $F$ such that 
+when  $M_{d+1}$ is a boundary, $M_{d+1}=\partial N_{d+2}$,
+we have \begin{equation}
+I_T(M_{d+1}) = \int_{N_{d+2}} J_T(R,F).
+\end{equation}
+\end{enumerate}
+Here are comments on each properties:
+\begin{enumerate}
+\item The first property is straightforward. 
+\item The second property is a general property of the Wick-rotated action,
+which can be called `reflection reality', although this terminology is not widely used.
+(What is commonly used is `reflection positivity', which adds a positivity constraint to this property.)
+
+A quick explanation is the following. 
+The (effective) action before the Wick rotation is real.
+We now rotate $t$ to $\tau = i\tau$. 
+Terms with even number of $t$ derivatives remain real,
+while terms with odd number of $t$ derivatives become imaginary.
+The only such term with relativistic invariance is proportional to $\epsilon_{t x_1 x_2\cdots x_d}$,
+and is odd under the orientation reversal.
+
+\item The third property is the most nontrivial.
+One consequence is the following. 
+Suppose we pick one $M_{d+1}$, fix a metric $g_{\mu\nu}$ and 
+consider the background electromagnetic potential $A_{\mu}$. 
+We make a small variation  $A'_\mu=A_\mu + \delta A_\mu$.
+We want to know the variation of the imaginary part of the low-energy effective action,
+$I_T(M_{d+1},A'_\nu)
+-I_T(M_{d+1},A_\nu)$.
+For this, we take $N_{d+1}:=M_{d+1} \times [0,1]$,
+whose boundary is $\partial N_{d+1} = M_{d+1}|_\text{at $1$} \sqcup  \overline{M_{d+1}}|_\text{at $0$}$.
+We can equip the metric and the Maxwell field on $N_{d+1}$ 
+such that it restricts to  $A_\nu$ at $0$ 
+and to  $A'_\nu$ at $1$.
+Then \begin{equation}
+I_T(M_{d+1},A'_\nu)
+-I_T(M_{d+1},A_\nu) = \int_{M_{d+1}\times [0,1]} J_T(R,F).
+\end{equation} 
+Now,  take $d=2$ and $J_T(R,F)= a F^2$ for example. Since $a F^2 = a d(A F)$, we can partially integrate, and find \begin{equation}
+I_T(M_{d+1},A'_\nu) - I_T(M_{d+1},A_\nu)
+= a \int_{M_{d+1}} A'F' - a \int_{M_{d+1}} AF.
+\end{equation}
+So, the third property means, among other things, 
+that the small variations of $I_T(M_{d+1})$ is equal to the small variations of 
+the Chern-Simons term associated to the characteristic class $J_T(R,F)$.
+
+But the third property is stronger, in that $N_{d+2}$ is not restricted to the form $M_{d+1}\times [0,1]$.
+\end{enumerate}
+
+Eta invariants, i.e.~the phase part of the low-energy effective action of very massive fermions,
+do satisfy all three properties.
+We assume that the phase part of the low-energy effective actions
+of arbitrary interacting systems also satisfies these three properties,
+and take the point of view that to classify such interacting invertible phases
+is to classify $I(M_{d+1})$ satisfying these three properties.
+
+\subsection{Bordism groups}
+For this purpose, the concept of bordism groups, another important concept in algebraic topology, plays an important role.
+Let us introduce them.
+
+The vanilla version is the following.
+Pick a structure $\cS$ one wants to put on manifolds we are going to consider.
+($\cS$ can be just orientation, or spin structure, or pin$\pm$, or just smooth structure, etc.)
+Given a manifold with boundary components, we distinguish its incoming and outoing boundaries,
+by writing \begin{equation}
+\partial N_{d+1}= M_d^\text{out} \sqcup \overline{M_d^\text{in}}.
+\end{equation}
+We call $N_{d+1}$ a bordism from $M_d^\text{in}$ to $M_d^\text{out}$, and write it as \begin{equation}
+N_{d+1} \colon M_d^\text{in} \to M_d^\text{out}.
+\end{equation}
+We say $M_d^\text{in}$ to be bordant to $M_d^\text{out}$ in such a case.
+If we want to emphasize $\cS$, we call them $\cS$-bordism, $\cS$-bordant, etc.
+
+We allow $M_d^\text{in,out}$ to be $\varnothing$. 
+In such case $N_{d+1}$ is called a null bordism. For example, if $M_d^\text{out}=\varnothing$,
+$M_d^\text{in}$ is called null bordant.
+
+Being bordant is an equivalence relation. The set of equivalence classes under bordism is the bordism group \begin{equation}
+\Omega^\cS_d := \frac{
+\{\text{$d$-dimensional manifolds with $\cS$ structure} \} 
+} { \text{$\cS$-bordism} },
+\end{equation}
+where the Abelian group operation is given by the disjoint sum, \begin{equation}
+[M_d] + [M'_d] := [M_d \sqcup M'_d].
+\end{equation} 
+The zero element is simply $[\varnothing]$,
+and the additive inverse is \begin{equation}
+-[M_d] := [\overline{M_d}],
+\end{equation} as you can easily create a bordism  
+\begin{equation}
+M_d \sqcup \overline{M_d} \to \varnothing
+\end{equation} by taking $N_{d+1}:=M_d \times [0,1]$.
+
+We will also consider the following variations of the construction.
+As the structure, we can consider the original structure $\cS$ plus a map to a target space $X$.
+We then consider a pair $(M_d, f)$ where $f:M_d\to X$.
+Bordisms between pairs $(M_d,f)$ and $(M_d',f')$ can be defined by demanding that 
+the bulk map $f:N_d\to X$ restricts to $f:M_d\to X$ and $f':M_d'\to X$ on the boundary, etc.
+The equivalence classes can be formed, resulting in the group \begin{equation}
+\Omega^\cS_d(X) := \frac{
+\{\text{$d$-dimensional manifolds with $\cS$ structure and a map to $X$} \} 
+} { \text{bordism} }.
+\end{equation}
+We see in particular that \begin{equation}
+\Omega^\cS_d(\pt) =\Omega^\cS_d\, \text{as defined above}.
+\end{equation}
+Also, we have \begin{equation}
+\Omega^\cS_d(BG) =\frac{
+\{\text{$d$-dimensional manifolds with $\cS$ structure and a $G$ bundle} \} 
+} { \text{bordism} }
+\end{equation}
+since a map $f: M_d\to BG$ classifies a $G$-bundle on $M_d$.
+
+For reasonable spaces $X$, $\Omega^\cS_d(X)$ is finitely generated,
+and therefore is of the form \begin{equation}
+\Omega^\cS_d(X) = \bZ^k \oplus \bigoplus_i \bZ_{n_i}.
+\end{equation}
+The part $\bZ^k$ is called the free part or the non-torsion part,
+and the rest is called the torsion part.
+The bordism groups we often encounter are summarized in Table~\ref{tab:bordism}.
+
+\begin{table}
+\[
+\begin{array}{c||cc|ccc|ccccc}
+d & \Omega^\text{unoriented}_d & \Omega^\text{oriented}_d &\Omega^\text{pin$-$}_d &
+ \Omega^\text{spin}_d & \Omega^\text{pin$+$}_d 
+ &  \Omega^\text{spin}_d(B\bZ_2) & \Omega^\text{spin}_d(BU(1)) & \Omega^\text{spin-c}_d\\
+\hline
+0 & \bZ_2 & \bZ & \bZ_2 & \bZ & \bZ_2 & \bZ & \bZ & \bZ\\
+1 & 0 & 0 & \bZ_2 & \bZ_2 & 0 & \bZ_2^2  &\bZ_2& 0 \\
+2&  \bZ_2 & 0 & \bZ_8 & \bZ_2 & \bZ_2 & \bZ_2^2& \bZ \oplus \bZ_2 & \bZ \\
+3 & 0 & 0 & 0 & 0 & \bZ_2 & \bZ_8 &0&0\\
+4 & \bZ_2^2 & \bZ & 0 & \bZ & \bZ_{16} & \bZ &\bZ^2&\bZ^2  \\
+5 &  \bZ_2 & \bZ_2& 0 & 0 & 0& 0 & 0 &0 \\
+6 &\bZ_2^3 & 0 & \bZ_{16} & 0 & 0 & 0 &\bZ^2 \oplus \bZ_2 & \bZ^2\\
+\end{array}
+\]
+\caption{
+Commonly-encountered bordism groups. (Not carefully checked yet, so please expect typos...)
+\label{tab:bordism}}
+\end{table}
 
 \goodbreak
 
