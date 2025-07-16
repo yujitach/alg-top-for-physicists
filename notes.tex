@@ -10258,6 +10258,47 @@ denoted by $(I_\bZ \Omega^\cS)^{d+2}(BG)$, which sits in the same exact sequence
 which leads us to the conclusion/proposal that \begin{equation}
 \Inv^{d+1}_\cS(BG)  =  (I_\bZ \Omega^\cS)^{d+2}(BG).
 \end{equation}
+The Anderson duals of bordism groups given in Table~\ref{tab:bordism}
+are given in Table~\ref{tab:dual-bordism}.
+
+\begin{table}
+\[
+\begin{array}{c||cc|ccc|ccccc}
+D & \mho_\text{unoriented}^d & \mho_\text{oriented}^d &\mho_\text{pin$-$}^d &
+ \mho_\text{spin}^d & \mho_\text{pin$+$}^d 
+ &  \mho_\text{spin}^d(B\bZ^2) & \mho_\text{spin}^d(BU(1)) & \mho_\text{spin-c}^d\\
+\hline
+0 & 0 & \bZ & 0 & \bZ & 0 & \bZ & \bZ & \bZ\\
+1 & \bZ_2 & 0 & \bZ_2 & 0 & \bZ_2 & 0 &0& 0 \\
+2&  0 & 0 & \bZ_2 & \bZ_2 & 0 & \bZ_2^2& \bZ \oplus \bZ_2 & \bZ \\
+3 & \bZ_2 & 0 & \bZ_8 & \bZ_2 & \bZ_2 & \bZ_2^2 & \bZ_2 &0\\
+4 & 0 & \bZ & 0 & \bZ & \bZ_2 & \bZ\oplus \bZ_8 &\bZ^2&\bZ^2  \\
+5 &  \bZ_2^2 & 0& 0 & 0 & \bZ_{16}& 0 & 0 &0 \\
+6 &\bZ_2 & \bZ_2 & 0 & 0 & 0 & 0 &\bZ^2 & \bZ^2\\
+\end{array}
+\]
+\caption{
+Anderson dual of the bordism groups given in Table~\ref{tab:bordism}.
+To save space, we used $\mho^d_\cS$ for $(I_\bZ \Omega^\cS)^d$.
+\label{tab:dual-bordism}}
+\end{table}
+
+We should always be able to regard free fermionic phases as interacting fermionic phases.
+This should lead to homomorphisms relating the free classification and the interacting classification.
+We discuss three cases:
+\begin{itemize}
+\item Symmetry type $i=1$, BDI, corresponds to pin$-$. In dimension $d+1$, this should lead to the map \begin{equation}
+KO^{d-1}(\pt) \to (I_\bZ\Omega^\text{pin-})^{d+2}(\pt).
+\end{equation}
+\item Symmetry type $i=2$, D, corresponds to spin. In dimension $d+1$, this gives \begin{equation}
+KO^{d-2}(\pt) \to (I_\bZ\Omega^\text{spin})^{d+2}(\pt).
+\end{equation}
+\item Symmetry type $i=3$, D, corresponds to pin$+$. In dimension $d+1$, this gives \begin{equation}
+KO^{d-3}(\pt) \to (I_\bZ\Omega^\text{pin+})^{d+2}(\pt).
+\end{equation}
+\end{itemize}
+Compare three rows of Table~\ref{tab:periodic-table} and three columns of Table~\ref{tab:dual-bordism}.
+To understand these homomorphisms more fully, we need to learn more about algebraic topology.
 
 \goodbreak
 
