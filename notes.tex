@@ -135,6 +135,7 @@
 \def\bR{\mathbb{R}}
 \def\bZ{\mathbb{Z}}
 
+\def\cE{\mathcal{E}}
 \def\cH{\mathcal{H}}
 \def\cS{\mathcal{S}}
 
@@ -9092,6 +9093,7 @@ which in the end can be proved to be the same.
 One definition which is closest to our consideration is the following: 
 \begin{equation}
 K^0(X) = [X, BU\times \bZ],\qquad K^{-1}(X)=[X, U]
+\label{Kclass}
 \end{equation}  and $K^i(X)$ for general $i$ is defined by considering $i$ mod 2.
 Here, $X$ is a space and $[X,Y]$ is the homotopy class of maps from $X$ to $Y$.
 Similarly, \begin{equation}
@@ -9105,6 +9107,7 @@ KO^{-5}(X)&=[X,Sp], \\
 KO^{-6}(X)&=[X,Sp/U],&
 KO^{-7}(X)&=[X,U/O],\\
 \end{aligned}
+\label{KOclass}
 \end{equation} and $KO^i(X)$ for general $i$ is defined by considering $i$ mod 8.
 
 Note that the spaces appearing on the second slots of $[X,-]$ in the definition of $K^{-i}$ 
@@ -10304,16 +10307,212 @@ To understand these homomorphisms more fully, we need to learn more about algebr
 
 \section{Generalized (co)homology theories}
 
+So far we have discussed 
+\begin{itemize}
+\item $H^{d+1}(BG;U(1))$ for the Dijkgraaf-Witten phase describing bosonic invertible phases in $d+1$ dimensions,
+\item $K^{d-i}(\pt)$ and $KO^{d-i}(\pt)$ for the free fermionic invertible phases with various symmetry types $i$ in $d$ dimensions, and
+\item $(I_\bZ\Omega^\cS)^{d+2}(BG)$ for relativistic interacting invertible phases with spacetime structure $\cS$.
+\end{itemize}
+They are all examples of generalized cohomology theories. 
+In fact there is an argument by Kitaev \cite{KitaevCollapse} 
+(which was later fleshed out by Gaiotto and Johnson-Freyd \cite{Gaiotto:2017zba}) 
+that any type of classification results for invertible phases should result in a generalized cohomology theory.
+This motivates us to study this topic from a mathematical point of view.
+
 \subsection{Axioms}
+
+We have considered multiple definitions of (co)homology: simplicial (co)\-homology, cellular (co)\-homology, de Rham co\-homology for $\bR$ coefficients, etc. 
+For nice spaces $X$, they all agree. This agreement was formalized by Eilenberg and Steenrod as follows. 
+
+Let us consider an assignment of Abelian groups $E^d(X)$ for spaces $X$, such that
+\begin{enumerate}
+\item[(1)] For any $f:X\to Y$, we have the pullback $f^*: E^d(Y)\to E^d(X)$. 
+\item[(2)] $f^*$ depends only on the homotopy class of the map $f$.
+\end{enumerate}
+
+Now, let $(X,p)$ be a pointed space (which just means that we chose a point $p\in X$ as the basepoint).
+We can show that we necessarily have a direct sum decomposition \begin{equation}
+E^d(X)=E^d(\pt) \oplus \tilde E^d(X).
+\end{equation} 
+Note that $E^d(\pt)=\tilde E^d(S^0)$.
+
+In the following we characterize $\tilde E^d(X)$ instead of $E^d(X)$.
+\begin{enumerate}
+\item[(3)] For an inclusion of pointed spaces $A\subset X$, consider the sequence \begin{equation}
+A\to X\to X/A.
+\end{equation} Then the associated sequence \begin{equation}
+\tilde E^d(X/A) \to \tilde E^d(X)\to \tilde E^d(A)
+\end{equation} is exact.
+\item[(4)] For the suspension $\Sigma X := X\times [0,1] / ( (p\times [0,1]) \cup X\times \{1\})$, we have \begin{equation}
+\tilde E^d(X)=\tilde E^{d+1}(\Sigma X).
+\end{equation}
+\item[(5)] We have \begin{equation}
+\tilde E^d(S^0) = \begin{cases}
+A & (d=0),\\
+0 & (d\neq 0).
+\end{cases}
+\end{equation}
+\end{enumerate}
+
+Eilenberg and Steenrod showed that any such assignment necessarily agree.
+Now, various definitions of cohomology listed above can be shown to satisfy this set of axioms, 
+and therefore are all forced to be equal.
+
+Generalized cohomology theories are obtained by  weakening the last axiom (5), known as the dimension axiom,
+to allow an arbitrary sequence of Abelian groups $E^d(\pt)=\tilde E^d(S^0)$.
+For example, \begin{itemize}
+\item For K theory, we have \begin{equation}
+K^i(\pt)=\begin{cases}
+\bZ & (\text{$i$ is even}),\\
+0& (\text{$i$ is odd)},
+\end{cases}
+\end{equation}
+\item For KO theory, we have \begin{equation}
+\begin{array}{c|cccccccccccc}
+i\ \text{mod}\ 8 & 0 & -1 & -2 & -3 & -4 & -5 & -6 & -7\\
+\hline
+KO^i(\pt) & \bZ & \bZ_2 & \bZ_2 & 0 & \bZ & 0 & 0 & 0 
+\end{array}.
+\end{equation}
+\end{itemize}
+Note that $K^d(X)$ and $KO^d(X)$ are 2-periodic and 8-periodic in $d$.
+In particular, they can be nonzero for both positive and negative values of $d$.
+
+Note that in modern mathematics, when we add or remove the prefix \emph{co},
+the arrows are reversed.
+Then, ordinary and generalized homology theories can be similarly characterized,
+by the following set of axioms.
+Consider the assignment of Abelian groups $E_d(X)$ to spaces $X$. We assume
+\begin{enumerate}
+\item[(1)] For any $f:X\to Y$, we have  $f_*: E_d(Y)\to E_d(X)$. 
+\item[(2)] $f_*$ depends only on the homotopy class of the map $f$.
+\end{enumerate}
+As before, we have
+\begin{equation}
+E_d(X)=E_d(\pt) \oplus \tilde E_d(X),
+\end{equation} 
+where $E_d(\pt)=\tilde E_d(S^0)$.
+Then 
+\begin{enumerate}
+\item[(3)] For an inclusion of pointed spaces $A\subset X$, consider the sequence \begin{equation}
+A\to X\to X/A.
+\end{equation} Then the associated sequence \begin{equation}
+\tilde E_d(A) \to \tilde E_d(X)\to \tilde E_d(X/A)
+\end{equation} is exact.
+\item[(4)] For the suspension $\Sigma X := X\times [0,1] / ( (p\times [0,1]) \cup X\times \{1\})$, we have \begin{equation}
+\tilde E_d(X)=\tilde E_{d+1}(\Sigma X).
+\end{equation}
+\item[(5)] We have \begin{equation}
+\tilde E_d(S^0) = \begin{cases}
+A & (d=0),\\
+0 & (d\neq 0).
+\end{cases}
+\end{equation}
+\end{enumerate}
+
+This set of axioms uniquely characterizes the ordinary homology $H_d(X;A)$.
+Dropping the axiom (5) and replacing it with arbitrary sequence of Abelian groups,
+we obtain generalized homology theories. For example,
+bordism groups of $\cS$-structured manifolds $\Omega^{\cS}_d(X)$ are all 
+generalized homology theories,
+whose values $\Omega^{\cS}_d(\pt)$ for the first few $d$ was given in Table~\ref{tab:bordism}.
+
+\subsection{Classifying spaces and $\Omega$-spectrum}
+
+Any generalized cohomology theory $E^d(X)$ is known to have a series of classifying spaces such that \begin{equation}
+E^d(X) = [X,\cE_d].
+\end{equation} The spaces $\cE_d$ can be chosen to satisfy \begin{equation}
+\cE_d \simeq \Omega \cE_{d+1}
+\end{equation} where $\Omega X$ denotes the space of based loops of $X$.
+Sequence $\{\cE_d\}$ of spaces satisfying this condition is called as an $\Omega$-spectrum.
+Similarly, any generalized homology  theory $E_d(X)$ is known to be given in terms of an $\Omega$-spectrum $\cE_d$ via \begin{equation}
+E_d(X) = \lim_{n\to \infty} \pi_{n} ( X\wedge \cE_{n+d}).
+\label{homodef}
+\end{equation}
+We note the following relation: \begin{equation}
+\pi_0(\cE_d)= E^d(\pt)=E_{-d}(\pt).
+\end{equation}
+
+For example, the $\Omega$-spectrum for $H^d(X;A)$ and $H_d(X;A)$ is given by $\{ K(A,d)\}$,
+where $K(A,d)$ is the Eilenberg-Mac Lane space.
+Similarly, the $\Omega$-spectrum for $K^d(X)$ and $KO^d(X)$ is given respectively by \begin{equation}
+\begin{array}{c|cc}
+i\,\text{mod}\, 2 & 0 & -1 \\
+\hline
+\mathcal{K}_i & BU \times \bZ & U
+\end{array}
+\end{equation}
+and
+\begin{equation}
+\begin{array}{c|cccccccc}
+i\,\text{mod}\, 8 & 0 & -1 & -2 & -3 & -4 & -5& -6 & -7\\
+\hline
+\mathcal{KO}_i & BO \times \bZ & O & O/U & U/Sp & BSp\times \bZ & Sp & Sp/U & U/O,
+\end{array},
+\end{equation}
+see Eq.~\ref{Kclass} and Eq.~\ref{KOclass}.
+These classifying spaces define K-homology $K_i(X)$ and KO-homology $KO_i(X)$ via \eqref{homodef}.
+
+The spectrum for the bordism group $\Omega^\cS_d(X)$ 
+is known as the Thom spectrum and often denoted by $\mathcal{MS}_d$.
+This spectrum defines a corresponding generalized \emph{co}homology group,
+usually called as the bordism cohomology but sometimes simply called the \emph{co}bordism group, 
+denoted by $\Omega_\cS^d(X)$. 
+This is geometrically defined as \begin{equation}
+\Omega_\cS^d(X):= \frac{ \{ \text{proper maps $Z\to X$ of codimension $d$   } \}}{ \text{bordism}}
+\end{equation} where the maps should have $\cS$ structure in the direction of the codimension.
+
 
 \subsection{Anderson dual}
 
-\subsection{AHSS}
+There is, however, another way to associate a generalized cohomology theory to 
+a generalized homology theory. For this, recall the universal coefficient theorem for ordinary (co)homology:
+\begin{equation}
+0\to \Ext(H_{p-1}(M;\bZ),\bZ) \to H^p(M;\bZ) \to \Hom(H_p(M;\bZ),\bZ) \to 0,
+\label{univ}
+\end{equation} where \begin{equation}
+\Ext(A,\bZ) = \Hom(\text{torsion part of $A$}, \bR/\bZ).
+\end{equation}
 
-\goodbreak
+For generalized (co)homology theory $E_d$ and $E^d$, the following sequence \emph{does not hold}:\begin{equation}
+0\to \Ext(E_{p-1}(M),\bZ) \to E^p(M) \to \Hom(E_p(M),\bZ) \to 0.
+\end{equation}
+But it is known that there is a \emph{different} generalized (co)homology theory $(I_\bZ E)_d$ and $(I_\bZ E)^d$ such that the following \emph{does hold}:\begin{equation}
+0\to \Ext(E_{p-1}(M),\bZ) \to (I_\bZ E)^p(M) \to \Hom(E_p(M),\bZ) \to 0.
+\end{equation}
+$(I_\bZ E)^d(X)$ is known as the Anderson dual of $E_d(X)$.
+
+The universal coefficient theorem for ordinary (co)homology then means that, for $h^d(X):=H^d(X;\bZ)$, we have \begin{equation}
+(I_\bZ h)^d(X) = h^d(X).
+\end{equation}  Similarly, it is known that \begin{equation}
+(I_\bZ K)^d(X) = K^d(X)
+\end{equation} while \begin{equation}
+(I_\bZ KO)^d(X) = KO^{d-4}(X). \label{shifted-duality}
+\end{equation}
+
+We saw above that interacting fermionic invertible phases in $d+1$ dimensions with spin structure are classified by 
+$(I_\bZ \Omega^\text{spin})^{d+2}(X)$.
+The corresponding free phase are of type D, which is classified by $KO^{d-2}(X)$.
+So there is a natural \emph{free-to-interacting} map \begin{equation}
+KO^{d-2}(X) \to (I_\bZ \Omega^\text{spin})^{d+2}(X). 
+\end{equation} 
+A mathematical understanding of this map is the following.
+In the context of the index theorem, Atiyah, Bott and Shapiro found a way to turn a spin $d$-manifold 
+into a class in KO-homology: \begin{equation}
+\Omega^\text{spin}_d(\pt)\to KO_d(\pt).
+\end{equation} This can be made into a family version: \begin{equation}
+\Omega^\text{spin}_d(X)\to KO_d(X).
+\end{equation}
+Now we take the Anderson dual of both sides: \begin{equation}
+(I_\bZ KO)^d(X) \to  (I_\bZ\Omega^\text{spin})^d(X)
+\end{equation} where we reversed the arrow because we took the dual. 
+Using \eqref{shifted-duality}, we find \begin{equation}
+ KO^{d-4}(X) \to  (I_\bZ\Omega^\text{spin})^d(X),
+\end{equation}
+which is exactly the free-to-interacting homomorphism we discussed above.
 
 
-\section{Sample computations}
+\subsection{Atiyah-Hirzebruch-Leray-Serre spectral sequence}
 
 \subsection{$\pi_4(S^3)$}
 
