@@ -33,6 +33,16 @@
 %\usepackage[amsmath]{ntheorem}
 \usepackage{xypic}
 %\theorembodyfont{\normalfont}
+\usepackage{sseq}
+\sseqentrysize=1.5\sseqentrysize
+
+\usepackage{tikz}
+\definecolor{wo}{rgb}{1.0, 0.85, 0.6}
+\definecolor{wb}{rgb}{0.7, 0.9, 1.0}
+\definecolor{wp}{rgb}{1.0, 0.85, 0.95}
+\definecolor{wy}{rgb}{1.0, 0.95, 0.7}
+\newcommand{\tikzmark}[2]{\tikz[remember picture,overlay]\node[anchor=base] (#1){#2};}
+
 
 \newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{definition}{Definition}[section]
 \newmdtheoremenv[backgroundcolor=black!10,linecolor=black!0]{theorem}[definition]{Theorem}
@@ -107,7 +117,7 @@
 
 
 
-\newenvironment{comment}{\par\noindent [Comment. \ }{\par\noindent End comment.]}
+%\newenvironment{comment}{\par\noindent [Comment. \ }{\par\noindent End comment.]}
 
 \def\inc#1{\vcenter{\hbox{\includegraphics[scale=.2]{#1}}}}
 \def\incc#1{\vcenter{\hbox{\includegraphics[scale=.6]{#1}}}}
@@ -137,6 +147,7 @@
 
 \def\cE{\mathcal{E}}
 \def\cH{\mathcal{H}}
+\def\cP{\mathcal{P}}
 \def\cS{\mathcal{S}}
 
 \def\sT{\mathsf{T}}
@@ -154,6 +165,7 @@
 
 \def\Spin{\mathit{Spin}}
 \def\pt{\mathrm{pt}}
+\def\Gr{\mathop{\mathrm{Gr}}}
 \def\Arg{\mathop{\mathrm{Arg}}}
 \def\sign{\mathop{\mathrm{sign}}}
 \def\Ker{\mathop{\mathrm{Ker}}}
@@ -10538,7 +10550,7 @@ Using \eqref{shifted-duality}, we find \begin{equation}
 which is exactly the free-to-interacting homomorphism we discussed above.
 
 Similarly, there is a natural map \begin{equation}
-\Omega^\cS_d(X) \to H_d(X;\bZ)
+\Omega^\cS_d(X) \to H_d(X;\bZ) \label{oh}
 \end{equation} which sends the bordism class $[M_d, f: M_d\to X]$
 to the homology class of $f(M_d) \subset X$.
 Taking the Anderson dual and using the Anderson self-duality of $H^d(-;\bZ)$,
@@ -10547,9 +10559,420 @@ H^d(X;\bZ) \to (I_\bZ \Omega^\cS)^d(X).
 \end{equation}
 This re-interprets a Dijkgraaf-Witten phase as an interacting invertible phase with $\cS$ spacetime structure.
 
+In general, this last map is neither surjective nor injective, even for $\cS$ being orientation.
+Dually, the map \eqref{oh} is not necessarily surjective or injective, either.
+As the last topic in this lecture series, let us discuss these issues.
+
 \subsection{Atiyah-Hirzebruch-Leray-Serre spectral sequence}
 
+First we would need to know some methods to compute $\Omega^\cS_d(X)$, or 
+more generally the values $T_d(X)$ or $T^d(X)$ for generalized (co)homology theories $T$.
+The basic tool is the Atiyah-Hirzebruch-Leray-Serre spectral sequence. 
+
+Let us consider a fibration $F\to X\to B$. 
+The AHLS spectral sequence allows us to `determine' 
+$T_*(X)$  from the knowledge of $H_*(X;\bZ)$ and $T_*(F)$,
+or dually,
+to `determine' $T^*(X)$ from the knowledge of $H^*(X;\bZ)$ and $T^*(F)$.
+The reason of the scare quotes will be explained soon.
+
+When $T=H$, this machinery can be used to determine the (co)homology of the total space $X$ 
+from the data of the (co)homology groups of the fiber $F$ and the base $B$.
+When $T\neq H$, this machinery is typically used by applying it to $\pt \to X\to X$,
+allowing us to determine (to some extent) $T_*(X)$ from $H_*(X;\bZ)$ and $T_*(\pt)$, etc.
+
+\subsubsection{Spectral sequence for homology}
+Let us first describe it for $T_*(X)$.
+Recall that we have sequences of skeletons $B_0 \subset B_1\subset B_2 \subset \cdots$ of $B$,
+where $B_k$ includes cells of dimensions up to and including $k$.
+Consider the increasing subset $f^{-1}(B_0)\subset f^{-1}(B_1)\subset \cdots $ of $X$, where $f:X\to B$ is the projection.
+Define  \begin{equation}
+G_{k,d-k}  := \Im \iota_*\colon T_d(f^{-1}(B_k)) \to T_d(X).
+\end{equation}
+This forms a filtration  \begin{equation}
+G_{0,d} \subset G_{1,d-1}  \subset G_{2,d-2} \subset \cdots \subset G_{d,0} = T_d(X).
+\end{equation} We can then take the `associated graded', \begin{equation}
+\Gr(T_d(X)) := G_{0,d} \oplus \frac{G_{1,d-1}}{G_{0,d}} \oplus \frac{G_{2,d-2}}{G_{1,d-1}}
+\oplus \cdots \oplus \frac{G_{d,0}}{G_{d-1,1}}.
+\label{ag}
+\end{equation}
+Knowledge of \eqref{ag} does not uniquely determine $T_d(X)$, but greatly constrains it.
+What the spectral sequence `computes' is \eqref{ag}. (The reason of the scare quotes will again be explained soon.)
+
+This is done as follows.
+We first construct what is called the $E_2$-page: \begin{equation}
+E^2_{p,q} = H_p(B ; E_q(F)).
+\end{equation}
+This has differentials $d^2$ of the form: \begin{equation}
+d^2\colon E^2_{p,q} \to E^2_{p-2,q+1}
+\end{equation} satisfying $d^2\circ d^2=0$. 
+
+The superscript $^2$ here does not mean taking the square;
+it just means that it is a differential on the second page.
+The differentials connect $p+q=n$ to $p+q=n-1$. 
+It is common to write $p$ horizontally, $q$ vertically.
+Then $d^2$ moves one step up and two steps to the left:
+\begin{equation}
+  \vcenter{\hbox{\begin{sseq}{5}{5}
+    \ssmoveto 3 0    \ssdrop{*} \ssname{30}
+    \ssmoveto 1 1    \ssdrop{*} \ssname{11}
+    \ssmoveto 4 2    \ssdrop{*} \ssname{42}
+    \ssmoveto 2 3    \ssdrop{*} \ssname{23}
+    \ssgoto{30}\ssgoto{11}\ssstroke\ssarrowhead
+    \ssgoto{42}\ssgoto{23}\ssstroke\ssarrowhead
+%    \ssgoto{83}\ssarrow -3 4
+  \end{sseq}}}  
+\end{equation}
+
+We then take its cohomology to define the $E^3$ page: \begin{equation}
+E^3_{p,q}=\frac{\Ker d^2\colon E^2_{p,q}\to E^2_{p-2,q+1}}
+{\Im d^2\colon E^2_{p+2,q-1} \to E^2_{p,q}} ,
+\end{equation}
+which is known to have differentials $d^3$ of the form \begin{equation}
+d^3\colon E^3_{p,q} \to E^3_{p-3,q+2}
+\end{equation} satisfying $d^3\circ d^3=0$.
+The $E^4$ page is similarly defined to be \begin{equation}
+E^4_{p,q}=\frac{\Ker d^3\colon E^3_{p,q}\to E^3_{p-3,q+2}}
+{\Im d^3\colon E^3_{p+3,q-2} \to E^3_{p,q}} ,
+\end{equation} which has differentials of the form \begin{equation}
+d^4\colon E^4_{p,q} \to E^3_{p-4,q+3},
+\end{equation} ad infinitum.
+We then eventually get $E^\infty_{p,q}$, which gives \eqref{ag} via \begin{equation}
+\Gr(T_d(X))= E^\infty_{0,d}\oplus E^\infty_{1,d-1} \oplus E^\infty_{2,d-2} \oplus \cdots \oplus E^\infty_{d,0}.
+\end{equation}
+The whole structure is often abbreviated by writing \begin{equation}
+E^2_{p,q} = H_p(B;T_q(F)) \Rightarrow T_{p+q}(X).
+\end{equation}
+
+
+\subsubsection{Spectral sequence for cohomology}
+Let us next describe it for $T^*(X)$.
+The  filtration is now in the reverse direction \begin{equation}
+T^d(X)=G^{0,d} \supset G^{1,d-1} \supset G^{2,d-2} \supset \cdots \supset G^{d,0}
+\end{equation} We can then take the `associated graded', \begin{equation}
+\Gr(T^d(X)) := \frac{G^{0,d}}{G^{1,d-1}}\oplus \frac{G^{1,d-1}}{G^{2,d-2}}\oplus\cdots\oplus G^{d,0}.
+\label{cag}
+\end{equation}
+The $E_2$-page is now \begin{equation}
+E_2^{p,q} = H^p(B ; E^q(F)).
+\end{equation}
+This has differentials $d_2$ of the form: \begin{equation}
+d_2\colon E_2^{p,q} \to E_2^{p+2,q-1}
+\end{equation} satisfying $d_2\circ d_2=0$.
+The $E^3$ page is its cohomology: \begin{equation}
+E_3^{p,q}=\frac{\Ker d_2\colon E_2^{p,q}\to E_2^{p+2,q-1}}
+{\Im d_2\colon E_2^{p-2,q+1} \to E_2^{p,q}} ,
+\end{equation}
+which has  \begin{equation}
+d_3\colon E_3^{p,q} \to E_3^{p+3,q-2}
+\end{equation} satisfying $d^3\circ d^3=0$.
+The $E^4$ page is then \begin{equation}
+E_4^{p,q}=\frac{\Ker d_3\colon E_3^{p,q}\to E_3^{p+3,q-2}}
+{\Im d_3\colon E_3^{p-3,q+2} \to E_3^{p,q}} ,
+\end{equation} which has differentials of the form \begin{equation}
+d_4\colon E_4^{p,q} \to E_4^{p+4,q-3},
+\end{equation} ad infinitum.
+We then eventually get $E_\infty^{p,q}$, which gives \eqref{cag} via \begin{equation}
+\Gr(T^d(X))= E_\infty^{0,d}\oplus E_\infty^{1,d-1} \oplus E_\infty^{2,d-2} \oplus \cdots \oplus E_\infty^{d,0}.
+\end{equation}
+The whole structure is often abbreviated by writing \begin{equation}
+E_2^{p,q} = H^p(B;T^q(F)) \Rightarrow T^{p+q}(X).
+\end{equation}
+
+
+
+\subsection{Some computations of bordism groups}
+
+
+
+\subsubsection{Spin bordism}
+Let us try to gain some experience on this monstrous machinery. 
+First, we use $\Omega^\text{spin}_d(X)$.
+Take the fibration $\pt \to X\to X$ and use the Atiyah-Hirzebruch-Leray-Serre spectral sequence,
+which has the form \begin{equation}
+E^2_{p,q}=H_p(X;\Omega^\text{spin}_q(\pt)) \Rightarrow \Omega^\text{spin}_{p+q}(X).
+\end{equation}
+We know $\Omega^\text{spin}_{0,1,2,3,4}(\pt)=\bZ,\bZ_2,\bZ_2,0,\bZ$.
+Take $X=B\bZ_2=\RP^\infty$, for which we know
+\begin{align}
+H_{0,1,2,3,4,\cdots}(B\bZ_2;\bZ)&=\bZ,\bZ_2,0,\bZ_2,0,\bZ_2,\ldots\\
+H_{0,1,2,3,4,\cdots}(B\bZ_2;\bZ_2)&=\bZ_2,\bZ_2,\bZ_2,\bZ_2,\ldots.
+\end{align}
+Then the $E^2$ page has the following form:
+\begin{equation}
+\begin{array}{c|cccccccccc}
+4 & \bZ & \bZ_2 & 0 & \bZ_2 & 0  \\
+3 & \cellcolor{wo}0 & 0 &0 & 0 &0 \\
+2 & \bZ_2 & \cellcolor{wo}\bZ_2 &\bZ_2 & \bZ_2 &0  \\
+1 & \bZ_2 & \bZ_2 &\cellcolor{wo}\bZ_2 & \bZ_2 &0 \\
+0 & \bZ & \bZ_2 & 0 &\cellcolor{wo} \bZ_2 &0 \\
+\hline
+q/p & 0 & 1 & 2 & 3 & 4 
+\end{array}
+\end{equation}
+Obtaining $E^3$ from $E^2$, $E^4$ from $E^3$ 
+requires taking the cohomology. Thus it makes the entries `smaller'.
+Also, $\Gr(T_k(X))$ is a finite group, $|\Gr(T_k(X))|=|T_k(X)|$.
+From this, we easily conclude from the $E^2$ page above that \begin{equation}
+|\Omega^\text{spin}_3(B\bZ_2)| \le 8.
+\end{equation}
+
+From the computation of the eta invariant, we also know that 
+\begin{equation}
+\eta(S^3/\bZ_2,\text{nontrivial $\bZ_2$ bundle}) = 1/8
+\end{equation} and therefore 
+$[S^3/\bZ_2,\text{nontrivial $\bZ_2$ bundle}] \subset \Omega^\text{spin}_3(B\bZ_2) $  generates 
+a $\bZ_{8k}$ subgroup.
+Combining, we conclude \begin{equation}
+\Omega^\text{spin}_3(B\bZ_2) =\bZ_8.
+\end{equation}
+
+This also shows that the $E^2_{p,q}=E^\infty_{p,q}$ for $p+q=3$, and the filtration 
+is \begin{equation}
+0 \subset \bZ_2 \subset \bZ_4 \subset \bZ_8 = \Omega^\text{spin}_3(B\bZ_2)
+\end{equation} with the associated graded given by \begin{equation}
+0 \subset \bZ_2 \oplus \frac{\bZ_4}{\bZ_2} \oplus \frac{\bZ_8}{\bZ_4} .
+\end{equation}
+
+\subsubsection{Oriented bordism}
+Next, we consider $\Omega^\text{oriented}_n(X)$.
+Take the fibration $\pt \to X\to X$ and use the Atiyah-Hirzebruch-Leray-Serre spectral sequence,
+which has the form \begin{equation}
+E^2_{p,q}=H_p(X;\Omega^\text{oriented}_q(\pt)) \Rightarrow \Omega^\text{oriented}_{p+q}(X).
+\end{equation}
+As $\Omega^\text{oriented}_{0,1,2,3,4,5}(\pt)=\bZ,0,0,0,\bZ,\bZ_2$,
+the $E^2$ page has the following form:
+\def\pikzmark#1#2{\hbox{#2}}
+\begin{equation}
+\begin{array}{c|cccccccccc}
+5 & \cellcolor{wb}\bZ_2 &\cellcolor{wp} * & \cellcolor{wy}* & * & * & * & * & * & * \\
+4 & \cellcolor{wo}\pikzmark{04}{$\bZ$} & \cellcolor{wb}\pikzmark{14}{$*$} & \cellcolor{wp}\pikzmark{24}{$*$} &  \cellcolor{wy}* & * & * & * & * & * \\
+3 & 0 &\cellcolor{wo} 0 &\cellcolor{wb}0 & \cellcolor{wp}0 & \cellcolor{wy}0 & 0 &0 & 0 & 0\\
+2 & 0 & 0 &\cellcolor{wo}0 & \cellcolor{wb}0 &\cellcolor{wp}0 &  \cellcolor{wy}0 &0 & 0 & 0 \\
+1 & 0 & 0 &0 &\cellcolor{wo} 0 &\cellcolor{wb}0 & \cellcolor{wp}0 & \cellcolor{wy}0 & 0 & 0\\
+0 & \bZ & * & * & * &\cellcolor{wo}\pikzmark{40}{$*$} & \cellcolor{wb}\pikzmark{50}{$*$} & \cellcolor{wp}\pikzmark{60}{$*$}  &  \cellcolor{wy}\pikzmark{70}{$*$} &  *\\
+\hline
+q/p & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 
+\end{array}
+\end{equation}
+From this we can easily conclude \begin{equation}
+\Omega^\text{oriented}_{n}(X)=H_n(X;\bZ),\qquad n=0,1,2,3.
+\end{equation} 
+
+Also, recall that \begin{equation}
+E_n(X)=E_n(\pt)\oplus\tilde E_n(X)
+\end{equation} in general.
+This means that  the zeroth column of the $E^2$ page needs to survive into $E^\infty$,
+meaning that every $d^k$ entering to the zeroth column is a zero map.
+Furthermore, it does not enter in the extension problem recovering $\Omega^\text{oriented}_n(X)$
+from $E^\infty_{p,q}$.
+This allows us to determine the $n=4$ case easily to be \begin{equation}
+\Omega^\text{oriented}_{4}(X) = \Omega^\text{oriented}_{4}(\pt)  \oplus
+\tilde \Omega^\text{oriented}_4(X)
+= \bZ \oplus H_4(X;\bZ).
+\end{equation}
+
+The $n=5$ case is harder to determine, but $d^5$ from $E^5_{5,0}=H_5(X;\bZ)$
+is zero since it goes to $E^5_{0,4}=\Omega^\text{oriented}_4(X)$ as we argued above.
+Now, the differential \begin{equation}
+d^5\colon (E^5_{6,0})_{=H_6(X;\bZ)} \to (E^4_{1,4})_{=H_1(X;\bZ)} \label{d4vanishing}
+\end{equation}
+needs to be considered,  but this map is known to be zero in general
+(more on this below).
+This allows us to compute the $E^6$ page, and $d^6$ and afterwards are all zero due to degree reasons.
+We conclude: \begin{equation}
+\Omega^\text{oriented}_{5}(X) = \Omega^\text{oriented}_{5}(\pt)_{=\bZ_2}  \oplus
+\tilde \Omega^\text{oriented}_5(X),
+\end{equation} where we have the short exact sequence \begin{equation}
+0 \to H_1(X;\bZ) \to \tilde \Omega^\text{oriented}_5(X) \to H_5(X;\bZ)\to 0.
+\end{equation}
+In particular, any homology class in $H_5(X;\bZ)$ 
+can be realized as the image $f(M_5)$ of a map $f:M_5\to X$ where $M_5$ is a manifold.
+
+The $n=6$ case is harder, but the vanishing of \eqref{d4vanishing} guarantees that
+$E^5_{6,0}$ survives to $E^\infty_{6,0}$, meaning that \begin{equation}
+\tilde\Omega^\text{oriented}_6(X)\to H_6(X;\bZ)
+\end{equation} is surjective.
+This means that any degree-6 homology class is an image $f(M_6)$ from a manifold, $f:M_6\to X$.
+
+The $n=7$ case is more interesting, since the differential \begin{equation}
+d^5\colon (E^5_{7,0})_{=H_7(X;\bZ)} \to (E^5_{2,4})_{=H_2(X;\bZ)} 
+\end{equation} can actually be nontrivial:
+\begin{equation}
+\begin{array}{c|cccccccccc}
+5 & \cellcolor{wb}\bZ_2 &\cellcolor{wp} * & \cellcolor{wy}* & * & * & * & * & * & * \\
+4 & \cellcolor{wo}\pikzmark{04}{$\bZ$} & \cellcolor{wb}\pikzmark{14}{$*$} & \cellcolor{wp}\tikzmark{24}{$*$} &  \cellcolor{wy}* & * & * & * & * & * \\
+3 & 0 &\cellcolor{wo} 0 &\cellcolor{wb}0 & \cellcolor{wp}0 & \cellcolor{wy}0 & 0 &0 & 0 & 0\\
+2 & 0 & 0 &\cellcolor{wo}0 & \cellcolor{wb}0 &\cellcolor{wp}0 &  \cellcolor{wy}0 &0 & 0 & 0 \\
+1 & 0 & 0 &0 &\cellcolor{wo} 0 &\cellcolor{wb}0 & \cellcolor{wp}0 & \cellcolor{wy}0 & 0 & 0\\
+0 & \bZ & * & * & * &\cellcolor{wo}\pikzmark{40}{$*$} & \cellcolor{wb}\pikzmark{50}{$*$} & \cellcolor{wp}\pikzmark{60}{$*$}  &  \cellcolor{wy}\tikzmark{70}{$*$} &  *\\
+\hline
+q/p & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 
+\end{array}
+\begin{tikzpicture}[overlay,remember picture]
+\draw[->] (70)--(24);
+\end{tikzpicture}
+\end{equation}
+ This means that \begin{equation}
+E^6_{7,0}= \Ker (d^5 \colon E^5_{7,0} \to E^5_{4,2}) \subset H_7(X;\bZ)
+\end{equation} can be a proper subset, meaning that the image of the map, \begin{equation}
+\tilde\Omega^\text{oriented}_7(X)\to H_7(X;\bZ),
+\end{equation}  which is  $E^6_{7,0} \simeq E^\infty_{7,0)}$,
+is a proper subset of $H_7(X;\bZ)$.
+This implies a surprising conclusion: not all of $H_7(X;\bZ)$ can be realized 
+as an image $f(M_7)$ of a map $f:M_7\to X$,
+let alone by an embedded submanifold $\iota: M_7 \subset X$.
+
+A very nice explicit example was discussed in the arXiv version 1 of \cite{BHK}.\footnote{%
+The published version corresponds to the version 2 on the arXiv,
+which discusses a subtler example of a class in $H_7(X;\bZ)$ which is not realized by an embedded submanifold
+but can be realized by an image of a manifold.
+This example is surprisingly simple. Take $X=Sp(2)$, the group manifold of the symplectic group $Sp(2)$ of dimension 10.
+Its nonzero integral homology groups are $H_{0,3,7,10}(Sp(2);\bZ)$, all of which is $\bZ$.
+The generator of $\bZ\simeq H_3(Sp(2);\bZ)$ is realized by the subgroup $S^3\simeq SU(2)\simeq Sp(1)\subset Sp(2)$,
+which is clearly a submanifold.
+But the generator of $\bZ\simeq H_7(Sp(2);\bZ)$ cannot be realized as such; only $3\in \bZ$ has a submanifold representative.
+}
+For this, they took $X=S^7/\bZ_3 \times S^3/\bZ_3$.
+Let  $v_{1,2}$ are generators of $H^1(S^{3,7}/\bZ_3;\bZ_3)\simeq \bZ_3$.
+Consider the element $x:=\bar\beta(v_1v_2)\in H^3(X;\bZ)$ where 
+\begin{equation}
+\bar\beta\colon H^d(X;\bZ_3)\to H^{d+1}(X;\bZ)
+\end{equation} is the Bockstein.
+Then the Poincar\'e dual $y\in H_7(X;\bZ)$ of $x$, which is not in the kernel of $d^4$ and cannot be realized 
+as  the image of a map from a manifold.
+
+The non-surjective-ness of 
+\begin{equation}
+\Omega^\text{oriented}_d(X)\to H_d(X;\bZ)
+\end{equation}
+leads to the non-injective-ness of 
+\begin{equation}
+H^d(X;\bZ)\to (I_\bZ \Omega^\text{oriented})^d(X;\bZ).
+\end{equation}
+This means that some of the Dijkgraaf-Witten phase is actually trivial
+whenever it is evaluated on a manifold (but can be nontrivial when it is evaluated on a triangulated polyhedron).
+The first case is the $(6+1)$-dimensional Dijkgraaf-Witten invertible phase.
+
+For example, take the symmetry $\bZ_3\times \bZ_3$.
+Recall that $H^1(B\BZ_3;\bZ_3)=\bZ_3$. Its generator $A$ is simply the $\bZ_3$ gauge field.
+$H^2(B\bZ_3;\bZ_3)=\bZ_3$ is generated by its Bockstein, $\beta A$.
+We now take two copies of it for $\bZ_3\times \bZ_3$.
+Arbitrary Dijkgraaf-Witten actions in 6+1 dimensions is then 
+one $\beta$ stripped from 
+$(\beta A_1)^n (\beta A_2)^m$ with $n+m=4$.
+(If we regard $\bZ_3\subset  U(1)$, they are really Abelian Chern-Simons terms, where $\beta A_i\sim F_i$.)
+
+Now consider the action \begin{equation}
+\cP^1 \beta (A_1 \cup A_2) 
+= (\beta A_1)^3 A_2 - A_1 (\beta A_2)^3.
+\end{equation} 
+When evaluated on a 7-manifold $M_7$, we have the formula \begin{equation}
+\int_{M_7} \cP^1 x_3 = \int_{M_7} p_1(M_7) x_3
+\end{equation} for general $x_3\in H^3(M_7;\bZ_3)$. Applying it to the above, we have \begin{equation}
+\int_{M_7} \cP^1 \beta(A_1\cup A_2) = \int_{M_7} p_1(M_7) \beta(A_1\cup A_2).
+\end{equation}
+On an oriented manifold, $\beta$ can be partially integrated, and so \begin{equation}
+= -\int_{M_7} (\beta p_1(M_7) ) (A_1\cup A_2),
+\end{equation} but $p_1(M_7)$ is an integral class, so its Bockstein is zero: \begin{equation}
+= -\int_{M_7} 0\cdot A_1\cup A_2 = 0.
+\end{equation}
+
+
+This cohomology operation $\cP^1\beta$ is essentially the dual of $d^5: H_n(X;\bZ)\to H_{n-5}(X;\bZ)$,
+which is $d_5:H^{n-5}(X;\bR/\bZ)\to H^{n}(X;\bR/\bZ)$ and is given by \begin{equation}
+d_5 = \iota_{\bZ_3\to \bR/\bZ}\cP^1 \beta_{\bR/\bZ\to\bZ_3},
+\end{equation} where $\iota$ is the homomorphism given by changing the coefficient group
+and $\beta$ is the Bockstein associated to $ 0\to \bR/\bZ \xrightarrow{3\times} \bR/\bZ\to \bZ_3\to 0$.
+This means that, by construction, the class $\cP^1\beta(A_1\cup A_2)$ has a nontrivial  integral
+on the Poincar\'e dual homology cycle $y\in H_7(X;\bZ)$, which is not a manifold!
+
 \subsection{$\pi_4(S^3)$}
+
+Above, we used the homology spectral sequence to compute $\Omega^\cS_d(X)$.
+The cohomology spectral sequence is often more tractable,
+since the $E^2$ page $E_2^{p,q} = H^p(B;T^q(F))$ is a graded algebra (when $T^q$ is multiplicative)
+and $d_2$ is a derivation of this algebra,
+and similarly for higher $E^n$ and $d_n$.
+
+As a final application of spectral sequences, and to see the usefulness of the graded algebra structure,
+let us discuss the classic computation of $\pi_4(S^3)=\bZ_2$ by using the Leray-Serre spectral sequence,
+which can be found in any basic textbook of algebraic topology.
+The following is taken from \cite[Appendix B]{Saito:2025idl}.
+First, we need to translate the computation of $\pi_4(S^3)$ 
+to the computation of a cohomology group. This can be done by the following trick.
+
+Let us consider the classifying map $f:S^3\to K(\bZ,3)$ of the generator of $H^3(S^3,\bZ)\simeq \bZ$, and $P$ be its homotopy fiber: \begin{equation}
+P\to S^3\to K(\bZ,3). \label{PSK}
+\end{equation} Correspondingly, we have a fibration of the form \begin{equation}
+K(\bZ,2)\to P\to S^3.
+\end{equation}
+The homotopy long exact sequence associated to \eqref{PSK} is \begin{equation}
+  \begin{array}{lrlrlrl} 
+      &&&   &\to&  \pi_5(K(\bZ,3))_{=0}   \\
+      \to &\pi_4(P)&\to&  \pi_4(S^3)_{=?} &\to&  \pi_4(K(\bZ,3))_{=0}  \\
+      \to &\pi_3(P)&\to&  \pi_3(S^3)_{=\bZ} &\xrightarrow{\sim}&  \pi_3(K(\bZ,3))_{=\bZ}  \\
+      \to &\pi_2(P)&\to&  \pi_2(S^3)_{=0} &\to&  \pi_2(K(\bZ,3))_{=0}  \\
+      \to &\pi_1(P)&\to&  \pi_1(S^3)_{=0} &\to&  \pi_1(K(\bZ,3))_{=0}  \\
+      \to &\pi_0(P)&\to&  \pi_0(S^3)_{=0} &\to&  \pi_0(K(\bZ,3))_{=0}  \\
+  \end{array} 
+\end{equation}
+where $\pi_3(S^3)\simeq \pi_3(K(\bZ,3))$ is by construction.
+From this we know 
+\begin{equation}
+\pi_{0,1,2,3}(P)=0,\qquad \pi_4(P)\simeq \pi_4(S^3),
+\end{equation}
+and an application of Hurewicz theorem gives 
+\begin{equation}
+H_0(P;\bZ)=\bZ, \quad H_{1,2,3}(P;\bZ)=0,\qquad   H_4(P;\bZ)\simeq \pi_4(P) \simeq \pi_4(S^3).
+\label{Phom}
+\end{equation} 
+Therefore it suffices to compute $H_4(P,\bZ)$.
+
+For this we use the Leray-Serre spectral sequence for $H^\bullet(P;\bZ)$,
+associated to $K(\bZ,2)\to P\to S^3$.
+Recall  $K(\bZ,2)=\mathbb{CP}^\infty$ 
+and $H^*(K(\bZ,2);\bZ)=\bZ[u]$ where $u$ is of degree 2.
+Let us denote the generator of $H^3(S^3;\bZ)=\bZ$ by $v$.
+Then the $E_2$ page is simply 
+\begin{equation}
+  \vcenter{\hbox{\begin{sseq}{5}{5}
+    \ssdrop{\bZ}
+    \ssmove 0 2 \ssdrop{\bZ} \ssname{02}
+    \ssmove 0 2 \ssdrop{\bZ} \ssname{04}
+    \ssmove 0 2 \ssdrop{\bZ} \ssname{06}
+    \ssmoveto 3 0 \ssdrop{\bZ} \ssname{30}
+    \ssmove 0 2 \ssdrop{\bZ} \ssname{32}
+    \ssmove 0 2 \ssdrop{\bZ}
+    \ssgoto{02}\ssgoto{30}\ssstroke\ssarrowhead
+    \ssgoto{04}\ssgoto{32}\ssstroke\ssarrowhead
+%    \ssgoto{83}\ssarrow -3 4
+  \end{sseq}}}  
+\end{equation}
+where $E_2^{0,2n}\simeq \bZ u^n$  and $E_2^{3,2n}\simeq \bZ u^n v$.
+
+$d_2$ are all zero maps due to the sparseness of the $E^2$ page.
+Then $E^3=E^2$, and we need  to consider  $d_3$.
+To determine $d_3$, note that we have $H^2(P;\bZ)=H^3(P;\bZ)=0$ from \eqref{Phom}.
+Therefore $d_3: E_3^{0,2}\to E_3^{3,0}$ should be an isomorphism given by $d_2 u=v$.
+Then $d_3 : E_3^{0,4}\to E_3^{3,2}$ is a multiplication by 2, given by $d_3 u^2 = 2uv$.
+Therefore the $E_4$ page is \begin{equation}
+  \vcenter{\hbox{\begin{sseq}{5}{5}
+    \ssdrop{\bZ}
+    \ssmoveto 3 2 \ssdrop{\bZ_2} 
+    \ssmove 0 2 \ssdrop{*} 
+%    \ssgoto{83}\ssarrow -3 4
+  \end{sseq}}}  
+\end{equation}
+from which we conclude \begin{equation}
+H^4(P;\bZ)=0, \qquad H^5(P;\bZ)=\bZ_2.
+\end{equation}
+Therefore we have \begin{equation}
+H_4(P;\bZ)=\bZ_2,
+\end{equation} and by \eqref{Phom} we conclude \begin{equation}
+\pi_4(S^3)=\bZ_2.
+\end{equation}
+
 
 %\subsection{Fermionic invertible phases in 1+1d}
 %
