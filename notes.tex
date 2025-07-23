@@ -10425,8 +10425,34 @@ E^d(X) = [X,\cE_d].
 \cE_d \simeq \Omega \cE_{d+1}
 \end{equation} where $\Omega X$ denotes the space of based loops of $X$.
 Sequence $\{\cE_d\}$ of spaces satisfying this condition is called as an $\Omega$-spectrum.
-Similarly, any generalized homology  theory $E_d(X)$ is known to be given in terms of an $\Omega$-spectrum $\cE_d$ via \begin{equation}
-E_d(X) = \lim_{n\to \infty} \pi_{n} ( X\wedge \cE_{n+d}).
+
+Kitaev's idea that invertible phases (with various conditions of your choice,
+such as relativistic/non-relativistic or free/interacting ) should be given by
+some generalized cohomology theory is based on his thinking about the
+classifying space of invertible phases.
+Fix the set of conditions to be imposed, and let $\cH_d$ 
+to be the set of allowed  `local invertible gapped Hamiltonians' with these conditions
+in $d$ spatial dimensions.
+Then he considers two operations \begin{equation}
+\Omega \cH_{d+1} \to \cH_d
+\label{down}
+\end{equation} and \begin{equation}
+\cH_{d} \to \Omega\cH_{d+1}.
+\label{up}
+\end{equation}
+The first operation \eqref{down} is to consider a $(d+1)$-dimensional invertible system
+on a thin slab with spatial variation as a single $d$-dimensional invertible gapped system.
+The second operation \eqref{up} inserts a $d$-dimensional invertible gapped system 
+into a trivial $(d+1)$-dimensional slab and then smears it.
+Then one needs to argue that the two operations \eqref{down} and \eqref{up} are 
+inverse of each other up to homotopy.
+It is a plausible argument with many gaps, but it provided a lot of motivations 
+behind the recent developments. 
+Furthermore, there are several attempts to make this argument rigorous.
+
+
+Coming back to mathematics, any generalized homology  theory $E_d(X)$ is known to be given in terms of an $\Omega$-spectrum $\cE_d$ via \begin{equation}
+E_d(X) = \lim_{n\to \infty} \pi_{n} ( X\wedge \cE_{n-d}).
 \label{homodef}
 \end{equation}
 We note the following relation: \begin{equation}
@@ -10511,16 +10537,25 @@ Using \eqref{shifted-duality}, we find \begin{equation}
 \end{equation}
 which is exactly the free-to-interacting homomorphism we discussed above.
 
+Similarly, there is a natural map \begin{equation}
+\Omega^\cS_d(X) \to H_d(X;\bZ)
+\end{equation} which sends the bordism class $[M_d, f: M_d\to X]$
+to the homology class of $f(M_d) \subset X$.
+Taking the Anderson dual and using the Anderson self-duality of $H^d(-;\bZ)$,
+we have \begin{equation}
+H^d(X;\bZ) \to (I_\bZ \Omega^\cS)^d(X).
+\end{equation}
+This re-interprets a Dijkgraaf-Witten phase as an interacting invertible phase with $\cS$ spacetime structure.
 
 \subsection{Atiyah-Hirzebruch-Leray-Serre spectral sequence}
 
 \subsection{$\pi_4(S^3)$}
 
-\subsection{Fermionic invertible phases in 1+1d}
+%\subsection{Fermionic invertible phases in 1+1d}
+%
+%\subsection{Fermionic invertible phases in 2+1d}
 
-\subsection{Fermionic invertible phases in 2+1d}
-
-\subsection{Interacting bosonic invertible phases in higher dimensions}
+%\subsection{Interacting bosonic invertible phases in higher dimensions}
 
 
 
